@@ -1,10 +1,50 @@
+import { puppeteerConfig } from '../help';
+
 export interface puppeteerOptions {
-    headless?: boolean;
-    args?: string[];
-    executablePath?: string;
-  }
-  
+  /**
+   * @default false
+   */
+  headless: boolean;
+  args: string[];
+  /**
+   * @default null
+   */
+  executablePath: string;
+  /**
+   * @default null
+   */
+  userDataDir: string;
+  /**
+   * @default null
+   */
+  ignoreHTTPSErrors: boolean;
+}
+
 export interface CreateOptions {
-    session?: string;
-    puppeteerOptions?: puppeteerOptions;
-  }
+  /**
+   * @default 'Snake'
+   */
+  session: string;
+  /**
+   * @default 'token'
+   */
+  pathNameToken: string;
+  /**
+   * @default null
+   */
+  mkdirFolderToken: string;
+  puppeteerOptions: puppeteerOptions;
+}
+
+export const defaultConfig: CreateOptions = {
+  session: 'Snake',
+  pathNameToken: 'token',
+  mkdirFolderToken: '',
+  puppeteerOptions: {
+    headless: false,
+    args: puppeteerConfig.chromiumArgs,
+    executablePath: '',
+    ignoreHTTPSErrors: true,
+    userDataDir: ''
+  },
+};

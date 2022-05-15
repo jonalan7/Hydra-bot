@@ -1,16 +1,7 @@
-import { puppeteerConfig } from '../help';
-import { CreateOptions } from '../interface';
+import { CreateOptions, defaultConfig } from '../interface';
 import { initLaunch, initBrowser } from './browser';
 import { Browser, BrowserContext, Page } from 'puppeteer';
 import { webPack } from '../inject/webpack';
-export const defaultConfig: CreateOptions = {
-  session: 'Snake',
-  puppeteerOptions: {
-    headless: false,
-    args: puppeteerConfig.chromiumArgs,
-    executablePath: '',
-  },
-};
 
 export async function initServer(createOption: CreateOptions): Promise<any>;
 

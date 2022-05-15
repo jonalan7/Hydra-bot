@@ -1,10 +1,13 @@
 import { Browser, BrowserContext, Page } from 'puppeteer';
 import puppeteer from 'puppeteer-extra';
-const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 import * as ChromeLauncher from 'chrome-launcher';
+import * as path from 'path';
+import * as fs from 'fs';
 
 import { CreateOptions } from '../interface';
 import { puppeteerConfig } from '../help';
+
+const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 
 export async function initBrowser(Browser: Browser): Promise<Page | boolean> {
   const wpage: Page = await oneTab(Browser);
@@ -22,17 +25,46 @@ export async function initBrowser(Browser: Browser): Promise<Page | boolean> {
   }
   return false;
 }
+export function PathSession(options: CreateOptions) {
+  const folderNameToken = path.join(
+    path.resolve(
+      process.cwd(),
+      options.mkdirFolderToken,
+      options.pathNameToken
+    )
+  );
+console.log(folderNameToken)
+  if (!fs.existsSync(folderNameToken)) {
+    fs.mkdirSync(folderNameToken, {
+      recursive: true,
+    });
+  }
+
+  const pathSession = path.join(
+    path.resolve(
+      process.cwd(),
+      options.mkdirFolderToken,
+      options.pathNameToken,
+      options.session
+    ));
+
+    fs.chmodSync(folderNameToken, '777');
+    
+    options.puppeteerOptions.userDataDir = pathSession;
+
+    puppeteerConfig.chromiumArgs.push(`--user-data-dir=${pathSession}`);
+}
 
 export async function initLaunch(
   options: CreateOptions
 ): Promise<Browser | boolean> {
+  PathSession(options);
   if (options.puppeteerOptions?.executablePath === 'useChrome') {
     const chromePath: string | undefined = getPathChrome();
     if (chromePath === undefined) {
       console.log('erro get Path chrome');
     } else {
       options.puppeteerOptions.executablePath = chromePath;
-      console.log(options.puppeteerOptions?.executablePath);
     }
   }
 
@@ -43,6 +75,7 @@ export async function initLaunch(
       headless: options.puppeteerOptions?.headless,
       args: options.puppeteerOptions?.args,
       executablePath: options.puppeteerOptions?.executablePath,
+      userDataDir: options.puppeteerOptions?.userDataDir
     });
   } catch (e) {
     return false;
