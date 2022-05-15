@@ -46,7 +46,11 @@ export const injectParasiteSnake = async () => {
             Object.keys(neededStore.yesModule).forEach((e) => { 
                 window.Store[e] = neededStore.yesModule[e];
             })
-           
+            
+            if (Store && Store.BusinessProfile) {
+                Store.Chat._findAndParse = Store.BusinessProfile._findAndParse;
+                Store.Chat._find = Store.BusinessProfile._find;
+              }
         },
     ]);
 }

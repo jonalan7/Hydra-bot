@@ -33,7 +33,7 @@ export function PathSession(options: CreateOptions) {
       options.pathNameToken
     )
   );
-console.log(folderNameToken)
+
   if (!fs.existsSync(folderNameToken)) {
     fs.mkdirSync(folderNameToken, {
       recursive: true,
@@ -49,7 +49,7 @@ console.log(folderNameToken)
     ));
 
     fs.chmodSync(folderNameToken, '777');
-    
+
     options.puppeteerOptions.userDataDir = pathSession;
 
     puppeteerConfig.chromiumArgs.push(`--user-data-dir=${pathSession}`);

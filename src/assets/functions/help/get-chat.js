@@ -6,7 +6,7 @@ export function getChat(chatId) {
     let found = window.Store.Chat.get(chatId);
 
     if (!found) {
-        const ConstructChat = new window.Store.UserConstructor(id, {
+        const ConstructChat = new window.Store.UserConstructor(chatId, {
             intentionallyUsePrivateConstructor: !0,
         });
         found = window.Store.Chat.find(ConstructChat) || false;
