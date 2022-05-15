@@ -8,6 +8,7 @@ export const defaultConfig: CreateOptions = {
   puppeteerOptions: {
     headless: false,
     args: puppeteerConfig.chromiumArgs,
+    executablePath: '',
   },
 };
 
@@ -17,6 +18,10 @@ export async function initServer(
   options: CreateOptions
 ): Promise<webPack | any> {
   const mergeOptionsDefault = { ...defaultConfig, ...options };
+  mergeOptionsDefault.puppeteerOptions = {
+    ...defaultConfig.puppeteerOptions,
+    ...options.puppeteerOptions,
+  };
   const wpage: Browser | boolean = await initLaunch(mergeOptionsDefault);
   if (typeof wpage !== 'boolean') {
     const page: boolean | Page = await initBrowser(wpage);
@@ -28,9 +33,9 @@ export async function initServer(
 
       return client;
     } else {
-      console.log("Error open whatzapp")
+      console.log('Error open whatzapp');
     }
   } else {
-    console.log("Error open browser...");
+    console.log('Error open browser...');
   }
 }

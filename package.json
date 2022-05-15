@@ -13,6 +13,7 @@
   "author": "Jonalan",
   "license": "ISC",
   "dependencies": {
+    "chrome-launcher": "^0.15.0",
     "cors": "^2.8.5",
     "express": "^4.18.1",
     "gulp": "^4.0.2",

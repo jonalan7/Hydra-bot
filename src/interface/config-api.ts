@@ -1,6 +1,7 @@
 export interface puppeteerOptions {
-    headless: boolean;
-    args: string[];
+    headless?: boolean;
+    args?: string[];
+    executablePath?: string;
   }
   
 export interface CreateOptions {
