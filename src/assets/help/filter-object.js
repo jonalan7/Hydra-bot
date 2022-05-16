@@ -66,4 +66,9 @@ export const filterObjects = [{
         type: 'ReadSeen',
         when: (module) => (module.sendSeen ? module : null),
     },
+    {
+        type: 'Stream',
+        when: (module) =>
+            module.Stream && module.StreamInfo ? module.Stream : null,
+    },
 ];

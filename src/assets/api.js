@@ -12,12 +12,16 @@ import {
     sendExist,
     checkNumberStatus,
     isMD
-} from './functions/help'
+} from './functions/help';
 
 import {
     sendMessage,
     baseSendMessage
-} from './functions'
+} from './functions';
+
+import {
+    addOnStream
+} from './listeners';
 
 (async () => {
     window[injectConfig.webpack] = window[injectConfig.webpack] || [];
@@ -48,4 +52,7 @@ if (typeof window.API === 'undefined') {
 
     window.API.sendMessage = sendMessage;
     window.API.baseSendMessage = baseSendMessage;
+    
+    addOnStream();
 }
+

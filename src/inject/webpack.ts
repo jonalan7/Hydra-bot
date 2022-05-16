@@ -1,9 +1,13 @@
 import { Page } from 'puppeteer';
 import * as path from 'path';
 import { SenderLayer } from '../api/layes/sender.layes';
+
+
+
 export class webPack extends SenderLayer {
   constructor(public page: Page) {
     super(page);
+    this.initService();
   }
 
   async initService() {
@@ -18,5 +22,9 @@ export class webPack extends SenderLayer {
     this.page.on('load', async () => {
       await this.initService();
     });
+
+    this.initLitener()
+  
   }
+
 }

@@ -1,4 +1,4 @@
-import { puppeteerConfig } from '../help';
+import { puppeteerConfig } from '../../help';
 
 export interface puppeteerOptions {
   /**

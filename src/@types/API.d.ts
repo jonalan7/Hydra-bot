@@ -1,5 +1,6 @@
 interface API {
   sendMessage: (to: string, body: String, options: object) => Promise<any>;
+  interfaceChange: (callback: Function) => void;
 }
 
 declare global {

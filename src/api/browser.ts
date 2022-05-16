@@ -4,7 +4,7 @@ import * as ChromeLauncher from 'chrome-launcher';
 import * as path from 'path';
 import * as fs from 'fs';
 
-import { CreateOptions } from '../interface';
+import { CreateOptions } from '../model/interface';
 import { puppeteerConfig } from '../help';
 
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');

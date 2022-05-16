@@ -1,8 +1,12 @@
 import { Page } from 'puppeteer';
-import { sendOptions } from '../../interface';
+import { sendOptions } from '../../model/interface';
+import { ListenerLayer } from './listener.layes';
 
-export class SenderLayer {
-  constructor(public page: Page) {}
+export class SenderLayer extends ListenerLayer{
+
+  constructor(public page: Page) {
+    super(page);
+  }
 
   sendMessage(options: sendOptions): Promise<any>;
 
