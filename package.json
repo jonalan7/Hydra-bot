@@ -8,7 +8,8 @@
     "build:api": "cd src/assets && webpack",
     "build": "npm run build:api && tsc",
     "start": "npm run build && node bot-test/index.js",
-    "del:module": "rd /s /q 'node_modules'"
+    "del:module": "rd /s /q 'node_modules'",
+    "release": "release-it"
   },
   "repository": {
     "type": "git",
