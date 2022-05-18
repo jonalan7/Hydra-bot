@@ -2,7 +2,7 @@ import { puppeteerConfig } from '../../help';
 
 export interface puppeteerOptions {
   /**
-   * @default false
+   * @default true
    */
   headless: boolean;
   args: string[];
@@ -22,7 +22,7 @@ export interface puppeteerOptions {
 
 export interface CreateOptions {
   /**
-   * @default 'Snake'
+   * @default 'session'
    */
   session: string;
   /**
@@ -45,13 +45,13 @@ export interface CreateOptions {
 }
 
 export const defaultConfig: CreateOptions = {
-  session: 'Snake',
+  session: 'session',
   pathNameToken: 'token',
   mkdirFolderToken: '',
   puppeteerOptions: {
-    headless: false,
+    headless: true,
     args: puppeteerConfig.chromiumArgs,
-    executablePath: '',
+    executablePath: 'useChrome',
     ignoreHTTPSErrors: true,
     userDataDir: '',
   },

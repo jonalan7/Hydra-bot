@@ -1,6 +1,6 @@
 import { CreateOptions, defaultConfig } from '../model/interface';
 import { initLaunch, initBrowser } from './browser';
-import { Browser, BrowserContext, Page } from 'puppeteer';
+import { Browser, Page } from 'puppeteer';
 import { webPack } from '../inject/webpack';
 
 
@@ -10,10 +10,13 @@ export async function initServer(
   options: CreateOptions
 ): Promise<webPack | any> {
   const mergeOptionsDefault = { ...defaultConfig, ...options };
+  if (!!options?.puppeteerOptions){
   mergeOptionsDefault.puppeteerOptions = {
     ...defaultConfig.puppeteerOptions,
     ...options.puppeteerOptions,
   };
+}
+
   const wpage: Browser | boolean = await initLaunch(mergeOptionsDefault);
   if (typeof wpage !== 'boolean') {
     const page: boolean | Page = await initBrowser(wpage);
