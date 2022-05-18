@@ -1,13 +1,20 @@
-import { Page } from 'puppeteer';
+import { Page, Browser } from 'puppeteer';
 import * as path from 'path';
 import { SenderLayer } from '../api/layes/sender.layes';
-
-
+import { CreateOptions, defaultConfig } from '../model/interface';
 
 export class webPack extends SenderLayer {
-  constructor(public page: Page) {
-    super(page);
+  constructor(
+    public page: Page,
+    public browser: Browser,
+    public options: CreateOptions
+  ) {
+    super(page, browser, options);
     this.initService();
+    this.initModeInterfaceChange();
+    this.page.on('load', async () => {
+      await this.initService();
+    });
   }
 
   async initService() {
@@ -19,12 +26,6 @@ export class webPack extends SenderLayer {
         path: require.resolve(path.join(__dirname, '../assets/', 'api.js')),
       })
       .catch();
-    this.page.on('load', async () => {
-      await this.initService();
-    });
-
-    this.initLitener()
-  
+    this.initLitener();
   }
-
 }

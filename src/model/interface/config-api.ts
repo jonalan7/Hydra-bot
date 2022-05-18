@@ -34,6 +34,14 @@ export interface CreateOptions {
    */
   mkdirFolderToken: string;
   puppeteerOptions: puppeteerOptions;
+  /**
+   * @default true
+   */
+  printQRInTerminal: boolean;
+   /**
+   * @default 60000
+   */
+  timeAutoClose: number;
 }
 
 export const defaultConfig: CreateOptions = {
@@ -45,6 +53,8 @@ export const defaultConfig: CreateOptions = {
     args: puppeteerConfig.chromiumArgs,
     executablePath: '',
     ignoreHTTPSErrors: true,
-    userDataDir: ''
+    userDataDir: '',
   },
+  printQRInTerminal: true,
+  timeAutoClose: 60000
 };

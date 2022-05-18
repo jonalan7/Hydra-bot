@@ -1,16 +1,22 @@
-import { Page } from 'puppeteer';
+import { Page, Browser } from 'puppeteer';
 import { sendOptions } from '../../model/interface';
 import { ListenerLayer } from './listener.layes';
+import { CreateOptions, defaultConfig } from '../../model/interface';
+import { truncate } from 'fs';
 
-export class SenderLayer extends ListenerLayer{
+export class SenderLayer extends ListenerLayer {
 
-  constructor(public page: Page) {
-    super(page);
+  constructor(
+    public page: Page,
+    public browser: Browser,
+    public options: CreateOptions
+  ) {
+    super(page, browser, options);
   }
 
-  sendMessage(options: sendOptions): Promise<any>;
+  async sendMessage(options: sendOptions): Promise<any>;
 
-  public sendMessage(sendOptions: sendOptions): Promise<any> {
+  public async sendMessage(sendOptions: sendOptions): Promise<any> {
     return new Promise(async (resolve, reject) => {
       const to: any = sendOptions.to,
         body: any = sendOptions.body,
@@ -24,7 +30,7 @@ export class SenderLayer extends ListenerLayer{
         )
         .catch();
 
-      if (result['erro'] == true) {
+      if (result.erro == true) {
         return reject(result);
       } else {
         return resolve(result);

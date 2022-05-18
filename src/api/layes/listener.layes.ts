@@ -1,15 +1,70 @@
 import { EventEmitter } from 'events';
 import { onMode } from '../../model/enum/';
-import { Page } from 'puppeteer';
+import { Page, Browser } from 'puppeteer';
+import { scraping } from './scraping.layes';
+import { CreateOptions, defaultConfig } from '../../model/interface';
+import { sleep } from '../../help';
 
-declare global {
-  interface Window {
-    interfaceChange: any;
+export class ListenerLayer extends scraping {
+  public statusFind: any;
+  constructor(
+    public page: Page,
+    public browser: Browser,
+    public options: CreateOptions
+  ) {
+    super(page, browser, options);
+    this.statusFind = '';
   }
-}
 
-export class ListenerLayer {
-  constructor(public page: Page) {}
+  public async qrCodeScan() {
+    let urlCode = null;
+    this.startAutoClose();
+    while (true) {
+      const result = await this.qrCode().catch();
+      if (!result?.urlCode) {
+        break;
+      }
+      if (urlCode !== result.urlCode) {
+        Object.assign(result, { onType: onMode.qrcode });
+        this.statusFind = result;
+        urlCode = result.urlCode;
+        const qr = await this.asciiQr(urlCode).catch(() => undefined);
+        if (this.options.printQRInTerminal) {
+          console.log(qr);
+        }
+      }
+      await sleep(100);
+    }
+  }
+
+  async onChange(event: (status: any) => void) {
+    let change = null;
+    while (true) {
+      if (this.statusFind !== change) {
+        change = this.statusFind;
+        event && event(change);
+      }
+      await sleep(100);
+    }
+  }
+
+  public async initModeInterfaceChange() {
+    this.on(onMode.interfaceChange, async (interFace: any) => {
+      try {
+        this.cancelAutoClose();
+        if(interFace.mode === 'MAIN') {
+          if (interFace.info === 'NORMAL') {
+            this.statusFind = { onType: onMode.connection }
+          }
+        }
+        if (interFace.mode === 'QR') {
+          if (interFace.info === 'NORMAL') {
+            await this.qrCodeScan();
+          }
+        }
+      } catch {}
+    });
+  }
 
   private listenerEmitter = new EventEmitter();
 
@@ -41,11 +96,24 @@ export class ListenerLayer {
       .catch(() => {});
   }
 
-  async on(type: onMode, callback: (state: any) => void) {
+  public async on(type: onMode, callback: (state: any) => void) {
     switch (type) {
       case onMode.interfaceChange:
         this.listener(onMode.interfaceChange, callback);
         break;
+      case onMode.qrcode:
+        this.onChange((event) => {
+          if (event.onType === onMode.qrcode) {
+            callback(event);
+          }
+        });
+        break;
+      case onMode.connection:
+        this.onChange((event) => {
+          if (event.onType === onMode.connection) {
+              callback(true);
+          }
+        })
     }
   }
 

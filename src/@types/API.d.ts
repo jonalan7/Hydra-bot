@@ -7,6 +7,7 @@ declare global {
   interface Window {
     API: API;
     Store: any;
+    interfaceChange: any;
   }
   const API: API;
 }

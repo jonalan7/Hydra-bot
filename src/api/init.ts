@@ -1,7 +1,8 @@
-import { CreateOptions, defaultConfig } from '../interface';
+import { CreateOptions, defaultConfig } from '../model/interface';
 import { initLaunch, initBrowser } from './browser';
 import { Browser, BrowserContext, Page } from 'puppeteer';
 import { webPack } from '../inject/webpack';
+
 
 export async function initServer(createOption: CreateOptions): Promise<any>;
 
@@ -17,10 +18,7 @@ export async function initServer(
   if (typeof wpage !== 'boolean') {
     const page: boolean | Page = await initBrowser(wpage);
     if (typeof page !== 'boolean') {
-      const client = new webPack(page);
-      client.initService();
-
-      await page.waitForSelector('#app .two').catch(() => {});
+      const client = new webPack(page, wpage, mergeOptionsDefault);
 
       return client;
     } else {
