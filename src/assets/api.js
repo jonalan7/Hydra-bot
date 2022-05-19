@@ -20,9 +20,19 @@ import {
 } from './functions';
 
 import {
-    addOnStream
+    addOnStream,
+    addOnNewMessage
 } from './listeners';
 
+import {
+    serializeMessageObj,
+    serializeChatObj,
+    serializeContactObj,
+    serializeProfilePicThumb,
+    serializeRawObj,
+} from './serializers'
+
+//initialized scrap webpack
 (async () => {
     window[injectConfig.webpack] = window[injectConfig.webpack] || [];
     window.Store = {};
@@ -42,6 +52,7 @@ import {
 if (typeof window.API === 'undefined') {
     window.API = {};
 
+    // helps
     window.API.getChat = getChat;
     window.API.scope = scope;
     window.API.getNewId = getNewId;
@@ -49,10 +60,19 @@ if (typeof window.API === 'undefined') {
     window.API.sendExist = sendExist;
     window.API.checkNumberStatus = checkNumberStatus;
     window.API.isMD = isMD;
-
-    window.API.sendMessage = sendMessage;
     window.API.baseSendMessage = baseSendMessage;
-    
-    addOnStream();
-}
 
+    // Functions
+    window.API.sendMessage = sendMessage;
+
+    // serialize
+    window.API.serializeMessageObj = serializeMessageObj;
+    window.API.serializeChatObj = serializeChatObj;
+    window.API.serializeContactObj = serializeContactObj;
+    window.API.serializeProfilePicThumb = serializeProfilePicThumb;
+    window.API.serializeRawObj = serializeRawObj;
+
+    // On
+    addOnStream();
+    addOnNewMessage();
+}

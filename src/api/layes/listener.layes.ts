@@ -92,6 +92,12 @@ export class ListenerLayer extends scraping {
           });
           window.interfaceChange.exposed = true;
         }
+        if (!window.newMessage.exposed) {
+          window.API.newMessage((e: any) => {
+            window.newMessage(e);
+          });
+          window.interfaceChange.exposed = true;
+        }
       })
       .catch(() => {});
   }
@@ -101,6 +107,8 @@ export class ListenerLayer extends scraping {
       case onMode.interfaceChange:
         this.listener(onMode.interfaceChange, callback);
         break;
+      case onMode.newMessage:
+        this.listener(onMode.newMessage, callback);
       case onMode.qrcode:
         this.onChange((event) => {
           if (event.onType === onMode.qrcode) {

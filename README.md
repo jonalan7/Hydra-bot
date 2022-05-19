@@ -8,11 +8,11 @@
 ## Supporters
 To maintain quality, we are receiving support! We thank you in advance for the opportunity to develop and maintain this project!
 <br>
-| Company | URL | Logo |
-| ------- | --- | ---- |
+| Company | URL                                                | Logo                                                                                                                                           |
+|---------|----------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
 | redrive | [https://redrive.com.br/](https://redrive.com.br/) | <a target="_blank" href="https://redrive.com.br/" target="_blank"> <img title="redrive.com.br" height="25" src="img/logo-redrive-png.png"></a> |
-| zaplus  | [https://zaplus.chat/](https://zaplus.chat/) | <img title="zaplus.chat" height="25" src="img/logo_zaplus.png"> |
-| tabchat | [https://tabchat.com.br/](https://tabchat.com.br/) | <img title="tabchat.com.br" height="25" src="img/logo-horizontal.webp"> |
+| zaplus  | [https://zaplus.chat/](https://zaplus.chat/)       | <img title="zaplus.chat" height="25" src="img/logo_zaplus.png">                                                                                |
+| tabchat | [https://tabchat.com.br/](https://tabchat.com.br/) | <img title="tabchat.com.br" height="25" src="img/logo-horizontal.webp">                                                                        |
 
 ## WhatSapp Group
 
@@ -53,6 +53,7 @@ const hydra = require('hydra-bot');
     // return connection information
     webpack.on('connection', async (conn) => {
         if (conn) {
+            // send a text message
             await webpack.sendMessage({
                 to: "0000000000@c.us",
                 body: "A message sent by hydra-bot",
@@ -63,7 +64,21 @@ const hydra = require('hydra-bot');
                 console.log(result)
             });
         }
-    })
+    });
+
+    // return receive new messages
+    webpack.on('newMessage', (newMsg) => {
+        // when is received
+        if (!newMsg.isSentByMe) {
+            // message received!
+            console.log('NewMessageReceived: ', newMsg);
+        }
+        // when is it sent
+        if (!!newMsg.isSentByMe) {
+            // message sent
+            console.log('NewMessageSent: ', newMsg);
+        }
+    });
 })();
 ```
 ## Optional create parameters
