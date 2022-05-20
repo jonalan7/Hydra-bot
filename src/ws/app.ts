@@ -1,6 +1,7 @@
 import express, {Express} from 'express';
 const { exec } = require('child_process');
 import { options } from './model/interface';
+import cors from 'cors'
 
 export function appExpress (options:  options): Express {
 
@@ -9,7 +10,12 @@ export function appExpress (options:  options): Express {
     exec('pkill -KILL chrome');
 
     const app = express();
+    app.use(cors());
 
+    const corsOptions: cors.CorsOptions = {
+        origin: '*'
+    };
+    
     app.use(
       express.urlencoded({
         extended: true,
