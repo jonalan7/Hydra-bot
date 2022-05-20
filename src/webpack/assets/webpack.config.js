@@ -5,7 +5,7 @@ module.exports = {
   mode: 'development',
   devtool: 'source-map',
   output: {
-    path: path.resolve(__dirname, '../../dist/assets'),
+    path: path.resolve(__dirname, '../../../dist/webpack/assets'),
     filename: 'api.js',
   },
 };

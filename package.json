@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build:api": "cd src/assets && webpack",
+    "build:api": "cd src/webpack/assets && webpack",
     "build": "npm run build:api && tsc",
     "start": "npm run build && node bot-test/index.js",
     "del:module": "rd /s /q 'node_modules'",
