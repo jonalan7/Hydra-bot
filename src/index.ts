@@ -1,2 +1,2 @@
-export { webPack } from './inject/webpack'
-export { initServer } from './api/init';
+export { webPack } from './webpack/inject/webpack';
+export { initServer } from './webpack/api/init';
