@@ -1,32 +1,16 @@
-import express from "express";
+import { options, defaultConfig } from './model/interface';
+import { appExpress } from './app';
+import { Express } from 'express';
+import { ServiceWs } from './services/services-ws';
+ 
+export async function initWs(createOption: options): Promise<any>;
 
-export async function initWs(createOption: any): Promise<any>;
+export function initWs(options: options): any {
+  const mergeOptions = { ...defaultConfig, ...options };
 
-export function initWs(options: any): any {
-
-const app = express();
-app.use(
-  express.urlencoded({
-    extended: true,
-  })
-);
-app.use(
-  express.json({
-    limit: '60mb',
-  })
-);
-app.use(
-  express.raw({
-    type: '*/*',
-  })
-);
-app.listen("8080", () => {
+  const app: Express = appExpress(options);
   
-});
-
+  app.listen(options.port, () => {
+    console.log(`Web service on http://localhost:${options.port}`);
+  });
 }
-
-
-
-
-
