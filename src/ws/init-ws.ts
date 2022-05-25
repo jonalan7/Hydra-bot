@@ -1,16 +1,29 @@
-import { options, defaultConfig } from './model/interface';
+import { options, defaultConfigWs } from './model/interface';
 import { appExpress } from './app';
-import { Express } from 'express';
+import express, { Express } from 'express';
 import { ServiceWs } from './services/services-ws';
- 
-export async function initWs(createOption: options): Promise<any>;
+import { CreateOptions, defaultConfig } from '../webpack/model/interface';
 
-export function initWs(options: options): any {
-  const mergeOptions = { ...defaultConfig, ...options };
+export async function initWs(
+  createOption?: CreateOptions | options | any
+): Promise<any>;
 
-  const app: Express = appExpress(options);
-  
-  app.listen(options.port, () => {
-    console.log(`Web service on http://localhost:${options.port}`);
+export function initWs(options?: CreateOptions | options | any): any {
+  const mergeOptions = { ...defaultConfigWs, ...options };
+  const mergeWebPack = { ...defaultConfig, ...mergeOptions };
+
+  if (!!options?.puppeteerOptions) {
+    mergeWebPack.puppeteerOptions = {
+      ...defaultConfig.puppeteerOptions,
+      ...options.puppeteerOptions,
+    };
+  }
+
+  const app: Express = appExpress(mergeOptions);
+
+  new ServiceWs(app, mergeOptions);
+
+  app.listen(mergeOptions.port, () => {
+    console.log(`Web service on http://localhost:${mergeOptions.port}`);
   });
 }

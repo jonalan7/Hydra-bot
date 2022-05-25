@@ -26,12 +26,13 @@ export async function initBrowser(Browser: Browser): Promise<Page | boolean> {
   return false;
 }
 export function PathSession(options: CreateOptions) {
+  options.mkdirFolderToken = options.mkdirFolderToken
+    ? options.mkdirFolderToken
+    : '';
+  options.pathNameToken = options.pathNameToken ? options.pathNameToken : '';
+  options.session = options.session ? options.session : '';
   const folderNameToken = path.join(
-    path.resolve(
-      process.cwd(),
-      options.mkdirFolderToken,
-      options.pathNameToken
-    )
+    path.resolve(process.cwd(), options.mkdirFolderToken, options.pathNameToken)
   );
 
   if (!fs.existsSync(folderNameToken)) {
@@ -46,19 +47,23 @@ export function PathSession(options: CreateOptions) {
       options.mkdirFolderToken,
       options.pathNameToken,
       options.session
-    ));
+    )
+  );
 
-    fs.chmodSync(folderNameToken, '777');
+  fs.chmodSync(folderNameToken, '777');
 
+  if (options && options.puppeteerOptions) {
     options.puppeteerOptions.userDataDir = pathSession;
+  }
 
-    puppeteerConfig.chromiumArgs.push(`--user-data-dir=${pathSession}`);
+  puppeteerConfig.chromiumArgs.push(`--user-data-dir=${pathSession}`);
 }
 
 export async function initLaunch(
   options: CreateOptions
 ): Promise<Browser | boolean> {
   PathSession(options);
+
   if (options.puppeteerOptions?.executablePath === 'useChrome') {
     const chromePath: string | undefined = getPathChrome();
     if (chromePath === undefined) {
@@ -75,7 +80,7 @@ export async function initLaunch(
       headless: options.puppeteerOptions?.headless,
       args: options.puppeteerOptions?.args,
       executablePath: options.puppeteerOptions?.executablePath,
-      userDataDir: options.puppeteerOptions?.userDataDir
+      userDataDir: options.puppeteerOptions?.userDataDir,
     });
   } catch (e) {
     return false;

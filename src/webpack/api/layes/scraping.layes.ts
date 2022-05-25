@@ -1,7 +1,10 @@
 import { Page, Browser } from 'puppeteer';
-
 import { CreateOptions } from '../../model/interface/';
 import * as qrcode from 'qrcode-terminal';
+import { CallbackConnection } from './callback-connect.layes';
+import { onMode } from '../../model/enum';
+
+const conn = new CallbackConnection();
 
 export class scraping {
   public startScanQrcode: boolean;
@@ -18,6 +21,7 @@ export class scraping {
 
   protected tryAutoClose() {
     if (
+      this.options.timeAutoClose &&
       this.options.timeAutoClose > 0 &&
       !this.autoCloseInterval &&
       !this.page.isClosed()
@@ -33,20 +37,30 @@ export class scraping {
   }
 
   protected startAutoClose() {
-    let remain = this.options.timeAutoClose;
-    if (this.options.timeAutoClose > 0 && !this.autoCloseInterval) {
+    let remain: Number | Boolean | any = this.options.timeAutoClose ? this.options.timeAutoClose : false;
+    if (
+      this.options.timeAutoClose &&
+      this.options.timeAutoClose > 0 &&
+      !this.autoCloseInterval
+    ) {
       try {
         this.autoCloseInterval = setInterval(() => {
           if (this.page.isClosed()) {
             this.cancelAutoClose();
             return;
           }
-          remain -= 1000;
-          this.autoCloseRemain = Math.round(remain / 1000);
-          if (remain <= 0) {
-            console.log('auto close');
-            this.cancelAutoClose();
-            this.tryAutoClose();
+          if (Number.isInteger(remain)) {
+            remain -= 1000;
+            this.autoCloseRemain = Math.round(remain / 1000);
+            if (remain <= 0) {
+              conn.statusFind = {
+                erro: false,
+                text: 'Auto close called!',
+                onType: onMode.connection,
+              };
+              this.cancelAutoClose();
+              this.tryAutoClose();
+            }
           }
         }, 1000);
       } catch {}

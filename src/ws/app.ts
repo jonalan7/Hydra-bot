@@ -1,38 +1,71 @@
-import express, {Express} from 'express';
-const { exec } = require('child_process');
+import express, { Express, NextFunction } from 'express';
 import { options } from './model/interface';
-import cors from 'cors'
+import cors from 'cors';
+import { exec } from 'child_process';
+const router = express.Router();
 
-export function appExpress (options:  options): Express {
+export function appExpress(options: options): Express {
+  //Kill the entire process at the hidden door! (system)
+  exec(`kill -9 $(lsof -t -i:${options.port})`);
+  exec('pkill -KILL chrome');
 
-    //Kill the entire process at the hidden door! (system)
-    exec(`kill -9 $(lsof -t -i:${options.port})`);
-    exec('pkill -KILL chrome');
+  const app = express();
+  app.use(cors());
 
-    const app = express();
-    app.use(cors());
+  const corsOptions: cors.CorsOptions = {
+    origin: '*',
+  };
 
-    const corsOptions: cors.CorsOptions = {
-        origin: '*'
-    };
-    
-    app.use(
-      express.urlencoded({
-        extended: true,
-      })
-    );
-  
-    app.use(
-      express.json({
-        limit: '60mb',
-      })
-    );
-  
-    app.use(
-      express.raw({
-        type: '*/*',
-      })
-    );
+  app.use(express.json());
+  app.use(express.urlencoded());
+  app.use(express.json({ strict: false }));
 
-    return app;
+  app.on('error', (err) => {
+    console.error('Server error ', err);
+  });
+
+  app.use(
+    express.urlencoded({
+      extended: true,
+    })
+  );
+
+  app.use(
+    express.json({
+      limit: '60mb',
+    })
+  );
+
+  app.use(
+    express.raw({
+      type: '*/*',
+    })
+  );
+
+  app.use(
+    express.raw({
+      type: 'multipart/form-data',
+    })
+  );
+
+  app.use(
+    cors({
+      origin: function (origin, callback) {
+        if (!origin) {
+          return callback(null, true);
+        }
+        return callback(null, true);
+      },
+    })
+  );
+
+  app.get('*', function (req, res) {
+    res.send({
+      text: 'Route does not exist!',
+      status: '404',
+      erro: true,
+    });
+  });
+
+  return app;
 }

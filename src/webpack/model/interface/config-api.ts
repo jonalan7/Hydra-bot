@@ -4,44 +4,44 @@ export interface puppeteerOptions {
   /**
    * @default true
    */
-  headless: boolean;
-  args: string[];
+  headless?: boolean;
+  args?: string[];
   /**
    * @default null
    */
-  executablePath: string;
+  executablePath?: string;
   /**
    * @default null
    */
-  userDataDir: string;
+  userDataDir?: string;
   /**
    * @default null
    */
-  ignoreHTTPSErrors: boolean;
+  ignoreHTTPSErrors?: boolean;
 }
 
 export interface CreateOptions {
   /**
    * @default 'session'
    */
-  session: string;
+  session?: string;
   /**
    * @default 'token'
    */
-  pathNameToken: string;
+  pathNameToken?: string;
   /**
    * @default null
    */
-  mkdirFolderToken: string;
-  puppeteerOptions: puppeteerOptions;
+  mkdirFolderToken?: string;
+  puppeteerOptions?: puppeteerOptions;
   /**
    * @default true
    */
-  printQRInTerminal: boolean;
+  printQRInTerminal?: boolean;
    /**
    * @default 60000
    */
-  timeAutoClose: number;
+  timeAutoClose?: number;
 }
 
 export const defaultConfig: CreateOptions = {

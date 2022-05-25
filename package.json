@@ -6,8 +6,9 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build:api": "cd src/webpack/assets && webpack",
-    "build": "npm run build:api && tsc",
+    "build": "gulp && npm run build:api && tsc",
     "start": "npm run build && node bot-test/index.js",
+    "knex": "npx knex migrate:latest",
     "del:module": "rd /s /q 'node_modules'",
     "release": "release-it"
   },
@@ -38,10 +39,12 @@
     "cors": "^2.8.5",
     "express": "^4.18.1",
     "gulp": "^4.0.2",
+    "knex": "^2.0.0",
     "puppeteer": "^14.0.0",
     "puppeteer-extra": "^3.2.3",
     "puppeteer-extra-plugin-stealth": "^2.9.0",
     "qrcode-terminal": "^0.12.0",
+    "sqlite3": "^5.0.8",
     "typescript": "^4.6.4",
     "webpack": "^5.72.1",
     "webpack-cli": "^4.9.2"
