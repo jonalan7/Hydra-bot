@@ -5,6 +5,7 @@
 
 >This project was developed to help the community that uses whatsapp as a way to implement an API quickly and effectively, for companies and much more! Thank you for being part of this family.
 
+You can use this project in two ways, the first is using Web Services using a set of well-defined operations, the POST, GET, PUT and DELETE methods, the second option is to use the bot in raw form, without using a Web Services.
 ## Supporters
 To maintain quality, we are receiving support! We thank you in advance for the opportunity to develop and maintain this project!
 <br>
@@ -30,11 +31,23 @@ Use the stable version:
 > npm i --save hydra-bot
 ```
 
-## Getting started
+## Getting started Web Service
+The service will be started on localhost on port 8080
 
 ```javascript
+const hydraBot = require('hydra-bot');
+(async () => {
+    // start Web Service
+    const WS = await hydraBot.initWs();
+});
+    
+```
 
-const hydra = require('hydra-bot');
+## Getting started bot (the bot in raw form, without using a Web Services).
+If you want to work in free mode, using only the bot, dry the necessary information!
+```javascript
+
+const hydraBot = require('hydra-bot');
 
 (async () => {
     // start bot service
@@ -52,6 +65,7 @@ const hydra = require('hydra-bot');
 
     // return connection information
     webpack.on('connection', async (conn) => {
+        console.log("Info connection: ", conn);
         if (conn) {
             // send a text message
             await webpack.sendMessage({
@@ -81,10 +95,10 @@ const hydra = require('hydra-bot');
     });
 })();
 ```
-## Optional create parameters
+## Optional create parameters (the bot in raw form, without using a Web Services)
 ```javascript
 
-const hydra = require('hydra-bot');
+const hydraBot = require('hydra-bot');
 
 hydraBot.initServer(
 {
@@ -102,6 +116,45 @@ hydraBot.initServer(
 );
 
 ```
+
+## Optional create parameters Web Services
+```javascript
+
+const hydraBot = require('hydra-bot');
+
+hydraBot.initWs(
+{
+  port: '8080'
+  pathNameToken: "token", // The path and name of the folder where the client tokens will be saved
+  printQRInTerminal: true, // The QR CODE will be printed on the terminal if true
+  timeAutoClose: 60000, // If you don't read the QR CODE by default 60 seconds, it will automatically close the client's browser to save memory, if you want to disable it, set 0 or false
+  mkdirFolderToken: '', // Token folder path, only inside the project
+  puppeteerOptions: {
+    headless: "false", // Start the project with the browser open or not!
+    args: [], // Additional arguments to pass to the browser instance. adding any parameter you will replace the default args of the project
+    executablePath: 'useChrome' // The browser that will be used for the project, you can specify a path, if you don't pass any parameter it will open chromium.
+  }
+}
+);
+
+```
+## Web Service Routes (more features still under development)
+
+> Note: Parameters can be changed during development!
+
+The headers must be parameterized as :
+```json
+{
+     "Content-Type" : "application/json",
+}
+```
+
+
+|Type| Route to browser          | Description                                                 | Body                                                         |
+|----| ----------------          | ------------------------------------------------------------|--------------------------------------------------------------|
+|POST| `/connect`                | Start connection with Whatsapp                              | `{"session": "name session" }`                               |
+|POST| `/sendtext`               | Send a text to a number                                     | `{"session": "name session", "to": "contact number", "body": "message"}`              |
+
 
 ## Basic Functions (more features still under development)
 You must be logged in to use these functions!
