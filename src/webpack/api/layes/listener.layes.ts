@@ -5,7 +5,6 @@ import { scraping } from './scraping.layes';
 import { CreateOptions, defaultConfig } from '../../model/interface';
 import { sleep } from '../../help';
 
-
 export class ListenerLayer extends scraping {
   public statusFind: any;
   constructor(
@@ -53,14 +52,22 @@ export class ListenerLayer extends scraping {
     this.on(onMode.interfaceChange, async (interFace: any) => {
       try {
         this.cancelAutoClose();
-        if(interFace.mode === 'MAIN') {
+        if (interFace.mode === 'MAIN') {
           if (interFace.info === 'NORMAL') {
-            this.statusFind = { erro: false, connect: true, onType: onMode.connection };
+            this.statusFind = {
+              erro: false,
+              connect: true,
+              onType: onMode.connection,
+            };
           }
         }
         if (interFace.mode === 'QR') {
           if (interFace.info === 'NORMAL') {
-            this.statusFind = { erro: false, qrcode: interFace.info, onType: onMode.connection };
+            this.statusFind = {
+              erro: false,
+              qrcode: interFace.info,
+              onType: onMode.connection,
+            };
             await this.qrCodeScan();
           }
         }
@@ -112,6 +119,7 @@ export class ListenerLayer extends scraping {
         break;
       case onMode.newMessage:
         this.listener(onMode.newMessage, callback);
+        break;
       case onMode.qrcode:
         this.onChange((event) => {
           if (event.onType === onMode.qrcode) {
@@ -122,9 +130,10 @@ export class ListenerLayer extends scraping {
       case onMode.connection:
         this.onChange((event) => {
           if (event.onType === onMode.connection) {
-              callback(event);
+            callback(event);
           }
-        })
+        });
+        break;
     }
   }
 
