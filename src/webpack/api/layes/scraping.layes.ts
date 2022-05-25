@@ -56,6 +56,7 @@ export class scraping {
               conn.statusFind = {
                 erro: false,
                 text: 'Auto close called!',
+                statusFind: 'autoClose',
                 onType: onMode.connection,
               };
               this.cancelAutoClose();

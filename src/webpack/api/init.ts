@@ -4,6 +4,7 @@ import { Browser, Page } from 'puppeteer';
 import { webPack } from '../inject/webpack';
 import { CallbackConnection } from './layes/callback-connect.layes';
 import { onMode } from '../model/enum';
+import { checkingCloses } from '../help';
 
 const conn = new CallbackConnection();
 
@@ -27,15 +28,27 @@ export async function initServer(
     const wpage: Browser | boolean = await initLaunch(mergeOptionsDefault);
 
     if (typeof wpage !== 'boolean') {
+  
       const page: boolean | Page = await initBrowser(wpage);
       if (typeof page !== 'boolean') {
         const client = new webPack(page, wpage, mergeOptionsDefault);
+        checkingCloses(wpage, () => {
+          client.statusFind = {
+            erro: true,
+            text: 'The browser has closed',
+            statusFind: 'browserClosed',
+            onType: onMode.connection,
+          };
+        }).catch(() => {
+          console.log('The client has been closed');
+        });
         return resolve(client);
       } else {
         resolve(conn);
         conn.statusFind = {
           erro: true,
           text: 'Error open whatzapp',
+          statusFind: 'noOpenWhatzapp',
           onType: onMode.connection,
         };
         wpage.close();
@@ -45,6 +58,7 @@ export async function initServer(
       conn.statusFind = {
         erro: true,
         text: 'Error open browser...',
+        statusFind: 'noOpenBrowser',
         onType: onMode.connection,
       };
     }
