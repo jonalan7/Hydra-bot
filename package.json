@@ -17,7 +17,6 @@
     "changelog:update": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "changelog:previous": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "docs:build": "npm run docs:clean && npm run docs:fix && typedoc && npm run docs:copy-images",
-    "generate-api-docs": "npm run fix:doc-theme && typedoc",
     "docs:clean": "shx rm -rf api-docs",
     "docs:copy-images": "shx cp -R ./img ./api-docs",
     "docs:fix": "ts-node ./docs/layouts/fix-docs.ts"
@@ -61,10 +60,12 @@
     "@types/express": "^4.17.13",
     "@types/node": "^17.0.35",
     "@types/qrcode-terminal": "^0.12.0",
+    "@types/shelljs": "^0.8.11",
     "conventional-changelog-cli": "^2.2.2",
     "gulp": "^4.0.2",
     "release-it": "^15.0.0",
     "shx": "^0.3.4",
+    "ts-node": "^10.8.0",
     "typedoc": "^0.22.15",
     "typedoc-plugin-pages": "^1.1.0",
     "typescript": "^4.7.2"
