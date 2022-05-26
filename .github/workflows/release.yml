@@ -1,0 +1,51 @@
+
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    name: "Release"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Dependencies
+        run: npm ci || npm install
+        env:
+          PUPPETEER_SKIP_DOWNLOAD: true
+
+      - name: Update version to alpha
+        run: npm version prerelease --preid=alpha --no-git --no-git-tag-version
+
+      - name: Build NPM package
+        run: npm pack && mv hydra-*.tgz hydra-nightly.tgz
+
+      - name: Generate Changelog
+        id: generate_changelog
+        run: |
+          changelog=$(npm run changelog:preview --silent)
+          changelog="${changelog//$'\n'/'%0A'}"
+          changelog="${changelog//$'\r'/'%0D'}" 
+          echo -e "set-output name=changelog::${changelog-<empty>}\n"
+          echo -e "::set-output name=changelog::${changelog}\n"
+
+      - name: Update Nightly Release
+      - uses: "marvinpinto/action-automatic-releases@latest"
+         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag: nightly
+          commitish: ${{ github.sha }}
+          name: Nightly Release
+          body: ${{ steps.generate_changelog.outputs.changelog }}
+          draft: false
+          prerelease: true
+          files: >
+            hydra-nightly.tgz
+            api-docs/
+          gzip: folders
+          allow_override: true
+

@@ -10,7 +10,10 @@
     "start": "npm run build && node bot-test/index.js",
     "knex": "npx knex migrate:latest",
     "del:module": "rd /s /q 'node_modules'",
-    "release": "release-it"
+    "release": "release-it",
+    "changelog:last": "conventional-changelog -p angular -r 2",
+    "changelog:preview": "conventional-changelog -p angular -u",
+    "changelog:update": "conventional-changelog -p angular -i CHANGELOG.md -s"
   },
   "repository": {
     "type": "git",
