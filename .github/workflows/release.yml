@@ -3,8 +3,8 @@ name: Release
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - 'master'
 
 jobs:
   release:
@@ -31,15 +31,22 @@ jobs:
           echo -e "set-output name=changelog::${changelog-<empty>}\n"
           echo -e "::set-output name=changelog::${changelog}\n"
 
+      - name: Update Nightly TAG
+        uses: richardsimko/update-tag@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: nightly
+          
       - name: Update Nightly Release
-      - uses: "marvinpinto/action-automatic-releases@latest"
-         env:
+        uses: meeDamian/github-release@2.0
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           tag: nightly
           commitish: ${{ github.sha }}
-          name: Nightly Release
+          name: Release
           body: ${{ steps.generate_changelog.outputs.changelog }}
           draft: false
           prerelease: true
