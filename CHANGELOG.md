@@ -1,3 +1,31 @@
+## [1.0.3](https://github.com/jonalan7/Hydra-bot/compare/1.0.2...1.0.3) (2022-05-26)
+
+
+### Bug Fixes
+
+* build:docs ([5285178](https://github.com/jonalan7/Hydra-bot/commit/5285178363c8ebfe5fb92983b079a5a389f82a80))
+* copy assets ([666b81c](https://github.com/jonalan7/Hydra-bot/commit/666b81c06332bc3881631e5ec040b89d1a4d92fd))
+* onMode ([eb17a4b](https://github.com/jonalan7/Hydra-bot/commit/eb17a4b9ae83238b6d8ce078b18f2391742a4c43))
+
+
+### Features
+
+*  docs:build ([f3adc5a](https://github.com/jonalan7/Hydra-bot/commit/f3adc5accb84470afcbbace384977041ca0771cc))
+* :art: add cors options ([9945ede](https://github.com/jonalan7/Hydra-bot/commit/9945edef3d5b7e97ad05ca3a85ed658e2befe438))
+* add readme Web Service ([12ff839](https://github.com/jonalan7/Hydra-bot/commit/12ff83934a3f1244ec305bce62d5a436c239a21f))
+* Build API-Docs ([ea67cde](https://github.com/jonalan7/Hydra-bot/commit/ea67cde8794c8bd7643000ed0303f97f19f1848e))
+* CHANGELOG.md ([cc3f87f](https://github.com/jonalan7/Hydra-bot/commit/cc3f87f3d232cdc31d15967f84dfd5390bf46890))
+* checking Closes ([071e910](https://github.com/jonalan7/Hydra-bot/commit/071e910cd34cfcfca36e305de42fa1ef4d3caadc))
+* docs ([48c4987](https://github.com/jonalan7/Hydra-bot/commit/48c4987c40b50e946da67dc4cb0d85025379f219))
+* ignore ([939577e](https://github.com/jonalan7/Hydra-bot/commit/939577ee048bb344df9199a6a29301a8ef5f2219))
+* newMessage ([b37f762](https://github.com/jonalan7/Hydra-bot/commit/b37f762f8819da37784013ac160586436957f44e))
+* release.yml ([702d96d](https://github.com/jonalan7/Hydra-bot/commit/702d96d55c53031aacbda77795ddec1df26bf79e))
+* typedoc.json ([53ceee5](https://github.com/jonalan7/Hydra-bot/commit/53ceee587154fddc9181b3361992db5038a2ea91))
+* Web service ([a058ad4](https://github.com/jonalan7/Hydra-bot/commit/a058ad4a984cf9402a2209ea11abe5de17591cbf))
+* Web Service ([41f4f90](https://github.com/jonalan7/Hydra-bot/commit/41f4f90aa96b83dd65a9aa24f2a14648f669e26e))
+
+
+
 ## [1.0.2](https://github.com/jonalan7/Hydra-bot/compare/1.0.1...1.0.2) (2022-05-18)
 
 
