@@ -47,6 +47,9 @@ jobs:
       - name: Build NPM package
         run: npm pack && mv hydra-*.tgz hydra-nightly.tgz
 
+      - name: Build API-Docs
+        run: npm run docs:build
+
       - name: Generate Changelog
         id: generate_changelog
         run: |
