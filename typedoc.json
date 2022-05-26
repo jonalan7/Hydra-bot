@@ -1,0 +1,41 @@
+{
+    "disableSources": false,
+    "entryPoints": ["src/index.ts"],
+    "excludeExternals": false,
+    "excludePrivate": true,
+    "excludeProtected": true,
+    "includeVersion": true,
+    "out": "api-docs",
+    "theme": "pages-plugin",
+    "media": "media",
+    "gaID": "G-LTZL26963K",
+    "pages": {
+      "groups": [
+        {
+          "title": "Getting Started",
+          "pages": [
+            {
+              "title": "Installation",
+              "source": "./docs/getting-started/installation.md"
+            },
+            {
+              "title": "Creating a Client",
+              "source": "./docs/getting-started/creating-client.md"
+            },
+            {
+              "title": "Receiving Messages",
+              "source": "./docs/getting-started/receiving-messages.md"
+            },
+            {
+              "title": "Configuring the logger",
+              "source": "./docs/getting-started/configuring-logger.md"
+            },
+            {
+              "title": "Basic Functions",
+              "source": "./docs/getting-started/basic-functions.md"
+            }
+          ]
+        }
+      ]
+    }
+  }
