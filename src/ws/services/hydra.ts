@@ -7,7 +7,7 @@ import {
 } from '../../index';
 
 function sendParent(data: any) {
-    process.send && process.send(data);
+  process.send && process.send(data);
 }
 
 (async () => {
@@ -17,15 +17,31 @@ function sendParent(data: any) {
   const initWebpack: webPack = await initServer(obj);
 
   //initWebpack.on(onMode.interfaceChange, (change: interfaceChange) => {
-    //sendParent(change);
-    //console.log(`${onMode.interfaceChange}: `, change);
+  //sendParent(change);
+  //console.log(`${onMode.interfaceChange}: `, change);
   //});
 
   //initWebpack.on(onMode.qrcode, (qrcode: InterfaceQrcode) => {
-    // console.log(`${onMode.qrcode}: `, qrcode);
+  // console.log(`${onMode.qrcode}: `, qrcode);
   //});
 
   initWebpack.on(onMode.connection, async (conn) => {
+    if (conn.erro) {
+      if (
+        conn.statusFind === 'browserClosed' ||
+        conn.statusFind === 'autoClose' ||
+        conn.statusFind === 'noOpenWhatzapp' ||
+        conn.statusFind === 'noOpenBrowser'
+      ) {
+        console.log(conn);
+        sendParent({ delsession: true, session: obj.session });
+        if (!initWebpack.page.isClosed()) {
+          try {
+            initWebpack.page.close();
+          } catch {}
+        }
+      }
+    }
     if (conn.connect) {
       sendParent({ ...conn, session: obj.session });
     }

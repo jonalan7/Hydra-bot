@@ -120,7 +120,7 @@ export const sessionClient = class Session {
       if (check) {
         // If it exists, the client is deleted from the session!
         let key = await this.getSessionId(nameSession);
-        if (key) {
+        if (typeof key === 'number') {
           this.session.splice(key, 1);
           return true;
         }

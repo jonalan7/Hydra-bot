@@ -31,11 +31,14 @@ export const init = new (class InicializePost {
           stdio: ['inherit', 'inherit', 'inherit', 'ipc'],
         });
 
-        this.child.on('message', (response: any) => {
+        this.child.on('message', async (response: any) => {
           if (response.connect) {
-            sessionClient.addInfoSession(response.session, {
+            await sessionClient.addInfoSession(response.session, {
               connect: response.connect,
             });
+          }
+          if (response.delsession) {
+            await sessionClient.deleteSession(response.session);
           }
         });
 
@@ -109,12 +112,9 @@ export const init = new (class InicializePost {
             getUser.child.send({ type: 'text', ...body });
             this.child.on('message', (response: any) => {
               if (response.result) {
-                return res.send(
-                  response
-                );
-              
+                return res.send(response);
               }
-            })
+            });
           }
         }
       } else {
