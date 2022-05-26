@@ -1,3 +1,7 @@
 dist/
 node_modules/
 token
+*.tgz
+dist/
+dist*
+dist.zip

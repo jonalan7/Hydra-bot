@@ -1,0 +1,14 @@
+.*
+*.map
+*.tgz
+*.zip
+api-docs
+CONTRIBUTING.md
+debug.log
+docs
+img
+LICENSE
+src
+tokens
+tsconfig.json
+typedoc.json
