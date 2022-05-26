@@ -7,6 +7,7 @@
   "scripts": {
     "build:api": "cd src/webpack/assets && webpack",
     "build": "gulp && npm run build:api && tsc",
+    "build:docs": "typedoc && git add docs/*",
     "start": "npm run build && node bot-test/index.js",
     "knex": "npx knex migrate:latest",
     "del:module": "rd /s /q 'node_modules'",
@@ -14,7 +15,12 @@
     "changelog:last": "conventional-changelog -p angular -r 2",
     "changelog:preview": "conventional-changelog -p angular -u",
     "changelog:update": "conventional-changelog -p angular -i CHANGELOG.md -s",
-    "changelog:previous": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
+    "changelog:previous": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+    "docs:build": "npm run docs:clean && npm run docs:fix && typedoc && npm run docs:copy-images",
+    "generate-api-docs": "npm run fix:doc-theme && typedoc",
+    "docs:clean": "shx rm -rf api-docs",
+    "docs:copy-images": "shx cp -R ./img ./api-docs",
+    "docs:fix": "ts-node ./docs/layouts/fix-docs.ts"
   },
   "repository": {
     "type": "git",
@@ -58,6 +64,9 @@
     "conventional-changelog-cli": "^2.2.2",
     "gulp": "^4.0.2",
     "release-it": "^15.0.0",
+    "shx": "^0.3.4",
+    "typedoc": "^0.22.15",
+    "typedoc-plugin-pages": "^1.1.0",
     "typescript": "^4.7.2"
   }
 }
