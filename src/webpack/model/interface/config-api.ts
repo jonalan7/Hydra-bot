@@ -26,6 +26,10 @@ export interface CreateOptions {
    */
   session?: string;
   /**
+   * @default true
+   */
+  updatesLog?: boolean;
+  /**
    * @default 'token'
    */
   pathNameToken?: string;
@@ -38,7 +42,7 @@ export interface CreateOptions {
    * @default true
    */
   printQRInTerminal?: boolean;
-   /**
+  /**
    * @default 60000
    */
   timeAutoClose?: number;
@@ -46,6 +50,7 @@ export interface CreateOptions {
 
 export const defaultConfig: CreateOptions = {
   session: 'session',
+  updatesLog: true,
   pathNameToken: 'token',
   mkdirFolderToken: '',
   puppeteerOptions: {
@@ -56,5 +61,5 @@ export const defaultConfig: CreateOptions = {
     userDataDir: '',
   },
   printQRInTerminal: true,
-  timeAutoClose: 60000
+  timeAutoClose: 60000,
 };

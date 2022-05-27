@@ -5,7 +5,7 @@ import { webPack } from '../inject/webpack';
 import { CallbackConnection } from './layes/callback-connect.layes';
 import { onMode } from '../model/enum';
 import { checkingCloses } from '../help';
-
+import { checkUpdates } from './check-up-to-date';
 const conn = new CallbackConnection();
 
 export async function initServer(
@@ -23,6 +23,10 @@ export async function initServer(
         ...defaultConfig.puppeteerOptions,
         ...options.puppeteerOptions,
       };
+    }
+
+    if (mergeOptionsDefault.updatesLog) {
+      await checkUpdates();
     }
 
     const wpage: Browser | boolean = await initLaunch(mergeOptionsDefault);

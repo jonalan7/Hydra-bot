@@ -105,6 +105,7 @@ hydraBot.initServer(
   session: "session", // Name of the token to be generated, a folder with all customer information will be created
   pathNameToken: "token", // The path and name of the folder where the client tokens will be saved
   printQRInTerminal: true, // The QR CODE will be printed on the terminal if true
+  updatesLog: true, // Logs info updates automatically in terminal
   timeAutoClose: 60000, // If you don't read the QR CODE by default 60 seconds, it will automatically close the client's browser to save memory, if you want to disable it, set 0 or false
   mkdirFolderToken: '', // Token folder path, only inside the project
   puppeteerOptions: {
@@ -124,9 +125,10 @@ const hydraBot = require('hydra-bot');
 
 hydraBot.initWs(
 {
-  port: '8080'
+  port: '8080',
   pathNameToken: "token", // The path and name of the folder where the client tokens will be saved
   printQRInTerminal: true, // The QR CODE will be printed on the terminal if true
+  updatesLog: true, // Logs info updates automatically in terminal
   timeAutoClose: 60000, // If you don't read the QR CODE by default 60 seconds, it will automatically close the client's browser to save memory, if you want to disable it, set 0 or false
   mkdirFolderToken: '', // Token folder path, only inside the project
   puppeteerOptions: {
