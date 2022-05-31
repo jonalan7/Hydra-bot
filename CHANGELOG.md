@@ -1,3 +1,25 @@
+## [1.0.4](https://github.com/jonalan7/Hydra-bot/compare/v1.0.3...v1.0.4) (2022-05-31)
+
+
+### Bug Fixes
+
+* body-parser deprecated ([7e42b40](https://github.com/jonalan7/Hydra-bot/commit/7e42b40abb513ed78e3fa541bbfda6c72f243502))
+* updade erro module ([3e9b4f9](https://github.com/jonalan7/Hydra-bot/commit/3e9b4f92b52a4f6d2d42d5f1ce6125051dcc06c0))
+
+
+### Features
+
+* build.yml ([6690de2](https://github.com/jonalan7/Hydra-bot/commit/6690de20aba6e192fd4a444c168dcd2b62ad0e1d))
+* check-up-to-date ([542c656](https://github.com/jonalan7/Hydra-bot/commit/542c65654b1d0ccc9061bf5456034b8b784ceef6))
+* delsession is close session ([1abb5e4](https://github.com/jonalan7/Hydra-bot/commit/1abb5e429b0c43a6af8f776dedffc3ce0186eacb))
+* example postman ([47a78a0](https://github.com/jonalan7/Hydra-bot/commit/47a78a035fa31d03fba4d70b4f7c951373811c78))
+* publish ([ae074ca](https://github.com/jonalan7/Hydra-bot/commit/ae074ca54869bc71ba71a5297dac4d3c1ccbbe13))
+* release ([91ed87d](https://github.com/jonalan7/Hydra-bot/commit/91ed87d7aa0c0ffa45a539ae45c452574be7a71b))
+* update readme ([cfbe6fd](https://github.com/jonalan7/Hydra-bot/commit/cfbe6fde9ffa26ae6460bb26a6860e811aa13f9e))
+* webhook ([84397b4](https://github.com/jonalan7/Hydra-bot/commit/84397b47b572f8c784f8f110f088d4d7ff9afb92))
+
+
+
 ## [1.0.3](https://github.com/jonalan7/Hydra-bot/compare/1.0.2...1.0.3) (2022-05-26)
 
 
