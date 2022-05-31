@@ -1,0 +1,66 @@
+{
+	"info": {
+		"_postman_id": "a27ae45a-d0f7-4602-95d2-3d72b84a3be2",
+		"name": "Webhook",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12888673"
+	},
+	"item": [
+		{
+			"name": "connect",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"session\": \"session_name\",\r\n    \"url\": \"http://localhost:8080/webhooktest\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/connect",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"connect"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sendtext",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"session\": \"session_name\",\r\n    \"to\": \"000000000000@c.us\",\r\n    \"body\": \"test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/sendtext",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"sendtext"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
