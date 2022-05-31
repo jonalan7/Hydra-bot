@@ -1,8 +1,10 @@
 import latestVersion from 'latest-version';
 import { upToDate } from '../utils/semver';
-const { version } = require('../../../package.json');
-import * as chalk from 'chalk';
 import boxen from 'boxen';
+
+const { version } = require('../../../package.json');
+const chalk = require('chalk');
+
 let updatesChecked = false;
 
 export async function checkUpdates() {
@@ -34,9 +36,9 @@ async function checkVenomVersion() {
 function logUpdateAvailable(current: string, latest: string) {
   // prettier-ignore
   const newVersionLog =
-      `There is a new version of ${chalk.bold(`Venom`)} ${chalk.gray(current)} ➜  ${chalk.bold.green(latest)}\n` +
+      `There is a new version of ${chalk.bold(`hydra`)} ${chalk.gray(current)} ➜  ${chalk.bold.green(latest)}\n` +
       `Update your package by running:\n\n` +
-      `${chalk.bold('\>')} ${chalk.blueBright('npm update venom-bot')}`;
+      `${chalk.bold('\>')} ${chalk.blueBright('npm update hydra-bot')}`;
   console.log(boxen(newVersionLog, { padding: 1 }));
   console.log(
     `For more info visit: ${chalk.underline(
