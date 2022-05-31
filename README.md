@@ -126,6 +126,7 @@ const hydraBot = require('hydra-bot');
 hydraBot.initWs(
 {
   port: '8080',
+  url: '', // point a URL to receive a callback!
   pathNameToken: "token", // The path and name of the folder where the client tokens will be saved
   printQRInTerminal: true, // The QR CODE will be printed on the terminal if true
   updatesLog: true, // Logs info updates automatically in terminal
@@ -145,16 +146,19 @@ hydraBot.initWs(
 > Note: Parameters can be changed during development!
 
 The headers must be parameterized as :
+
 ```json
 {
      "Content-Type" : "application/json",
 }
 ```
+# Using Webhook
 
+if you want to receive a callback on a specific url, pass the url parameter in the connect route.
 
 |Type| Route to browser          | Description                                                 | Body                                                         |
 |----| ----------------          | ------------------------------------------------------------|--------------------------------------------------------------|
-|POST| `/connect`                | Start connection with Whatsapp                              | `{"session": "name session" }`                               |
+|POST| `/connect`                | Start connection with Whatsapp                              | `{"session": "name session",  "url": "http://localhost:8080/webhooktest" }`                               |
 |POST| `/sendtext`               | Send a text to a number                                     | `{"session": "name session", "to": "contact number", "body": "message"}`              |
 
 
