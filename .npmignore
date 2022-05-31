@@ -2,7 +2,7 @@
 *.map
 *.tgz
 *.zip
-api-docs
+api-docs/
 CONTRIBUTING.md
 debug.log
 docs
@@ -14,3 +14,6 @@ tsconfig.json
 typedoc.json
 bot-test/
 Postman/
+token/
+gulpfile.js
+knexfile.js
