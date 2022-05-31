@@ -1,6 +1,6 @@
 import latestVersion from 'latest-version';
 import { upToDate } from '../utils/semver';
-import { version } from '../../../package.json';
+const { version } = require('../../../package.json');
 import * as chalk from 'chalk';
 import boxen from 'boxen';
 let updatesChecked = false;
