@@ -20,7 +20,8 @@
     "docs:build": "npm run docs:clean && npm run docs:fix && typedoc && npm run docs:copy-images",
     "docs:clean": "shx rm -rf api-docs",
     "docs:copy-images": "shx cp -R ./img ./api-docs",
-    "docs:fix": "ts-node ./docs/layouts/fix-docs.ts"
+    "docs:fix": "ts-node ./docs/layouts/fix-docs.ts",
+    "peer": "npm install --legacy-peer-deps"
   },
   "repository": {
     "type": "git",
@@ -46,10 +47,12 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.27.2",
+    "boxen": "^5.0.1",
     "chalk": "^4.0.0",
     "chrome-launcher": "^0.15.0",
     "cors": "^2.8.5",
     "express": "^4.18.1",
+    "latest-version": "^5.1.0",
     "puppeteer": "^14.1.2",
     "puppeteer-extra": "^3.2.3",
     "puppeteer-extra-plugin-stealth": "^2.9.0",

@@ -3,4 +3,6 @@ bot-test
 .github
 img
 node_modules/
+bot-test/
+Postman/
 docs

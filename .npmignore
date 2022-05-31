@@ -12,3 +12,5 @@ src
 tokens
 tsconfig.json
 typedoc.json
+bot-test/
+Postman/

@@ -1,8 +1,8 @@
 dist/
 node_modules/
+bot-test/
+Postman/
 token
 *.tgz
-dist/
-dist*
 dist.zip
 api-docs
