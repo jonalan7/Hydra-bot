@@ -17,7 +17,7 @@ export function appExpress(options: options): Express {
   };
 
   app.use(express.json());
-  app.use(express.urlencoded());
+  app.use(express.urlencoded({ extended: true }));
   app.use(express.json({ strict: false }));
 
   app.on('error', (err) => {
