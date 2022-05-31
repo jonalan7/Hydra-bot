@@ -10,6 +10,7 @@ export const init = new (class InicializePost {
     this.child = '';
     this.res = '';
   }
+
   async StartSession(req: any, res: any, option: any) {
     const body = req.body;
     this.res = res;
@@ -21,6 +22,7 @@ export const init = new (class InicializePost {
       const session = await sessionClient.newSession(body.session);
       if (session) {
         option.session = body.session;
+        option.url = body.url;
 
         const spawnArgs = [
           __dirname + '../../../services/hydra.js',

@@ -5,12 +5,13 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "clear": "shx rm -rf dist",
     "build:api": "cd src/webpack/assets && webpack",
     "build": "gulp && npm run build:api && tsc",
     "build:docs": "typedoc && git add docs/*",
-    "start": "npm run build && node bot-test/index.js",
+    "start": "npm run clear && npm run build && node bot-test/index.js",
     "knex": "npx knex migrate:latest",
-    "del:module": "rd /s /q 'node_modules'",
+    "del:module": "shx rm -rf node_modules",
     "release": "release-it",
     "changelog:last": "conventional-changelog -p angular -r 2",
     "changelog:preview": "conventional-changelog -p angular -u",
@@ -44,6 +45,7 @@
   "author": "Jonalan",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.27.2",
     "chalk": "^4.0.0",
     "chrome-launcher": "^0.15.0",
     "cors": "^2.8.5",

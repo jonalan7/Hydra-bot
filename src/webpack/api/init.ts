@@ -32,7 +32,7 @@ export async function initServer(
     const wpage: Browser | boolean = await initLaunch(mergeOptionsDefault);
 
     if (typeof wpage !== 'boolean') {
-  
+   
       const page: boolean | Page = await initBrowser(wpage);
       if (typeof page !== 'boolean') {
         const client = new webPack(page, wpage, mergeOptionsDefault);

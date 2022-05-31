@@ -18,14 +18,16 @@ export class webPack extends SenderLayer {
   }
 
   async initService() {
-    await this.page
-      .waitForFunction('webpackChunkwhatsapp_web_client.length')
-      .catch();
-    await this.page
-      .addScriptTag({
-        path: require.resolve(path.join(__dirname, '../assets/', 'api.js')),
-      })
-      .catch();
-    this.initLitener();
+    try {
+      await this.page
+        .waitForFunction('webpackChunkwhatsapp_web_client.length')
+        .catch();
+      await this.page
+        .addScriptTag({
+          path: require.resolve(path.join(__dirname, '../assets/', 'api.js')),
+        })
+        .catch();
+      this.initLitener();
+    } catch {}
   }
 }

@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {
   initServer,
   webPack,
@@ -10,20 +11,36 @@ function sendParent(data: any) {
   process.send && process.send(data);
 }
 
+async function Webhook(options: any, info: any) {
+  if (!!options.url && options.url.length) {
+    return new Promise(async (resolve, reject) => {
+      await axios
+        .post(options.url, info)
+        .then(function (response) {
+          console.log(response);
+          resolve(response);
+        })
+        .catch((err) => {
+          console.log(err);
+          resolve(err);
+        });
+    });
+  }
+}
+
 (async () => {
   const args: string[] = process.argv.slice(2);
   const options: string = args[0];
-  const obj = JSON.parse(options);
-  const initWebpack: webPack = await initServer(obj);
+  const objOptions = JSON.parse(options);
+  const initWebpack: webPack = await initServer(objOptions);
 
-  //initWebpack.on(onMode.interfaceChange, (change: interfaceChange) => {
-  //sendParent(change);
-  //console.log(`${onMode.interfaceChange}: `, change);
-  //});
+  initWebpack.on(onMode.interfaceChange, (change: interfaceChange) => {
+    Webhook(objOptions, change);
+  });
 
-  //initWebpack.on(onMode.qrcode, (qrcode: InterfaceQrcode) => {
-  // console.log(`${onMode.qrcode}: `, qrcode);
-  //});
+  initWebpack.on(onMode.qrcode, (qrcode: InterfaceQrcode) => {
+    Webhook(objOptions, qrcode);
+  });
 
   initWebpack.on(onMode.connection, async (conn) => {
     if (conn.erro) {
@@ -33,8 +50,7 @@ function sendParent(data: any) {
         conn.statusFind === 'noOpenWhatzapp' ||
         conn.statusFind === 'noOpenBrowser'
       ) {
-        console.log(conn);
-        sendParent({ delsession: true, session: obj.session });
+        sendParent({ delsession: true, session: objOptions.session });
         if (!initWebpack.page.isClosed()) {
           try {
             initWebpack.page.close();
@@ -42,12 +58,15 @@ function sendParent(data: any) {
         }
       }
     }
+
     if (conn.connect) {
-      sendParent({ ...conn, session: obj.session });
+      sendParent({ ...conn, session: objOptions.session });
     }
+    Webhook(objOptions, conn);
   });
 
   process.on('message', async (response: any) => {
+    Webhook(objOptions, response);
     if (response.type === 'text') {
       await initWebpack
         .sendMessage({

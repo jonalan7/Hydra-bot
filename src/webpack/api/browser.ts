@@ -73,9 +73,8 @@ export async function initLaunch(
     }
   }
 
-  puppeteer.use(StealthPlugin());
-
   try {
+    puppeteer.use(StealthPlugin());
     return await puppeteer.launch({
       headless: options.puppeteerOptions?.headless,
       args: options.puppeteerOptions?.args,
