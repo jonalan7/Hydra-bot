@@ -1,3 +1,12 @@
+## [1.0.6](https://github.com/jonalan7/Hydra-bot/compare/v1.0.5...v1.0.6) (2022-05-31)
+
+
+### Bug Fixes
+
+* logUpdateAvailable ([b7e5686](https://github.com/jonalan7/Hydra-bot/commit/b7e5686ec8e73960403220b94385c6b322cb5d28))
+
+
+
 ## [1.0.5](https://github.com/jonalan7/Hydra-bot/compare/v1.0.4...v1.0.5) (2022-05-31)
 
 
