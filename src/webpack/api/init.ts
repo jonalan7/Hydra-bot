@@ -25,14 +25,23 @@ export async function initServer(
       };
     }
 
+    if (!!mergeOptionsDefault.session && mergeOptionsDefault.session.length) {
+      const sessionName = mergeOptionsDefault.session;
+      const replaceSession = sessionName.replace(/[^0-9a-zA-Zs]/g, '');
+      if (replaceSession.length) {
+        mergeOptionsDefault.session = replaceSession;
+      } else {
+        mergeOptionsDefault.session = defaultConfig.session;
+      }
+    }
+
     if (mergeOptionsDefault.updatesLog) {
       await checkUpdates();
     }
 
     const wpage: Browser | boolean = await initLaunch(mergeOptionsDefault);
-
+    
     if (typeof wpage !== 'boolean') {
-   
       const page: boolean | Page = await initBrowser(wpage);
       if (typeof page !== 'boolean') {
         const client = new webPack(page, wpage, mergeOptionsDefault);
@@ -42,6 +51,7 @@ export async function initServer(
             text: 'The browser has closed',
             statusFind: 'browserClosed',
             onType: onMode.connection,
+            session: mergeOptionsDefault.session
           };
         }).catch(() => {
           console.log('The client has been closed');
@@ -54,6 +64,7 @@ export async function initServer(
           text: 'Error open whatzapp',
           statusFind: 'noOpenWhatzapp',
           onType: onMode.connection,
+          session: mergeOptionsDefault.session
         };
         wpage.close();
       }
@@ -64,6 +75,7 @@ export async function initServer(
         text: 'Error open browser...',
         statusFind: 'noOpenBrowser',
         onType: onMode.connection,
+        session: mergeOptionsDefault.session
       };
     }
   });

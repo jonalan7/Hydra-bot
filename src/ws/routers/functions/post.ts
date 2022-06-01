@@ -1,6 +1,4 @@
 import { spawn } from 'child_process';
-import { text } from 'stream/consumers';
-import { isThisTypeNode } from 'typescript';
 import { sessionClient } from '../../help/sessions';
 
 export const init = new (class InicializePost {

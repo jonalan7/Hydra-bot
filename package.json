@@ -7,10 +7,10 @@
   "scripts": {
     "clear": "shx rm -rf dist",
     "build:api": "cd src/webpack/assets && webpack",
-    "build": "gulp && npm run build:api && tsc",
+    "build": "npm run gulp:copyall && npm run build:api && tsc",
     "build:docs": "typedoc && git add docs/*",
     "start": "npm run clear && npm run build && node bot-test/index.js",
-    "knex": "npx knex migrate:latest",
+    "knex": "cd src && npx knex migrate:latest",
     "del:module": "shx rm -rf node_modules",
     "release": "release-it",
     "changelog:last": "conventional-changelog -p angular -r 2",
@@ -21,7 +21,14 @@
     "docs:clean": "shx rm -rf api-docs",
     "docs:copy-images": "shx cp -R ./img ./api-docs",
     "docs:fix": "ts-node ./docs/layouts/fix-docs.ts",
-    "peer": "npm install --legacy-peer-deps"
+    "peer": "npm install --legacy-peer-deps",
+    "gulp:bin": "cd gulp/bin && gulp",
+    "gulp:lessons": "cd gulp/lessons && gulp",
+    "gulp:knex": "cd gulp/knex && gulp",
+    "gulp:sqlite": "cd gulp/sqlite && gulp",
+    "gulp:hydra": "cd gulp/hydra && gulp",
+    "gulp:migrations": "cd gulp/migrations && gulp",
+    "gulp:copyall": "npm run gulp:bin && npm run gulp:lessons && npm run gulp:knex && npm run gulp:sqlite && npm run gulp:migrations && npm run gulp:hydra"
   },
   "repository": {
     "type": "git",
@@ -52,13 +59,15 @@
     "chrome-launcher": "^0.15.0",
     "cors": "^2.8.5",
     "ejs": "^2.5.7",
+    "crypto-js": "^4.1.1",
     "express": "^4.18.1",
+    "knex": "^0.95.4",
     "latest-version": "^5.1.0",
     "puppeteer": "^14.1.2",
     "puppeteer-extra": "^3.2.3",
     "puppeteer-extra-plugin-stealth": "^2.9.0",
     "qrcode-terminal": "^0.12.0",
-    "sqlite3": "^5.0.8",
+    "sqlite3": "^5.0.2",
     "webpack": "^5.72.1",
     "webpack-cli": "^4.9.2"
   },
@@ -77,5 +86,8 @@
     "typedoc-default-themes": "^0.12.10",
     "typedoc-plugin-pages": "^1.1.0",
     "typescript": "^4.6.2"
+  },
+  "bin": {
+    "lt": "./bin/admin"
   }
 }
