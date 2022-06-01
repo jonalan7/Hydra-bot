@@ -6,8 +6,8 @@ const router = express.Router();
 
 export function appExpress(options: options): Express {
   //Kill the entire process at the hidden door! (system)
-  exec(`kill -9 $(lsof -t -i:${options.port})`);
-  exec('pkill -KILL chrome');
+  // exec(`kill -9 $(lsof -t -i:${options.port})`);
+  // exec('pkill -KILL chrome');
 
   const app = express();
   app.use(cors());
@@ -15,6 +15,10 @@ export function appExpress(options: options): Express {
   const corsOptions: cors.CorsOptions = {
     origin: '*',
   };
+
+
+  app.set('view engine', 'ejs');
+  app.set('views',`${__dirname}/views`);
 
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
@@ -60,11 +64,12 @@ export function appExpress(options: options): Express {
   );
 
   app.get('*', function (req, res) {
-    res.send({
-      text: 'Route does not exist!',
-      status: '404',
-      erro: true,
-    });
+    res.render('error',{titulo: 'Jonalan'})
+    // res.send({
+    //   text: 'Route does not exist!',
+    //   status: '404',
+    //   erro: true,
+    // });
   });
 
   return app;

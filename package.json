@@ -28,7 +28,8 @@
     "gulp:sqlite": "cd gulp/sqlite && gulp",
     "gulp:hydra": "cd gulp/hydra && gulp",
     "gulp:migrations": "cd gulp/migrations && gulp",
-    "gulp:copyall": "npm run gulp:bin && npm run gulp:lessons && npm run gulp:knex && npm run gulp:sqlite && npm run gulp:migrations && npm run gulp:hydra"
+    "gulp:views": "cd gulp/views && gulp",
+    "gulp:copyall": "npm run gulp:bin && npm run gulp:lessons && npm run gulp:knex && npm run gulp:sqlite && npm run gulp:migrations && npm run gulp:hydra && npm run gulp:views"
   },
   "repository": {
     "type": "git",
@@ -58,6 +59,7 @@
     "chalk": "^4.0.0",
     "chrome-launcher": "^0.15.0",
     "cors": "^2.8.5",
+    "ejs": "^2.5.7",
     "crypto-js": "^4.1.1",
     "express": "^4.18.1",
     "knex": "^0.95.4",
