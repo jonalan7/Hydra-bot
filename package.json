@@ -9,7 +9,7 @@
     "build:api": "cd src/webpack/assets && webpack",
     "build": "npm run gulp:copyall && npm run build:api && tsc",
     "build:docs": "typedoc && git add docs/*",
-    "start": "npm run clear && npm run build && node bot-test/index.js",
+    "start": "npm run build && node bot-test/index.js",
     "knex": "cd src && npx knex migrate:latest",
     "del:module": "shx rm -rf node_modules",
     "release": "release-it",
