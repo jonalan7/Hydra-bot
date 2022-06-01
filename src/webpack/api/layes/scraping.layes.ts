@@ -58,6 +58,7 @@ export class scraping {
                 text: 'Auto close called!',
                 statusFind: 'autoClose',
                 onType: onMode.connection,
+                session: this.options.session
               };
               this.cancelAutoClose();
               this.tryAutoClose();

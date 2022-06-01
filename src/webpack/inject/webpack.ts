@@ -12,6 +12,7 @@ export class webPack extends SenderLayer {
     super(page, browser, options);
     this.initService();
     this.initModeInterfaceChange();
+
     this.page.on('load', async () => {
       await this.initService();
     });

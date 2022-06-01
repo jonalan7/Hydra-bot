@@ -67,7 +67,7 @@ export async function initLaunch(
   if (options.puppeteerOptions?.executablePath === 'useChrome') {
     const chromePath: string | undefined = getPathChrome();
     if (chromePath === undefined) {
-      console.log('erro get Path chrome');
+      return false;
     } else {
       options.puppeteerOptions.executablePath = chromePath;
     }

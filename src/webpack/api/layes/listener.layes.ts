@@ -2,7 +2,7 @@ import { EventEmitter } from 'events';
 import { onMode } from '../../model/enum/';
 import { Page, Browser } from 'puppeteer';
 import { scraping } from './scraping.layes';
-import { CreateOptions, defaultConfig } from '../../model/interface';
+import { CreateOptions } from '../../model/interface';
 import { sleep } from '../../help';
 
 export class ListenerLayer extends scraping {
@@ -25,7 +25,9 @@ export class ListenerLayer extends scraping {
         break;
       }
       if (urlCode !== result.urlCode) {
-        Object.assign(result, { onType: onMode.qrcode });
+        Object.assign(result, {
+          onType: onMode.qrcode,
+        });
         this.statusFind = result;
         urlCode = result.urlCode;
         const qr = await this.asciiQr(urlCode).catch(() => undefined);
@@ -58,6 +60,7 @@ export class ListenerLayer extends scraping {
               erro: false,
               connect: true,
               onType: onMode.connection,
+              session: this.options.session
             };
           }
         }
@@ -67,6 +70,7 @@ export class ListenerLayer extends scraping {
               erro: false,
               qrcode: interFace.info,
               onType: onMode.connection,
+              session: this.options.session
             };
             await this.qrCodeScan();
           }

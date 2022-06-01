@@ -9,7 +9,7 @@ export class SenderLayer extends ListenerLayer {
   constructor(
     public page: Page,
     public browser: Browser,
-    public options: CreateOptions
+    public options: CreateOptions,
   ) {
     super(page, browser, options);
   }
