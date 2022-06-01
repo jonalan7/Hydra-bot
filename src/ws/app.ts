@@ -64,7 +64,7 @@ export function appExpress(options: options): Express {
   );
 
   app.get('*', function (req, res) {
-    res.render('error')
+    res.render('error',{titulo: 'Jonalan'})
     // res.send({
     //   text: 'Route does not exist!',
     //   status: '404',

@@ -9,7 +9,7 @@
     "build:api": "cd src/webpack/assets && webpack",
     "build": "npm run gulp:copyall && npm run build:api && tsc",
     "build:docs": "typedoc && git add docs/*",
-    "start": "npm run clear && npm run build && node bot-test/index.js",
+    "start": "npm run clear && npm run build && nodemon bot-test/index.js",
     "knex": "cd src && npx knex migrate:latest",
     "del:module": "shx rm -rf node_modules",
     "release": "release-it",
@@ -28,7 +28,8 @@
     "gulp:sqlite": "cd gulp/sqlite && gulp",
     "gulp:hydra": "cd gulp/hydra && gulp",
     "gulp:migrations": "cd gulp/migrations && gulp",
-    "gulp:copyall": "npm run gulp:bin && npm run gulp:lessons && npm run gulp:knex && npm run gulp:sqlite && npm run gulp:migrations && npm run gulp:hydra"
+    "gulp:views": "cd gulp/views && gulp",
+    "gulp:copyall": "npm run gulp:bin && npm run gulp:lessons && npm run gulp:knex && npm run gulp:sqlite && npm run gulp:migrations && npm run gulp:hydra && npm run gulp:views"
   },
   "repository": {
     "type": "git",
