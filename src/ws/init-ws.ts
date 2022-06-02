@@ -26,4 +26,14 @@ export function initWs(options?: CreateOptions | options | any): any {
   app.listen(mergeOptions.port, () => {
     console.log(`Web service on http://localhost:${mergeOptions.port}`);
   });
+  
+  app.use(function (req, res) {
+    res.send({
+      text: 'Route does not exist!',
+      status: '404',
+      erro: true,
+    });
+  });
+
+
 }
