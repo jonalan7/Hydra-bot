@@ -83,4 +83,4 @@ class configUsers {
   }
 }
 
-module.exports = new configUsers(sqlite);
+export = new configUsers(sqlite);
