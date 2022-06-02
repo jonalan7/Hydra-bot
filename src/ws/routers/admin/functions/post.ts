@@ -1,4 +1,4 @@
-const Users = require('../../../help/treatment');
+import Users from '../../../help/treatment';
 
 class InicializePostUser {
   async createUserRouter(req: any, res: any) {
@@ -37,4 +37,5 @@ class InicializePostUser {
     }
   }
 }
+
 export = new InicializePostUser();
