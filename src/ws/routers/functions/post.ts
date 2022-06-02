@@ -1,114 +1,129 @@
 import { spawn } from 'child_process';
 import { sessionClient } from '../../help/sessions';
+import Users from '../../help/treatment';
+import crypto from 'crypto';
+import { options } from './../../model/interface';
 
 export const init = new (class InicializePost {
   public child: any;
   public res: any;
+  public option: any;
+
   constructor() {
     this.child = '';
     this.res = '';
+    this.option = '';
   }
 
-  async StartSession(req: any, res: any, option: any) {
+  async StartSession(req: any, res: any, option: options) {
     const body = req.body;
+    const reHttp = /^https?:/;
+    const $_HEADERS_USER = req?.headers?.user;
     this.res = res;
-    if (
-      !!body.session &&
-      body.session.length &&
-      typeof body.session === 'string'
-    ) {
-      const session = await sessionClient.newSession(body.session);
-      if (session) {
-        option.session = body.session;
-        option.url = body.url;
+    this.option = option;
 
-        const spawnArgs = [
-          __dirname + '../../../services/hydra.js',
-          JSON.stringify(option),
-        ];
+    if (option.authentication) {
+      const user = await Users.CheckUserLogin(req);
+      if (user.erro) {
+        return res.send(user);
+      }
+    }
 
-        this.child = spawn('node', spawnArgs, {
-          stdio: ['inherit', 'inherit', 'inherit', 'ipc'],
-        });
+    if (body.url && body.url.length && !reHttp.test(body.url)) {
+      res.sender({ erro: true, text: 'Error http webHook' });
+      return;
+    }
 
-        this.child.on('message', async (response: any) => {
-          if (response.connect) {
-            await sessionClient.addInfoSession(response.session, {
-              connect: response.connect,
-            });
-          }
-          if (response.delsession) {
-            await sessionClient.deleteSession(response.session);
-          }
-        });
+    const session = await sessionClient.newSession($_HEADERS_USER);
 
-        this.child.on('disconnect', (err: any) => {
-          console.log('disconnect', err ? err : '');
-        });
+    if (session) {
+      option.session = $_HEADERS_USER;
+      option.url = body.url;
 
-        this.child.on('error', async (err: any) => {
-          if (err) {
-            console.log('on error', err);
-          }
-        });
+      const spawnArgs = [
+        __dirname + '../../../services/hydra.js',
+        JSON.stringify(option),
+      ];
 
-        this.child.on('close', async (code: any) => {
-          console.log(`child process exited with code`, code);
-        });
+      this.child = spawn('node', spawnArgs, {
+        stdio: ['inherit', 'inherit', 'inherit', 'ipc'],
+      });
 
-        this.child.on('uncaughtException', (err: any) => {
-          console.log(err);
-        });
+      this.child.on('message', async (response: any) => {
+        if (response.connect) {
+          await sessionClient.addInfoSession(response.session, {
+            connect: response.connect,
+          });
+        }
+        if (response.delsession) {
+          await sessionClient.deleteSession(response.session);
+        }
+      });
 
-        sessionClient.addInfoSession(body.session, { child: this.child });
+      this.child.on('disconnect', (err: any) => {
+        console.log('disconnect', err ? err : '');
+      });
 
-        res.send({ erro: false, text: 'Wait for connection' });
-      } else {
-        const getId = await sessionClient.getSessionId(body.session);
-        const check = await sessionClient.checkClient(body.session);
+      this.child.on('error', async (err: any) => {
+        if (err) {
+          console.log('on error', err);
+        }
+      });
 
-        if (typeof getId === 'number') {
-          const client = await sessionClient.checkObjectSession(
-            body.session,
-            'connect',
-            getId
-          );
-          if (check && client) {
-            res.send({ erro: false, text: 'Successfully connected!' });
-          } else {
-            res.send({ erro: false, text: 'Wait for connection' });
-          }
+      this.child.on('close', async (code: any) => {
+        console.log(`child process exited with code`, code);
+      });
+
+      this.child.on('uncaughtException', (err: any) => {
+        console.log(err);
+      });
+
+      sessionClient.addInfoSession($_HEADERS_USER, { child: this.child });
+
+      res.send({ erro: false, text: 'Wait for connection' });
+    } else {
+      const getId = await sessionClient.getSessionId($_HEADERS_USER);
+      const check = await sessionClient.checkClient($_HEADERS_USER);
+
+      if (typeof getId === 'number') {
+        const client = await sessionClient.checkObjectSession(
+          $_HEADERS_USER,
+          'connect',
+          getId
+        );
+        if (check && client) {
+          res.send({ erro: false, text: 'Successfully connected!' });
+        } else {
+          res.send({ erro: false, text: 'Wait for connection' });
         }
       }
-    } else {
-      res.send({
-        erro: true,
-        text: 'Need to inform the session',
-      });
     }
   }
 
   public async sendtext(req: any, res: any) {
     const body = req.body;
-    if (
-      !!body.session &&
-      body.session.length &&
-      !!body.to &&
-      body.to.length &&
-      !!body.body &&
-      body.body.length
-    ) {
-      const check = await sessionClient.checkClient(body.session);
+    const $_HEADERS_USER = req?.headers?.user;
+    this.res = res;
+
+    if (this.option.authentication) {
+      const user = await Users.CheckUserLogin(req);
+      if (user.erro) {
+        return res.send(user);
+      }
+    }
+
+    if (!!body.to && body.to.length && !!body.body && body.body.length) {
+      const check = await sessionClient.checkClient($_HEADERS_USER);
       if (check) {
-        const getId = await sessionClient.getSessionId(body.session);
+        const getId = await sessionClient.getSessionId($_HEADERS_USER);
         if (typeof getId === 'number') {
           const client = await sessionClient.checkObjectSession(
-            body.session,
+            $_HEADERS_USER,
             'connect',
             getId
           );
           if (client) {
-            const getUser = await sessionClient.getUser(body.session);
+            const getUser = await sessionClient.getUser($_HEADERS_USER);
             getUser.child.send({ type: 'text', ...body });
             this.child.on('message', (response: any) => {
               if (response.result) {
