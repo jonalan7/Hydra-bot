@@ -59,7 +59,7 @@
     "axios": "^0.27.2",
     "boxen": "^5.0.1",
     "chalk": "^4.0.0",
-    "chrome-launcher": "^0.15.0",
+    "chrome-launcher": "^0.15.1",
     "cors": "^2.8.5",
     "ejs": "^3.1.8",
     "crypto-js": "^4.1.1",
