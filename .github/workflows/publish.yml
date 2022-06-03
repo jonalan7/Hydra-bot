@@ -1,63 +1,53 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
-
-name: Node.js CI
+name: Publish
 
 on:
   push:
     tags:
       - 'v*'
-      
+
 jobs:
   publish:
-
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        node-version: [12.x]
-        os: [ubuntu-latest, windows-latest]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-        fetch-depth: 0
-        
-    - name: Fetching tags
-      run: git fetch --tags -f || true
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
-    - name: Setup Node
-      uses: actions/setup-node@v3.2.0
-      with:
-        node-version: 12.x
-        registry-url: 'https://registry.npmjs.org'
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Fetching tags
+        run: git fetch --tags -f || true
 
-    - name: Setup npm cache
-      uses: actions/cache@v3
-      with:
-        path: ${{ steps.npm-cache.outputs.dir }}
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-   
+      - name: Setup Node
+        uses: actions/setup-node@v3.2.0
+        with:
+          node-version: 12.x
+          registry-url: 'https://registry.npmjs.org'
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-    - name: Install Dependencies
-      run: npm ci || npm install
-      env:
-        PUPPETEER_SKIP_DOWNLOAD: true
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Get npm cache directory
+        id: npm-cache
+        run: |
+          echo "::set-output name=dir::$(npm config get cache)"
+      - name: Setup npm cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.npm-cache.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Install Dependencies
+        run: npm ci || npm install
+        env:
+          PUPPETEER_SKIP_DOWNLOAD: true
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-    - name: Publish in NPM    
-      run: npm run build
-      env:
-        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-    - name: Generate Changelog
+      - name: Publish in NPM
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Generate Changelog
         id: generate_changelog
         run: |
           changelog=$(npm run changelog:last --silent)
@@ -65,26 +55,25 @@ jobs:
           changelog="${changelog//$'\r'/'%0D'}" 
           echo -e "set-output name=changelog::${changelog-<empty>}\n"
           echo -e "::set-output name=changelog::${changelog}\n"
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          body: ${{ steps.generate_changelog.outputs.changelog }}
+          draft: false
+          prerelease: false
 
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.ref }}
-        release_name: ${{ github.ref }}
-        body: ${{ steps.generate_changelog.outputs.changelog }}
-        draft: false
-        prerelease: false
+      - name: Build API-Docs
+        run: npm run docs:build
+        continue-on-error: true
 
-    - name: Build API-Docs
-      run: npm run docs:build
-      continue-on-error: true
-
-    - name: Deploy API-Docs
-      uses: peaceiris/actions-gh-pages@v3
-      continue-on-error: true
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./api-docs
+      - name: Deploy API-Docs
+        uses: peaceiris/actions-gh-pages@v3
+        continue-on-error: true
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./api-docs
