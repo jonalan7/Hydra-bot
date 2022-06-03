@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const readline = require('readline');
-const sqlite = require('../hydra-bot/dist/ws/help/sqlite');
+const sqlite = require('../ws/help/sqlite');
 
 const rl = readline.createInterface({
   input: process.stdin,
