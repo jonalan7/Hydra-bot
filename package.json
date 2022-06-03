@@ -61,8 +61,8 @@
     "chalk": "^4.0.0",
     "chrome-launcher": "^0.15.1",
     "cors": "^2.8.5",
-    "ejs": "^3.1.8",
     "crypto-js": "^4.1.1",
+    "ejs": "^3.1.8",
     "express": "^4.18.1",
     "knex": "^0.95.4",
     "latest-version": "^5.1.0",
@@ -86,9 +86,8 @@
     "shx": "^0.3.4",
     "ts-node": "^10.8.0",
     "typedoc": "^0.21.10",
-    "typedoc-default-themes": "^0.12.10",
     "typedoc-plugin-pages": "^1.1.0",
-    "typescript": "^4.6.2"
+    "typescript": "^4.7.2"
   },
   "bin": {
     "admin": "./dist/bin/admin"

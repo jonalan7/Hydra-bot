@@ -1,4 +1,12 @@
 {
   "singleQuote": true,
-  "endOfLine": "auto"
+  "endOfLine": "auto",
+  "overrides": [
+    {
+      "files": "*.json5",
+      "options": {
+        "parser": "json"
+      }
+    }
+  ]
 }

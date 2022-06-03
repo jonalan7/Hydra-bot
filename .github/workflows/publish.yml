@@ -36,6 +36,7 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
+
       - name: Install Dependencies
         run: npm ci || npm install
         env:
@@ -55,6 +56,7 @@ jobs:
           changelog="${changelog//$'\r'/'%0D'}" 
           echo -e "set-output name=changelog::${changelog-<empty>}\n"
           echo -e "::set-output name=changelog::${changelog}\n"
+          
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1

@@ -24,6 +24,7 @@ jobs:
         id: npm-cache
         run: |
           echo "::set-output name=dir::$(npm config get cache)"
+          
       - name: Setup npm cache
         uses: actions/cache@v3
         with:
@@ -31,6 +32,7 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
+
       - name: Install Dependencies
         run: npm ci || npm install
         env:
