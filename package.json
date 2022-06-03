@@ -91,6 +91,6 @@
     "typescript": "^4.6.2"
   },
   "bin": {
-    "admin": "./bin/admin"
+    "admin": "./dist/bin/admin"
   }
 }
