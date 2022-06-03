@@ -127,6 +127,7 @@ hydraBot.initWs(
 {
   port: '8080',
   url: '', // point a URL to receive a callback!
+  authentication: true, // ask for authentication in routes
   pathNameToken: "token", // The path and name of the folder where the client tokens will be saved
   printQRInTerminal: true, // The QR CODE will be printed on the terminal if true
   updatesLog: true, // Logs info updates automatically in terminal
@@ -141,25 +142,58 @@ hydraBot.initWs(
 );
 
 ```
+## Routes for handling and querying users.
+### List of commands using `REST API`
+##### All user wheels have a pattern of `Headers`, to be able to access them, to create a administrador (default, username = 'admin', password = 'admin'):
+
+```json
+{
+    "Content-Type" : "application/json",
+    "admin" : "admin",
+    "admin_pass" : "admin"
+}
+```
+
+### List of routes for user management: 
+
+|Type| Route to browser                 | Description                               | Body                                                          |
+|----| -----------------------------    | ------------------------------------------|-------------------------------------------------------------- |
+|POST| `/create_user`                   | Create user                               | `{"name":"USE","password":"USER PASSWORD"}`                   |
+|DEL | `/delete_user/ID_USE`            | Delete user                               | `EMPTY`                                                       |
+|GET | `/get_user_by_id/ID_USE`         | Show user by ID                           | `EMPTY`                                                       |
+|GET | `/get_all_users`                 | List all users                            | `EMPTY`                                                       |
+|PUT | `/deactivate_user`               | Disable user                              | `{"id":"USER ID"}`                                            |
+|PUT | `/activate_user`                 | Activate User                             | `{"id":"USER ID"}`                                            |
+|PUT | `/change_name`                   | Change username                           | `{"id":"USER ID","name":"NEW USERNAME"}`                      |
+|PUT | `/change_password`               | Change user password                      | `{"id":"USER ID","password":"NEW SECURE PASSWORD"}`           |
+
+
 ## Web Service Routes (more features still under development)
 
 > Note: Parameters can be changed during development!
+
+
+### List of routes for managing whatsapp: 
+##### All whatsapp connection wheels have a pattern of `Headers` of user (default, username = 'user', password = 'user').
 
 The headers must be parameterized as :
 
 ```json
 {
-     "Content-Type" : "application/json",
+    "Content-Type" : "application/json",
+    "user" : "user",
+    "user_pass" : "user"
 }
 ```
+
 # Using Webhook
 
 if you want to receive a callback on a specific url, pass the url parameter in the connect route.
 
 |Type| Route to browser          | Description                                                 | Body                                                         |
 |----| ----------------          | ------------------------------------------------------------|--------------------------------------------------------------|
-|POST| `/connect`                | Start connection with Whatsapp                              | `{"session": "name session",  "url": "http://localhost:8080/webhooktest" }`                               |
-|POST| `/sendtext`               | Send a text to a number                                     | `{"session": "name session", "to": "contact number", "body": "message"}`              |
+|POST| `/connect`                | Start connection with Whatsapp                              | `{ "url": "http://localhost:8080/webhooktest" }`                               |
+|POST| `/sendtext`               | Send a text to a number                                     | `{ "to": "contact number", "body": "message"}`              |
 
 
 ## Basic Functions (more features still under development)
