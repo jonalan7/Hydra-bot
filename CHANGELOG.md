@@ -1,3 +1,12 @@
+## [1.0.9](https://github.com/jonalan7/Hydra-bot/compare/v1.0.8...v1.0.9) (2022-06-03)
+
+
+### Bug Fixes
+
+* admin path ([58bdece](https://github.com/jonalan7/Hydra-bot/commit/58bdeceeb2dcbc6661ecb0a702c2bf04b4e90f5d))
+
+
+
 ## [1.0.8](https://github.com/jonalan7/Hydra-bot/compare/v1.0.7...v1.0.8) (2022-06-03)
 
 
