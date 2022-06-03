@@ -1,13 +1,14 @@
 {
-    "disableSources": true,
-    "entryPoints": "src/index.ts",
-    "excludeExternals": true,
-    "excludePrivate": true,
-    "excludeProtected": true,
-    "includeVersion": true,
-    "out": "api-docs",
-    "theme": "pages-plugin",
-    "media": "media",
+  "disableSources": false,
+  "entryPoints": ["src/index.ts"],
+  "excludeExternals": false,
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "includeVersion": true,
+  "out": "api-docs",
+  "theme": "pages-plugin",
+  "media": "media",
+  "gaID": "G-LTZL26963K",
     "pages": {
       "groups": [
         {
@@ -21,5 +22,4 @@
         }
       ]
     }
-  }
-  
+}
