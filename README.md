@@ -1,4 +1,3 @@
-> Project still under development! Wait for new updates!
 # Welcome to Hydra Bot
 
 <img height="150" src="img/hydra.png"></img>

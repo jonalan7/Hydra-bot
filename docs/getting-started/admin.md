@@ -1,6 +1,7 @@
-- [Commands for administration via terminal](#commands-for-administration-via-terminal)
-- [Administration via Webhook](#administration-via-webhook)
-- [List of routes for user management:](#list-of-routes-for-user-management)
+# Example Postman
+Use Postman to test routes!
+[Postman example](https://github.com/jonalan7/Hydra-bot/blob/master/Postman/postman_collection.json)
+[Download Postman](https://www.postman.com/downloads/)
 
 ### Commands for administration via terminal
 

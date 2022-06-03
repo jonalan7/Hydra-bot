@@ -21,6 +21,10 @@
             {
               "title": "Administration",
               "source": "./docs/getting-started/admin.md"
+            },
+            {
+              "title": "User",
+              "source": "./docs/getting-started/user.md"
             }
           ]
         }
