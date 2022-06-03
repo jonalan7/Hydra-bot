@@ -42,6 +42,9 @@ jobs:
         env:
           PUPPETEER_SKIP_DOWNLOAD: true
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      
+      - name: Build source
+        run: npm run build
 
       - name: Publish in NPM
         run: npm publish
@@ -56,7 +59,7 @@ jobs:
           changelog="${changelog//$'\r'/'%0D'}" 
           echo -e "set-output name=changelog::${changelog-<empty>}\n"
           echo -e "::set-output name=changelog::${changelog}\n"
-          
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
