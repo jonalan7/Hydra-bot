@@ -17,6 +17,10 @@
             {
               "title": "Installation",
               "source": "./docs/getting-started/installation.md"
+            },
+            {
+              "title": "Administration",
+              "source": "./docs/getting-started/admin.md"
             }
           ]
         }
