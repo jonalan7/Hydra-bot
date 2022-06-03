@@ -92,5 +92,8 @@
   },
   "bin": {
     "admin": "./dist/bin/admin"
+  },
+  "directories": {
+    "doc": "docs"
   }
 }
