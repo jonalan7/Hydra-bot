@@ -9,7 +9,7 @@ on:
       - 'v*'
       
 jobs:
-  build:
+  publish:
 
     runs-on: ${{ matrix.os }}
 
@@ -27,6 +27,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
         fetch-depth: 0
+        
     - name: Fetching tags
       run: git fetch --tags -f || true
 
