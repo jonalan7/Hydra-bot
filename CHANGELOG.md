@@ -1,3 +1,26 @@
+## [1.0.7](https://github.com/jonalan7/Hydra-bot/compare/v1.0.6...v1.0.7) (2022-06-03)
+
+
+### Bug Fixes
+
+* development fixes ([e4185bc](https://github.com/jonalan7/Hydra-bot/commit/e4185bca9da50e4756070476961774a86b6d172e))
+* not clear dist ([1ef0096](https://github.com/jonalan7/Hydra-bot/commit/1ef00965a4ec172bb58397e0ed6cea8ecca96bd2))
+* Route not exist ([a84dd69](https://github.com/jonalan7/Hydra-bot/commit/a84dd69c5cfa2d5a3872b18621bf72cd6d1ebe88))
+
+
+### Features
+
+* :sparkles: implement ejs tempante ([ee4012d](https://github.com/jonalan7/Hydra-bot/commit/ee4012d33efec03270ba0cc42731e16c554d0cc7))
+* build typescript ([69f05c5](https://github.com/jonalan7/Hydra-bot/commit/69f05c5b2888a7a8bf3506103e484e64d9f870da))
+* create user ([a088459](https://github.com/jonalan7/Hydra-bot/commit/a088459166d7cc6fec3bada8d650f18c905ac0d1))
+* development fixes ([5424fc4](https://github.com/jonalan7/Hydra-bot/commit/5424fc4b374a7fc0299419f5d890ecc77831440b))
+* gulp file ([d775127](https://github.com/jonalan7/Hydra-bot/commit/d7751276b9fa40bd6e80de81a0ba7d456587ae26))
+* login in routes ([17deab0](https://github.com/jonalan7/Hydra-bot/commit/17deab0c4d7af8b749300a41a76fbd320537085b))
+* npm ignore ([0bc25f7](https://github.com/jonalan7/Hydra-bot/commit/0bc25f7baec2deda71c8777471ed44afa3702053))
+* User administration routes ([29f0a15](https://github.com/jonalan7/Hydra-bot/commit/29f0a1549cc0e2371c2cb6e875528409de5f0820))
+
+
+
 ## [1.0.6](https://github.com/jonalan7/Hydra-bot/compare/v1.0.5...v1.0.6) (2022-05-31)
 
 
