@@ -29,6 +29,10 @@
             {
               "title": "Start Bot",
               "source": "./docs/getting-started/start_bot.md"
+            },
+            {
+              "title": "Web service",
+              "source": "./docs/getting-started/web_service.md"
             }
           ]
         }
