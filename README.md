@@ -31,6 +31,12 @@ Use the stable version:
 > npm i --save hydra-bot
 ```
 
+Terminal Admin:
+
+```bash
+> yarn admin
+```
+
 ## Getting started Web Service
 The service will be started on localhost on port 8080
 
@@ -40,7 +46,6 @@ const hydraBot = require('hydra-bot');
     // start Web Service
     const WS = await hydraBot.initWs();
 });
-    
 ```
 
 ## Getting started bot (the bot in raw form, without using a Web Services).
@@ -142,6 +147,29 @@ hydraBot.initWs(
 );
 
 ```
+### Commands for administration via terminal
+To start the administration interface use:
+
+```bash
+> yarn admin
+```
+List of commands in the terminal:
+
+| Command       | Description                                                           |
+| ----------    | --------------------------------------------------------------------- |
+| `/create`     | Create user                                                           |
+| `/delete`     | Delete user                                                           |
+| `/selectid`   | Show user by id                                                       |
+| `/selectname` | Select user by name                                                   |
+| `/getall`     | List all users                                                        |
+| `/deactivate` | Disable user                                                          |
+| `/activate`   | Activate User                                                         |
+| `/changename` | Change username                                                       |
+| `/password`   | Change user password                                                  |
+| `/cls`        | Clear screen/terminal                                                 |
+| `/help`       | List all commands for administration in terminal                      |
+| `/exit`       | Exit manager                                                          |
+
 ## Routes for handling and querying users.
 ### List of commands using `REST API`
 ##### All user wheels have a pattern of `Headers`, to be able to access them, to create a administrador (default, username = 'admin', password = 'admin'):
