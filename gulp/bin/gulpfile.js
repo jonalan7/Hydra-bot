@@ -6,7 +6,7 @@ const path = require('path');
 
 function copy(){
   return src('../../src/bin/**').pipe(
-    dest(path.resolve(__dirname, '../../node_modules/.bin/'))
+    dest(path.resolve(__dirname, '../../dist/bin'))
   );
 }
 exports.default = copy;
