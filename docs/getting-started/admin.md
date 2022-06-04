@@ -11,6 +11,9 @@ To start the administration interface use:
 > yarn admin
 ```
 
+#### what is an administrator for?
+Administrators will be able to manage API users via Webhook.
+
 List of commands in the terminal:
 
 | Command       | Description                                      |
@@ -33,7 +36,7 @@ List of commands in the terminal:
 ### Administration via Webhook
 Routes for handling and querying users.
 List of commands using `REST API`
-All user wheels have a pattern of `Headers`, to be able to access them, to create a administrador (default, username = 'admin', password = 'admin'):
+All user wheels have a pattern of `Headers`, to be able to access them, to create a administrador:
 
 ```json
 {
@@ -44,6 +47,8 @@ All user wheels have a pattern of `Headers`, to be able to access them, to creat
 ```
 
 ### List of routes for user management: 
+
+With an [administrator](#commands-for-administration-via-terminal) (there is a default administrator, the username and password as admin), he can access via Web Service with the following routes:
 
 | Type | Route to browser         | Description          | Body                                                |
 |------|--------------------------|----------------------|-----------------------------------------------------|
