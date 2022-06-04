@@ -28,7 +28,7 @@ List of commands in the terminal:
 | `/help`       | List all commands for administration in terminal |
 | `/exit`       | Exit manager                                     |
 
-<img src="/img/2022-06-03_23-26-08.gif" width="500" height="250"/>
+<img src="/img/2022-06-03_23-26-08.gif" width="500" height="250"  loop="infinite" />
 
 ### Administration via Webhook
 Routes for handling and querying users.
