@@ -5,9 +5,15 @@
 >This project was developed to help the community that uses whatsapp as a way to implement an API quickly and effectively, for companies and much more! Thank you for being part of this family.
 
 You can use this project in two ways, the first is using Web Services using a set of well-defined operations, the POST, GET, PUT and DELETE methods, the second option is to use the bot in raw form, without using a Web Services.
+
+ <a target="_blank" href="https://jonalan7.github.io/Hydra-bot/" target="_blank">
+  <img title="documentation" height="50" width="190" src="img/documentation.png">
+ </a>
+
 ## Supporters
 To maintain quality, we are receiving support! We thank you in advance for the opportunity to develop and maintain this project!
 <br>
+
 | Company | URL                                                | Logo                                                                                                                                           |
 |---------|----------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
 | redrive | [https://redrive.com.br/](https://redrive.com.br/) | <a target="_blank" href="https://redrive.com.br/" target="_blank"> <img title="redrive.com.br" height="25" src="img/logo-redrive-png.png"></a> |
