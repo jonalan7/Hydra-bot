@@ -1,3 +1,16 @@
+## [1.0.14](https://github.com/jonalan7/Hydra-bot/compare/v1.0.13...v1.0.14) (2022-06-04)
+
+
+### Features
+
+* development fixes ([4e83805](https://github.com/jonalan7/Hydra-bot/commit/4e8380508fc316d1f5112ab7e1e88556f537ba73))
+* doc Administration ([4478e6a](https://github.com/jonalan7/Hydra-bot/commit/4478e6a6519f47fed0a5461ae63018b613f5d790))
+* doc user ([f61d86e](https://github.com/jonalan7/Hydra-bot/commit/f61d86eb3df8413b319350a3712b84a4b8395b37))
+* docs start bot ([7c35b8c](https://github.com/jonalan7/Hydra-bot/commit/7c35b8ca0468f19faea997e83725c9f43744bea7))
+* docs Web Service ([6428003](https://github.com/jonalan7/Hydra-bot/commit/642800388f5a02b3c39a1b0411ae390736c090e7))
+
+
+
 ## [1.0.13](https://github.com/jonalan7/Hydra-bot/compare/v1.0.12...v1.0.13) (2022-06-03)
 
 
