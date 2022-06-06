@@ -40,6 +40,12 @@ Use the stable version:
 > npm i --save hydra-bot
 ```
 
+or for [Nightly releases](https://github.com/jonalan7/Hydra-bot/releases/tag/nightly):
+
+```bash
+> npm i --save https://github.com/jonalan7/Hydra-bot/releases/download/nightly/hydra-nightly.tgz
+```
+
 Terminal Admin:
 
 ```bash
