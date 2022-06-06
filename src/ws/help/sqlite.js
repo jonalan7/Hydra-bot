@@ -29,9 +29,13 @@ module.exports = class dbLite {
         }
         return false;
       }
-      return { erro: 'User not found' };
+      return {
+        erro: 'User not found'
+      };
     }
-    return { erro: 'Pass the id parameters' };
+    return {
+      erro: 'Pass the id parameters'
+    };
   }
 
   async changeThePass(userId, pass) {
@@ -50,12 +54,16 @@ module.exports = class dbLite {
         }
         return false;
       }
-      return { erro: 'User not found' };
+      return {
+        erro: 'User not found'
+      };
     }
-    return { erro: 'Pass the id parameters' };
+    return {
+      erro: 'Pass the id parameters'
+    };
   }
 
-  async createUser(names, tokens) {
+  async createUser(names, tokens, user = true) {
     if (names && tokens && names.length && tokens.length) {
       const checkUser = await db(this.tb).where({
         name: names,
@@ -71,9 +79,12 @@ module.exports = class dbLite {
             MD5: this.MD5(tokens),
             status: 1,
           });
-
           if (insert.length) {
-            return await this.selectUserId(insert[0]);
+            if (user) {
+              return await this.selectUserId(insert[0]);
+            } else {
+              return true;
+            }
           }
           return false;
         }
@@ -130,9 +141,13 @@ module.exports = class dbLite {
         }
         return false;
       }
-      return { erro: 'User not found' };
+      return {
+        erro: 'User not found'
+      };
     }
-    return { erro: 'Pass the id parameters' };
+    return {
+      erro: 'Pass the id parameters'
+    };
   }
 
   async deactivateUser(userId) {
@@ -170,7 +185,9 @@ module.exports = class dbLite {
     if (userId) {
       const checkUser = await this.selectUserId(userId);
       if (checkUser) {
-        const delUser = await db(this.tb).where({ id: userId }).del();
+        const delUser = await db(this.tb).where({
+          id: userId
+        }).del();
         if (delUser) {
           return true;
         }

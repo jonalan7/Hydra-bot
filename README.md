@@ -54,7 +54,7 @@ const hydraBot = require('hydra-bot');
 (async () => {
     // start Web Service
     const WS = await hydraBot.initWs();
-});
+})();
 ```
 
 ## Getting started bot (the bot in raw form, without using a Web Services).

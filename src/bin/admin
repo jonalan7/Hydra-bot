@@ -262,7 +262,7 @@ class infoAdmin extends sqlite {
       const nameUser = name;
       rl.question('Type the password: ', async (MD5) => {
         const password = MD5;
-        const create = await this.createUser(nameUser, password);
+        const create = await this.createUser(nameUser, password, false);
         if (typeof create === 'boolean' && create === true) {
           rl.setPrompt('User created successfully \n');
           rl.prompt();
