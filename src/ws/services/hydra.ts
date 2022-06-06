@@ -51,11 +51,12 @@ async function Webhook(options: any, info: any) {
         conn.statusFind === 'noOpenBrowser'
       ) {
         sendParent({ delsession: true, session: objOptions.session });
-        if (!initWebpack.page.isClosed()) {
-          try {
+        try {
+          if (!initWebpack?.page?.isClosed()) {
             initWebpack.page.close();
-          } catch {}
-        }
+            process.exit();
+          }
+        } catch {}
       }
     }
 
