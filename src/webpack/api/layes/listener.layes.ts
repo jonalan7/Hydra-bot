@@ -10,9 +10,10 @@ export class ListenerLayer extends scraping {
   constructor(
     public page: Page,
     public browser: Browser,
-    public options: CreateOptions
+    public options: CreateOptions,
+    public ev: any
   ) {
-    super(page, browser, options);
+    super(page, browser, options, ev);
     this.statusFind = '';
   }
 
@@ -50,35 +51,6 @@ export class ListenerLayer extends scraping {
     }
   }
 
-  public async initModeInterfaceChange() {
-    this.on(onMode.interfaceChange, async (interFace: any) => {
-      try {
-        this.cancelAutoClose();
-        if (interFace.mode === 'MAIN') {
-          if (interFace.info === 'NORMAL') {
-            this.statusFind = {
-              erro: false,
-              connect: true,
-              onType: onMode.connection,
-              session: this.options.session
-            };
-          }
-        }
-        if (interFace.mode === 'QR') {
-          if (interFace.info === 'NORMAL') {
-            this.statusFind = {
-              erro: false,
-              qrcode: interFace.info,
-              onType: onMode.connection,
-              session: this.options.session
-            };
-            await this.qrCodeScan();
-          }
-        }
-      } catch {}
-    });
-  }
-
   private listenerEmitter = new EventEmitter();
 
   public async initLitener() {
@@ -114,41 +86,27 @@ export class ListenerLayer extends scraping {
         }
       })
       .catch(() => {});
+    this.listener(onMode.interfaceChange);
+    this.listener(onMode.newMessage);
   }
 
-  public async on(type: onMode, callback: (state: any) => void) {
-    switch (type) {
-      case onMode.interfaceChange:
-        this.listener(onMode.interfaceChange, callback);
-        break;
-      case onMode.newMessage:
-        this.listener(onMode.newMessage, callback);
-        break;
-      case onMode.qrcode:
-        this.onChange((event) => {
-          if (event.onType === onMode.qrcode) {
-            callback(event);
-          }
-        });
-        break;
-      case onMode.connection:
-        this.onChange((event) => {
-          if (event.onType === onMode.connection) {
-            callback(event);
-          }
-        });
-        break;
-    }
-  }
-
-  private listener(
-    type: string,
-    callback: (state: any) => void
-  ): { dispose: () => void } {
-    this.listenerEmitter.on(type, callback);
+  private listener(type: string): { dispose: () => void } {
+    this.listenerEmitter.on(type, (event) => {
+      this.ev.statusFind = {
+        onType: type,
+        session: this.options.session,
+        result: event,
+      };
+    });
     return {
       dispose: () => {
-        this.listenerEmitter.off(type, callback);
+        this.listenerEmitter.off(type, (event) => {
+          this.ev.statusFind = {
+            onType: type,
+            session: this.options.session,
+            result: event,
+          };
+        });
       },
     };
   }

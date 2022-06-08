@@ -1,10 +1,8 @@
 import { Page, Browser } from 'puppeteer';
 import { CreateOptions } from '../../model/interface/';
 import * as qrcode from 'qrcode-terminal';
-import { CallbackConnection } from './callback-connect.layes';
 import { onMode } from '../../model/enum';
 
-const conn = new CallbackConnection();
 
 export class scraping {
   public startScanQrcode: boolean;
@@ -14,7 +12,9 @@ export class scraping {
   constructor(
     public page: Page,
     public browser: Browser,
-    public options: CreateOptions
+    public options: CreateOptions,
+    public ev: any
+
   ) {
     this.startScanQrcode = false;
   }
@@ -31,7 +31,7 @@ export class scraping {
     }
   }
 
-  protected cancelAutoClose() {
+  public cancelAutoClose() {
     clearInterval(this.autoCloseInterval);
     this.autoCloseInterval = null;
   }
@@ -53,10 +53,11 @@ export class scraping {
             remain -= 1000;
             this.autoCloseRemain = Math.round(remain / 1000);
             if (remain <= 0) {
-              conn.statusFind = {
+              this.ev.statusFind = {
                 erro: false,
                 text: 'Auto close called!',
-                statusFind: 'autoClose',
+                status: 'autoClose',
+                statusFind: 'browser',
                 onType: onMode.connection,
                 session: this.options.session
               };

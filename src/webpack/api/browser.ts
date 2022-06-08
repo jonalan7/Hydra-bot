@@ -3,7 +3,7 @@ import puppeteer from 'puppeteer-extra';
 import * as ChromeLauncher from 'chrome-launcher';
 import * as path from 'path';
 import * as fs from 'fs';
-
+import { onMode } from '../model/enum';
 import { CreateOptions } from '../model/interface';
 import { puppeteerConfig } from '../help';
 
@@ -60,17 +60,116 @@ export function PathSession(options: CreateOptions) {
 }
 
 export async function initLaunch(
-  options: CreateOptions
+  options: CreateOptions,
+  ev: any
 ): Promise<Browser | boolean> {
   PathSession(options);
 
   if (options.puppeteerOptions?.executablePath === 'useChrome') {
     const chromePath: string | undefined = getPathChrome();
-    if (chromePath === undefined) {
-      return false;
-    } else {
-      options.puppeteerOptions.executablePath = chromePath;
-    }
+    options.puppeteerOptions.executablePath = chromePath;
+  }
+
+  if (
+    options.puppeteerOptions?.downloadChromium &&
+    options.puppeteerOptions?.chromiumVersion &&
+    options.puppeteerOptions?.executablePath === 'useChromium'
+  ) {
+    const browserFetcher = puppeteer.createBrowserFetcher({});
+    let init = true;
+
+    ev.statusFind = {
+      erro: false,
+      text: 'Await download Chromium',
+      status: 'chromium',
+      statusFind: 'browser',
+      onType: onMode.connection,
+      session: options.session,
+    };
+
+    await browserFetcher
+      .download(
+        options.puppeteerOptions?.chromiumVersion,
+        (downloadedByte, totalBytes) => {
+          if (init) {
+            ev.statusFind = {
+              erro: false,
+              text: 'Checking the total bytes to download!',
+              status: 'chromium',
+              statusFind: 'browser',
+              onType: onMode.connection,
+              session: options.session,
+            };
+
+            if (totalBytes) {
+              ev.statusFind = {
+                erro: false,
+                text: `Total Bytes ${totalBytes}`,
+                status: 'chromium',
+                statusFind: 'browser',
+                onType: onMode.connection,
+                session: options.session,
+              };
+            }
+            init = true;
+          }
+
+          if (downloadedByte) {
+            ev.statusFind = {
+              erro: false,
+              text: `Total Bytes: ${totalBytes} download: ${downloadedByte}`,
+              status: 'chromium',
+              statusFind: 'browser',
+              onType: onMode.connection,
+              session: options.session,
+            };
+          }
+
+          if (downloadedByte === totalBytes) {
+            ev.statusFind = {
+              erro: false,
+              text: `Extract files... await...`,
+              status: 'chromium',
+              statusFind: 'browser',
+              onType: onMode.connection,
+              session: options.session,
+            };
+          }
+        }
+      )
+      .then((revisionInfo) => {
+        if (options.puppeteerOptions?.executablePath) {
+          options.puppeteerOptions.executablePath =
+            revisionInfo?.executablePath;
+            ev.statusFind = {
+            erro: false,
+            text: `download completed, path: ${revisionInfo?.executablePath}`,
+            status: 'chromium',
+            statusFind: 'browser',
+            onType: onMode.connection,
+            session: options.session,
+          };
+        }
+
+        if (options.puppeteerOptions?.args) {
+          options.puppeteerOptions.args.push(`--single-process`);
+        }
+      })
+      .catch((e) => {
+        ev.statusFind = {
+          erro: true,
+          text: `Error chromium`,
+          status: 'chromium',
+          statusFind: 'browser',
+          onType: onMode.connection,
+          session: options.session,
+          result: e
+        };
+      });
+  }
+
+  if (!options.puppeteerOptions?.executablePath) {
+    return false;
   }
 
   try {
@@ -97,6 +196,7 @@ export async function oneTab(
     return false;
   }
 }
+
 export function getPathChrome(): string | undefined {
   try {
     const chromeInstalations: string[] =

@@ -2,7 +2,6 @@ import { Page, Browser } from 'puppeteer';
 import { sendOptions } from '../../model/interface';
 import { ListenerLayer } from './listener.layes';
 import { CreateOptions, defaultConfig } from '../../model/interface';
-import { truncate } from 'fs';
 
 export class SenderLayer extends ListenerLayer {
 
@@ -10,8 +9,9 @@ export class SenderLayer extends ListenerLayer {
     public page: Page,
     public browser: Browser,
     public options: CreateOptions,
+    public ev: any
   ) {
-    super(page, browser, options);
+    super(page, browser, options, ev);
   }
 
   async sendMessage(options: sendOptions): Promise<any>;

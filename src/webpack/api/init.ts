@@ -2,11 +2,12 @@ import { CreateOptions, defaultConfig } from '../model/interface';
 import { initLaunch, initBrowser } from './browser';
 import { Browser, Page } from 'puppeteer';
 import { webPack } from '../inject/webpack';
-import { CallbackConnection } from './layes/callback-connect.layes';
+import { CallbackOnStatus } from './layes/callback-on.layes';
 import { onMode } from '../model/enum';
 import { checkingCloses } from '../help';
 import { checkUpdates } from './check-up-to-date';
-const conn = new CallbackConnection();
+
+const ev = new CallbackOnStatus();
 
 export async function initServer(
   createOption?: CreateOptions
@@ -16,6 +17,8 @@ export async function initServer(
   options?: CreateOptions
 ): Promise<webPack | any> {
   return new Promise(async (resolve) => {
+    resolve(ev);
+
     const mergeOptionsDefault = { ...defaultConfig, ...options };
 
     if (!!options?.puppeteerOptions) {
@@ -39,43 +42,102 @@ export async function initServer(
       await checkUpdates();
     }
 
-    const wpage: Browser | boolean = await initLaunch(mergeOptionsDefault);
-    
+    ev.statusFind = {
+      erro: false,
+      text: 'Starting browser...',
+      status: 'initBrowser',
+      statusFind: 'browser',
+      onType: onMode.connection,
+      session: mergeOptionsDefault.session,
+    };
+
+    const wpage: Browser | boolean = await initLaunch(mergeOptionsDefault, ev);
+
     if (typeof wpage !== 'boolean') {
+
+      ev.statusFind = {
+        erro: false,
+        text: 'Opening whatsapp page!',
+        status: 'initWhatsapp',
+        statusFind: 'browser',
+        onType: onMode.connection,
+        session: mergeOptionsDefault.session,
+      };
+     
       const page: boolean | Page = await initBrowser(wpage);
       if (typeof page !== 'boolean') {
-        const client = new webPack(page, wpage, mergeOptionsDefault);
+
+        ev.statusFind = {
+          erro: false,
+          text: 'Website accessed successfully',
+          status: 'openedWhatsapp',
+          statusFind: 'browser',
+          onType: onMode.connection,
+          session: mergeOptionsDefault.session,
+        };
+
+        const client = new webPack(page, wpage, mergeOptionsDefault, ev);
         checkingCloses(wpage, () => {
-          client.statusFind = {
+          ev.statusFind = {
             erro: true,
             text: 'The browser has closed',
-            statusFind: 'browserClosed',
+            status: 'browserClosed',
+            statusFind: 'browser',
             onType: onMode.connection,
-            session: mergeOptionsDefault.session
+            session: mergeOptionsDefault.session,
           };
         }).catch(() => {
           console.log('The client has been closed');
         });
-        return resolve(client);
+
+        ev.on(onMode.interfaceChange, async (interFace: any) => {
+          try {
+            client.cancelAutoClose();
+            if (
+              interFace.result.mode === 'MAIN' &&
+              interFace.result.info === 'NORMAL'
+            ) {
+              ev.statusFind = {
+                erro: false,
+                connect: true,
+                onType: onMode.connection,
+                session: mergeOptionsDefault.session,
+                client: client,
+              };
+            }
+            if (
+              interFace.result.mode === 'QR' &&
+              interFace.result.info === 'NORMAL'
+            ) {
+              ev.statusFind = {
+                erro: false,
+                qrcode: interFace.result.info,
+                onType: onMode.connection,
+                session: mergeOptionsDefault.session,
+              };
+              await client.qrCodeScan();
+            }
+          } catch {}
+        });
       } else {
-        resolve(conn);
-        conn.statusFind = {
+        ev.statusFind = {
           erro: true,
           text: 'Error open whatzapp',
-          statusFind: 'noOpenWhatzapp',
+          status: 'noOpenWhatzapp',
+          statusFind: 'browser',
           onType: onMode.connection,
-          session: mergeOptionsDefault.session
+          session: mergeOptionsDefault.session,
         };
         wpage.close();
       }
     } else {
-      resolve(conn);
-      conn.statusFind = {
+      ev.statusFind = {
         erro: true,
         text: 'Error open browser...',
-        statusFind: 'noOpenBrowser',
+        status: 'noOpenBrowser',
+        statusFind: 'browser',
         onType: onMode.connection,
-        session: mergeOptionsDefault.session
+        session: mergeOptionsDefault.session,
       };
     }
   });

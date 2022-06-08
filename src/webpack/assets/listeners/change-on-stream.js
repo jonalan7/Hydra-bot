@@ -4,7 +4,7 @@ export function addOnStream() {
     return {
       displayInfo: window.Store.Stream.displayInfo,
       mode: window.Store.Stream.mode,
-      info: window.Store.Stream.info,
+      info: window.Store.Stream.info
     };
   };
 

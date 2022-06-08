@@ -70,46 +70,58 @@ If you want to work in free mode, using only the bot, dry the necessary informat
 const hydraBot = require('hydra-bot');
 
 (async () => {
+
+    let client;
+
     // start bot service
-    const webpack = await hydraBot.initServer();
+    const ev = await hydraBot.initServer();
 
     // return to current whatsapp interface
-    webpack.on('interfaceChange', (change) => {
+    ev.on('interfaceChange', (change) => {
         console.log("interfaceChange: ", change);
     });
 
     // return qrcode parameters
-    webpack.on('qrcode', (qrcode) => {
+    ev.on('qrcode', (qrcode) => {
         console.log('qrcode: ', qrcode);
     });
 
     // return connection information
-    webpack.on('connection', async (conn) => {
-        console.log("Info connection: ", conn);
-        if (conn) {
+    ev.on('connection', async (conn) => {
+        
+        // browser information!
+        if (conn.statusFind === 'browser') {
+            console.log('info Browser: ', conn.text);
+        }
+
+        // when connected to whatsapp chat
+        if (conn.connect) {
+            client = conn.client;
             // send a text message
-            await webpack.sendMessage({
+            await client.sendMessage({
                 to: "0000000000@c.us",
                 body: "A message sent by hydra-bot",
                 options: {
                     type: 'text',
                 }
             }).then((result) => {
-                console.log(result)
+                console.log(result);
+            }).catch((error) => {
+                console.log(error);
             });
         }
     });
 
     // return receive new messages
-    webpack.on('newMessage', (newMsg) => {
+    ev.on('newMessage', (newMsg) => {
         // when is received
-        if (!newMsg.isSentByMe) {
+        if (!newMsg.result.isSentByMe) {
             // message received!
             console.log('NewMessageReceived: ', newMsg);
         }
         // when is it sent
-        if (!!newMsg.isSentByMe) {
-            // message sent
+        if (!!newMsg.result.isSentByMe) {
+            // Message sent
             console.log('NewMessageSent: ', newMsg);
         }
     });
@@ -170,20 +182,20 @@ To start the administration interface use:
 ```
 List of commands in the terminal:
 
-| Command       | Description                                                           |
-| ----------    | --------------------------------------------------------------------- |
-| `/create`     | Create user                                                           |
-| `/delete`     | Delete user                                                           |
-| `/selectid`   | Show user by id                                                       |
-| `/selectname` | Select user by name                                                   |
-| `/getall`     | List all users                                                        |
-| `/deactivate` | Disable user                                                          |
-| `/activate`   | Activate User                                                         |
-| `/changename` | Change username                                                       |
-| `/password`   | Change user password                                                  |
-| `/cls`        | Clear screen/terminal                                                 |
-| `/help`       | List all commands for administration in terminal                      |
-| `/exit`       | Exit manager                                                          |
+| Command       | Description                                      |
+|---------------|--------------------------------------------------|
+| `/create`     | Create user                                      |
+| `/delete`     | Delete user                                      |
+| `/selectid`   | Show user by id                                  |
+| `/selectname` | Select user by name                              |
+| `/getall`     | List all users                                   |
+| `/deactivate` | Disable user                                     |
+| `/activate`   | Activate User                                    |
+| `/changename` | Change username                                  |
+| `/password`   | Change user password                             |
+| `/cls`        | Clear screen/terminal                            |
+| `/help`       | List all commands for administration in terminal |
+| `/exit`       | Exit manager                                     |
 
 ## Routes for handling and querying users.
 ### List of commands using `REST API`
@@ -199,16 +211,16 @@ List of commands in the terminal:
 
 ### List of routes for user management: 
 
-|Type| Route to browser                 | Description                               | Body                                                          |
-|----| -----------------------------    | ------------------------------------------|-------------------------------------------------------------- |
-|POST| `/create_user`                   | Create user                               | `{"name":"USE","password":"USER PASSWORD"}`                   |
-|DEL | `/delete_user/ID_USE`            | Delete user                               | `EMPTY`                                                       |
-|GET | `/get_user_by_id/ID_USE`         | Show user by ID                           | `EMPTY`                                                       |
-|GET | `/get_all_users`                 | List all users                            | `EMPTY`                                                       |
-|PUT | `/deactivate_user`               | Disable user                              | `{"id":"USER ID"}`                                            |
-|PUT | `/activate_user`                 | Activate User                             | `{"id":"USER ID"}`                                            |
-|PUT | `/change_name`                   | Change username                           | `{"id":"USER ID","name":"NEW USERNAME"}`                      |
-|PUT | `/change_password`               | Change user password                      | `{"id":"USER ID","password":"NEW SECURE PASSWORD"}`           |
+| Type | Route to browser         | Description          | Body                                                |
+|------|--------------------------|----------------------|-----------------------------------------------------|
+| POST | `/create_user`           | Create user          | `{"name":"USE","password":"USER PASSWORD"}`         |
+| DEL  | `/delete_user/ID_USE`    | Delete user          | `EMPTY`                                             |
+| GET  | `/get_user_by_id/ID_USE` | Show user by ID      | `EMPTY`                                             |
+| GET  | `/get_all_users`         | List all users       | `EMPTY`                                             |
+| PUT  | `/deactivate_user`       | Disable user         | `{"id":"USER ID"}`                                  |
+| PUT  | `/activate_user`         | Activate User        | `{"id":"USER ID"}`                                  |
+| PUT  | `/change_name`           | Change username      | `{"id":"USER ID","name":"NEW USERNAME"}`            |
+| PUT  | `/change_password`       | Change user password | `{"id":"USER ID","password":"NEW SECURE PASSWORD"}` |
 
 
 ## Web Service Routes (more features still under development)
@@ -233,10 +245,10 @@ The headers must be parameterized as :
 
 if you want to receive a callback on a specific url, pass the url parameter in the connect route.
 
-|Type| Route to browser          | Description                                                 | Body                                                         |
-|----| ----------------          | ------------------------------------------------------------|--------------------------------------------------------------|
-|POST| `/connect`                | Start connection with Whatsapp                              | `{ "url": "http://localhost:8080/webhooktest" }`                               |
-|POST| `/sendtext`               | Send a text to a number                                     | `{ "to": "contact number", "body": "message"}`              |
+| Type | Route to browser | Description                    | Body                                             |
+|------|------------------|--------------------------------|--------------------------------------------------|
+| POST | `/connect`       | Start connection with Whatsapp | `{ "url": "http://localhost:8080/webhooktest" }` |
+| POST | `/sendtext`      | Send a text to a number        | `{ "to": "contact number", "body": "message"}`   |
 
 
 ## Basic Functions (more features still under development)
@@ -246,7 +258,7 @@ You must be logged in to use these functions!
 ```javascript
 
 // send text message
-await webpack.sendMessage({
+await client.sendMessage({
     to: "0000000000@c.us",
     body: "A message sent by hydra-bot",
     options: {

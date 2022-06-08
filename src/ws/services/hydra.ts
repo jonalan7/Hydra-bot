@@ -32,28 +32,30 @@ async function Webhook(options: any, info: any) {
   const args: string[] = process.argv.slice(2);
   const options: string = args[0];
   const objOptions = JSON.parse(options);
-  const initWebpack: webPack = await initServer(objOptions);
+  const ev = await initServer(objOptions);
+  let client: any;
 
-  initWebpack.on(onMode.interfaceChange, (change: interfaceChange) => {
+  ev.on(onMode.interfaceChange, (change: interfaceChange) => {
     Webhook(objOptions, change);
   });
 
-  initWebpack.on(onMode.qrcode, (qrcode: InterfaceQrcode) => {
+  ev.on(onMode.qrcode, (qrcode: InterfaceQrcode) => {
     Webhook(objOptions, qrcode);
   });
 
-  initWebpack.on(onMode.connection, async (conn) => {
+  ev.on(onMode.connection, async (conn: any) => {
     if (conn.erro) {
       if (
-        conn.statusFind === 'browserClosed' ||
-        conn.statusFind === 'autoClose' ||
-        conn.statusFind === 'noOpenWhatzapp' ||
-        conn.statusFind === 'noOpenBrowser'
+        conn.statusFind === 'browser' &&
+        (conn.tatus === 'browserClosed' ||
+          conn.tatus === 'autoClose' ||
+          conn.tatus === 'noOpenWhatzapp' ||
+          conn.tatus === 'noOpenBrowser')
       ) {
         sendParent({ delsession: true, session: objOptions.session });
         try {
-          if (!initWebpack?.page?.isClosed()) {
-            initWebpack.page.close();
+          if (!client?.page?.isClosed()) {
+            client.page.close();
             process.exit();
           }
         } catch {}
@@ -62,6 +64,7 @@ async function Webhook(options: any, info: any) {
 
     if (conn.connect) {
       sendParent({ ...conn, session: objOptions.session });
+      client = conn.client;
     }
     Webhook(objOptions, conn);
   });
@@ -69,7 +72,7 @@ async function Webhook(options: any, info: any) {
   process.on('message', async (response: any) => {
     Webhook(objOptions, response);
     if (response.type === 'text') {
-      await initWebpack
+      await client
         .sendMessage({
           to: response.to,
           body: response.body,
@@ -77,10 +80,10 @@ async function Webhook(options: any, info: any) {
             type: 'text',
           },
         })
-        .then((result) => {
+        .then((result: any) => {
           sendParent({ result: true, ...result });
         })
-        .catch((error) => {
+        .catch((error: any) => {
           sendParent({ result: true, ...error });
         });
     }
