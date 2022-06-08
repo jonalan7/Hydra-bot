@@ -1,4 +1,4 @@
-[![npm version](https://img.shields.io/npm/v/venom-bot.svg?color=green)](https://www.npmjs.com/package/hydra-bot)
+[![npm version](https://img.shields.io/npm/v/hydra-bot.svg?color=green)](https://www.npmjs.com/package/hydra-bot)
 [![Downloads](https://img.shields.io/npm/dm/hydra-bot.svg)](https://www.npmjs.com/package/hydra-bot)
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/jonalan7/hydra-bot.svg)](http://isitmaintained.com/project/jonalan7/hydra-bot 'Average time to resolve an issue')
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/jonalan7/hydra-bot.svg)](http://isitmaintained.com/project/orkestral/hydra-bot 'Percentage of issues still open')
