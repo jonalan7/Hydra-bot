@@ -18,17 +18,16 @@ You can use this project in two ways, the first is using Web Services using a se
 ## Supporters
 To maintain quality, we are receiving support! We thank you in advance for the opportunity to develop and maintain this project!
 
-| Company | URL                                                | Logo                                                                                                                                           |
-|---------|----------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
+| Company | URL                                                |                             Logo                             |
+| :------ | -------------------------------------------------- | :----------------------------------------------------------: |
 | redrive | [https://redrive.com.br/](https://redrive.com.br/) | <a target="_blank" href="https://redrive.com.br/" target="_blank"> <img title="redrive.com.br" height="25" src="img/logo-redrive-png.png"></a> |
-| zaplus  | [https://zaplus.chat/](https://zaplus.chat/)       | <img title="zaplus.chat" height="25" src="img/logo_zaplus.png">                                                                                |
-| tabchat | [https://tabchat.com.br/](https://tabchat.com.br/) | <img title="tabchat.com.br" height="25" src="img/logo-horizontal.webp">                                                                        |
+| zaplus  | [https://zaplus.chat/](https://zaplus.chat/)       | <img title="zaplus.chat" height="25" src="img/logo_zaplus.png"> |
+| tabchat | [https://tabchat.com.br/](https://tabchat.com.br/) | <img title="tabchat.com.br" height="25" src="img/logo-horizontal.webp"> |
 
 ## WhatSapp Group
 
 <a target="_blank" href="https://chat.whatsapp.com/FkweAzEKOTp3WaFAUzvKne" target="_blank">
- <img title="whatzapp" height="50" width="190" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/WhatsApp_logo.svg/2000px-WhatsApp_logo.svg.png">
-</a>
+ <img title="whatzapp" height="50" width="190" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/WhatsApp_logo.svg/2000px-WhatsApp_logo.svg.png"></a>
 
 Do you have any doubt? Need help? Join our whatsapp group and ask your questions with other people!
 
@@ -144,7 +143,7 @@ hydraBot.initServer(
   puppeteerOptions: {
     headless: "false", // Start the project with the browser open or not!
     args: [], // Additional arguments to pass to the browser instance. adding any parameter you will replace the default args of the project
-    executablePath: 'useChrome' // The browser that will be used for the project, you can specify a path, if you don't pass any parameter it will open chromium.
+    executablePath: 'useChrome' // The browser that will be used for the project, you can specify a path, if you don't pass any parameters it will open the installed browser.
   }
 }
 );
@@ -169,7 +168,7 @@ hydraBot.initWs(
   puppeteerOptions: {
     headless: "false", // Start the project with the browser open or not!
     args: [], // Additional arguments to pass to the browser instance. adding any parameter you will replace the default args of the project
-    executablePath: 'useChrome' // The browser that will be used for the project, you can specify a path, if you don't pass any parameter it will open chromium.
+    executablePath: 'useChrome' // The browser that will be used for the project, you can specify a path, if you don't pass any parameters it will open the installed browser.
   }
 }
 );
@@ -184,7 +183,7 @@ To start the administration interface use:
 List of commands in the terminal:
 
 | Command       | Description                                      |
-|---------------|--------------------------------------------------|
+| ------------- | :----------------------------------------------- |
 | `/create`     | Create user                                      |
 | `/delete`     | Delete user                                      |
 | `/selectid`   | Show user by id                                  |
