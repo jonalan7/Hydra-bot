@@ -1,3 +1,23 @@
+## [1.0.15](https://github.com/jonalan7/Hydra-bot/compare/v1.0.14...v1.0.15) (2022-06-09)
+
+
+### Bug Fixes
+
+* admin create not erro ([d0b206c](https://github.com/jonalan7/Hydra-bot/commit/d0b206cb122b342c100c45676102ea009e6d4ca9))
+* isclosed ([c8a3242](https://github.com/jonalan7/Hydra-bot/commit/c8a32425f42d3b8fbd5e25403fd6e4a1453d10f6))
+* Webhook ([fc5ac47](https://github.com/jonalan7/Hydra-bot/commit/fc5ac47af6436cdc61808d3c33752937f428beb3))
+
+
+### Features
+
+* add readme Nightly releases ([61fbdc0](https://github.com/jonalan7/Hydra-bot/commit/61fbdc0bbb37072922c6e6761480475d3ff7e199))
+* doc Administration ([5ae06fe](https://github.com/jonalan7/Hydra-bot/commit/5ae06fe391b86238aabdfb0fe742007190e73b30))
+* docs ([467e075](https://github.com/jonalan7/Hydra-bot/commit/467e0752e3c8fd7fdc02370c64f07b281342a6e6))
+* downloadChromium and return event ([a86eeb6](https://github.com/jonalan7/Hydra-bot/commit/a86eeb6ddbd7daeab44a86dd414316cefb462e7a))
+* readme ([0a019fd](https://github.com/jonalan7/Hydra-bot/commit/0a019fda20160c55cf275b597e20e660319ae3e8))
+
+
+
 ## [1.0.14](https://github.com/jonalan7/Hydra-bot/compare/v1.0.13...v1.0.14) (2022-06-04)
 
 
