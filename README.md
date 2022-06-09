@@ -2,6 +2,7 @@
 [![Downloads](https://img.shields.io/npm/dm/hydra-bot.svg)](https://www.npmjs.com/package/hydra-bot)
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/jonalan7/hydra-bot.svg)](http://isitmaintained.com/project/jonalan7/hydra-bot 'Average time to resolve an issue')
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/jonalan7/hydra-bot.svg)](http://isitmaintained.com/project/orkestral/hydra-bot 'Percentage of issues still open')
+
 # Welcome to Hydra Bot
 
 <img height="150" src="img/hydra.png"></img>
@@ -16,7 +17,6 @@ You can use this project in two ways, the first is using Web Services using a se
 
 ## Supporters
 To maintain quality, we are receiving support! We thank you in advance for the opportunity to develop and maintain this project!
-<br>
 
 | Company | URL                                                | Logo                                                                                                                                           |
 |---------|----------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -72,35 +72,34 @@ const hydraBot = require('hydra-bot');
 (async () => {
 
     let client;
-
     // start bot service
-    const ev = await hydraBot.initServer();
+    const webpack = await hydraBot.initServer();
 
     // return to current whatsapp interface
-    ev.on('interfaceChange', (change) => {
+    webpack.on('interfaceChange', (change) => {
         console.log("interfaceChange: ", change);
     });
 
     // return qrcode parameters
-    ev.on('qrcode', (qrcode) => {
+    webpack.on('qrcode', (qrcode) => {
         console.log('qrcode: ', qrcode);
     });
 
     // return connection information
-    ev.on('connection', async (conn) => {
-        
+    webpack.on('connection', async (conn) => {
+
         // browser information!
         if (conn.statusFind === 'browser') {
             console.log('info Browser: ', conn.text);
         }
 
-        // when connected to whatsapp chat
+        // Was connected to whatsapp chat
         if (conn.connect) {
-            client = conn.client;
             // send a text message
+            client = conn.client;
             await client.sendMessage({
                 to: "0000000000@c.us",
-                body: "A message sent by hydra-bot",
+                body: "hi i'm hydra bot",
                 options: {
                     type: 'text',
                 }
@@ -109,22 +108,24 @@ const hydraBot = require('hydra-bot');
             }).catch((error) => {
                 console.log(error);
             });
+
         }
     });
 
     // return receive new messages
-    ev.on('newMessage', (newMsg) => {
+    webpack.on('newMessage', async (newMsg) => {
         // when is received
         if (!newMsg.result.isSentByMe) {
             // message received!
-            console.log('NewMessageReceived: ', newMsg);
+            console.log('NewMessageReceived: ', newMsg.result);
         }
         // when is it sent
         if (!!newMsg.result.isSentByMe) {
             // Message sent
-            console.log('NewMessageSent: ', newMsg);
+            console.log('NewMessageSent: ', newMsg.result);
         }
     });
+
 })();
 ```
 ## Optional create parameters (the bot in raw form, without using a Web Services)
@@ -199,7 +200,7 @@ List of commands in the terminal:
 
 ## Routes for handling and querying users.
 ### List of commands using `REST API`
-##### All user wheels have a pattern of `Headers`, to be able to access them, to create a administrador (default, username = 'admin', password = 'admin'):
+##### All user wheels have a pattern of `Headers`, to be able to access them, to create a administrator
 
 ```json
 {

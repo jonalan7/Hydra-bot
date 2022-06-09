@@ -2,9 +2,11 @@
 If you want to work in free mode, using only the bot, dry the necessary information!
 
 ```javascript
+
 const hydraBot = require('hydra-bot');
 
 (async () => {
+    let client;
     // start bot service
     const webpack = await hydraBot.initServer();
 
@@ -20,33 +22,44 @@ const hydraBot = require('hydra-bot');
 
     // return connection information
     webpack.on('connection', async (conn) => {
-        console.log("Info connection: ", conn);
-        if (conn) {
+
+        // browser information!
+        if (conn.statusFind === 'browser') {
+            console.log('info Browser: ', conn.text);
+        }
+
+        // Was connected to whatsapp chat
+        if (conn.connect) {
             // send a text message
-            await webpack.sendMessage({
+            client = conn.client;
+            await client.sendMessage({
                 to: "0000000000@c.us",
-                body: "A message sent by hydra-bot",
+                body: "hi i'm hydra bot",
                 options: {
                     type: 'text',
                 }
             }).then((result) => {
-                console.log(result)
+                console.log(result);
+            }).catch((error) => {
+                console.log(error);
             });
+
         }
     });
 
     // return receive new messages
-    webpack.on('newMessage', (newMsg) => {
+    webpack.on('newMessage', async (newMsg) => {
         // when is received
-        if (!newMsg.isSentByMe) {
+        if (!newMsg.result.isSentByMe) {
             // message received!
-            console.log('NewMessageReceived: ', newMsg);
+            console.log('NewMessageReceived: ', newMsg.result);
         }
         // when is it sent
-        if (!!newMsg.isSentByMe) {
-            // message sent
-            console.log('NewMessageSent: ', newMsg);
+        if (!!newMsg.result.isSentByMe) {
+            // Message sent
+            console.log('NewMessageSent: ', newMsg.result);
         }
     });
+
 })();
 ```
