@@ -1,3 +1,12 @@
+## [1.0.16](https://github.com/jonalan7/Hydra-bot/compare/v1.0.15...v1.0.16) (2022-06-09)
+
+
+### Bug Fixes
+
+* qrcode ([fb59016](https://github.com/jonalan7/Hydra-bot/commit/fb59016e66e3b4cb15fb2c1004b8adab198b8f27))
+
+
+
 ## [1.0.15](https://github.com/jonalan7/Hydra-bot/compare/v1.0.14...v1.0.15) (2022-06-09)
 
 
