@@ -63,9 +63,11 @@ async function Webhook(options: any, info: any) {
     }
 
     if (conn.connect) {
-      sendParent({ ...conn, session: objOptions.session });
       client = conn.client;
+      conn = { connect: true, session: objOptions.session }
+      sendParent(conn);
     }
+
     Webhook(objOptions, conn);
   });
 
