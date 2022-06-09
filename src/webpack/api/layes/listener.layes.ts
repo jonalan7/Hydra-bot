@@ -6,7 +6,6 @@ import { CreateOptions } from '../../model/interface';
 import { sleep } from '../../help';
 
 export class ListenerLayer extends scraping {
-  public statusFind: any;
   constructor(
     public page: Page,
     public browser: Browser,
@@ -14,7 +13,6 @@ export class ListenerLayer extends scraping {
     public ev: any
   ) {
     super(page, browser, options, ev);
-    this.statusFind = '';
   }
 
   public async qrCodeScan() {
@@ -26,26 +24,19 @@ export class ListenerLayer extends scraping {
         break;
       }
       if (urlCode !== result.urlCode) {
-        Object.assign(result, {
+        
+        this.ev.statusFind = {
+          erro: false,
+          qrcode: result.urlCode,
           onType: onMode.qrcode,
-        });
-        this.statusFind = result;
+          session: this.options.session,
+        };
+
         urlCode = result.urlCode;
         const qr = await this.asciiQr(urlCode).catch(() => undefined);
         if (this.options.printQRInTerminal) {
           console.log(qr);
         }
-      }
-      await sleep(100);
-    }
-  }
-
-  async onChange(event: (status: any) => void) {
-    let change = null;
-    while (true) {
-      if (this.statusFind !== change) {
-        change = this.statusFind;
-        event && event(change);
       }
       await sleep(100);
     }

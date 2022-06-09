@@ -1,7 +1,6 @@
 import axios from 'axios';
 import {
   initServer,
-  webPack,
   onMode,
   interfaceChange,
   InterfaceQrcode,

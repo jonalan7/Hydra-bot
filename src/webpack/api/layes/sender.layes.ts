@@ -1,7 +1,7 @@
 import { Page, Browser } from 'puppeteer';
 import { sendOptions } from '../../model/interface';
 import { ListenerLayer } from './listener.layes';
-import { CreateOptions, defaultConfig } from '../../model/interface';
+import { CreateOptions } from '../../model/interface';
 
 export class SenderLayer extends ListenerLayer {
 

@@ -73,7 +73,6 @@ export const defaultConfig: CreateOptions = {
     downloadChromium: true,
     chromiumVersion: '818858'
   },
-
   printQRInTerminal: true,
   timeAutoClose: 60000,
 };
