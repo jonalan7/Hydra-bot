@@ -1,8 +1,7 @@
 import express, { Express, NextFunction } from 'express';
 import { options } from './model/interface';
 import cors from 'cors';
-import { exec } from 'child_process';
-const router = express.Router();
+
 
 export function appExpress(options: options): Express {
   const app = express();

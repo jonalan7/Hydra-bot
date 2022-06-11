@@ -71,4 +71,23 @@ export const filterObjects = [{
         when: (module) =>
             module.Stream && module.StreamInfo ? module.Stream : null,
     },
+    {
+        type: 'MediaCollection',
+        when: (module) =>
+            module.default &&
+            module.default.prototype &&
+            (module.default.prototype.processFiles !== undefined ||
+                module.default.prototype.processAttachments !== undefined) ?
+            module.default : null,
+    },
+    {
+        type: 'UploadUtils',
+        when: (module) =>
+            module.default && module.default.encryptAndUpload ? module.default : null,
+    },
+    {
+        type: 'blob',
+        when: (module) =>
+            module.default && module.default.createFromData ? module : null,
+    },
 ];

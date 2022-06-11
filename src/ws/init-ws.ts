@@ -3,12 +3,15 @@ import { appExpress } from './app';
 import express, { Express } from 'express';
 import { ServiceWs } from './services/services-ws';
 import { CreateOptions, defaultConfig } from '../webpack/model/interface';
+import { checkUpdates } from '../webpack/api/check-up-to-date';
 
 export async function initWs(
   createOption?: CreateOptions | options | any
 ): Promise<any>;
 
-export function initWs(options?: CreateOptions | options | any): any {
+export async function initWs(
+  options?: CreateOptions | options | any
+): Promise<any> {
   const mergeOptions = { ...defaultConfigWs, ...options };
   const mergeWebPack = { ...defaultConfig, ...mergeOptions };
 
@@ -19,14 +22,18 @@ export function initWs(options?: CreateOptions | options | any): any {
     };
   }
 
-  const app: Express = appExpress(mergeOptions);
+  if (mergeWebPack.updatesLog) {
+    await checkUpdates();
+  }
 
-  new ServiceWs(app, mergeOptions);
+  const app: Express = appExpress(mergeWebPack);
 
-  app.listen(mergeOptions.port, () => {
-    console.log(`Web service on http://localhost:${mergeOptions.port}`);
+  new ServiceWs(app, mergeWebPack);
+
+  app.listen(mergeWebPack.port, () => {
+    console.log(`Web service on http://localhost:${mergeWebPack.port}`);
   });
-  
+
   app.use(function (req, res) {
     res.send({
       text: 'Route does not exist!',
@@ -34,6 +41,4 @@ export function initWs(options?: CreateOptions | options | any): any {
       erro: true,
     });
   });
-
-
 }

@@ -1,7 +1,13 @@
 import {
     sleep,
     injectConfig,
-    injectParasiteSnake
+    injectParasiteSnake,
+    processFiles,
+    base64ToFile,
+    generateMediaKey,
+    arrayBufferToBase64,
+    encryptAndUploadFile,
+    getFileHash
 } from './help';
 
 import {
@@ -52,7 +58,7 @@ import {
 if (typeof window.API === 'undefined') {
     window.API = {};
 
-    // helps
+    // Helps
     window.API.getChat = getChat;
     window.API.scope = scope;
     window.API.getNewId = getNewId;
@@ -61,11 +67,17 @@ if (typeof window.API === 'undefined') {
     window.API.checkNumberStatus = checkNumberStatus;
     window.API.isMD = isMD;
     window.API.baseSendMessage = baseSendMessage;
+    window.API.processFiles = processFiles;
+    window.API.base64ToFile = base64ToFile;
+    window.API.generateMediaKey = generateMediaKey;
+    window.API.arrayBufferToBase64 = arrayBufferToBase64;
+    window.API.encryptAndUploadFile = encryptAndUploadFile;
+    window.API.getFileHash = getFileHash
 
     // Functions
     window.API.sendMessage = sendMessage;
 
-    // serialize
+    // Serialize
     window.API.serializeMessageObj = serializeMessageObj;
     window.API.serializeChatObj = serializeChatObj;
     window.API.serializeContactObj = serializeContactObj;
