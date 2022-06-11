@@ -4,7 +4,12 @@ import { ListenerLayer } from './listener.layes';
 import { CreateOptions } from '../../model/interface';
 import { base64MimeType } from '../../help';
 import { FunctionType } from '../../model/enum/';
-import { downloadFileToBase64, fileToBase64 } from '../../help';
+import {
+  downloadFileToBase64,
+  fileToBase64,
+  filenameFromMimeType,
+} from '../../help';
+import * as path from 'path';
 
 export class SenderLayer extends ListenerLayer {
   constructor(
@@ -17,13 +22,67 @@ export class SenderLayer extends ListenerLayer {
   }
 
   /**
+   * Sends file from path
+   * @param to Chat id
+   * @param filePath File path
+   */
+  public async sendFile(to: string, filePath: string, options: any = {}) {
+    return new Promise(async (resolve, reject) => {
+      Object.assign(options, { type: FunctionType.sendFile });
+      let base64 = await downloadFileToBase64(filePath);
+
+      if (!base64) {
+        base64 = await fileToBase64(filePath);
+      }
+
+      if (!base64) {
+        return reject({
+          erro: true,
+          to: to,
+          text: 'No such file or directory, open "' + filePath + '"',
+        });
+      }
+
+      if (!options.filename && typeof options.filename !== 'string') {
+        options.filename = path.basename(filePath);
+      }
+
+      let mimeType = base64MimeType(base64);
+
+      if (!mimeType) {
+        return reject({
+          erro: true,
+          to: to,
+          text: 'Invalid base64!',
+        });
+      }
+
+      options.filename = filenameFromMimeType(options.filename, mimeType);
+
+      const result = await this.page
+        .evaluate(
+          ({ to, base64, options }) => {
+            return API.sendMessage(to, base64, options);
+          },
+          { to, base64, options }
+        )
+        .catch();
+      if (result.erro == true) {
+        return reject(result);
+      } else {
+        return resolve(result);
+      }
+    });
+  }
+
+  /**
    * Sends a text message to given chat
    * @param to chat id: xxxxx@us.c
    * @param body text message
    */
-  public sendText(to: string, body: string, options?: any) {
+  public sendText(to: string, body: string, options: any = {}) {
     return new Promise(async (resolve, reject) => {
-      Object.assign({ type: FunctionType.sendText }, options);
+      Object.assign(options, { type: FunctionType.sendText });
 
       const result = await this.page
         .evaluate(
@@ -46,8 +105,10 @@ export class SenderLayer extends ListenerLayer {
    * @param to Chat id
    * @param base64 base64 data
    */
-  public async sendAudioBase64(to: string, base64: string, options?: any) {
+  public async sendAudioBase64(to: string, base64: string, options: any = {}) {
     return new Promise(async (resolve, reject) => {
+      Object.assign(options, { type: FunctionType.sendAudioBase64 });
+
       const mimeType: any = base64MimeType(base64);
 
       if (!mimeType) {
@@ -57,8 +118,6 @@ export class SenderLayer extends ListenerLayer {
           text: 'Invalid base64!',
         });
       }
-
-      Object.assign({ type: FunctionType.sendAudioBase64 }, options);
 
       if (!mimeType || mimeType.includes('audio/mpeg')) {
         const result = await this.page
@@ -89,9 +148,9 @@ export class SenderLayer extends ListenerLayer {
    * @param to Chat id
    * @param filePath Path file
    */
-  public async sendAudio(to: string, filePath: string, options?: any) {
+  public async sendAudio(to: string, filePath: string, options: any = {}) {
     return new Promise(async (resolve, reject) => {
-      Object.assign({ type: FunctionType.sendAudio }, options);
+      Object.assign(options, { type: FunctionType.sendAudio });
 
       let base64: string | false = await downloadFileToBase64(filePath, [
         'audio/mpeg',
@@ -150,6 +209,16 @@ export class SenderLayer extends ListenerLayer {
             FunctionType
           ).join(', ')}`,
         });
+      }
+
+      if (options.type === FunctionType.sendFile) {
+        this.sendFile(to, body, options)
+          .then((e) => {
+            return reject(e);
+          })
+          .catch((e) => {
+            return resolve(e);
+          });
       }
 
       if (options.type === FunctionType.sendAudioBase64) {

@@ -1,11 +1,11 @@
 export async function sendMessage(to, body, options = {}) {
 
-    const types = ['sendText', 'sendAudioBase64', 'sendAudio'];
+    const types = ['sendText', 'sendAudioBase64', 'sendAudio', 'sendFile'];
     let typesObj;
     types.reduce((a, v) => typesObj = ({
         ...a,
         [v]: v
-    }), {})
+    }), {});
 
 
     if (!body) {
@@ -27,14 +27,31 @@ export async function sendMessage(to, body, options = {}) {
             merge.type = 'chat';
         }
 
-        if (options.type === typesObj.sendAudioBase64 || options.type === typesObj.sendAudio) {
+        if (
+            options.type === typesObj.sendAudioBase64 ||
+            options.type === typesObj.sendAudio ||
+            options.type === typesObj.sendFile
+        ) {
 
             let result = await Store.Chat.find(chat.id);
             const mediaBlob = API.base64ToFile(body);
             const mc = await API.processFiles(result, mediaBlob);
             if (typeof mc === 'object' && mc._models && mc._models[0]) {
                 const media = mc._models[0];
-                const enc = await API.encryptAndUploadFile('ptt', mediaBlob);
+                let enc, type;
+
+                if (options.type === typesObj.sendFile) {
+                    type = media.type;
+                    merge.caption = options?.caption;
+                    merge.filename = options?.filename;
+                    enc = await API.encryptAndUploadFile(
+                        type,
+                        mediaBlob
+                    );
+                } else {
+                    type = 'ptt';
+                    enc = await API.encryptAndUploadFile(type, mediaBlob);
+                }
 
                 if (enc === false) {
                     return API.scope(
@@ -45,7 +62,7 @@ export async function sendMessage(to, body, options = {}) {
                     );
                 }
 
-                merge.type = 'ptt';
+                merge.type = type;
                 merge.duration = media?.__x_mediaPrep?._mediaData?.duration;
                 merge.mimetype = media.mimetype;
                 merge.size = media.filesize;
