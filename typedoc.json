@@ -1,6 +1,9 @@
 {
   "disableSources": false,
-  "entryPoints": ["src/index.ts", "./package.json"],
+  "entryPoints": [
+    "src/index.ts",
+    "./package.json"
+  ],
   "excludeExternals": false,
   "excludePrivate": true,
   "excludeProtected": true,
@@ -9,33 +12,41 @@
   "theme": "pages-plugin",
   "media": "media",
   "gaID": "G-LTZL26963K",
-    "pages": {
-      "groups": [
-        {
-          "title": "Getting Started",
-          "pages": [
-            {
-              "title": "Installation",
-              "source": "./docs/getting-started/installation.md"
-            },
-            {
-              "title": "Administration",
-              "source": "./docs/getting-started/admin.md"
-            },
-            {
-              "title": "User",
-              "source": "./docs/getting-started/user.md"
-            },
-            {
-              "title": "Start Bot",
-              "source": "./docs/getting-started/start_bot.md"
-            },
-            {
-              "title": "Web service",
-              "source": "./docs/getting-started/web_service.md"
-            }
-          ]
-        }
-      ]
-    }
+  "pages": {
+    "groups": [
+      {
+        "title": "Getting Started",
+        "pages": [
+          {
+            "title": "Installation",
+            "source": "./docs/getting-started/installation.md"
+          },
+          {
+            "title": "Web service",
+            "source": "./docs/getting-started/web_service.md"
+          },
+          {
+            "title": "Start Bot",
+            "source": "./docs/getting-started/start_bot.md"
+          },
+          {
+            "title": "Send Options Functions",
+            "source": "./docs/getting-started/send_options.md"
+          },
+          {
+            "title": "Send functions",
+            "source": "./docs/getting-started/send_functions.md"
+          },
+          {
+            "title": "Administration",
+            "source": "./docs/getting-started/admin.md"
+          },
+          {
+            "title": "User",
+            "source": "./docs/getting-started/user.md"
+          }
+        ]
+      }
+    ]
+  }
 }

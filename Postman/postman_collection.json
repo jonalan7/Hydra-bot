@@ -27,7 +27,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"akira\",\r\n    \"password\": \"user\"\r\n}",
+							"raw": "{\r\n    \"name\": \"user123\",\r\n    \"password\": \"user\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -358,7 +358,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"session\": \"session_name\",\r\n    \"to\": \"000000000000@c.us\",\r\n    \"body\": \"test\"\r\n}",
+							"raw": "{\r\n    \"to\": \"0000000000@c.us\",\r\n    \"body\": \"test\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -374,6 +374,45 @@
 							"port": "8080",
 							"path": [
 								"sendtext"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sendfile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "user",
+								"value": "user",
+								"type": "text"
+							},
+							{
+								"key": "user_pass",
+								"value": "user",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"to\": \"0000000000@c.us\",\r\n    \"file_path\": \"http://www.jucerr.rr.gov.br/manuais/pdf-a.pdf\",\r\n    \"file_name\": \"filename\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/sendfile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sendfile"
 							]
 						}
 					},

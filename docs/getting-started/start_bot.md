@@ -33,15 +33,15 @@ const hydraBot = require('hydra-bot');
             // send a text message
             client = conn.client;
             await client.sendMessage({
-                to: "0000000000@c.us",
-                body: "hi i'm hydra bot",
+                to: "0000000000@c.us", // you can pass the contact number or group number
+                body: "hi i'm hydra bot", // message text
                 options: {
-                    type: 'text',
+                    type: 'sendText', // shipping type
                 }
             }).then((result) => {
-                console.log(result);
+                console.log(result); // message result
             }).catch((error) => {
-                console.log(error);
+                console.log(error); // message error
             });
 
         }

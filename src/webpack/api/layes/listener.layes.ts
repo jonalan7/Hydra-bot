@@ -28,6 +28,7 @@ export class ListenerLayer extends scraping {
         this.ev.statusFind = {
           erro: false,
           qrcode: result.urlCode,
+          base64Image: result.base64Image,
           onType: onMode.qrcode,
           session: this.options.session,
         };

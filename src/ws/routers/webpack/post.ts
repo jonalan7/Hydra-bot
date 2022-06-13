@@ -12,7 +12,12 @@ export = (router: any, option: CreateOptions | options) => {
   router.post('/sendtext', async (req: any, res: any) => {
     await init.sendtext(req, res);
   });
-  
+
+  // Send file
+  router.post('/sendFile', async (req: any, res: any) => {
+    await init.sendFile(req, res);
+  });
+
   // Route to test webhook
   router.post('/webhooktest', async (req: any, res: any) => {
     console.log('Return object ', req.body);

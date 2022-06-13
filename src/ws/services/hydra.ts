@@ -16,11 +16,11 @@ async function Webhook(options: any, info: any) {
       await axios
         .post(options.url, info)
         .then(function (response) {
-          console.log(response);
+          // console.log(response);
           resolve(response);
         })
         .catch((err) => {
-          console.log(err);
+          //  console.log(err);
           resolve(err);
         });
     });
@@ -46,10 +46,12 @@ async function Webhook(options: any, info: any) {
     if (conn.erro) {
       if (
         conn.statusFind === 'browser' &&
-        (conn.tatus === 'browserClosed' ||
-          conn.tatus === 'autoClose' ||
-          conn.tatus === 'noOpenWhatzapp' ||
-          conn.tatus === 'noOpenBrowser')
+        ( 
+          conn.status === 'browserClosed' ||
+          conn.status === 'autoClose' ||
+          conn.status === 'noOpenWhatzapp' ||
+          conn.status === 'noOpenBrowser'
+          )
       ) {
         sendParent({ delsession: true, session: objOptions.session });
         try {
@@ -63,7 +65,7 @@ async function Webhook(options: any, info: any) {
 
     if (conn.connect) {
       client = conn.client;
-      conn = { connect: true, session: objOptions.session }
+      conn = { connect: true, session: objOptions.session };
       sendParent(conn);
     }
 
@@ -72,13 +74,31 @@ async function Webhook(options: any, info: any) {
 
   process.on('message', async (response: any) => {
     Webhook(objOptions, response);
-    if (response.type === 'text') {
+    if (response.type === 'sendText') {
       await client
         .sendMessage({
           to: response.to,
           body: response.body,
           options: {
-            type: 'text',
+            type: 'sendText',
+          },
+        })
+        .then((result: any) => {
+          sendParent({ result: true, ...result });
+        })
+        .catch((error: any) => {
+          sendParent({ result: true, ...error });
+        });
+    }
+
+    if (response.type === 'sendFile') {
+      await client
+        .sendMessage({
+          to: response.to,
+          body: response.file_path,
+          options: {
+            type: 'sendFile',
+            filename: response.file_name,
           },
         })
         .then((result: any) => {

@@ -94,20 +94,19 @@ const hydraBot = require('hydra-bot');
 
         // Was connected to whatsapp chat
         if (conn.connect) {
-            // send a text message
             client = conn.client;
+            // send a text message
             await client.sendMessage({
-                to: "0000000000@c.us",
-                body: "hi i'm hydra bot",
+                to: "0000000000@c.us", // you can pass the contact number or group number
+                body: "hi i'm hydra bot", // message text
                 options: {
-                    type: 'text',
+                    type: 'text', // shipping type
                 }
             }).then((result) => {
-                console.log(result);
+                console.log(result); // message result
             }).catch((error) => {
-                console.log(error);
+                console.log(error); // message error
             });
-
         }
     });
 
@@ -251,25 +250,108 @@ if you want to receive a callback on a specific url, pass the url parameter in t
 | POST | `/sendtext`      | Send a text to a number        | `{ "to": "contact number", "body": "message"}`   |
 
 
-## Basic Functions (more features still under development)
+## Basic send options functions (more features still under development)
 You must be logged in to use these functions!
-##### Here, `chatId` could be `<phoneNumber>@c.us` or `<phoneNumber>-<groupId>@g.us`
+##### Here, `to` can be `<phone Number>@c.us` or `<phone Number>-<groupId>@g.us`
+
+you can send messages only using one function!
 
 ```javascript
 
 // send text message
 await client.sendMessage({
-    to: "0000000000@c.us",
-    body: "A message sent by hydra-bot",
+    to: "0000000000@c.us", // you can pass the contact number or group number
+    body: "A message sent by hydra-bot", // message text
     options: {
-        type: 'text',
+        type: 'sendText', // shipping type
     }
 }).then((result) => {
-    console.log(result)
+    console.log(result); // message result
+}).catch((error) => {
+    console.log(error); // message error
+});
+
+// send files
+await client.sendMessage({
+    to: "0000000000@c.us", // you can pass the contact number or group number
+    body: './file.pdf', // you can use a directory or use a url
+    options: {
+        type: 'sendFile', // shipping type
+        filename: 'filename' // put the file name here
+    }
+}).then((result) => {
+    console.log(result);  // message result
+}).catch((error) => {
+    console.log(error); // message error
+});
+
+// send file audio
+await client.sendMessage({
+    to: "0000000000@c.us", // you can pass the contact number or group number
+    body: './file.mp3', // you can use a directory or use a url
+    options: {
+        type: 'sendAudio', // shipping type
+    }
+}).then((result) => {
+    console.log(result);  // message result
+}).catch((error) => {
+    console.log(error); // message error
+});
+
+// Send audio file base64
+await client.sendMessage({
+    to: "0000000000@c.us", // you can pass the contact number or group number
+    body: base64MP3, // you can use a directory or use a url
+    options: {
+        type: 'sendAudioBase64', // shipping type
+    }
+}).then((result) => {
+    console.log(result);  // message result
+}).catch((error) => {
+    console.log(error); // message error
 });
 
 ```
+## Basic send  functions
+
+```javascript
+// Sends a text message to given chat
+await clinet.sendText("0000000000@c.us", "A message sent by hydra-bot")
+.then((result) => {
+    console.log(result); // message result
+}).catch((error) => {
+    console.log(error); // message error
+});
+
+// Sends file from path
+await clinet.sendFile("0000000000@c.us", './file.pdf', { filename: 'filename' })
+.then((result) => {
+    console.log(result); // message result
+}).catch((error) => {
+    console.log(error); // message error
+});
+
+// Send audio file
+await clinet.sendAudio("0000000000@c.us", './file.mp3')
+.then((result) => {
+    console.log(result); // message result
+}).catch((error) => {
+    console.log(error); // message error
+});
+
+// Send audio base64
+await clinet.sendAudio("0000000000@c.us", base64MP3)
+.then((result) => {
+    console.log(result); // message result
+}).catch((error) => {
+    console.log(error); // message error
+});
+```
+
+
+
 ### Debugging
+
 Building the hydra-bot is very simple
 
 ## Development

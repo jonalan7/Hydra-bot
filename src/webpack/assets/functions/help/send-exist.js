@@ -3,9 +3,10 @@ export async function sendExist(chatId, returnChat = true, Send = true) {
     let ck = await window.API.checkNumberStatus(chatId, false);
 
     if (
-        ck.status === 404 &&
-        !chatId.includes('@g.us') &&
-        !chatId.includes('@broadcast')
+        ck.status === 404 ||
+        !chatId.includes('@g.us') ||
+        !chatId.includes('@broadcast') ||
+        ck.text.includes('XmppParsingFailure')
     ) {
         return API.scope(chatId, true, ck.status, 'The number does not exist');
     }
@@ -50,7 +51,7 @@ export async function sendExist(chatId, returnChat = true, Send = true) {
     if (!chat) {
         return window.API.scope(chatId, true, 404);
     }
-    
+
     if (Send) {
         await window.Store.ReadSeen.sendSeen(chat, false);
     }
