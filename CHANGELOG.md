@@ -1,3 +1,12 @@
+## [1.0.18](https://github.com/jonalan7/Hydra-bot/compare/v1.0.17...v1.0.18) (2022-06-13)
+
+
+### Features
+
+* readme ([66fdcba](https://github.com/jonalan7/Hydra-bot/commit/66fdcba9ebbbbfa075935e0e5151ba7c055269f3))
+
+
+
 ## [1.0.17](https://github.com/jonalan7/Hydra-bot/compare/v1.0.16...v1.0.17) (2022-06-13)
 
 
