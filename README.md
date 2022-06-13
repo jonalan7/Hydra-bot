@@ -244,10 +244,11 @@ The headers must be parameterized as :
 
 if you want to receive a callback on a specific url, pass the url parameter in the connect route.
 
-| Type | Route to browser | Description                    | Body                                             |
-|------|------------------|--------------------------------|--------------------------------------------------|
-| POST | `/connect`       | Start connection with Whatsapp | `{ "url": "http://localhost:8080/webhooktest" }` |
-| POST | `/sendtext`      | Send a text to a number        | `{ "to": "contact number", "body": "message"}`   |
+| Type | Route to browser | Description                    | Body                                                         |
+| ---- | ---------------- | ------------------------------ | ------------------------------------------------------------ |
+| POST | `/connect`       | Start connection with Whatsapp | `{ "url": "http://localhost:8080/webhooktest" }`             |
+| POST | `/sendtext`      | Send a text to a number        | `{ "to": "contact number", "body": "message"}`               |
+| POST | `/sendFile`      | Send file to a number          | ```javascript{"to": "contact number",  "file_path": "https://docs.marklogic.com/guide/node-dev.pdf", "file_name": "node.js"}}``` |
 
 
 ## Basic send options functions (more features still under development)
@@ -340,7 +341,7 @@ await clinet.sendAudio("0000000000@c.us", './file.mp3')
 });
 
 // Send audio base64
-await clinet.sendAudio("0000000000@c.us", base64MP3)
+await clinet.sendAudioBase64("0000000000@c.us", base64MP3)
 .then((result) => {
     console.log(result); // message result
 }).catch((error) => {
