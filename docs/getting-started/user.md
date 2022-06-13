@@ -24,4 +24,4 @@ if you want to receive a callback on a specific url, pass the url parameter in t
 |------|------------------|--------------------------------|--------------------------------------------------|
 | POST | `/connect`       | Start connection with Whatsapp | `{ "url": "http://localhost:8080/webhooktest" }` |
 | POST | `/sendtext`      | Send a text to a number        | `{ "to": "contact number", "body": "message"}`   |
-| POST | `/sendFile`      | Send file to a number          | ```javascript{"to": "contact number",  "file_path": "https://docs.marklogic.com/guide/node-dev.pdf", "file_name": "node.js"}}``` |
+| POST | `/sendFile`      | Send file to a number          | `{"to": "contact number",  "file_path": "https://docs.marklogic.com/guide/node-dev.pdf", "file_name": "node.js"}}` |
