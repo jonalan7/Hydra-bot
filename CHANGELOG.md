@@ -1,3 +1,14 @@
+## [1.0.17](https://github.com/jonalan7/Hydra-bot/compare/v1.0.16...v1.0.17) (2022-06-13)
+
+
+### Features
+
+* new documentation and sendFile ([95427f6](https://github.com/jonalan7/Hydra-bot/commit/95427f66e43af264738ae06c64c082666ba35b7f))
+* sendAudio and sendAudioBase64 ([85118ec](https://github.com/jonalan7/Hydra-bot/commit/85118ec26133ad19bf6c47e53b1a92a0f2c28511))
+* sendFile ([9d3d9a6](https://github.com/jonalan7/Hydra-bot/commit/9d3d9a6ea282b94772cf482e4135a3ba1fc3712c))
+
+
+
 ## [1.0.16](https://github.com/jonalan7/Hydra-bot/compare/v1.0.15...v1.0.16) (2022-06-09)
 
 
