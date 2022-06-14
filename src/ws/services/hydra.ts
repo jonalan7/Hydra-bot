@@ -121,5 +121,22 @@ async function Webhook(options: any, info: any) {
           sendParent({ typeSend: 'sendAudio', result: true, ...error });
         });
     }
+
+    if (response.type === 'sendImage') {
+      await client
+        .sendMessage({
+          to: response.to,
+          body: response.url_img,
+          options: {
+            type: 'sendImage',
+          },
+        })
+        .then((result: any) => {
+          sendParent({ typeSend: 'sendImage', result: true, ...result });
+        })
+        .catch((error: any) => {
+          sendParent({ typeSend: 'sendImage', result: true, ...error });
+        });
+    }
   });
 })();

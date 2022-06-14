@@ -247,4 +247,55 @@ export const init = new (class InicializePost {
       });
     }
   }
+
+  public async sendImage(req: any, res: any) {
+    const body = req.body;
+    const $_HEADERS_USER = req?.headers?.user;
+
+    if (this.option.authentication) {
+      const user = await Users.CheckUserLogin(req);
+      if (user.erro) {
+        return res.send(user);
+      }
+    }
+    if (
+      !!body.to &&
+      body.to.length &&
+      !!body.url_img &&
+      body.url_img.length
+    ) {
+      const check = await sessionClient.checkClient($_HEADERS_USER);
+      if (check) {
+        const getId = await sessionClient.getSessionId($_HEADERS_USER);
+        if (typeof getId === 'number') {
+          const client = await sessionClient.checkObjectSession(
+            $_HEADERS_USER,
+            'connect',
+            getId
+          );
+          if (client) {
+            const getUser = await sessionClient.getUser($_HEADERS_USER);
+            getUser.child.send({ type: 'sendImage', ...body });
+            this.child.on('message', (response: any) => {
+              if (response.result && response.typeSend === 'sendImage') {
+                try {
+                  return res.status(200).send(response);
+                } catch {}
+              }
+            });
+          } 
+        }
+      } else {
+        return res.send({
+          erro: true,
+          text: 'Not connected',
+        });
+      }
+    } else {
+      return res.send({
+        erro: true,
+        text: 'The parameters are missing',
+      });
+    }
+  }
 })();

@@ -17,7 +17,8 @@ import {
     getNewMessageId,
     sendExist,
     checkNumberStatus,
-    isMD
+    isMD,
+    sendCheckType
 } from './functions/help';
 
 import {
@@ -72,7 +73,8 @@ if (typeof window.API === 'undefined') {
     window.API.generateMediaKey = generateMediaKey;
     window.API.arrayBufferToBase64 = arrayBufferToBase64;
     window.API.encryptAndUploadFile = encryptAndUploadFile;
-    window.API.getFileHash = getFileHash
+    window.API.getFileHash = getFileHash;
+    window.API.sendCheckType = sendCheckType;
 
     // Functions
     window.API.sendMessage = sendMessage;

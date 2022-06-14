@@ -23,6 +23,11 @@ export = (router: any, option: CreateOptions | options) => {
     await init.sendAudio(req, res);
   });
 
+   // Send image message
+   router.post('/sendImage', async (req: any, res: any) => {
+    await init.sendImage(req, res);
+  });
+
   // Route to test webhook
   router.post('/webhooktest', async (req: any, res: any) => {
     console.log('Return object ', req.body);
