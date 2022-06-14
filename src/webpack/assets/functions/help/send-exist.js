@@ -1,7 +1,10 @@
 export async function sendExist(chatId, returnChat = true, Send = true) {
+    const checkType = API.sendCheckType(chatId);
+    if (!!checkType && checkType.status === 404) {
+        return checkType;
+    }
 
     let ck = await window.API.checkNumberStatus(chatId, false);
-
     if (
         ck.status === 404 &&
         !chatId.includes('@g.us') &&
