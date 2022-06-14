@@ -358,7 +358,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"to\": \"0000000000@c.us\",\r\n    \"body\": \"test\"\r\n}",
+							"raw": "{\r\n    \"to\": \"00000000000@c.us\",\r\n    \"body\": \"test\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -397,7 +397,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"to\": \"0000000000@c.us\",\r\n    \"file_path\": \"http://www.jucerr.rr.gov.br/manuais/pdf-a.pdf\",\r\n    \"file_name\": \"filename\"\r\n}",
+							"raw": "{\r\n    \"to\": \"00000000000@c.us\",\r\n    \"file_path\": \"http://www.jucerr.rr.gov.br/manuais/pdf-a.pdf\",\r\n    \"file_name\": \"filename\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -413,6 +413,45 @@
 							"port": "8080",
 							"path": [
 								"sendfile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sendAudio",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "user",
+								"value": "user",
+								"type": "text"
+							},
+							{
+								"key": "user_pass",
+								"value": "user",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"to\": \"00000000000@c.us\",\r\n    \"url_mp3\": \"https://cdn.freesound.org/previews/620/620094_4935038-lq.mp3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/sendAudio",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sendAudio"
 							]
 						}
 					},

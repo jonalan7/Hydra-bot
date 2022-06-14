@@ -249,6 +249,7 @@ if you want to receive a callback on a specific url, pass the url parameter in t
 | POST | `/connect`       | Start connection with Whatsapp | `{ "url": "http://localhost:8080/webhooktest" }`             |
 | POST | `/sendtext`      | Send a text to a number        | `{ "to": "contact number", "body": "message"}`               |
 | POST | `/sendFile`      | Send file to a number          | `{"to": "contact number",  "file_path": "https://docs.marklogic.com/guide/node-dev.pdf", "file_name": "node.js"}}` |
+| POST | `/sendAudio`     | Send audio                     | `{"to": "contact number",  "url_mp3": "https://cdn.freesound.org/previews/620/620094_4935038-lq.mp3", "file_name": "node.js"}}` |
 
 
 ## Basic send options functions (more features still under development)
