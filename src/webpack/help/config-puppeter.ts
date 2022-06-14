@@ -1,6 +1,6 @@
 export const puppeteerConfig = {
     whatsappUrl: 'https://web.whatsapp.com',
-    useragentOverride: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36',
+    useragentOverride: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.63 Safari/537.36',
     chromiumArgs: [
       '--no-zygote',
       '--log-level=3',
@@ -26,7 +26,7 @@ export const puppeteerConfig = {
       '--disable-histogram-customizer',
       '--disable-gl-extensions',
       '--disable-composited-antialiasing',
-      '--user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36',
+      '--user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.63 Safari/537.36',
     ],
   };
   

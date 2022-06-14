@@ -18,6 +18,11 @@ export = (router: any, option: CreateOptions | options) => {
     await init.sendFile(req, res);
   });
 
+  // Send Voice
+  router.post('/sendAudio', async (req: any, res: any) => {
+    await init.sendAudio(req, res);
+  });
+
   // Route to test webhook
   router.post('/webhooktest', async (req: any, res: any) => {
     console.log('Return object ', req.body);

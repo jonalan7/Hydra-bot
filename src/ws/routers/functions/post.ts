@@ -30,8 +30,7 @@ export const init = new (class InicializePost {
     }
 
     if (body.url && body.url.length && !reHttp.test(body.url)) {
-      res.sender({ erro: true, text: 'Error http webHook' });
-      return;
+      return res.sender({ erro: true, text: 'Error http webHook' });
     }
 
     const session = await sessionClient.newSession($_HEADERS_USER);
@@ -80,7 +79,7 @@ export const init = new (class InicializePost {
 
       sessionClient.addInfoSession($_HEADERS_USER, { child: this.child });
 
-      res.send({ erro: false, text: 'Wait for connection' });
+      return res.send({ erro: false, text: 'Wait for connection' });
     } else {
       const getId = await sessionClient.getSessionId($_HEADERS_USER);
       const check = await sessionClient.checkClient($_HEADERS_USER);
@@ -92,9 +91,9 @@ export const init = new (class InicializePost {
           getId
         );
         if (check && client) {
-          res.send({ erro: false, text: 'Successfully connected!' });
+          return res.send({ erro: false, text: 'Successfully connected!' });
         } else {
-          res.send({ erro: false, text: 'Wait for connection' });
+          return res.send({ erro: false, text: 'Wait for connection' });
         }
       }
     }
@@ -126,20 +125,22 @@ export const init = new (class InicializePost {
             const getUser = await sessionClient.getUser($_HEADERS_USER);
             getUser.child.send({ type: 'sendText', ...body });
             this.child.on('message', (response: any) => {
-              if (response.result) {
-                return res.send(response);
+              if (response.result && response.typeSend === 'sendText') {
+                try {
+                  return res.status(200).send(response);
+                } catch {}
               }
             });
           }
         }
       } else {
-        res.send({
+        return res.send({
           erro: true,
           text: 'Not connected',
         });
       }
     } else {
-      res.send({
+      return res.send({
         erro: true,
         text: 'The parameters are missing',
       });
@@ -178,20 +179,69 @@ export const init = new (class InicializePost {
             const getUser = await sessionClient.getUser($_HEADERS_USER);
             getUser.child.send({ type: 'sendFile', ...body });
             this.child.on('message', (response: any) => {
-              if (response.result) {
-                return res.send(response);
+              if (response.result && response.typeSend === 'sendFile') {
+                try {
+                  return res.status(200).send(response);
+                } catch {}
               }
             });
           }
         }
       } else {
-        res.send({
+        return res.send({
           erro: true,
           text: 'Not connected',
         });
       }
     } else {
-      res.send({
+      return res.send({
+        erro: true,
+        text: 'The parameters are missing',
+      });
+    }
+  }
+
+  public async sendAudio(req: any, res: any) {
+    const body = req.body;
+    const $_HEADERS_USER = req?.headers?.user;
+
+    if (this.option.authentication) {
+      const user = await Users.CheckUserLogin(req);
+      if (user.erro) {
+        return res.send(user);
+      }
+    }
+
+    if (!!body.to && body.to.length && !!body.url_mp3 && body.url_mp3.length) {
+      const check = await sessionClient.checkClient($_HEADERS_USER);
+      if (check) {
+        const getId = await sessionClient.getSessionId($_HEADERS_USER);
+        if (typeof getId === 'number') {
+          const client = await sessionClient.checkObjectSession(
+            $_HEADERS_USER,
+            'connect',
+            getId
+          );
+          if (client) {
+            const getUser = await sessionClient.getUser($_HEADERS_USER);
+            getUser.child.send({ type: 'sendAudio', ...body });
+            this.child.on('message', (response: any) => {
+              if (response.result && response.typeSend === 'sendAudio') {
+                try {
+                  return res.status(200).send(response);
+                } catch {}
+              }
+            });
+          }
+        }
+      } else {
+        return res.send({
+          erro: true,
+          text: 'Not connected',
+        });
+      }
+    } else {
+      return res.send({
         erro: true,
         text: 'The parameters are missing',
       });

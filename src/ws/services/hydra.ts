@@ -16,12 +16,10 @@ async function Webhook(options: any, info: any) {
       await axios
         .post(options.url, info)
         .then(function (response) {
-          // console.log(response);
           resolve(response);
         })
         .catch((err) => {
-          //  console.log(err);
-          resolve(err);
+          reject(err);
         });
     });
   }
@@ -46,12 +44,10 @@ async function Webhook(options: any, info: any) {
     if (conn.erro) {
       if (
         conn.statusFind === 'browser' &&
-        ( 
-          conn.status === 'browserClosed' ||
+        (conn.status === 'browserClosed' ||
           conn.status === 'autoClose' ||
           conn.status === 'noOpenWhatzapp' ||
-          conn.status === 'noOpenBrowser'
-          )
+          conn.status === 'noOpenBrowser')
       ) {
         sendParent({ delsession: true, session: objOptions.session });
         try {
@@ -84,10 +80,10 @@ async function Webhook(options: any, info: any) {
           },
         })
         .then((result: any) => {
-          sendParent({ result: true, ...result });
+          sendParent({ typeSend: 'sendText', result: true, ...result });
         })
         .catch((error: any) => {
-          sendParent({ result: true, ...error });
+          sendParent({ typeSend: 'sendText', result: true, ...error });
         });
     }
 
@@ -102,10 +98,27 @@ async function Webhook(options: any, info: any) {
           },
         })
         .then((result: any) => {
-          sendParent({ result: true, ...result });
+          sendParent({ typeSend: 'sendFile', result: true, ...result });
         })
         .catch((error: any) => {
-          sendParent({ result: true, ...error });
+          sendParent({ typeSend: 'sendFile', result: true, ...error });
+        });
+    }
+
+    if (response.type === 'sendAudio') {
+      await client
+        .sendMessage({
+          to: response.to,
+          body: response.url_mp3,
+          options: {
+            type: 'sendAudio',
+          },
+        })
+        .then((result: any) => {
+          sendParent({ typeSend: 'sendAudio', result: true, ...result });
+        })
+        .catch((error: any) => {
+          sendParent({ typeSend: 'sendAudio', result: true, ...error });
         });
     }
   });
