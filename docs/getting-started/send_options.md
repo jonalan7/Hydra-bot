@@ -11,7 +11,7 @@ you can send messages only using one function!
 - [sendFile](#sendfile)
 - [sendAudio](#sendaudio)
 - [sendAudioBase64](#sendaudiobase64)
-- [sendImage](#sendimage)
+- [sendImage](#sendImage)
 
 
 ### sendText
@@ -83,10 +83,10 @@ await client.sendMessage({
 });
 ```
 
-### sendImage
+### sendImage 
 
 ```javascript
-// Send image message
+// Send image message 
 await client.sendMessage({
     to: "0000000000@c.us", // you can pass the contact number or group number
     body: './file.jpg', // you can use a directory or use a url

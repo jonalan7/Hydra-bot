@@ -26,4 +26,4 @@ if you want to receive a callback on a specific url, pass the url parameter in t
 | POST | `/sendtext`      | Send a text to a number        | `{ "to": "contact number", "body": "message"}`   |
 | POST | `/sendFile`      | Send file to a number          | `{ "to": "contact number",  "file_path": "https://docs.marklogic.com/guide/node-dev.pdf", "file_name": "node.js" }` |
 | POST | `/sendAudio`     | Send audio                     | `{ "to": "contact number",  "url_mp3": "https://cdn.freesound.org/previews/620/620094_4935038-lq.mp3" }` |
-| POST | `/sendImage`     | Send image message             | `{ "to": "contact number",  "url_mp3": "https://i.pinimg.com/564x/a9/b1/18/a9b118761788b1ab260aae2835c468cd.jpg" }` |
+| POST | `/sendImage`     | Send image message             | `{ "to": "contact number",  "url_img": "https://i.pinimg.com/564x/a9/b1/18/a9b118761788b1ab260aae2835c468cd.jpg" }` |

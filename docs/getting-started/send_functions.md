@@ -8,11 +8,11 @@ Send messages separately
 
 ## Summary
 
-- [sendText](#sendText)
-- [sendFile](#sendFile)
-- [sendAudio](#sendAudio)
-- [sendAudioBase64](#sendAudioBase64)
-- [sendAudio](#sendAudio)
+- [sendText](#sendtext)
+- [sendFile](#sendfile)
+- [sendAudio](#sendaudio)
+- [sendAudioBase64](#sendaudiobase64)
+- [sendImage](#sendImage)
 
 ### sendText
 
