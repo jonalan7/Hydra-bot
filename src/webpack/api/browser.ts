@@ -17,6 +17,15 @@ export async function initBrowser(Browser: Browser): Promise<Page | boolean> {
       await wpage.goto(puppeteerConfig.whatsappUrl, {
         waitUntil: 'domcontentloaded',
       });
+      wpage.on('pageerror', ({ message }) => {
+        const erroLog = message.includes('RegisterEffect is not a function');
+        if (erroLog) {
+          wpage.evaluate(() => {
+            localStorage.clear();
+            window.location.reload();
+          });
+        }
+      });
       Browser.userAgent();
       return wpage;
     } catch {
@@ -141,7 +150,7 @@ export async function initLaunch(
         if (options.puppeteerOptions?.executablePath) {
           options.puppeteerOptions.executablePath =
             revisionInfo?.executablePath;
-            ev.statusFind = {
+          ev.statusFind = {
             erro: false,
             text: `download completed, path: ${revisionInfo?.executablePath}`,
             status: 'chromium',
@@ -163,7 +172,7 @@ export async function initLaunch(
           statusFind: 'browser',
           onType: onMode.connection,
           session: options.session,
-          result: e
+          result: e,
         };
       });
   }
