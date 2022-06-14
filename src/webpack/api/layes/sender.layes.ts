@@ -22,6 +22,73 @@ export class SenderLayer extends ListenerLayer {
   }
 
   /**
+   * Sends image message
+   * @param to Chat id
+   * @param filePath File path or http link
+   */
+  public async sendImage(to: string, filePath: string, options: any = {}) {
+    return new Promise(async (resolve, reject) => {
+      let base64 = await downloadFileToBase64(filePath, [
+        'image/gif',
+        'image/png',
+        'image/jpg',
+        'image/jpeg',
+        'image/webp',
+      ]);
+
+      if (!base64) {
+        base64 = await fileToBase64(filePath);
+      }
+
+      if (!base64) {
+        return reject({
+          erro: true,
+          to: to,
+          text: 'No such file or directory, open "' + filePath + '"',
+        });
+      }
+
+      if (!options.filename) {
+        options.filename = path.basename(filePath);
+      }
+
+      let mimeType = base64MimeType(base64);
+
+      if (!mimeType) {
+        return reject({
+          erro: true,
+          to: to,
+          text: 'Invalid base64!',
+        });
+      }
+
+      if (!mimeType.includes('image')) {
+        return reject({
+          erro: true,
+          to: to,
+          text: 'Not an image, allowed formats gif, png, jpg, jpeg and webp',
+        });
+      }
+
+      options.filename = filenameFromMimeType(options.filename, mimeType);
+
+      const result = await this.page
+        .evaluate(
+          ({ to, base64, options }) => {
+            return API.sendMessage(to, base64, options);
+          },
+          { to, base64, options }
+        )
+        .catch();
+      if (result.erro == true) {
+        return reject(result);
+      } else {
+        return resolve(result);
+      }
+    });
+  }
+
+  /**
    * Sends file from path
    * @param to Chat id
    * @param filePath File path
@@ -211,7 +278,7 @@ export class SenderLayer extends ListenerLayer {
         });
       }
 
-      if (options.type === FunctionType.sendFile) {
+      if (options.type === FunctionType.sendFile || options.type === FunctionType.sendImage) {
         this.sendFile(to, body, options)
           .then((e) => {
             return reject(e);
