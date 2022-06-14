@@ -3,4 +3,5 @@ export enum FunctionType {
     sendAudioBase64 = 'sendAudioBase64',
     sendAudio = 'sendAudio',
     sendFile = 'sendFile',
+    sendImage = 'sendImage'
   }

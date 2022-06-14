@@ -18,11 +18,11 @@ You can use this project in two ways, the first is using Web Services using a se
 ## Supporters
 To maintain quality, we are receiving support! We thank you in advance for the opportunity to develop and maintain this project!
 
-| Company | URL                                                |                             Logo                             |
-| :------ | -------------------------------------------------- | :----------------------------------------------------------: |
+| Company | URL                                                |                                                                      Logo                                                                      |
+|:--------|----------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------:|
 | redrive | [https://redrive.com.br/](https://redrive.com.br/) | <a target="_blank" href="https://redrive.com.br/" target="_blank"> <img title="redrive.com.br" height="25" src="img/logo-redrive-png.png"></a> |
-| zaplus  | [https://zaplus.chat/](https://zaplus.chat/)       | <img title="zaplus.chat" height="25" src="img/logo_zaplus.png"> |
-| tabchat | [https://tabchat.com.br/](https://tabchat.com.br/) | <img title="tabchat.com.br" height="25" src="img/logo-horizontal.webp"> |
+| zaplus  | [https://zaplus.chat/](https://zaplus.chat/)       |                                        <img title="zaplus.chat" height="25" src="img/logo_zaplus.png">                                         |
+| tabchat | [https://tabchat.com.br/](https://tabchat.com.br/) |                                    <img title="tabchat.com.br" height="25" src="img/logo-horizontal.webp">                                     |
 
 ## WhatSapp Group
 
@@ -182,7 +182,7 @@ To start the administration interface use:
 List of commands in the terminal:
 
 | Command       | Description                                      |
-| ------------- | :----------------------------------------------- |
+|---------------|:-------------------------------------------------|
 | `/create`     | Create user                                      |
 | `/delete`     | Delete user                                      |
 | `/selectid`   | Show user by id                                  |
@@ -244,13 +244,13 @@ The headers must be parameterized as :
 
 if you want to receive a callback on a specific url, pass the url parameter in the connect route.
 
-| Type | Route to browser | Description                    | Body                                                         |
-| ---- | ---------------- | ------------------------------ | ------------------------------------------------------------ |
-| POST | `/connect`       | Start connection with Whatsapp | `{ "url": "http://localhost:8080/webhooktest" }`             |
-| POST | `/sendtext`      | Send a text to a number        | `{ "to": "contact number", "body": "message"}`               |
-| POST | `/sendFile`      | Send file to a number          | `{"to": "contact number",  "file_path": "https://docs.marklogic.com/guide/node-dev.pdf", "file_name": "node.js"}}` |
-| POST | `/sendAudio`     | Send audio                     | `{"to": "contact number",  "url_mp3": "https://cdn.freesound.org/previews/620/620094_4935038-lq.mp3", "file_name": "node.js"}}` |
-
+| Type | Route to browser | Description                    | Body                                                                                                                            |
+|------|------------------|--------------------------------|---------------------------------------------------------------------------------------------------------------------------------|
+| POST | `/connect`       | Start connection with Whatsapp | `{ "url": "http://localhost:8080/webhooktest" }`                                                                                |
+| POST | `/sendtext`      | Send a text to a number        | `{ "to": "contact number", "body": "message"}`                                                                                  |
+| POST | `/sendFile`      | Send file to a number          | `{ "to": "contact number",  "file_path": "https://docs.marklogic.com/guide/node-dev.pdf", "file_name": "node.js" }`              |
+| POST | `/sendAudio`     | Send audio                     | `{ "to": "contact number",  "url_mp3": "https://cdn.freesound.org/previews/620/620094_4935038-lq.mp3", "file_name": "node.js" }` |
+| POST | `/sendImage`     | Send image message                     | `{ "to": "contact number",  "url_mp3": "https://i.pinimg.com/564x/a9/b1/18/a9b118761788b1ab260aae2835c468cd.jpg" }` |
 
 ## Basic send options functions (more features still under development)
 You must be logged in to use these functions!
@@ -313,6 +313,19 @@ await client.sendMessage({
     console.log(error); // message error
 });
 
+// Send image message
+await client.sendMessage({
+    to: "0000000000@c.us", // you can pass the contact number or group number
+    body: './file.jpg', // you can use a directory or use a url
+    options: {
+        type: 'sendImage', // shipping type
+    }
+}).then((result) => {
+    console.log(result);  // message result
+}).catch((error) => {
+    console.log(error); // message error
+});
+
 ```
 ## Basic send  functions
 
@@ -348,9 +361,17 @@ await clinet.sendAudioBase64("0000000000@c.us", base64MP3)
 }).catch((error) => {
     console.log(error); // message error
 });
+
+// Send image message
+await clinet.sendImage("0000000000@c.us", './file.jpg')
+.then((result) => {
+    console.log(result); // message result
+}).catch((error) => {
+    console.log(error); // message error
+});
+
+
 ```
-
-
 
 ### Debugging
 

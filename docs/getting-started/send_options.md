@@ -7,12 +7,14 @@
 you can send messages only using one function!
 
 ## Summary
-- [sendText](#sendText)
-- [sendFile](#sendFile)
-- [sendAudio](#sendAudio)
-- [sendAudioBase64](#sendAudioBase64)
+- [sendText](#sendtext)
+- [sendFile](#sendfile)
+- [sendAudio](#sendaudio)
+- [sendAudioBase64](#sendaudiobase64)
+- [sendImage](#sendimage)
 
-### send Text
+
+### sendText
 
 ```javascript
 // send text message
@@ -81,3 +83,19 @@ await client.sendMessage({
 });
 ```
 
+### sendImage
+
+```javascript
+// Send image message
+await client.sendMessage({
+    to: "0000000000@c.us", // you can pass the contact number or group number
+    body: './file.jpg', // you can use a directory or use a url
+    options: {
+        type: 'sendImage', // shipping type
+    }
+}).then((result) => {
+    console.log(result);  // message result
+}).catch((error) => {
+    console.log(error); // message error
+});
+```

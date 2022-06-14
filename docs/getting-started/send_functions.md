@@ -12,6 +12,7 @@ Send messages separately
 - [sendFile](#sendFile)
 - [sendAudio](#sendAudio)
 - [sendAudioBase64](#sendAudioBase64)
+- [sendAudio](#sendAudio)
 
 ### sendText
 
@@ -58,6 +59,19 @@ Send audio base64
 
 ```javascript
 await clinet.sendAudioBase64("0000000000@c.us", base64MP3)
+.then((result) => {
+    console.log(result); // message result
+}).catch((error) => {
+    console.log(error); // message error
+});
+```
+
+### sendImage
+
+Send image message
+
+```javascript
+await clinet.sendImage("0000000000@c.us", './file.jpg')
 .then((result) => {
     console.log(result); // message result
 }).catch((error) => {
