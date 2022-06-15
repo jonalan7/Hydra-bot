@@ -124,6 +124,14 @@ const hydraBot = require('hydra-bot');
         }
     });
 
+    // returns the status of each message
+    ev.on('newOnAck', async (newMsg) => {
+        console.log('id Message: ', event.id._serialized); // message id  
+        console.log('Status Message: ', event.ack); // -7 = MD_DOWNGRADE, -6 = INACTIVE, -5 = CONTENT_UNUPLOADABLE, -4 = CONTENT_TOO_BIG, -3 = CONTENT_GONE, -2 = EXPIRED, -1 = FAILED, 0 = CLOCK, 1 = SENT, 2 = RECEIVED, 3 = READ, 4 = PLAYED
+        console.log('From Message: ', event.from); // from message
+        console.log('To Message: ', event.to); // to message
+    });
+
 })();
 ```
 ## Optional create parameters (the bot in raw form, without using a Web Services)
@@ -244,13 +252,13 @@ The headers must be parameterized as :
 
 if you want to receive a callback on a specific url, pass the url parameter in the connect route.
 
-| Type | Route to browser | Description                    | Body                                                                                                                            |
-|------|------------------|--------------------------------|---------------------------------------------------------------------------------------------------------------------------------|
-| POST | `/connect`       | Start connection with Whatsapp | `{ "url": "http://localhost:8080/webhooktest" }`                                                                                |
-| POST | `/sendtext`      | Send a text to a number        | `{ "to": "contact number", "body": "message"}`                                                                                  |
+| Type | Route to browser | Description                    | Body                                                                                                                             |
+|------|------------------|--------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
+| POST | `/connect`       | Start connection with Whatsapp | `{ "url": "http://localhost:8080/webhooktest" }`                                                                                 |
+| POST | `/sendtext`      | Send a text to a number        | `{ "to": "contact number", "body": "message"}`                                                                                   |
 | POST | `/sendFile`      | Send file to a number          | `{ "to": "contact number",  "file_path": "https://docs.marklogic.com/guide/node-dev.pdf", "file_name": "node.js" }`              |
 | POST | `/sendAudio`     | Send audio                     | `{ "to": "contact number",  "url_mp3": "https://cdn.freesound.org/previews/620/620094_4935038-lq.mp3", "file_name": "node.js" }` |
-| POST | `/sendImage`     | Send image message             | `{ "to": "contact number",  "url_img": "https://i.pinimg.com/564x/a9/b1/18/a9b118761788b1ab260aae2835c468cd.jpg" }` |
+| POST | `/sendImage`     | Send image message             | `{ "to": "contact number",  "url_img": "https://i.pinimg.com/564x/a9/b1/18/a9b118761788b1ab260aae2835c468cd.jpg" }`              |
 
 ## Basic send options functions (more features still under development)
 You must be logged in to use these functions!

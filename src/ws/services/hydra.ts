@@ -40,6 +40,10 @@ async function Webhook(options: any, info: any) {
     Webhook(objOptions, qrcode);
   });
 
+  ev.on(onMode.newOnAck, (ack: any) => {
+    Webhook(objOptions, ack);
+  });
+
   ev.on(onMode.connection, async (conn: any) => {
     if (conn.erro) {
       if (

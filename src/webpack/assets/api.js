@@ -28,7 +28,8 @@ import {
 
 import {
     addOnStream,
-    addOnNewMessage
+    addOnNewMessage,
+    AddOnAck
 } from './listeners';
 
 import {
@@ -89,4 +90,5 @@ if (typeof window.API === 'undefined') {
     // On
     addOnStream();
     addOnNewMessage();
+    AddOnAck();
 }

@@ -27,6 +27,13 @@ export class CallbackOnStatus {
           }
         });
         break;
+      case onMode.newOnAck:
+        this.onChange((event) => {
+          if (event.onType === onMode.newOnAck) {
+            callback(event);
+          }
+        });
+        break;
       case onMode.newMessage:
         this.onChange((event) => {
           if (event.onType === onMode.newMessage) {

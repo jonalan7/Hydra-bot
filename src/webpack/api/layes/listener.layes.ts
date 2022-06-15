@@ -24,7 +24,6 @@ export class ListenerLayer extends scraping {
         break;
       }
       if (urlCode !== result.urlCode) {
-        
         this.ev.statusFind = {
           erro: false,
           qrcode: result.urlCode,
@@ -74,12 +73,19 @@ export class ListenerLayer extends scraping {
           window.API.newMessage((e: any) => {
             window.newMessage(e);
           });
-          window.interfaceChange.exposed = true;
+          window.newMessage.exposed = true;
+        }
+        if (!window.newOnAck.exposed) {
+          window.API.newOnAck((e: any) => {
+            window.newOnAck(e);
+          });
+          window.newOnAck.exposed = true;
         }
       })
       .catch(() => {});
     this.listener(onMode.interfaceChange);
     this.listener(onMode.newMessage);
+    this.listener(onMode.newOnAck);
   }
 
   private listener(type: string): { dispose: () => void } {

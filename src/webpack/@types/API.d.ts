@@ -2,6 +2,7 @@ interface API {
   sendMessage: (to: string, body: String, options: object) => Promise<any>;
   interfaceChange: (callback: Function) => void;
   newMessage: (callback: Function) => void;
+  newOnAck: (callback: Function) => void; 
 }
 
 declare global {
@@ -10,6 +11,7 @@ declare global {
     Store: any;
     interfaceChange: any;
     newMessage: any;
+    newOnAck: any;
   }
   const API: API;
 }
