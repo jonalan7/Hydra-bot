@@ -1,3 +1,22 @@
+## [1.0.19](https://github.com/jonalan7/Hydra-bot/compare/v1.0.18...v1.0.19) (2022-06-15)
+
+
+### Bug Fixes
+
+* docs ([4520fcd](https://github.com/jonalan7/Hydra-bot/commit/4520fcd8afc2586eb307295890d2419778cac876))
+* ghost page ([45bbc2d](https://github.com/jonalan7/Hydra-bot/commit/45bbc2d3d4e5c0b155067794d1d1febd2431c59f))
+
+
+### Features
+
+* Ack ([59215aa](https://github.com/jonalan7/Hydra-bot/commit/59215aacdc2e50c2de635736f7765203da535081))
+* image ([02abed0](https://github.com/jonalan7/Hydra-bot/commit/02abed087c92e0607ae94e92f06d1408df056f82))
+* sendAudio WS ([70b4e06](https://github.com/jonalan7/Hydra-bot/commit/70b4e062cfedc2633f96fd8c290493a15cc11d87))
+* sendCheckType ([e5d74b7](https://github.com/jonalan7/Hydra-bot/commit/e5d74b7bc86f86efec2324b70dca491498d12749))
+* sendImage ws ([93fed44](https://github.com/jonalan7/Hydra-bot/commit/93fed44670458a0f6d5cb82ce9ecdecd5336b4d1))
+
+
+
 ## [1.0.18](https://github.com/jonalan7/Hydra-bot/compare/v1.0.17...v1.0.18) (2022-06-13)
 
 
