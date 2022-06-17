@@ -1,11 +1,11 @@
+## Status repository
 [![npm version](https://img.shields.io/npm/v/hydra-bot.svg?color=green)](https://www.npmjs.com/package/hydra-bot)
 [![Downloads](https://img.shields.io/npm/dm/hydra-bot.svg)](https://www.npmjs.com/package/hydra-bot)
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/jonalan7/hydra-bot.svg)](http://isitmaintained.com/project/jonalan7/hydra-bot 'Average time to resolve an issue')
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/jonalan7/hydra-bot.svg)](http://isitmaintained.com/project/orkestral/hydra-bot 'Percentage of issues still open')
-[![WhatsApp Group](https://img.shields.io/badge/WhatsApp-Group-25D366?logo=whatsapp)](https://chat.whatsapp.com/FkweAzEKOTp3WaFAUzvKne)
-
 
 ## Our online channels
+[![WhatsApp Group](https://img.shields.io/badge/WhatsApp-Group-25D366?logo=whatsapp)](https://chat.whatsapp.com/FkweAzEKOTp3WaFAUzvKne)
 [![Discord](https://img.shields.io/discord/987415785653817384?color=blueviolet&label=Discord&logo=discord&style=flat)](https://discord.gg/rBBeSxjgdg)
 [![YouTube](https://img.shields.io/youtube/channel/subscribers/UCMBtZ3CjcLCAtjqotleiOOQ?label=YouTube)](https://www.youtube.com/user/ANONIMUism)
 [![Telegram Group](https://img.shields.io/badge/Telegram-Group-32AFED?logo=telegram)](https://t.me/hydra_bot_io)
