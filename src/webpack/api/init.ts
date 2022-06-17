@@ -13,6 +13,9 @@ export async function initServer(
   createOption?: CreateOptions
 ): Promise<webPack | any>;
 
+/**
+ * Start the bot
+ */
 export async function initServer(
   options?: CreateOptions
 ): Promise<webPack | any> {
@@ -54,7 +57,6 @@ export async function initServer(
     const wpage: Browser | boolean = await initLaunch(mergeOptionsDefault, ev);
 
     if (typeof wpage !== 'boolean') {
-
       ev.statusFind = {
         erro: false,
         text: 'Opening whatsapp page!',
@@ -63,10 +65,9 @@ export async function initServer(
         onType: onMode.connection,
         session: mergeOptionsDefault.session,
       };
-     
+
       const page: boolean | Page = await initBrowser(wpage);
       if (typeof page !== 'boolean') {
-
         ev.statusFind = {
           erro: false,
           text: 'Website accessed successfully',

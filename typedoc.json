@@ -44,6 +44,10 @@
           {
             "title": "User",
             "source": "./docs/getting-started/user.md"
+          },
+          {
+            "title": "Retrieving Data",
+            "source": "./docs/getting-started/retrieving_data.md"
           }
         ]
       }

@@ -1,7 +1,22 @@
 export enum FunctionType {
-    sendText = 'sendText',
-    sendAudioBase64 = 'sendAudioBase64',
-    sendAudio = 'sendAudio',
-    sendFile = 'sendFile',
-    sendImage = 'sendImage'
-  }
+  /**
+   * send text message
+   */
+  sendText = 'sendText',
+  /**
+   * send audio in base64
+   */
+  sendAudioBase64 = 'sendAudioBase64',
+  /**
+   * send an audio message
+   */
+  sendAudio = 'sendAudio',
+  /**
+   * send file message
+   */
+  sendFile = 'sendFile',
+  /**
+   * send image file
+   */
+  sendImage = 'sendImage',
+}

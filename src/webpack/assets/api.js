@@ -23,7 +23,8 @@ import {
 
 import {
     sendMessage,
-    baseSendMessage
+    baseSendMessage,
+    getAllContacts
 } from './functions';
 
 import {
@@ -79,6 +80,7 @@ if (typeof window.API === 'undefined') {
 
     // Functions
     window.API.sendMessage = sendMessage;
+    window.API.getAllContacts = getAllContacts;
 
     // Serialize
     window.API.serializeMessageObj = serializeMessageObj;

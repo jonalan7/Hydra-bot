@@ -1,6 +1,6 @@
 import { Page, Browser } from 'puppeteer';
 import { sendOptions } from '../../model/interface';
-import { ListenerLayer } from './listener.layes';
+import { RetrieverLayer } from './retriever.layer';
 import { CreateOptions } from '../../model/interface';
 import { base64MimeType } from '../../help';
 import { FunctionType } from '../../model/enum/';
@@ -11,7 +11,7 @@ import {
 } from '../../help';
 import * as path from 'path';
 
-export class SenderLayer extends ListenerLayer {
+export class SenderLayer extends RetrieverLayer {
   constructor(
     public page: Page,
     public browser: Browser,
@@ -263,6 +263,10 @@ export class SenderLayer extends ListenerLayer {
 
   async sendMessage(options: sendOptions): Promise<any>;
 
+  /**
+   * Send messages
+   * @param sendOptions Send options
+   */
   public async sendMessage(sendOptions: sendOptions): Promise<any> {
     return new Promise(async (resolve, reject) => {
       const to: any = sendOptions.to,
@@ -319,4 +323,5 @@ export class SenderLayer extends ListenerLayer {
       }
     });
   }
+  
 }

@@ -9,6 +9,9 @@ export async function initWs(
   createOption?: CreateOptions | options | any
 ): Promise<any>;
 
+/**
+ * Start the Web Service
+ */
 export async function initWs(
   options?: CreateOptions | options | any
 ): Promise<any> {

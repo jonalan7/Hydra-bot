@@ -3,6 +3,7 @@ interface API {
   interfaceChange: (callback: Function) => void;
   newMessage: (callback: Function) => void;
   newOnAck: (callback: Function) => void; 
+  getAllContacts: () => void;
 }
 
 declare global {

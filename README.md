@@ -3,6 +3,11 @@
 [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/jonalan7/hydra-bot.svg)](http://isitmaintained.com/project/jonalan7/hydra-bot 'Average time to resolve an issue')
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/jonalan7/hydra-bot.svg)](http://isitmaintained.com/project/orkestral/hydra-bot 'Percentage of issues still open')
 
+[![WhatsApp Group](https://img.shields.io/badge/WhatsApp-Group-25D366?logo=whatsapp)](https://chat.whatsapp.com/FkweAzEKOTp3WaFAUzvKne)
+[![Discord](https://img.shields.io/discord/844351092758413353?color=blueviolet&label=Discord&logo=discord&style=flat)](https://discord.gg/rBBeSxjgdg)
+[![YouTube](https://img.shields.io/youtube/channel/subscribers/UCD7J9LG08PmGQrF5IS7Yv9A?label=YouTube)](https://www.youtube.com/user/ANONIMUism)
+[![Telegram Group](https://img.shields.io/badge/Telegram-Group-32AFED?logo=telegram)](https://t.me/hydra_bot_io)
+
 # Welcome to Hydra Bot
 
 <img height="150" src="img/hydra.png"></img>
@@ -335,7 +340,7 @@ await client.sendMessage({
 });
 
 ```
-## Basic send  functions
+## Basic send functions
 
 ```javascript
 // Sends a text message to given chat
@@ -378,6 +383,13 @@ await clinet.sendImage("0000000000@c.us", './file.jpg')
     console.log(error); // message error
 });
 
+```
+## Retrieving Data
+
+```javascript
+
+// returns a list of contacts
+const contacts = await clinet.getAllContacts();
 
 ```
 

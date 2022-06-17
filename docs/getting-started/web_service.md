@@ -8,3 +8,9 @@ const hydraBot = require('hydra-bot');
     const WS = await hydraBot.initWs();
 })();
 ```
+
+### Commands for administration via terminal
+[Example terminal admin](admin.html)
+
+### Using the Client Webhook
+[Example terminal admin](user.html)
