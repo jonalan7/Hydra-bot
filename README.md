@@ -257,6 +257,8 @@ The headers must be parameterized as :
 
 if you want to receive a callback on a specific url, pass the url parameter in the connect route.
 
+### Methods POST
+
 | Type | Route to browser | Description                    | Body                                                                                                                             |
 |------|------------------|--------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
 | POST | `/connect`       | Start connection with Whatsapp | `{ "url": "http://localhost:8080/webhooktest" }`                                                                                 |
@@ -264,6 +266,12 @@ if you want to receive a callback on a specific url, pass the url parameter in t
 | POST | `/sendFile`      | Send file to a number          | `{ "to": "contact number",  "file_path": "https://docs.marklogic.com/guide/node-dev.pdf", "file_name": "node.js" }`              |
 | POST | `/sendAudio`     | Send audio                     | `{ "to": "contact number",  "url_mp3": "https://cdn.freesound.org/previews/620/620094_4935038-lq.mp3", "file_name": "node.js" }` |
 | POST | `/sendImage`     | Send image message             | `{ "to": "contact number",  "url_img": "https://i.pinimg.com/564x/a9/b1/18/a9b118761788b1ab260aae2835c468cd.jpg" }`              |
+
+### Methods GET
+
+|Type| Route to browser         | Description                                                     | Body                                                         |
+|----| ----------------         | ----------------------------------------------------------------|--------------------------------------------------------------|
+|GET | `/get_all_contacts`      | Retrieve contacts                                               | `EMPTY`                                                      |
 
 ## Basic send options functions (more features still under development)
 You must be logged in to use these functions!

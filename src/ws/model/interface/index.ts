@@ -11,7 +11,7 @@ export interface options {
    * @default true
    */
   authentication?: boolean;
-  session?: string;
+  session?: string | string[] | undefined;
 }
 
 export const defaultConfigWs: options = {

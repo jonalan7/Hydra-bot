@@ -1,12 +1,14 @@
 export const sessionClient = class Session {
   static session = new Array();
 
-  static replaceNameSession(nameSession: string) {
-    return nameSession.replace(/[^0-9a-zA-Zs]/g, '');
+  static replaceNameSession(nameSession: string | undefined | string[]) {
+    return nameSession && typeof nameSession === 'string'
+      ? nameSession.replace(/[^0-9a-zA-Zs]/g, '')
+      : '';
   }
   // Use this function to add a new session!
   // nameSession = client name, example: test, job ... etc.
-  static async newSession(nameSession: string) {
+  static async newSession(nameSession: string | undefined | string[]) {
     // checks if the clinet name exists in the session
     nameSession = this.replaceNameSession(nameSession);
     const check = this.session.filter((e) => e.name === nameSession);
@@ -21,7 +23,7 @@ export const sessionClient = class Session {
   }
 
   // check if there is a customer in the session!
-  static async checkClient(nameSession: string) {
+  static async checkClient(nameSession: string | string[] | undefined) {
     nameSession = this.replaceNameSession(nameSession);
     if (nameSession) {
       // checks if the clinet name exists in the session
@@ -37,7 +39,7 @@ export const sessionClient = class Session {
   }
 
   // add new objects to the session!
-  static async addInfoSession(nameSession: string, exted: any) {
+  static async addInfoSession(nameSession: string | string[] | undefined, exted: any) {
     nameSession = this.replaceNameSession(nameSession);
     // checking if the session name and object have been passed!
     if (!!nameSession && typeof exted === 'object') {
@@ -57,7 +59,7 @@ export const sessionClient = class Session {
   }
 
   // Get the client's index!
-  static async getSessionId(nameSession: string) {
+  static async getSessionId(nameSession: string | string[] | undefined) {
     nameSession = this.replaceNameSession(nameSession);
     if (nameSession) {
       const check = await this.checkClient(nameSession);
@@ -75,7 +77,7 @@ export const sessionClient = class Session {
 
   // Checks whether an index exists on the client object
   static async checkObjectSession(
-    nameSession: string,
+    nameSession: string | string[] | undefined,
     key: string,
     index: number
   ) {
@@ -94,7 +96,7 @@ export const sessionClient = class Session {
 
   // remove an object added to the client
   static async removeObjectsSession(
-    nameSession: string,
+    nameSession: string | string[] | undefined,
     key: string,
     index: number
   ) {
@@ -112,7 +114,7 @@ export const sessionClient = class Session {
   }
 
   // Removing a client from the session!
-  static async deleteSession(nameSession: string) {
+  static async deleteSession(nameSession: string | string[] | undefined) {
     nameSession = this.replaceNameSession(nameSession);
     if (nameSession) {
       // Checking if the customer exists!
@@ -130,7 +132,7 @@ export const sessionClient = class Session {
   }
 
   // Returns all customer information!
-  static async getUser(nameSession: string) {
+  static async getUser(nameSession: string | string[] | undefined) {
     nameSession = this.replaceNameSession(nameSession);
     if (nameSession) {
       const check = await this.checkClient(nameSession);

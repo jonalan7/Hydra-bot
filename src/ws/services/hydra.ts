@@ -142,5 +142,16 @@ async function Webhook(options: any, info: any) {
           sendParent({ typeSend: 'sendImage', result: true, ...error });
         });
     }
+
+    if (response.type === 'getAllContacts') {
+      await client
+        .getAllContacts()
+        .then((result: any) => {
+          sendParent({ typeGet: 'getAllContacts', result: true, ...result });
+        })
+        .catch((error: any) => {
+          sendParent({ typeGet: 'getAllContacts', result: true, ...error });
+        });
+    }
   });
 })();

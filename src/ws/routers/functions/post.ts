@@ -1,110 +1,16 @@
-import { spawn } from 'child_process';
 import { sessionClient } from '../../help/sessions';
 import Users from '../../help/treatment';
-import crypto from 'crypto';
 import { options } from './../../model/interface';
+import { InicializeGet } from './get';
+import { Request, Response } from 'express';
+import { InicializeRouters } from './inicialize-routers';
 
-export const init = new (class InicializePost {
-  public child: any;
-  public res: any;
-  public option: any;
-
-  constructor() {
-    this.child = '';
-    this.res = '';
-    this.option = '';
-  }
-
-  async StartSession(req: any, res: any, option: options) {
+export class InicializePost extends InicializeGet {
+  static async sendtext(req: Request, res: Response, option: options) {
     const body = req.body;
-    const reHttp = /^https?:/;
     const $_HEADERS_USER = req?.headers?.user;
-    this.res = res;
-    this.option = option;
 
     if (option.authentication) {
-      const user = await Users.CheckUserLogin(req);
-      if (user.erro) {
-        return res.send(user);
-      }
-    }
-
-    if (body.url && body.url.length && !reHttp.test(body.url)) {
-      return res.sender({ erro: true, text: 'Error http webHook' });
-    }
-
-    const session = await sessionClient.newSession($_HEADERS_USER);
-
-    if (session) {
-      option.session = $_HEADERS_USER;
-      option.url = body.url;
-
-      const spawnArgs = [
-        __dirname + '../../../services/hydra.js',
-        JSON.stringify(option),
-      ];
-
-      this.child = spawn('node', spawnArgs, {
-        stdio: ['inherit', 'inherit', 'inherit', 'ipc'],
-      });
-
-      this.child.on('message', async (response: any) => {
-        if (response.connect) {
-          await sessionClient.addInfoSession(response.session, {
-            connect: response.connect,
-          });
-        }
-        if (response.delsession) {
-          await sessionClient.deleteSession(response.session);
-        }
-      });
-
-      this.child.on('disconnect', (err: any) => {
-        console.log('disconnect', err ? err : '');
-      });
-
-      this.child.on('error', async (err: any) => {
-        if (err) {
-          console.log('on error', err);
-        }
-      });
-
-      this.child.on('close', async (code: any) => {
-        console.log(`child process exited with code`, code);
-      });
-
-      this.child.on('uncaughtException', (err: any) => {
-        console.log(err);
-      });
-
-      sessionClient.addInfoSession($_HEADERS_USER, { child: this.child });
-
-      return res.send({ erro: false, text: 'Wait for connection' });
-    } else {
-      const getId = await sessionClient.getSessionId($_HEADERS_USER);
-      const check = await sessionClient.checkClient($_HEADERS_USER);
-
-      if (typeof getId === 'number') {
-        const client = await sessionClient.checkObjectSession(
-          $_HEADERS_USER,
-          'connect',
-          getId
-        );
-        if (check && client) {
-          return res.send({ erro: false, text: 'Successfully connected!' });
-        } else {
-          return res.send({ erro: false, text: 'Wait for connection' });
-        }
-      }
-    }
-  }
-
-  public async sendtext(req: any, res: any) {
-    const body = req.body;
-    const $_HEADERS_USER = req?.headers?.user;
-    this.res = res;
-
-    if (this.option.authentication) {
       const user = await Users.CheckUserLogin(req);
       if (user.erro) {
         return res.send(user);
@@ -121,7 +27,7 @@ export const init = new (class InicializePost {
             'connect',
             getId
           );
-          if (client) {
+          if (client && InicializeRouters.inicialize) {
             const getUser = await sessionClient.getUser($_HEADERS_USER);
             getUser.child.send({ type: 'sendText', ...body });
             this.child.on('message', (response: any) => {
@@ -130,6 +36,11 @@ export const init = new (class InicializePost {
                   return res.status(200).send(response);
                 } catch {}
               }
+            });
+          } else {
+            return res.send({
+              erro: true,
+              text: 'Waiting for connection with whatsapp',
             });
           }
         }
@@ -147,11 +58,11 @@ export const init = new (class InicializePost {
     }
   }
 
-  public async sendFile(req: any, res: any) {
+  static async sendFile(req: Request, res: Response, option: options) {
     const body = req.body;
     const $_HEADERS_USER = req?.headers?.user;
 
-    if (this.option.authentication) {
+    if (option.authentication) {
       const user = await Users.CheckUserLogin(req);
       if (user.erro) {
         return res.send(user);
@@ -175,7 +86,7 @@ export const init = new (class InicializePost {
             'connect',
             getId
           );
-          if (client) {
+          if (client && InicializeRouters.inicialize) {
             const getUser = await sessionClient.getUser($_HEADERS_USER);
             getUser.child.send({ type: 'sendFile', ...body });
             this.child.on('message', (response: any) => {
@@ -184,6 +95,11 @@ export const init = new (class InicializePost {
                   return res.status(200).send(response);
                 } catch {}
               }
+            });
+          } else {
+            return res.send({
+              erro: true,
+              text: 'Waiting for connection with whatsapp',
             });
           }
         }
@@ -201,11 +117,11 @@ export const init = new (class InicializePost {
     }
   }
 
-  public async sendAudio(req: any, res: any) {
+  static async sendAudio(req: Request, res: Response, option: options) {
     const body = req.body;
     const $_HEADERS_USER = req?.headers?.user;
 
-    if (this.option.authentication) {
+    if (option.authentication) {
       const user = await Users.CheckUserLogin(req);
       if (user.erro) {
         return res.send(user);
@@ -222,7 +138,7 @@ export const init = new (class InicializePost {
             'connect',
             getId
           );
-          if (client) {
+          if (client && InicializeRouters.inicialize) {
             const getUser = await sessionClient.getUser($_HEADERS_USER);
             getUser.child.send({ type: 'sendAudio', ...body });
             this.child.on('message', (response: any) => {
@@ -231,6 +147,11 @@ export const init = new (class InicializePost {
                   return res.status(200).send(response);
                 } catch {}
               }
+            });
+          } else {
+            return res.send({
+              erro: true,
+              text: 'Waiting for connection with whatsapp',
             });
           }
         }
@@ -248,22 +169,17 @@ export const init = new (class InicializePost {
     }
   }
 
-  public async sendImage(req: any, res: any) {
+  static async sendImage(req: Request, res: Response, option: options) {
     const body = req.body;
     const $_HEADERS_USER = req?.headers?.user;
 
-    if (this.option.authentication) {
+    if (option.authentication) {
       const user = await Users.CheckUserLogin(req);
       if (user.erro) {
         return res.send(user);
       }
     }
-    if (
-      !!body.to &&
-      body.to.length &&
-      !!body.url_img &&
-      body.url_img.length
-    ) {
+    if (!!body.to && body.to.length && !!body.url_img && body.url_img.length) {
       const check = await sessionClient.checkClient($_HEADERS_USER);
       if (check) {
         const getId = await sessionClient.getSessionId($_HEADERS_USER);
@@ -273,7 +189,7 @@ export const init = new (class InicializePost {
             'connect',
             getId
           );
-          if (client) {
+          if (client && InicializeRouters.inicialize) {
             const getUser = await sessionClient.getUser($_HEADERS_USER);
             getUser.child.send({ type: 'sendImage', ...body });
             this.child.on('message', (response: any) => {
@@ -283,7 +199,12 @@ export const init = new (class InicializePost {
                 } catch {}
               }
             });
-          } 
+          } else {
+            return res.send({
+              erro: true,
+              text: 'Waiting for connection with whatsapp',
+            });
+          }
         }
       } else {
         return res.send({
@@ -298,4 +219,4 @@ export const init = new (class InicializePost {
       });
     }
   }
-})();
+}

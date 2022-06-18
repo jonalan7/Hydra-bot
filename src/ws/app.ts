@@ -1,7 +1,6 @@
-import express, { Express, NextFunction } from 'express';
+import express, { Express, Request, Response } from 'express';
 import { options } from './model/interface';
 import cors from 'cors';
-
 
 export function appExpress(options: options): Express {
   const app = express();
@@ -55,7 +54,7 @@ export function appExpress(options: options): Express {
     })
   );
 
-  app.get('/', function (req, res) {
+  app.get('/', function (req: Request, res: Response) {
     res.render('error', { titulo: 'hydra' });
   });
 

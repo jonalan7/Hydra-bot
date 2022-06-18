@@ -42,7 +42,7 @@
             "source": "./docs/getting-started/admin.md"
           },
           {
-            "title": "User",
+            "title": "User Routers",
             "source": "./docs/getting-started/user.md"
           },
           {

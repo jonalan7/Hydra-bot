@@ -26,6 +26,7 @@ export const puppeteerConfig = {
       '--disable-histogram-customizer',
       '--disable-gl-extensions',
       '--disable-composited-antialiasing',
+      '--auto-open-devtools-for-tabs',
       '--user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.63 Safari/537.36',
     ],
   };

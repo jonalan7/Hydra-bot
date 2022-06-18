@@ -1,6 +1,6 @@
 import { options, defaultConfigWs } from './model/interface';
 import { appExpress } from './app';
-import express, { Express } from 'express';
+import express, { Express, Request, Response} from 'express';
 import { ServiceWs } from './services/services-ws';
 import { CreateOptions, defaultConfig } from '../webpack/model/interface';
 import { checkUpdates } from '../webpack/api/check-up-to-date';
@@ -37,7 +37,7 @@ export async function initWs(
     console.log(`Web service on http://localhost:${mergeWebPack.port}`);
   });
 
-  app.use(function (req, res) {
+  app.use(function (req: Request, res: Response) {
     res.send({
       text: 'Route does not exist!',
       status: '404',

@@ -158,7 +158,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": \"1\",\r\n    \"name\": \"123456\"\r\n}",
+							"raw": "{\r\n    \"id\": \"2\",\r\n    \"name\": \"user123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -358,7 +358,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"to\": \"00000000000@c.us\",\r\n    \"body\": \"test\"\r\n}",
+							"raw": "{\r\n    \"to\": \"000000000000@c.us\",\r\n    \"body\": \"hydra-bot\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -397,7 +397,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"to\": \"00000000000@c.us\",\r\n    \"file_path\": \"http://www.jucerr.rr.gov.br/manuais/pdf-a.pdf\",\r\n    \"file_name\": \"filename\"\r\n}",
+							"raw": "{\r\n    \"to\": \"000000000000@c.us\",\r\n    \"file_path\": \"http://www.jucerr.rr.gov.br/manuais/pdf-a.pdf\",\r\n    \"file_name\": \"filename\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -436,7 +436,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"to\": \"00000000000@c.us\",\r\n    \"url_mp3\": \"https://cdn.freesound.org/previews/620/620094_4935038-lq.mp3\"\r\n}",
+							"raw": "{\r\n    \"to\": \"000000000000@c.us\",\r\n    \"url_mp3\": \"https://cdn.freesound.org/previews/620/620094_4935038-lq.mp3\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -452,6 +452,87 @@
 							"port": "8080",
 							"path": [
 								"sendAudio"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sendImage",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "user",
+								"value": "user",
+								"type": "text"
+							},
+							{
+								"key": "user_pass",
+								"value": "user",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"to\": \"000000000000@c.us\",\r\n    \"url_img\": \"https://i.pinimg.com/564x/a9/b1/18/a9b118761788b1ab260aae2835c468cd.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/sendImage",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"sendImage"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAllContacts",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "user",
+								"value": "user",
+								"type": "text"
+							},
+							{
+								"key": "user_pass",
+								"value": "user",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/get_all_contacts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"get_all_contacts"
 							]
 						}
 					},

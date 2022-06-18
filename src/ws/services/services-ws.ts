@@ -1,5 +1,6 @@
-import { Express, Router } from 'express';
-import postWebpack from '../routers/webpack/post';
+import { Express } from 'express';
+import { postRouters } from '../routers/webpack/post';
+import { getRouters } from '../routers/webpack/get';
 import { CreateOptions } from '../../webpack/model/interface';
 import { options } from './../model/interface';
 
@@ -14,7 +15,9 @@ export class ServiceWs {
   }
 
   public requireRouter() {
-    postWebpack(this.app, this.option);
+    // User Routers
+    postRouters(this.app, this.option);
+    getRouters(this.app, this.option);
 
     // Admin Routers
     RouterpostAdmin(this.app);
