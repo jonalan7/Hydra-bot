@@ -1,3 +1,13 @@
+## [1.0.20](https://github.com/jonalan7/Hydra-bot/compare/v1.0.19...v1.0.20) (2022-06-20)
+
+
+### Features
+
+* docs and getallcontacts ([313d6a9](https://github.com/jonalan7/Hydra-bot/commit/313d6a92fd298213872bbb36f7177b06f7299562))
+* getAllContacts ([d7ebb71](https://github.com/jonalan7/Hydra-bot/commit/d7ebb71c0f741657274f0b5b1cbe0af77593ebec))
+
+
+
 ## [1.0.19](https://github.com/jonalan7/Hydra-bot/compare/v1.0.18...v1.0.19) (2022-06-15)
 
 
