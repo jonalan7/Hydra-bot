@@ -150,12 +150,12 @@ fast as possible (outruns native methods). Supports big files!
 import fs = require('fs');
 import mime = require('mime-types');
 
-   ev.on('newMessage', async (newMsg) => {
-  if (message.isMedia === true || message.isMMS === true) {
-    const buffer = await client.decryptFile(message);
+ ev.on('newMessage', async (newMsg) => {
+  if (newMsg.isMedia === true || newMsg.isMMS === true) {
+    const buffer = await client.decryptFile(newMsg);
     // At this point you can do whatever you want with the buffer
     // Most likely you want to write it into a file
-    const fileName = `some-file-name.${mime.extension(message.mimetype)}`;
+    const fileName = `some-file-name.${mime.extension(newMsg.mimetype)}`;
     await fs.writeFile(fileName, buffer, (err) => {
       ...
     });
