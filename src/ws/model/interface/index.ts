@@ -11,6 +11,10 @@ export interface options {
    * @default true
    */
   authentication?: boolean;
+  /**
+   * @default 'null' 
+   */
+  token?: string
   session?: string | string[] | undefined;
 }
 

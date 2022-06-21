@@ -13,6 +13,7 @@ function sendParent(data: any) {
 async function Webhook(options: any, info: any) {
   if (!!options.url && options.url.length) {
     return new Promise(async (resolve, reject) => {
+      Object.assign(info, {token: options.token})
       await axios
         .post(options.url, info)
         .then(function (response) {

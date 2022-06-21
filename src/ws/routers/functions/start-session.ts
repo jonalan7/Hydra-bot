@@ -4,11 +4,13 @@ import { sessionClient } from '../../help/sessions';
 import { spawn } from 'child_process';
 import { InicializeRouters } from './inicialize-routers';
 import { Request, Response } from 'express';
+import crypto from 'crypto';
 
 export async function startSession(req: Request, res: Response, option: options) {
     const body = req.body;
     const reHttp = /^https?:/;
     const $_HEADERS_USER = req.headers.user;
+    const $_HEADERS_PASS = req.headers.user_pass;
 
     if (option.authentication) {
       const user = await Users.CheckUserLogin(req);
@@ -24,8 +26,14 @@ export async function startSession(req: Request, res: Response, option: options)
     const session = await sessionClient.newSession($_HEADERS_USER);
 
     if (session) {
+      const MergeToken = typeof $_HEADERS_USER === 'string' && typeof $_HEADERS_PASS === 'string'? $_HEADERS_USER + $_HEADERS_PASS: '';
+      const token = crypto
+      .createHash('md5')
+      .update(MergeToken)
+      .digest('hex');
       option.session = $_HEADERS_USER;
       option.url = body.url;
+      option.token = token;
 
       const spawnArgs = [
         __dirname + '../../../services/hydra.js',
