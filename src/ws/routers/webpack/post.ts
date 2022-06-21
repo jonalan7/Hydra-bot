@@ -10,6 +10,11 @@ const postRouters = (router: Express, option: CreateOptions | options) => {
     await startSession(req, res, option);
   });
 
+  // Check user
+  router.post('/check_user', async (req, res) => {
+    await InicializeRouters.checkUser(req, res);
+  });
+
   // Send a text message
   router.post('/sendtext', async (req: Request, res: Response) => {
     await InicializeRouters.sendtext(req, res, option);

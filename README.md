@@ -141,6 +141,27 @@ const hydraBot = require('hydra-bot');
 
 })();
 ```
+## Downloading Files
+
+Puppeteer takes care of the file downloading. The decryption is being done as
+fast as possible (outruns native methods). Supports big files!
+
+```javascript
+import fs = require('fs');
+import mime = require('mime-types');
+
+   ev.on('newMessage', async (newMsg) => {
+  if (message.isMedia === true || message.isMMS === true) {
+    const buffer = await client.decryptFile(message);
+    // At this point you can do whatever you want with the buffer
+    // Most likely you want to write it into a file
+    const fileName = `some-file-name.${mime.extension(message.mimetype)}`;
+    await fs.writeFile(fileName, buffer, (err) => {
+      ...
+    });
+  }
+});
+```
 ## Optional create parameters (the bot in raw form, without using a Web Services)
 ```javascript
 

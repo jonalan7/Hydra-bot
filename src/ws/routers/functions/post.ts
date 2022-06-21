@@ -6,6 +6,18 @@ import { Request, Response } from 'express';
 import { InicializeRouters } from './inicialize-routers';
 
 export class InicializePost extends InicializeGet {
+  static async checkUser(req: Request, res: Response) {
+    const user = await Users.CheckUserLogin(req);
+    if (user.erro === false) {
+      res.send({
+        erro: false,
+        text: 'Existing user',
+      });
+    } else {
+      res.send(user);
+    }
+  }
+
   static async sendtext(req: Request, res: Response, option: options) {
     const body = req.body;
     const $_HEADERS_USER = req?.headers?.user;
