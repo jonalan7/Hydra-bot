@@ -1,3 +1,20 @@
+## [1.0.21](https://github.com/jonalan7/Hydra-bot/compare/v1.0.20...v1.0.21) (2022-07-04)
+
+
+### Bug Fixes
+
+* atob types ([ddbfa57](https://github.com/jonalan7/Hydra-bot/commit/ddbfa57ca39163dc71ca03cd5c8b9d9cb26f3455))
+
+
+### Features
+
+* add token ([3e13717](https://github.com/jonalan7/Hydra-bot/commit/3e137178ee15af96caa224b7055052752e5d23cd))
+* check_user ([1e38bec](https://github.com/jonalan7/Hydra-bot/commit/1e38beca06f4b239c8373ccd936d6f96f89b9894))
+* docs routers ([0c215bf](https://github.com/jonalan7/Hydra-bot/commit/0c215bf67c1e25977d9bb1c19124462ed78bdc2e))
+* dowload file ([85ca4ed](https://github.com/jonalan7/Hydra-bot/commit/85ca4ed9932ac2319da771c04150a8589a5bcbc6))
+
+
+
 ## [1.0.20](https://github.com/jonalan7/Hydra-bot/compare/v1.0.19...v1.0.20) (2022-06-20)
 
 
