@@ -78,6 +78,7 @@
     "webpack-cli": "^4.9.2"
   },
   "devDependencies": {
+    "@types/atob": "^2.1.2",
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/mime-types": "^2.1.1",
