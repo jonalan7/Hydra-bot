@@ -319,7 +319,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"url\": \"http://localhost:8080/webhooktest\"\r\n}",
+							"raw": "{\r\n    \"url\": \"http://localhost:8082/post_request.php\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -335,6 +335,45 @@
 							"port": "8080",
 							"path": [
 								"connect"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "disconnect",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "user",
+								"value": "user",
+								"type": "text"
+							},
+							{
+								"key": "user_pass",
+								"value": "user",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/disconnect",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"disconnect"
 							]
 						}
 					},
@@ -497,6 +536,36 @@
 					"response": []
 				},
 				{
+					"name": "check_user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "user",
+								"value": "user",
+								"type": "text"
+							},
+							{
+								"key": "user_pass",
+								"value": "user",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/check_user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"check_user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "getAllContacts",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -533,6 +602,66 @@
 							"port": "8080",
 							"path": [
 								"get_all_contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "check_connect",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "user",
+								"value": "user",
+								"type": "text"
+							},
+							{
+								"key": "user_pass",
+								"value": "user",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/check_connect",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"check_connect"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "last_qrcode",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "user",
+								"value": "user",
+								"type": "text"
+							},
+							{
+								"key": "user_pass",
+								"value": "user",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/last_qrcode",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"last_qrcode"
 							]
 						}
 					},
