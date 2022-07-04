@@ -1,5 +1,6 @@
 const hydraBot = require('../dist');
-
+const mime = require('mime-types');
+const fs = require('fs');
 (async () => {
 
     // hydraBot.initWs({
@@ -12,6 +13,7 @@ const hydraBot = require('../dist');
     let client;
     // start bot service
     const ev = await hydraBot.initServer({
+        session: 'geovane',
         puppeteerOptions: {
             headless: false,
         }
@@ -35,21 +37,25 @@ const hydraBot = require('../dist');
             console.log('info Browser: ', conn.text);
         }
 
+        // if (conn.statusFind === 'page') {
+        //     conn.page
+        // }
+
         // Was connected to whatsapp chat
         if (conn.connect) {
             // send a text message
             client = conn.client;
-            await client.sendMessage({
-                to: "0000000000@c.us",
-                body: "Oi eu sou um bot",
-                options: {
-                    type: 'text',
-                }
-            }).then((result) => {
-                console.log(result);
-            }).catch((error) => {
-                console.log(error);
-            });
+            // await client.sendMessage({
+            //     to: "0000000000@c.us",
+            //     body: "Oi eu sou um bot",
+            //     options: {
+            //         type: 'text',
+            //     }
+            // }).then((result) => {
+            //     console.log(result);
+            // }).catch((error) => {
+            //     console.log(error);
+            // });
 
         }
     });
@@ -60,11 +66,21 @@ const hydraBot = require('../dist');
         if (!newMsg.result.isSentByMe) {
             // message received!
             console.log('NewMessageReceived: ', newMsg.result);
+            // dowload files
+            if (newMsg.result.isMedia === true || newMsg.result.isMMS === true) {
+                const buffer = await client.decryptFile(newMsg.result);
+                // At this point you can do whatever you want with the buffer
+                // Most likely you want to write it into a file
+                const fileName = `some-file-name.${mime.extension(newMsg.result.mimetype)}`;
+                await fs.writeFile(fileName, buffer, (err) => {
+                    console.log(err);
+                });
+            }
         }
         // when is it sent
         if (!!newMsg.result.isSentByMe) {
             // Message sent
-            console.log('NewMessageSent: ', newMsg.result);
+            //console.log('NewMessageSent: ', newMsg.result);
         }
     });
 

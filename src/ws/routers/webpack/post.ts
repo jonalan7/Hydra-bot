@@ -35,10 +35,17 @@ const postRouters = (router: Express, option: CreateOptions | options) => {
     await InicializeRouters.sendImage(req, res, option);
   });
 
+  // Send disconnect
+  router.post('/disconnect', async (req: Request, res: Response) => {
+    await InicializeRouters.disconnect(req, res, option);
+  });
+
   // Route to test webhook
   router.post('/webhooktest', async (req: Request, res: Response) => {
     console.log('Webhooktest Return object ', req.body);
   });
+
+
 };
 
 export { postRouters };

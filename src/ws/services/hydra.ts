@@ -13,15 +13,17 @@ function sendParent(data: any) {
 async function Webhook(options: any, info: any) {
   if (!!options.url && options.url.length) {
     return new Promise(async (resolve, reject) => {
-      Object.assign(info, {token: options.token})
-      await axios
-        .post(options.url, info)
-        .then(function (response) {
-          resolve(response);
-        })
-        .catch((err) => {
-          reject(err);
-        });
+      if (info) {
+        Object.assign(info, { token: options.token });
+        await axios
+          .post(options.url, info)
+          .then(function (response) {
+            resolve(response);
+          })
+          .catch((err) => {
+            reject(err);
+          });
+      }
     });
   }
 }
@@ -39,11 +41,19 @@ async function Webhook(options: any, info: any) {
 
   ev.on(onMode.qrcode, (qrcode: InterfaceQrcode) => {
     Webhook(objOptions, qrcode);
+    sendParent({
+      base64Image: qrcode.base64Image,
+      session: objOptions.session,
+    });
   });
 
   ev.on(onMode.newOnAck, (ack: any) => {
     Webhook(objOptions, ack);
   });
+
+  ev.on(onMode.newMessage, (msg: any) => {
+    Webhook(objOptions, msg);
+  })
 
   ev.on(onMode.connection, async (conn: any) => {
     if (conn.erro) {
@@ -64,7 +74,12 @@ async function Webhook(options: any, info: any) {
       }
     }
 
-    if (conn.connect) {
+    if (conn?.statusFind === 'page') {
+      client = conn.page;
+      conn = null;
+    }
+
+    if (conn?.connect) {
       client = conn.client;
       conn = { connect: true, session: objOptions.session };
       sendParent(conn);
@@ -153,6 +168,16 @@ async function Webhook(options: any, info: any) {
         .catch((error: any) => {
           sendParent({ typeGet: 'getAllContacts', result: true, ...error });
         });
+    }
+
+    if (response.type === 'disconnect') {
+      try {
+        client.close();
+        sendParent({ typeSend: 'disconnect', result: true });
+        process.exit();
+      } catch {
+
+      }
     }
   });
 })();

@@ -49,4 +49,89 @@ export class InicializeGet {
       });
     }
   }
+
+  static async checkConnect(req: Request, res: Response, option: options) {
+    const $_HEADERS_USER = req.headers?.user;
+    const $_GET = req.params;
+    if (!!$_GET.name && $_GET.name.length) {
+      if (option.authentication) {
+        const user = await Users.CheckUserLogin(req);
+        if (user.erro) {
+          return res.send(user);
+        }
+      }
+      const check = await sessionClient.checkClient($_HEADERS_USER);
+      if (check) {
+        const getId = await sessionClient.getSessionId($_HEADERS_USER);
+        if (typeof getId === 'number') {
+          const client = await sessionClient.checkObjectSession(
+            $_HEADERS_USER,
+            'connect',
+            getId
+          );
+          if (client && InicializeRouters.inicialize) {
+            try {
+              return res.status(200).send({
+                erro: false,
+                connect: true,
+              });
+            } catch {}
+          } else {
+            return res.send({
+              erro: true,
+              connect: false,
+            });
+          }
+        }
+      } else {
+        return res.send({
+          erro: true,
+          text: 'Not connected',
+        });
+      }
+    } else {
+      return res.send({
+        erro: true,
+        text: 'The parameters are missing',
+      });
+    }
+  }
+
+  static async lastQrcode(req: Request, res: Response, option: options) {
+    const $_HEADERS_USER = req.headers?.user;
+
+    if (option.authentication) {
+      const user = await Users.CheckUserLogin(req);
+      if (user.erro) {
+        return res.send(user);
+      }
+    }
+    const check = await sessionClient.checkClient($_HEADERS_USER);
+    if (check) {
+      const getId = await sessionClient.getSessionId($_HEADERS_USER);
+      if (typeof getId === 'number') {
+        const imgBase64 = await sessionClient.checkObjectSession(
+          $_HEADERS_USER,
+          'base64Image',
+          getId
+        );
+        if (imgBase64) {
+          res.send({
+            erro: false,
+            base64Image: sessionClient.session[getId].base64Image,
+          });
+        } else {
+          res.send({
+            erro: true,
+            base64Image: '',
+          });
+        }
+      }
+    } else {
+      return res.send({
+        erro: true,
+        text: 'Not connected',
+      });
+    }
+  }
 }
