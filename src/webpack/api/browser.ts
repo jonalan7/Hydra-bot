@@ -18,14 +18,18 @@ export async function initBrowser(Browser: Browser): Promise<Page | boolean> {
         waitUntil: 'domcontentloaded',
       });
       wpage.on('pageerror', ({ message }) => {
-        const erroLog = message.includes('RegisterEffect is not a function');
-        if (erroLog) {
+        const erroLogType1 = message.includes(
+          'RegisterEffect is not a function'
+        );
+        const erroLogType2 = message.includes('[Report Only]');
+        if (erroLogType1 || erroLogType2) {
           wpage.evaluate(() => {
             localStorage.clear();
             window.location.reload();
           });
         }
       });
+      
       Browser.userAgent();
       return wpage;
     } catch {

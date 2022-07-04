@@ -6,3 +6,4 @@ export { base64MimeType } from './base64-mimetype';
 export { sleep } from './sleep';
 export { checkingCloses } from './checking-closes';
 export { filenameFromMimeType } from './filename-from-mimetype'; 
+export { makeOptions, magix } from './decrypt';

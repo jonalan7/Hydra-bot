@@ -74,6 +74,8 @@ If you want to work in free mode, using only the bot, dry the necessary informat
 ```javascript
 
 const hydraBot = require('hydra-bot');
+const mime = require('mime-types');
+const fs = require('fs');
 
 (async () => {
 
@@ -123,6 +125,16 @@ const hydraBot = require('hydra-bot');
         if (!newMsg.result.isSentByMe) {
             // message received!
             console.log('NewMessageReceived: ', newMsg.result);
+            // dowload files
+            if (newMsg.result.isMedia === true || newMsg.result.isMMS === true) {
+                const buffer = await client.decryptFile(newMsg.result);
+                // At this point you can do whatever you want with the buffer
+                // Most likely you want to write it into a file
+                const fileName = `some-file-name.${mime.extension(newMsg.result.mimetype)}`;
+                fs.writeFile(fileName, buffer, (err) => {
+                    console.log(err);
+                });
+            }
         }
         // when is it sent
         if (!!newMsg.result.isSentByMe) {
@@ -142,25 +154,43 @@ const hydraBot = require('hydra-bot');
 })();
 ```
 ## Downloading Files
-
 Puppeteer takes care of the file downloading. The decryption is being done as
 fast as possible (outruns native methods). Supports big files!
 
 ```javascript
-import fs = require('fs');
-import mime = require('mime-types');
+const hydraBot = require('hydra-bot');
+const fs = require('fs');
+const mime = require('mime-types');
 
-   ev.on('newMessage', async (newMsg) => {
-  if (message.isMedia === true || message.isMMS === true) {
-    const buffer = await client.decryptFile(message);
-    // At this point you can do whatever you want with the buffer
-    // Most likely you want to write it into a file
-    const fileName = `some-file-name.${mime.extension(message.mimetype)}`;
-    await fs.writeFile(fileName, buffer, (err) => {
-      ...
+(async () => {
+    let client;
+    // start bot service
+    const ev = await hydraBot.initServer();
+    // return connection information
+    ev.on('connection', async (conn) => {
+        // Was connected to whatsapp chat
+        if (conn.connect) {
+            client = conn.client;
+        }
     });
-  }
-});
+    ev.on('newMessage', async (newMsg) => {
+             // when is received
+            if (!newMsg.result.isSentByMe) {
+                // message received!
+                console.log('NewMessageReceived: ', newMsg.result);
+                // dowload files
+                if (newMsg.result.isMedia === true || newMsg.result.isMMS === true) {
+                    const buffer = await client.decryptFile(newMsg.result);
+                    // At this point you can do whatever you want with the buffer
+                    // Most likely you want to write it into a file
+                    const fileName = `some-file-name.${mime.extension(newMsg.result.mimetype)}`;
+                    fs.writeFile(fileName, buffer, (err) => {
+                        console.log(err);
+                    });
+                }
+            }
+    });
+})();
 ```
 ## Optional create parameters (the bot in raw form, without using a Web Services)
 ```javascript
@@ -292,9 +322,9 @@ if you want to receive a callback on a specific url, pass the url parameter in t
 
 ### Methods GET
 
-|Type| Route to browser         | Description                                                     | Body                                                         |
-|----| ----------------         | ----------------------------------------------------------------|--------------------------------------------------------------|
-|GET | `/get_all_contacts`      | Retrieve contacts                                               | `EMPTY`                                                      |
+| Type | Route to browser    | Description       | Body    |
+|------|---------------------|-------------------|---------|
+| GET  | `/get_all_contacts` | Retrieve contacts | `EMPTY` |
 
 ## Basic send options functions (more features still under development)
 You must be logged in to use these functions!

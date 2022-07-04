@@ -56,6 +56,7 @@
   "author": "Jonalan",
   "license": "ISC",
   "dependencies": {
+    "atob": "^2.1.2",
     "axios": "^0.27.2",
     "boxen": "^5.0.1",
     "chalk": "^4.0.0",
@@ -64,6 +65,7 @@
     "crypto-js": "^4.1.1",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
+    "futoin-hkdf": "^1.5.1",
     "knex": "^0.95.4",
     "latest-version": "^5.1.0",
     "mime-types": "^2.1.35",

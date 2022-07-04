@@ -1,11 +1,11 @@
 import { EventEmitter } from 'events';
 import { onMode } from '../../model/enum/';
 import { Page, Browser } from 'puppeteer';
-import { scraping } from './scraping.layes';
+import { Whatsapp } from './whatsapp';
 import { CreateOptions } from '../../model/interface';
 import { sleep } from '../../help';
 
-export class ListenerLayer extends scraping {
+export class ListenerLayer extends Whatsapp {
   constructor(
     public page: Page,
     public browser: Browser,
@@ -63,24 +63,15 @@ export class ListenerLayer extends scraping {
 
     await this.page
       .evaluate(() => {
-        if (!window.interfaceChange.exposed) {
-          window.API.interfaceChange((e: any) => {
-            window.interfaceChange(e);
-          });
-          window.interfaceChange.exposed = true;
-        }
-        if (!window.newMessage.exposed) {
-          window.API.newMessage((e: any) => {
-            window.newMessage(e);
-          });
-          window.newMessage.exposed = true;
-        }
-        if (!window.newOnAck.exposed) {
-          window.API.newOnAck((e: any) => {
-            window.newOnAck(e);
-          });
-          window.newOnAck.exposed = true;
-        }
+        window.API.interfaceChange((e: any) => {
+          window.interfaceChange(e);
+        });
+        window.API.newMessage((e: any) => {
+          window.newMessage(e);
+        });
+        window.API.newOnAck((e: any) => {
+          window.newOnAck(e);
+        });
       })
       .catch(() => {});
     this.listener(onMode.interfaceChange);

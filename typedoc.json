@@ -46,6 +46,10 @@
             "source": "./docs/getting-started/user.md"
           },
           {
+            "title": "Downloading Files",
+            "source": "./docs/getting-started/retrieving_data.md"
+          },
+          {
             "title": "Retrieving Data",
             "source": "./docs/getting-started/retrieving_data.md"
           }

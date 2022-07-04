@@ -4,7 +4,7 @@ import { Browser, Page } from 'puppeteer';
 import { webPack } from '../inject/webpack';
 import { CallbackOnStatus } from './layes/callback-on.layes';
 import { onMode } from '../model/enum';
-import { checkingCloses } from '../help';
+import { checkingCloses, sleep } from '../help';
 import { checkUpdates } from './check-up-to-date';
 
 const ev = new CallbackOnStatus();
@@ -68,6 +68,16 @@ export async function initServer(
 
       const page: boolean | Page = await initBrowser(wpage);
       if (typeof page !== 'boolean') {
+        ev.statusFind = {
+          erro: false,
+          page: page,
+          statusFind: 'page',
+          onType: onMode.connection,
+          session: mergeOptionsDefault.session,
+        };
+
+        await sleep(100);
+
         ev.statusFind = {
           erro: false,
           text: 'Website accessed successfully',
