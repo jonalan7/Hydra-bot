@@ -14,6 +14,7 @@ export async function initBrowser(Browser: Browser): Promise<Page | boolean> {
   if (wpage) {
     try {
       await wpage.setUserAgent(puppeteerConfig.useragentOverride);
+      await wpage.setCacheEnabled(true);
       await wpage.goto(puppeteerConfig.whatsappUrl, {
         waitUntil: 'domcontentloaded',
       });

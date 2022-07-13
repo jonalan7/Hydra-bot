@@ -18,7 +18,8 @@ import {
     sendExist,
     checkNumberStatus,
     isMD,
-    sendCheckType
+    sendCheckType,
+    addChatWapi
 } from './functions/help';
 
 import {
@@ -77,6 +78,7 @@ if (typeof window.API === 'undefined') {
     window.API.encryptAndUploadFile = encryptAndUploadFile;
     window.API.getFileHash = getFileHash;
     window.API.sendCheckType = sendCheckType;
+    window.API.addChatWapi = addChatWapi;
 
     // Functions
     window.API.sendMessage = sendMessage;

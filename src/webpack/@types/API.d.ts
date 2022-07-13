@@ -4,6 +4,7 @@ interface API {
   newMessage: (callback: Function) => void;
   newOnAck: (callback: Function) => void; 
   getAllContacts: () => void;
+  addChatWapi: () => void;
 }
 
 declare global {

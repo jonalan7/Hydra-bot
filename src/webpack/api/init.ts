@@ -108,6 +108,7 @@ export async function initServer(
               interFace.result.mode === 'MAIN' &&
               interFace.result.info === 'NORMAL'
             ) {
+              client.addChatWapi();
               ev.statusFind = {
                 erro: false,
                 connect: true,

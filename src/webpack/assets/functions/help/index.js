@@ -6,3 +6,4 @@ export { sendExist } from './send-exist';
 export { checkNumberStatus } from './check-number-status';
 export { sendCheckType } from './send-check-type';
 export { isMD } from './is-md'; 
+export { addChatWapi } from './add-chat-wapi';
