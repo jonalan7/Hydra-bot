@@ -1,3 +1,18 @@
+## [1.0.23](https://github.com/jonalan7/Hydra-bot/compare/v1.0.22...v1.0.23) (2022-07-13)
+
+
+### Bug Fixes
+
+* checkNumberMD ([b384162](https://github.com/jonalan7/Hydra-bot/commit/b3841624a81e28216c8c1892c019eed760ae932c))
+* decryptFile ([bddfb35](https://github.com/jonalan7/Hydra-bot/commit/bddfb35a59bcb827c3cbbf93ce675f74bb819416))
+
+
+### Features
+
+* Get Chat Module ([a1701a2](https://github.com/jonalan7/Hydra-bot/commit/a1701a2447ea4eba91c8912f5a1d0d1e94cc0cd9))
+
+
+
 ## [1.0.22](https://github.com/jonalan7/Hydra-bot/compare/v1.0.21...v1.0.22) (2022-07-04)
 
 
