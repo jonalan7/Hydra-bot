@@ -1,9 +1,9 @@
 import latestVersion from 'latest-version';
 import { upToDate } from '../utils/semver';
 import boxen from 'boxen';
+import chalk from 'chalk';
+import { version } from '../../../package.json';
 
-const { version } = require('../../../package.json');
-const chalk = require('chalk');
 
 let updatesChecked = false;
 
@@ -19,7 +19,7 @@ async function checkVenomVersion() {
   try {
     await latestVersion('hydra-bot').then((latest) => {
       if (upToDate(version, latest)) {
-        console.log("You're up to date");
+        console.log(chalk.red("You're up to date 🎉🎉🎉"));
       } else {
         console.log('There is a new version available');
         logUpdateAvailable(version, latest);
