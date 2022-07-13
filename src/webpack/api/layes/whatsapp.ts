@@ -19,7 +19,7 @@ export class Whatsapp extends scraping {
    * @param message Message object
    * @returns Decrypted file buffer (null otherwise)
    */
-   public async decryptFile(message:any) {
+  public async decryptFile(message: any) {
     const options = makeOptions(puppeteerConfig.useragentOverride);
     message.clientUrl =
       message.clientUrl !== undefined
@@ -48,7 +48,18 @@ export class Whatsapp extends scraping {
       throw 'Error trying to download the file.';
     }
     const buff = Buffer.from(res.data, 'binary');
-    return magix(buff, message.mediaKey, message.type.toUpperCase(), message.size);
+    return magix(
+      buff,
+      message.mediaKey,
+      message.type.toUpperCase(),
+      message.size
+    );
   }
-    
+
+  /**
+   * Add chat function
+   */
+  public async addChatWapi() {
+    await this.page.evaluate(() => API.addChatWapi());
+  }
 }
