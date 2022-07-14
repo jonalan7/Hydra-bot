@@ -5,6 +5,9 @@ import {
   interfaceChange,
   InterfaceQrcode,
 } from '../../index';
+import mime from 'mime-types';
+import fs from 'fs';
+import * as path from 'path';
 
 function sendParent(data: any) {
   process.send && process.send(data);
@@ -51,9 +54,30 @@ async function Webhook(options: any, info: any) {
     Webhook(objOptions, ack);
   });
 
-  ev.on(onMode.newMessage, (msg: any) => {
+  ev.on(onMode.newMessage, async (msg: any) => {
+    if (!msg.result.isSentByMe) {
+      if (msg.result.isMedia === true || msg.result.isMMS === true) {
+        const buffer = await client.decryptFile(msg.result);
+        const folder: string = path.join(path.resolve(process.cwd(), 'files'));
+        if (!fs.existsSync(folder)) {
+          fs.mkdirSync(folder, {
+            recursive: true,
+          });
+        }
+        fs.chmodSync(folder, '777');
+        const fileConcat = `${msg.result.id}.${mime.extension(
+          msg.result.mimetype
+        )}`;
+        fs.writeFile(folder + '/' + fileConcat, buffer, (e) => {
+          if (e) {
+            console.log(e);
+          }
+        });
+        Object.assign(msg.result, { fileUrl: fileConcat });
+      }
+    }
     Webhook(objOptions, msg);
-  })
+  });
 
   ev.on(onMode.connection, async (conn: any) => {
     if (conn.erro) {
@@ -175,9 +199,7 @@ async function Webhook(options: any, info: any) {
         client.close();
         sendParent({ typeSend: 'disconnect', result: true });
         process.exit();
-      } catch {
-
-      }
+      } catch {}
     }
   });
 })();

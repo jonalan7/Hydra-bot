@@ -8,7 +8,7 @@
     "clear": "shx rm -rf dist",
     "build:hydra": "tsc",
     "build:api": "cd src/webpack/assets && webpack",
-    "build": "npm run gulp:copyall && npm run build:api && tsc",
+    "build": "tsc && npm run gulp:copyall && npm run build:api ",
     "build:docs": "typedoc && git add docs/*",
     "start:tsc": "tsc && node bot-test/index.js",
     "start": "npm run build && node bot-test/index.js",

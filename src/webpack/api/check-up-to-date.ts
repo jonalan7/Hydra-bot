@@ -2,7 +2,7 @@ import latestVersion from 'latest-version';
 import { upToDate } from '../utils/semver';
 import boxen from 'boxen';
 import chalk from 'chalk';
-import { version } from '../../../package.json';
+const { version }  = require('../../../package.json');
 
 
 let updatesChecked = false;
