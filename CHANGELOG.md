@@ -1,3 +1,14 @@
+## [1.0.24](https://github.com/jonalan7/Hydra-bot/compare/v1.0.23...v1.0.24) (2022-07-14)
+
+
+### Features
+
+* download file and view ([be3be5b](https://github.com/jonalan7/Hydra-bot/commit/be3be5baa3e0c27938a7eb5e35436befdf9cc915))
+* knex update ([9fbd4a8](https://github.com/jonalan7/Hydra-bot/commit/9fbd4a848a171de1b964c3f3a86493987b9e743f))
+* update chalk ([f8ff92b](https://github.com/jonalan7/Hydra-bot/commit/f8ff92bc30df480d5bf619702d2e9e3b05759379))
+
+
+
 ## [1.0.23](https://github.com/jonalan7/Hydra-bot/compare/v1.0.22...v1.0.23) (2022-07-13)
 
 
