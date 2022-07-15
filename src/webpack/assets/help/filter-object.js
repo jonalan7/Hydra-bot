@@ -100,4 +100,11 @@ export const filterObjects = [{
         type: 'CheckWid',
         when: (module) => (module.validateWid ? module : null),
     },
+    {
+        type: 'Participants',
+        when: (module) =>
+            module.addParticipants && module.promoteCommunityParticipants ?
+            module :
+            null,
+    },
 ];

@@ -35,4 +35,28 @@ export class GroupLayer extends ListenerLayer {
       }
     });
   }
+
+  /**
+   * Adds participant to Group
+   * @param groupId Chat id ('0000000000-00000000@g.us')
+   * @param contacts Participants id '000000000000@c.us'
+   */
+  public async addParticipant(
+    groupId: string,
+    contacts: string | string[]
+  ): Promise<any> {
+    return new Promise(async (resolve, reject) => {
+      const result = await this.page
+        .evaluate(
+          ({ groupId, contacts }) => API.addParticipant(groupId, contacts),
+          { groupId, contacts }
+        )
+        .catch();
+      if (result.erro == true) {
+        return reject(result);
+      } else {
+        return resolve(result);
+      }
+    });
+  }
 }

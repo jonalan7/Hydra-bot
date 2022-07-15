@@ -27,6 +27,7 @@ import {
     baseSendMessage,
     getAllContacts,
     createGroup,
+    addParticipant
 } from './functions';
 
 import {
@@ -87,6 +88,8 @@ if (typeof window.API === 'undefined') {
 
     // Group
     window.API.createGroup = createGroup;
+    window.API.addParticipant = addParticipant;
+
     // Serialize
     window.API.serializeMessageObj = serializeMessageObj;
     window.API.serializeChatObj = serializeChatObj;

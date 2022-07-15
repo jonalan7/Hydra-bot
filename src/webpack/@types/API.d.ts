@@ -2,10 +2,14 @@ interface API {
   sendMessage: (to: string, body: String, options: object) => Promise<any>;
   interfaceChange: (callback: Function) => void;
   newMessage: (callback: Function) => void;
-  newOnAck: (callback: Function) => void; 
+  newOnAck: (callback: Function) => void;
   getAllContacts: () => void;
   addChatWapi: () => void;
   createGroup: (groupName: string, contacts: string | string[]) => Promise<any>;
+  addParticipant: (
+    groupId: string,
+    contacts: string | string[]
+  ) => Promise<any>;
 }
 
 declare global {
@@ -20,4 +24,3 @@ declare global {
 }
 
 export {};
-
