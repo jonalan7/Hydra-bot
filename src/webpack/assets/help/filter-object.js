@@ -90,4 +90,8 @@ export const filterObjects = [{
         when: (module) =>
             module.default && module.default.createFromData ? module : null,
     },
+    {
+        type: 'CheckWid',
+        when: (module) => (module.validateWid ? module : null),
+    },
 ];

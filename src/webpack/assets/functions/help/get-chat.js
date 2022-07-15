@@ -6,10 +6,12 @@ export function getChat(chatId) {
     let found = window.Store.Chat.get(chatId);
 
     if (!found) {
-        const ConstructChat = new window.Store.UserConstructor(chatId, {
-            intentionallyUsePrivateConstructor: !0,
-        });
-        found = window.Store.Chat.find(ConstructChat) || false;
+        if (Store.CheckWid.validateWid(chatId)) {
+            const ConstructChat = new window.Store.UserConstructor(chatId, {
+                intentionallyUsePrivateConstructor: !0,
+            });
+            found = window.Store.Chat.find(ConstructChat) || false;
+        }
     }
 
     return found;

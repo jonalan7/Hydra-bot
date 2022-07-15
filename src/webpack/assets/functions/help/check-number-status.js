@@ -23,34 +23,42 @@ export async function checkNumberStatus(id, conn = false) {
         throw err;
       }
     }
+    
     const lid = await API.getChat(id);
-    return await Store.checkNumberMD
-      .queryExists(lid.id)
-      .then((result) => {
-        if (!!result && typeof result === 'object') {
-          const data = {
-            status: 200,
-            numberExists: true,
-            id: result.wid,
-          };
-          return data;
-        }
-        throw Object.assign(err, {
-          connection: connection,
-          numberExists: false,
-          text: `The number does not exist`,
+    if (lid) {
+      return await Store.checkNumberMD
+        .queryExists(lid.id)
+        .then((result) => {
+          if (!!result && typeof result === 'object') {
+            const data = {
+              status: 200,
+              numberExists: true,
+              id: result.wid,
+            };
+            return data;
+          }
+          throw Object.assign(err, {
+            connection: connection,
+            numberExists: false,
+            text: `The number does not exist`,
+          });
+        })
+        .catch((err) => {
+          if (err.text) {
+            throw err;
+          }
+          throw Object.assign(err, {
+            connection: connection,
+            numberExists: false,
+            text: err,
+          });
         });
-      })
-      .catch((err) => {
-        if (err.text) {
-          throw err;
-        }
-        throw Object.assign(err, {
-          connection: connection,
-          numberExists: false,
-          text: err,
-        });
+    } else {
+      throw Object.assign(err, {
+        connection: connection,
+        numberExists: false,
       });
+    }
 
   } catch (e) {
     return {
