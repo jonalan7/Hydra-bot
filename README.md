@@ -409,7 +409,7 @@ await client.sendMessage({
 
 ```javascript
 // Sends a text message to given chat
-await clinet.sendText("0000000000@c.us", "A message sent by hydra-bot")
+await client.sendText("0000000000@c.us", "A message sent by hydra-bot")
 .then((result) => {
     console.log(result); // message result
 }).catch((error) => {
@@ -417,7 +417,7 @@ await clinet.sendText("0000000000@c.us", "A message sent by hydra-bot")
 });
 
 // Sends file from path
-await clinet.sendFile("0000000000@c.us", './file.pdf', { filename: 'filename' })
+await client.sendFile("0000000000@c.us", './file.pdf', { filename: 'filename' })
 .then((result) => {
     console.log(result); // message result
 }).catch((error) => {
@@ -425,7 +425,7 @@ await clinet.sendFile("0000000000@c.us", './file.pdf', { filename: 'filename' })
 });
 
 // Send audio file
-await clinet.sendAudio("0000000000@c.us", './file.mp3')
+await client.sendAudio("0000000000@c.us", './file.mp3')
 .then((result) => {
     console.log(result); // message result
 }).catch((error) => {
@@ -433,7 +433,7 @@ await clinet.sendAudio("0000000000@c.us", './file.mp3')
 });
 
 // Send audio base64
-await clinet.sendAudioBase64("0000000000@c.us", base64MP3)
+await client.sendAudioBase64("0000000000@c.us", base64MP3)
 .then((result) => {
     console.log(result); // message result
 }).catch((error) => {
@@ -441,7 +441,35 @@ await clinet.sendAudioBase64("0000000000@c.us", base64MP3)
 });
 
 // Send image message
-await clinet.sendImage("0000000000@c.us", './file.jpg')
+await client.sendImage("0000000000@c.us", './file.jpg')
+.then((result) => {
+    console.log(result); // message result
+}).catch((error) => {
+    console.log(error); // message error
+});
+```
+
+## Retrieving Data
+
+```javascript
+
+// returns a list of contacts
+const contacts = await client.getAllContacts();
+
+```
+
+## Retrieving Data
+
+```javascript
+// Create group
+await client.createGroup('Group name',  ['111111111111@c.us', '222222222222@c.us'])
+.then((result) => {
+    console.log(result); // message result
+}).catch((error) => {
+    console.log(error); // message error
+});
+
+await client.addParticipant('00000000-000000@g.us',  ['111111111111@c.us', '222222222222@c.us'])
 .then((result) => {
     console.log(result); // message result
 }).catch((error) => {
@@ -449,16 +477,9 @@ await clinet.sendImage("0000000000@c.us", './file.jpg')
 });
 
 ```
-## Retrieving Data
 
-```javascript
 
-// returns a list of contacts
-const contacts = await clinet.getAllContacts();
-
-```
-
-### Debugging
+### Debugging 
 
 Building the hydra-bot is very simple
 
@@ -475,3 +496,13 @@ run a test inside the project
 ```bash
 > npm start
 ```
+
+## Maintainers
+
+Maintainers are needed, I cannot keep with all the updates by myself. If you are
+interested please open a Pull Request.
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to
+discuss what you would like to change.

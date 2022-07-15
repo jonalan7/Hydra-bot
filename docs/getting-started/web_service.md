@@ -10,7 +10,7 @@ const hydraBot = require('hydra-bot');
 ```
 
 ### Commands for administration via terminal
-[Example terminal admin](admin.html)
+[Example terminal admin](web_service/admin.html)
 
 ### Using the Client Webhook
-[Example terminal admin](user.html)
+[Example terminal admin](web_service/user.html)

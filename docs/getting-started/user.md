@@ -15,6 +15,9 @@ The headers must be parameterized as :
     "user_pass" : "user"
 }
 ```
+## Summary
+ - [Methods POST](#methods-post)
+ - [Methods GET](#methods-get)
 
 # Using Webhook
 

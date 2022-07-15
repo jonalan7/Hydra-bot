@@ -23,35 +23,52 @@
           },
           {
             "title": "Web service",
-            "source": "./docs/getting-started/web_service.md"
+            "source": "./docs/getting-started/web_service.md",
+            "children": [
+              {
+                "title": "Administration",
+                "source": "./docs/getting-started/admin.md"
+              },
+              {
+                "title": "User Routers",
+                "source": "./docs/getting-started/user.md"
+              }
+            ]
           },
           {
             "title": "Start Bot",
             "source": "./docs/getting-started/start_bot.md"
-          },
+          }
+        ]
+      },
+      {
+        "title": "How To",
+        "pages": [
           {
-            "title": "Send Options Functions",
+            "title": "Send Messages Options",
             "source": "./docs/getting-started/send_options.md"
           },
           {
-            "title": "Send functions",
+            "title": "Send Messages",
             "source": "./docs/getting-started/send_functions.md"
           },
+    
           {
-            "title": "Administration",
-            "source": "./docs/getting-started/admin.md"
-          },
+            "title": "Retrieving Data",
+            "source": "./docs/getting-started/retrieving_data.md"
+          }
+        ]
+      },
+      {
+        "title": "Management",
+        "pages": [
           {
-            "title": "User Routers",
-            "source": "./docs/getting-started/user.md"
+            "title": "Group Management",
+            "source": "./docs/getting-started/group_functions.md"
           },
           {
             "title": "Downloading Files",
             "source": "./docs/getting-started/downloading_files.md"
-          },
-          {
-            "title": "Retrieving Data",
-            "source": "./docs/getting-started/retrieving_data.md"
           }
         ]
       }

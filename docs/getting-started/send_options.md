@@ -2,16 +2,16 @@
 
 ##### Here, `to` can be `<phone Number>@c.us` or `<phone Number>-<groupId>@g.us`
 
-[to use these functions it is necessary to initialize the bot, click and learn more.](https://jonalan7.github.io/Hydra-bot/pages/Getting%20Started/start_bot.html)
+[to use these functions it is necessary to initialize the bot, click and learn more.](../Getting%20Started/start_bot.html)
 
 you can send messages only using one function!
 
 ## Summary
-- [sendText](#sendtext)
-- [sendFile](#sendfile)
-- [sendAudio](#sendaudio)
-- [sendAudioBase64](#sendaudiobase64)
-- [sendImage](#sendImage)
+ - [sendText](#sendtext)
+ - [sendFile](#sendfile)
+ - [sendAudio](#sendaudio)
+ - [sendAudioBase64](#sendaudiobase64)
+ - [sendImage](#sendimage)
 
 
 ### sendText
