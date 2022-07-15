@@ -6,7 +6,9 @@ export async function sendExist(chatId, returnChat = true, Send = true) {
 
     let ck = await window.API.checkNumberStatus(chatId, false);
     if (
-        ck.status === 404 ||
+        ck.status === 404 &&
+        !chatId.includes('@g.us') &&
+        !chatId.includes('@broadcast') ||
         ck &&
         ck.text &&
         typeof ck.text.includes === 'function' &&

@@ -1,8 +1,8 @@
-import { ListenerLayer } from './listener.layes';
+import { GroupLayer } from './group.layer';
 import { Page, Browser } from 'puppeteer';
 import { CreateOptions } from '../../model/interface';
 
-export class RetrieverLayer extends ListenerLayer {
+export class RetrieverLayer extends GroupLayer {
   constructor(
     public page: Page,
     public browser: Browser,

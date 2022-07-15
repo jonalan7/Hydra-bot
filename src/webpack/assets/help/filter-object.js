@@ -91,6 +91,12 @@ export const filterObjects = [{
             module.default && module.default.createFromData ? module : null,
     },
     {
+        type: 'createGroup',
+        when: (module) =>
+            module.createGroup && module.sendForNeededAddRequest ?
+            module.createGroup : null,
+    },
+    {
         type: 'CheckWid',
         when: (module) => (module.validateWid ? module : null),
     },

@@ -5,6 +5,7 @@ interface API {
   newOnAck: (callback: Function) => void; 
   getAllContacts: () => void;
   addChatWapi: () => void;
+  createGroup: (groupName: string, contacts: string | string[]) => Promise<any>;
 }
 
 declare global {
