@@ -48,13 +48,13 @@ export function sendCheckType(chatId = undefined) {
         if (
             grup === chatId.substr(-grup.length, grup.length) &&
             ((chatId.match(/(@g.us)/g) && chatId.match(/(@g.us)/g).length > 1) ||
-                !chatId.match(/^\d+(-)+(\d)*@g.us$/g))
+                !chatId.match(/^(\d+(-)+(\d)|\d+(\d))*@g.us$/g))
         ) {
             return API.scope(
                 chatId,
                 true,
                 404,
-                'incorrect parameters! Use as an example: 00000000-000000@g.us'
+                'incorrect parameters! Use as an example: 00000000-000000@g.us or 00000000000000@g.us'
             );
         }
     }

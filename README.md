@@ -332,7 +332,7 @@ if you want to receive a callback on a specific url, pass the url parameter in t
 
 ## Basic send options functions (more features still under development)
 You must be logged in to use these functions!
-##### Here, `to` can be `<phone Number>@c.us` or `<phone Number>-<groupId>@g.us`
+##### Here, `to` can be `<phone Number>@c.us` or `<phone Number>-<groupId>@g.us` or `<phone Number><groupId>@g.us`
 
 you can send messages only using one function!
 

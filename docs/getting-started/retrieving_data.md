@@ -2,12 +2,11 @@
 data reception functions
 
 ## Summary
-
-- [getAllContacts](#getallcontacts)
+ - [getAllContacts](#getallcontacts)
 
 ### getAllContacts
 
 Returns a list of contacts
 ```javascript
-const contacts = await clinet.getAllContacts();
+const contacts = await client.getAllContacts();
 ```
