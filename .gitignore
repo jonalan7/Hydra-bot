@@ -6,3 +6,5 @@ token
 *.tgz
 dist.zip
 api-docs
+files
+docs
