@@ -6,11 +6,12 @@ export const injectParasiteSnake = async () => {
     window[injectConfig.webpack].push([
         [injectConfig.parasite],
         {},
-        async function (o) {
+        async function (e) {
             const modules = []; // modules whatsapp array
-            for (let idx in o.m) {
-                modules.push(o(idx));
-            }
+            Object.keys(e.m).forEach(function (mod) {
+                modules[mod] = e(mod);
+            });
+
             let found = 0;
             for (let i in modules) {
                 if (typeof modules[i] === 'object' && modules[i] !== null) {
@@ -36,7 +37,6 @@ export const injectParasiteSnake = async () => {
                     }
                 }
             });
-
 
             const module = (filterObjects.filter((e) => e.type === "Module"))[0].yesModule;
             Object.keys(module).forEach((key) => {
