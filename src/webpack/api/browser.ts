@@ -65,7 +65,8 @@ export function PathSession(options: CreateOptions) {
   );
 
   fs.chmodSync(folderNameToken, '777');
-
+  fs.chmodSync(pathSession, '777');
+  
   if (options && options.puppeteerOptions) {
     options.puppeteerOptions.userDataDir = pathSession;
   }

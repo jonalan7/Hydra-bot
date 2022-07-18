@@ -18,7 +18,9 @@ export class ListenerLayer extends Whatsapp {
 
   public async qrCodeScan() {
     this.startAutoClose();
-    await this.page.waitForFunction(`document.querySelector('canvas')`).catch();
+    await this.page
+      .waitForFunction(`document.querySelector('canvas')`)
+      .catch(() => undefined);
     while (true) {
       const result = await this.qrCode().catch();
       if (!result?.urlCode) {
@@ -35,10 +37,10 @@ export class ListenerLayer extends Whatsapp {
         };
         const qr = await this.asciiQr(this.urlCode).catch(() => undefined);
         if (this.options.printQRInTerminal) {
-         console.log(qr);
+          console.log(qr);
         }
       }
-      await sleep(100);
+      await sleep(100)?.catch(() => undefined);
     }
   }
 

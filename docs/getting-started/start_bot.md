@@ -63,10 +63,10 @@ const hydraBot = require('hydra-bot');
 
     // returns the status of each message
     ev.on('newOnAck', async (event) => {
-        console.log('id Message: ', event.id._serialized); // message id  
-        console.log('Status Message: ', event.ack); // -7 = MD_DOWNGRADE, -6 = INACTIVE, -5 = CONTENT_UNUPLOADABLE, -4 = CONTENT_TOO_BIG, -3 = CONTENT_GONE, -2 = EXPIRED, -1 = FAILED, 0 = CLOCK, 1 = SENT, 2 = RECEIVED, 3 = READ, 4 = PLAYED
-        console.log('From Message: ', event.from); // from message
-        console.log('To Message: ', event.to); // to message
+        console.log('id Message: ', event.result.id._serialized); // message id  
+        console.log('Status Message: ', event.result.ack); // -7 = MD_DOWNGRADE, -6 = INACTIVE, -5 = CONTENT_UNUPLOADABLE, -4 = CONTENT_TOO_BIG, -3 = CONTENT_GONE, -2 = EXPIRED, -1 = FAILED, 0 = CLOCK, 1 = SENT, 2 = RECEIVED, 3 = READ, 4 = PLAYED
+        console.log('From Message: ', event.result.from); // from message
+        console.log('To Message: ', event.result.to); // to message
     });
 
 })();
