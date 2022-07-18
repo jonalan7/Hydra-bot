@@ -6,6 +6,7 @@ import { CreateOptions } from '../../model/interface';
 import { sleep } from '../../help';
 
 export class ListenerLayer extends Whatsapp {
+  urlCode = '';
   constructor(
     public page: Page,
     public browser: Browser,
@@ -16,14 +17,15 @@ export class ListenerLayer extends Whatsapp {
   }
 
   public async qrCodeScan() {
-    let urlCode = null;
     this.startAutoClose();
+    await this.page.waitForFunction(`document.querySelector('canvas')`).catch();
     while (true) {
       const result = await this.qrCode().catch();
       if (!result?.urlCode) {
         break;
       }
-      if (urlCode !== result.urlCode) {
+      if (this.urlCode !== result.urlCode) {
+        this.urlCode = result.urlCode;
         this.ev.statusFind = {
           erro: false,
           qrcode: result.urlCode,
@@ -31,11 +33,9 @@ export class ListenerLayer extends Whatsapp {
           onType: onMode.qrcode,
           session: this.options.session,
         };
-
-        urlCode = result.urlCode;
-        const qr = await this.asciiQr(urlCode).catch(() => undefined);
+        const qr = await this.asciiQr(this.urlCode).catch(() => undefined);
         if (this.options.printQRInTerminal) {
-          console.log(qr);
+         console.log(qr);
         }
       }
       await sleep(100);
