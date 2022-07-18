@@ -1,3 +1,21 @@
+## [1.0.25](https://github.com/jonalan7/Hydra-bot/compare/v1.0.24...v1.0.25) (2022-07-18)
+
+
+### Bug Fixes
+
+* just a qrcode ([3e83767](https://github.com/jonalan7/Hydra-bot/commit/3e83767078e65b5ffad5c9aa57ed1f7a9681c783))
+* pathSession and docs ([d076960](https://github.com/jonalan7/Hydra-bot/commit/d07696069456cefb36cd97a9650eb2ea7abb955c))
+* validateWid ([623f7f5](https://github.com/jonalan7/Hydra-bot/commit/623f7f53bb906fc1c29a2457c4aabac7b8094117))
+* whatsapp startup error ([1ea876c](https://github.com/jonalan7/Hydra-bot/commit/1ea876c9a77916d0a343ba0104a39e1dec25c68f))
+
+
+### Features
+
+* addParticipant ([ac87235](https://github.com/jonalan7/Hydra-bot/commit/ac872351d2185d83b0e88eb595af79d3de6b2de2))
+* createGroup ([37858be](https://github.com/jonalan7/Hydra-bot/commit/37858be8d4b413a0a40cbd7d00cd190d8379cd46))
+
+
+
 ## [1.0.24](https://github.com/jonalan7/Hydra-bot/compare/v1.0.23...v1.0.24) (2022-07-14)
 
 
