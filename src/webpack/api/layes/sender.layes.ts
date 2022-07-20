@@ -1,5 +1,5 @@
 import { Page, Browser } from 'puppeteer';
-import { sendOptions } from '../../model/interface';
+import { sendOptions, InterfaceScope } from '../../model/interface';
 import { RetrieverLayer } from './retriever.layer';
 import { CreateOptions } from '../../model/interface';
 import { base64MimeType } from '../../help';
@@ -267,7 +267,7 @@ export class SenderLayer extends RetrieverLayer {
    * Send messages
    * @param sendOptions Send options
    */
-  public async sendMessage(sendOptions: sendOptions): Promise<any> {
+  public async sendMessage(sendOptions: sendOptions): Promise<InterfaceScope> {
     return new Promise(async (resolve, reject) => {
       const to: any = sendOptions.to,
         body: any = sendOptions.body,

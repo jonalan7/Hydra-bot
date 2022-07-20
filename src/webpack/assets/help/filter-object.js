@@ -97,6 +97,10 @@ export const filterObjects = [{
             module.createGroup : null,
     },
     {
+        type: 'GroupDesc',
+        when: (module) => (module.setGroupDesc ? module : null),
+    },
+    {
         type: 'CheckWid',
         when: (module) => (module.validateWid ? module : null),
     },
@@ -104,7 +108,6 @@ export const filterObjects = [{
         type: 'Participants',
         when: (module) =>
             module.addParticipants && module.promoteCommunityParticipants ?
-            module :
-            null,
+            module : null,
     },
 ];

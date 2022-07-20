@@ -7,7 +7,7 @@ import {
     generateMediaKey,
     arrayBufferToBase64,
     encryptAndUploadFile,
-    getFileHash
+    getFileHash,
 } from './help';
 
 import {
@@ -19,7 +19,7 @@ import {
     checkNumberStatus,
     isMD,
     sendCheckType,
-    addChatWapi
+    addChatWapi,
 } from './functions/help';
 
 import {
@@ -27,7 +27,8 @@ import {
     baseSendMessage,
     getAllContacts,
     createGroup,
-    addParticipant
+    addParticipant,
+    setGroupDescription
 } from './functions';
 
 import {
@@ -89,6 +90,7 @@ if (typeof window.API === 'undefined') {
     // Group
     window.API.createGroup = createGroup;
     window.API.addParticipant = addParticipant;
+    window.API.setGroupDescription = setGroupDescription;
 
     // Serialize
     window.API.serializeMessageObj = serializeMessageObj;

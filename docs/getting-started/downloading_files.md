@@ -29,7 +29,9 @@ const mime = require('mime-types');
                     // Most likely you want to write it into a file
                     const fileName = `some-file-name.${mime.extension(newMsg.result.mimetype)}`;
                     fs.writeFile(fileName, buffer, (err) => {
-                        console.log(err);
+                        if (err) {
+                         console.log(err);
+                        }
                     });
                 }
             }
