@@ -1,3 +1,17 @@
+## [1.0.26](https://github.com/jonalan7/Hydra-bot/compare/v1.0.25...v1.0.26) (2022-07-20)
+
+
+### Bug Fixes
+
+* resolve sendMessage ([01b09d3](https://github.com/jonalan7/Hydra-bot/commit/01b09d301787169814d0c63f606783add98b3358))
+
+
+### Features
+
+* setGroupDescription and docs ([4139feb](https://github.com/jonalan7/Hydra-bot/commit/4139feb158152cabf89286fbf374859862af401f))
+
+
+
 ## [1.0.25](https://github.com/jonalan7/Hydra-bot/compare/v1.0.24...v1.0.25) (2022-07-18)
 
 
