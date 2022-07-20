@@ -30,7 +30,7 @@ export async function initBrowser(Browser: Browser): Promise<Page | boolean> {
           });
         }
       });
-      
+
       Browser.userAgent();
       return wpage;
     } catch {
@@ -64,9 +64,15 @@ export function PathSession(options: CreateOptions) {
     )
   );
 
+  if (!fs.existsSync(pathSession)) {
+    fs.mkdirSync(pathSession, {
+      recursive: true,
+    });
+  }
+
   fs.chmodSync(folderNameToken, '777');
   fs.chmodSync(pathSession, '777');
-  
+
   if (options && options.puppeteerOptions) {
     options.puppeteerOptions.userDataDir = pathSession;
   }
