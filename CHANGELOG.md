@@ -1,3 +1,7 @@
+## [1.0.26-nightly.0](https://github.com/jonalan7/Hydra-bot/compare/v1.0.26-nightly...v1.0.26-nightly.0) (2022-07-20)
+
+
+
 ## [1.0.26-nightly](https://github.com/jonalan7/Hydra-bot/compare/v1.0.26...v1.0.26-nightly) (2022-07-20)
 
 
