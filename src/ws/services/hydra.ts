@@ -57,23 +57,29 @@ async function Webhook(options: any, info: any) {
   ev.on(onMode.newMessage, async (msg: any) => {
     if (!msg.result.isSentByMe) {
       if (msg.result.isMedia === true || msg.result.isMMS === true) {
-        const buffer = await client.decryptFile(msg.result);
-        const folder: string = path.join(path.resolve(process.cwd(), 'files'));
-        if (!fs.existsSync(folder)) {
-          fs.mkdirSync(folder, {
-            recursive: true,
-          });
-        }
-        fs.chmodSync(folder, '777');
-        const fileConcat = `${msg.result.id}.${mime.extension(
-          msg.result.mimetype
-        )}`;
-        fs.writeFile(folder + '/' + fileConcat, buffer, (e) => {
-          if (e) {
-            console.log(e);
+        try {
+          const buffer = await client.decryptFile(msg.result);
+          const folder: string = path.join(
+            path.resolve(process.cwd(), 'files')
+          );
+          if (!fs.existsSync(folder)) {
+            fs.mkdirSync(folder, {
+              recursive: true,
+            });
           }
-        });
-        Object.assign(msg.result, { fileUrl: fileConcat });
+          fs.chmodSync(folder, '777');
+          const fileConcat = `${msg.result.id}.${mime.extension(
+            msg.result.mimetype
+          )}`;
+          fs.writeFile(folder + '/' + fileConcat, buffer, (e) => {
+            if (e) {
+              console.log(e);
+            }
+          });
+          Object.assign(msg.result, { fileUrl: fileConcat });
+        } catch (error) {
+          console.log(error);
+        }
       }
     }
     Webhook(objOptions, msg);
@@ -199,7 +205,11 @@ async function Webhook(options: any, info: any) {
         client.close();
         sendParent({ typeSend: 'disconnect', result: true });
         process.exit();
-      } catch {}
+      } catch (e) {
+        console.log(e);
+        sendParent({ typeSend: 'disconnect', result: true });
+        process.exit();
+      }
     }
   });
 })();
