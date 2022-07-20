@@ -470,7 +470,7 @@ await client.sendImage("0000000000@c.us", './file.jpg')
 const contacts = await client.getAllContacts();
 
 ```
-## Retrieving Data
+## Group Management
 
 Group number example `<phone Number>-<groupId>@g.us` or `<phone Number><groupId>@g.us`
 
@@ -501,7 +501,6 @@ await client.setGroupDescription('00000000-000000@g.us', 'group description')
 });
 
 ```
-
 
 ### Debugging 
 

@@ -282,46 +282,48 @@ export class SenderLayer extends RetrieverLayer {
         });
       }
 
-      if (options.type === FunctionType.sendFile || options.type === FunctionType.sendImage) {
+      if (
+        options.type === FunctionType.sendFile ||
+        options.type === FunctionType.sendImage
+      ) {
         this.sendFile(to, body, options)
-          .then((e) => {
-            return reject(e);
-          })
-          .catch((e) => {
+          .then((e: any) => {
             return resolve(e);
+          })
+          .catch((e: any) => {
+            return reject(e);
           });
       }
 
       if (options.type === FunctionType.sendAudioBase64) {
         this.sendAudioBase64(to, body, options)
-          .then((e) => {
-            return reject(e);
-          })
-          .catch((e) => {
+          .then((e: any) => {
             return resolve(e);
+          })
+          .catch((e: any) => {
+            return reject(e);
           });
       }
 
       if (options.type === FunctionType.sendAudio) {
         this.sendAudio(to, body, options)
-          .then((e) => {
-            return reject(e);
-          })
-          .catch((e) => {
+          .then((e: any) => {
             return resolve(e);
+          })
+          .catch((e: any) => {
+            return reject(e);
           });
       }
 
       if (options.type === FunctionType.sendText) {
         this.sendText(to, body, options)
-          .then((e) => {
-            return reject(e);
-          })
-          .catch((e) => {
+          .then((e: any) => {
             return resolve(e);
+          })
+          .catch((e: any) => {
+            return reject(e);
           });
       }
     });
   }
-  
 }
