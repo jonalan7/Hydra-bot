@@ -45,6 +45,11 @@ interface API {
    * @param {string} description group description
    */
   setGroupDescription: (groupId: string, description: string) => Promise<any>;
+  /**
+   * Get information from the connected number
+   * @returns Current host device details
+   */
+  getHost: () => Promise<any>;
 }
 
 declare global {
