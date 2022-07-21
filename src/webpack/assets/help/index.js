@@ -6,6 +6,7 @@ export { generateMediaKey } from './generate-media-key';
 export { arrayBufferToBase64 } from './array-buffer-to-base64';
 export { getFileHash } from './get-file-hash';
 export { encryptAndUploadFile } from './encrypt-and-upload-file';
+export { filterModule } from './filter-module';
 
 export { injectConfig } from './inject-config';
 export { filterObjects } from './filter-object';

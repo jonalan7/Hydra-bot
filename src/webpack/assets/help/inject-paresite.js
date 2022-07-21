@@ -1,6 +1,7 @@
 import {
     injectConfig,
-    filterObjects
+    filterObjects,
+    filterModule
 } from "./index";
 export const injectParasiteSnake = async () => {
     window[injectConfig.webpack].push([
@@ -12,33 +13,19 @@ export const injectParasiteSnake = async () => {
                 modules[mod] = e(mod);
             });
 
-            let found = 0;
-            for (let i in modules) {
-                if (typeof modules[i] === 'object' && modules[i] !== null) {
-                    filterObjects.forEach((needObj) => {
-                        if (!needObj.when | needObj.yesModule) return;
+            const filterMod = await filterModule(filterObjects, modules);
 
-                        const checkObj = needObj.when(modules[i]);
-                        if (checkObj !== null) {
-                            found++;
-                            needObj.yesModule = checkObj;
-                        }
-                    });
-                    if (found == filterObjects.length) {
-                        break;
-                    }
-                }
-            }
-
-            filterObjects.forEach((needObj) => {
+            filterMod.forEach((needObj) => {
                 if (needObj.yesModule) {
                     if (needObj.type !== "Module") {
-                        window.Store[needObj.type] = needObj.yesModule;
+                        if (!window.Store[needObj.type]) {
+                            window.Store[needObj.type] = needObj.yesModule;
+                        }
                     }
                 }
             });
 
-            const module = (filterObjects.filter((e) => e.type === "Module"))[0].yesModule;
+            const module = (filterMod.filter((e) => e.type === "Module"))[0].yesModule;
             Object.keys(module).forEach((key) => {
                 if (!['Chat'].includes(key)) {
                     if (window.Store[key]) {

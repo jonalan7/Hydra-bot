@@ -40,10 +40,6 @@ export const filterObjects = [{
             module.default : null,
     },
     {
-        type: 'MaybeMeUser',
-        when: (module) => (module.getMaybeMeUser ? module : null),
-    },
-    {
         type: 'State',
         when: (module) => (module.Socket ? module : null),
     },
@@ -110,4 +106,9 @@ export const filterObjects = [{
             module.addParticipants && module.promoteCommunityParticipants ?
             module : null,
     },
+    {
+        type: 'MyStatus',
+        when: (module) =>
+            module.getStatus && module.setMyStatus ? module : null,
+    }
 ];
