@@ -1,3 +1,19 @@
+## [1.0.27-0](https://github.com/jonalan7/Hydra-bot/compare/v1.0.26-nightly.0...v1.0.27-0) (2022-07-22)
+
+
+### Bug Fixes
+
+* filter Module ([52207b8](https://github.com/jonalan7/Hydra-bot/commit/52207b8a156edd4ec249e2d6c5e79317a44202d4))
+* resolve sendMessage ([01b09d3](https://github.com/jonalan7/Hydra-bot/commit/01b09d301787169814d0c63f606783add98b3358))
+
+
+### Features
+
+* getHost ([b9f9f2f](https://github.com/jonalan7/Hydra-bot/commit/b9f9f2f43cc0c2128f7c124a92236f61d646190e))
+* setGroupDescription and docs ([4139feb](https://github.com/jonalan7/Hydra-bot/commit/4139feb158152cabf89286fbf374859862af401f))
+
+
+
 ## [1.0.26](https://github.com/jonalan7/Hydra-bot/compare/v1.0.25...v1.0.26) (2022-07-20)
 
 ### Bug Fixes
