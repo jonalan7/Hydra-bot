@@ -40,10 +40,6 @@ export const filterObjects = [{
             module.default : null,
     },
     {
-        type: 'MaybeMeUser',
-        when: (module) => (module.getMaybeMeUser ? module : null),
-    },
-    {
         type: 'State',
         when: (module) => (module.Socket ? module : null),
     },
@@ -97,6 +93,10 @@ export const filterObjects = [{
             module.createGroup : null,
     },
     {
+        type: 'GroupDesc',
+        when: (module) => (module.setGroupDesc ? module : null),
+    },
+    {
         type: 'CheckWid',
         when: (module) => (module.validateWid ? module : null),
     },
@@ -104,7 +104,11 @@ export const filterObjects = [{
         type: 'Participants',
         when: (module) =>
             module.addParticipants && module.promoteCommunityParticipants ?
-            module :
-            null,
+            module : null,
     },
+    {
+        type: 'MyStatus',
+        when: (module) =>
+            module.getStatus && module.setMyStatus ? module : null,
+    }
 ];

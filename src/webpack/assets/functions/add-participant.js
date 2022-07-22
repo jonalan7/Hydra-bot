@@ -1,4 +1,10 @@
+/**
+ * Parameters for adding a participant to the group
+ * @param {string} groupId group number
+ * @param {(Array| String)} contactsId contact number
+ */
 export async function addParticipant(groupId, contactsId) {
+  const nameFunc = (new Error().stack.match(/at (.*?) /))[1].replace('Object.', '');
   if (!Array.isArray(contactsId)) {
     contactsId = [contactsId];
   }
@@ -13,27 +19,32 @@ export async function addParticipant(groupId, contactsId) {
   }
   const contacts = await Promise.all(contactsId.map((c) => API.sendExist(c)));
   const checkErro = contacts.filter((e) => e.erro === true)[0];
-  
+
   if (checkErro && checkErro.status === 404) {
     if (!checkErro.erro) {
       checkErro.erro = true;
     }
     return checkErro;
   }
+
   try {
     await window.Store.Participants.addParticipants(chatGroup, contacts);
     return API.scope(
-      null,
+      groupId,
       false,
-      null,
-      `contact(s) successfully added!`
+      200,
+      `contact(s) successfully added!`,
+      nameFunc,
+      contacts
     );
   } catch {
     return API.scope(
-      null,
+      groupId,
       true,
-      null,
-      `could not add a participant`
+      400,
+      `could not add a participant`,
+      nameFunc,
+      contacts
     );
   }
 }

@@ -7,6 +7,7 @@
 ## Summary
  - [createGroup](#creategroup)
  - [addParticipant](#addparticipant)
+ - [setGroupDescription](#setgroupDescription)
 
 ### createGroup
 
@@ -34,5 +35,17 @@ await client.addParticipant('00000000-000000@g.us',  ['111111111111@c.us', '2222
 });
 ```
 
+### setGroupDescription
+
+Change group description
+
+```javascript
+await client.setGroupDescription('00000000-000000@g.us', 'group description')
+.then((result) => {
+    console.log(result); // message result
+}).catch((error) => {
+    console.log(error); // message error
+});
+```
 
 

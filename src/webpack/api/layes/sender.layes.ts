@@ -1,5 +1,5 @@
 import { Page, Browser } from 'puppeteer';
-import { sendOptions } from '../../model/interface';
+import { sendOptions, InterfaceScope } from '../../model/interface';
 import { RetrieverLayer } from './retriever.layer';
 import { CreateOptions } from '../../model/interface';
 import { base64MimeType } from '../../help';
@@ -267,7 +267,7 @@ export class SenderLayer extends RetrieverLayer {
    * Send messages
    * @param sendOptions Send options
    */
-  public async sendMessage(sendOptions: sendOptions): Promise<any> {
+  public async sendMessage(sendOptions: sendOptions): Promise<InterfaceScope> {
     return new Promise(async (resolve, reject) => {
       const to: any = sendOptions.to,
         body: any = sendOptions.body,
@@ -282,46 +282,48 @@ export class SenderLayer extends RetrieverLayer {
         });
       }
 
-      if (options.type === FunctionType.sendFile || options.type === FunctionType.sendImage) {
+      if (
+        options.type === FunctionType.sendFile ||
+        options.type === FunctionType.sendImage
+      ) {
         this.sendFile(to, body, options)
-          .then((e) => {
-            return reject(e);
-          })
-          .catch((e) => {
+          .then((e: any) => {
             return resolve(e);
+          })
+          .catch((e: any) => {
+            return reject(e);
           });
       }
 
       if (options.type === FunctionType.sendAudioBase64) {
         this.sendAudioBase64(to, body, options)
-          .then((e) => {
-            return reject(e);
-          })
-          .catch((e) => {
+          .then((e: any) => {
             return resolve(e);
+          })
+          .catch((e: any) => {
+            return reject(e);
           });
       }
 
       if (options.type === FunctionType.sendAudio) {
         this.sendAudio(to, body, options)
-          .then((e) => {
-            return reject(e);
-          })
-          .catch((e) => {
+          .then((e: any) => {
             return resolve(e);
+          })
+          .catch((e: any) => {
+            return reject(e);
           });
       }
 
       if (options.type === FunctionType.sendText) {
         this.sendText(to, body, options)
-          .then((e) => {
-            return reject(e);
-          })
-          .catch((e) => {
+          .then((e: any) => {
             return resolve(e);
+          })
+          .catch((e: any) => {
+            return reject(e);
           });
       }
     });
   }
-  
 }

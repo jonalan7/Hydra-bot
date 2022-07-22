@@ -1,3 +1,9 @@
+/**
+ * send message in options mode
+ * @param {string} to contact number
+ * @param {string} body message body
+ * @param {object} options shipping options
+ */
 export async function sendMessage(to, body, options = {}) {
 
     const types = ['sendText', 'sendAudioBase64', 'sendAudio', 'sendFile'];

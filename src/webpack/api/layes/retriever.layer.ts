@@ -19,4 +19,12 @@ export class RetrieverLayer extends GroupLayer {
   public async getAllContacts() {
     return await this.page.evaluate(() => API.getAllContacts());
   }
+
+  /**
+   * Get information from the connected number
+   * @returns Current host device details
+   */
+   public async getHost(): Promise<object> {
+    return await this.page.evaluate(() => API.getHost());
+  }
 }

@@ -7,7 +7,7 @@ import {
     generateMediaKey,
     arrayBufferToBase64,
     encryptAndUploadFile,
-    getFileHash
+    getFileHash,
 } from './help';
 
 import {
@@ -19,7 +19,7 @@ import {
     checkNumberStatus,
     isMD,
     sendCheckType,
-    addChatWapi
+    addChatWapi,
 } from './functions/help';
 
 import {
@@ -27,7 +27,9 @@ import {
     baseSendMessage,
     getAllContacts,
     createGroup,
-    addParticipant
+    addParticipant,
+    setGroupDescription,
+    getHost
 } from './functions';
 
 import {
@@ -42,6 +44,7 @@ import {
     serializeContactObj,
     serializeProfilePicThumb,
     serializeRawObj,
+    serializeMeObj,
 } from './serializers'
 
 //initialized scrap webpack
@@ -83,12 +86,18 @@ if (typeof window.API === 'undefined') {
     window.API.addChatWapi = addChatWapi;
 
     // Functions
+    
+    // Send
     window.API.sendMessage = sendMessage;
+
+    // Host
     window.API.getAllContacts = getAllContacts;
+    window.API.getHost = getHost;
 
     // Group
     window.API.createGroup = createGroup;
     window.API.addParticipant = addParticipant;
+    window.API.setGroupDescription = setGroupDescription;
 
     // Serialize
     window.API.serializeMessageObj = serializeMessageObj;
@@ -96,6 +105,7 @@ if (typeof window.API === 'undefined') {
     window.API.serializeContactObj = serializeContactObj;
     window.API.serializeProfilePicThumb = serializeProfilePicThumb;
     window.API.serializeRawObj = serializeRawObj;
+    window.API.serializeMeObj = serializeMeObj;
 
     // On
     addOnStream();
