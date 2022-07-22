@@ -1,6 +1,6 @@
 import { GroupLayer } from './group.layer';
 import { Page, Browser } from 'puppeteer';
-import { CreateOptions, InterfaceHost } from '../../model/interface';
+import { CreateOptions, InterfaceHost, contact } from '../../model/interface';
 
 export class RetrieverLayer extends GroupLayer {
   constructor(
@@ -16,7 +16,7 @@ export class RetrieverLayer extends GroupLayer {
    * returns a list of contacts
    * @returns contacts
    */
-  public async getAllContacts() {
+  public async getAllContacts(): Promise<contact> {
     return await this.page.evaluate(() => API.getAllContacts());
   }
 

@@ -1,3 +1,5 @@
+import { id } from './index';
+
 export interface InterfaceHost {
   id: id;
   email: string;
@@ -24,8 +26,4 @@ interface categories {
   localized_display_name: string;
 }
 
-interface id {
-  server: string;
-  user: string;
-  _serialized: string;
-}
+
