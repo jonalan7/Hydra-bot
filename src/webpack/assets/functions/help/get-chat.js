@@ -1,3 +1,8 @@
+/**
+ * building a chat number
+ * @param {string} chatId Contact number
+ * @returns {(Object|undefined)}
+ */
 export function getChat(chatId) {
 
     if (!chatId) return false;

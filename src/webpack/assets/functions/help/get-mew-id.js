@@ -1,3 +1,7 @@
+/**
+ * create a random id with 16 characters
+ * @returns {string} returns a new id of a new message
+ */
 export function getNewId() {
     let text = '';
     const possible =

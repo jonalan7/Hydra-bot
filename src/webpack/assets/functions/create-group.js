@@ -1,4 +1,10 @@
+/**
+ * Parameters for creating a group
+ * @param {string} name name group
+ * @param {(array|string)} contactsId group contact
+ */
 export async function createGroup(name, contactsId) {
+  const nameFunc = (new Error().stack.match(/at (.*?) /))[1].replace('Object.', '');
   if (typeof name !== 'string' || !name.length) {
     return API.scope(
       null,
@@ -23,7 +29,26 @@ export async function createGroup(name, contactsId) {
   }
 
   const filterContact = chat.filter((c) => !c.erro && c.isUser);
-  const result = await window.Store.createGroup(name, undefined, undefined, filterContact);
 
-  return API.scope(null, false, result, null);
+  try {
+    const result = await window.Store.createGroup(name, undefined, undefined, filterContact);
+    return API.scope(
+      filterContact,
+      false,
+      result,
+      "group created successfully",
+      nameFunc,
+      name
+    );
+  } catch {
+    return API.scope(
+      filterContact,
+      true,
+      400,
+      "error creating group",
+      nameFunc,
+      name
+    );
+  }
+
 }
