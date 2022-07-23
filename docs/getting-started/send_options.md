@@ -92,6 +92,7 @@ await client.sendMessage({
     body: './file.jpg', // you can use a directory or use a url
     options: {
         type: 'sendImage', // shipping type
+        caption: 'image text' // image text
     }
 }).then((result) => {
     console.log(result);  // message result

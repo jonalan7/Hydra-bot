@@ -28,6 +28,7 @@ export class SenderLayer extends RetrieverLayer {
    */
   public async sendImage(to: string, filePath: string, options: any = {}) {
     return new Promise(async (resolve, reject) => {
+      Object.assign(options, { type: FunctionType.sendImage });
       let base64 = await downloadFileToBase64(filePath, [
         'image/gif',
         'image/png',

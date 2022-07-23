@@ -71,7 +71,7 @@ await client.sendAudioBase64("0000000000@c.us", base64MP3)
 Send image message
 
 ```javascript
-await client.sendImage("0000000000@c.us", './file.jpg')
+await client.sendImage("0000000000@c.us", './file.jpg', { caption: 'image text' })
 .then((result) => {
     console.log(result); // message result
 }).catch((error) => {
