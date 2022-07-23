@@ -3,20 +3,12 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>hydra-bot - v1.0.27</title>
-	<meta name="description" content="Documentation for hydra-bot - v1.0.27">
+	<title>hydra-bot - v1.0.28</title>
+	<meta name="description" content="Documentation for hydra-bot - v1.0.28">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
 	<link rel="stylesheet" href="assets/css/pages.css">
 	<script async src="assets/js/search.js" id="search-script"></script>
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-LTZL26963K"></script>
-	<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-LTZL26963K');
-    </script>
 </head>
 <body>
 <header>
@@ -32,7 +24,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">hydra-bot - v1.0.27</a>
+					<a href="index.html" class="title">hydra-bot - v1.0.28</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -59,7 +51,7 @@
 	</div>
 	<div class="tsd-page-title">
 		<div class="container">
-			<h1>hydra-bot - v1.0.27</h1>
+			<h1>hydra-bot - v1.0.28</h1>
 		</div>
 	</div>
 </header>
@@ -646,6 +638,21 @@
 <span style="color: #000000">    </span><span style="color: #001080">body:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;./file.jpg&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// you can use a directory or use a url</span>
 <span style="color: #000000">    </span><span style="color: #001080">options:</span><span style="color: #000000"> {</span>
 <span style="color: #000000">        </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;sendImage&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// shipping type</span>
+<span style="color: #000000">        </span><span style="color: #001080">caption:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;image text&#039;</span><span style="color: #000000"> </span><span style="color: #008000">// image text</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">}).</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">result</span><span style="color: #000000">);  </span><span style="color: #008000">// message result</span>
+<span style="color: #000000">}).</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">error</span><span style="color: #000000">); </span><span style="color: #008000">// message error</span>
+<span style="color: #000000">});</span>
+
+<span style="color: #008000">// Send image Base64</span>
+<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">sendMessage</span><span style="color: #000000">({</span>
+<span style="color: #000000">    </span><span style="color: #001080">to:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;0000000000@c.us&quot;</span><span style="color: #000000">, </span><span style="color: #008000">// you can pass the contact number or group number</span>
+<span style="color: #000000">    </span><span style="color: #001080">body:</span><span style="color: #000000"> </span><span style="color: #001080">base64IMG</span><span style="color: #000000">, </span><span style="color: #008000">// you can use a directory or use a url</span>
+<span style="color: #000000">    </span><span style="color: #001080">options:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">        </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;sendImageFromBase64&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// shipping type</span>
+<span style="color: #000000">        </span><span style="color: #001080">caption:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;image text&#039;</span><span style="color: #000000"> </span><span style="color: #008000">// image text</span>
 <span style="color: #000000">    }</span>
 <span style="color: #000000">}).</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">result</span><span style="color: #000000">);  </span><span style="color: #008000">// message result</span>
@@ -690,12 +697,28 @@
 <span style="color: #000000">});</span>
 
 <span style="color: #008000">// Send image message</span>
-<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">sendImage</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;0000000000@c.us&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;./file.jpg&#039;</span><span style="color: #000000">)</span>
+<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">sendImage</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;0000000000@c.us&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;./file.jpg&#039;</span><span style="color: #000000">, { </span><span style="color: #001080">caption:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;image text&#039;</span><span style="color: #000000"> })</span>
 <span style="color: #000000">.</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">result</span><span style="color: #000000">); </span><span style="color: #008000">// message result</span>
 <span style="color: #000000">}).</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">error</span><span style="color: #000000">); </span><span style="color: #008000">// message error</span>
 <span style="color: #000000">});</span>
+
+<span style="color: #008000">// Send image base64</span>
+<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">sendImageFromBase64</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;0000000000@c.us&quot;</span><span style="color: #000000">, </span><span style="color: #001080">base64IMG</span><span style="color: #000000">, { </span><span style="color: #001080">caption:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;image text&#039;</span><span style="color: #000000"> })</span>
+<span style="color: #000000">.</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">result</span><span style="color: #000000">); </span><span style="color: #008000">// message result</span>
+<span style="color: #000000">}).</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">error</span><span style="color: #000000">); </span><span style="color: #008000">// message error</span>
+<span style="color: #000000">});</span>
+</code></pre>
+				<a href="#profile-functions" id="profile-functions" style="color: inherit; text-decoration: none;">
+					<h2>Profile Functions</h2>
+				</a>
+				<pre><code class="language-javascript">
+<span style="color: #008000">// Get device info</span>
+<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">getHost</span><span style="color: #000000">();</span>
+
 </code></pre>
 				<a href="#retrieving-data" id="retrieving-data" style="color: inherit; text-decoration: none;">
 					<h2>Retrieving Data</h2>
@@ -786,6 +809,9 @@
 					</li>
 					<li class=" pp-nav pp-page">
 						<a href="pages/How To/send_functions.html">Send <wbr>Messages</a>
+					</li>
+					<li class=" pp-nav pp-page">
+						<a href="pages/How To/profile_functions.html">Profile <wbr>Functions</a>
 					</li>
 					<li class=" pp-nav pp-page">
 						<a href="pages/How To/retrieving_data.html">Retrieving <wbr>Data</a>

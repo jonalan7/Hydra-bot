@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Retrieving Data | hydra-bot - v1.0.28</title>
+	<title>Profile Functions | hydra-bot - v1.0.28</title>
 	<meta name="description" content="Documentation for hydra-bot - v1.0.28">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../../assets/css/main.css">
@@ -59,10 +59,10 @@
 					<a href="send_options.html">How To</a>
 				</li>
 				<li>
-					<a href="retrieving_data.html">Retrieving Data</a>
+					<a href="profile_functions.html">Profile Functions</a>
 				</li>
 			</ul>
-			<h1>Retrieving Data</h1>
+			<h1>Profile Functions</h1>
 		</div>
 	</div>
 </header>
@@ -70,10 +70,9 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<a href="#retrieving-data" id="retrieving-data" style="color: inherit; text-decoration: none;">
-					<h1>Retrieving Data</h1>
+				<a href="#profile-functions" id="profile-functions" style="color: inherit; text-decoration: none;">
+					<h1>Profile Functions</h1>
 				</a>
-				<p>data reception functions</p>
 				<a href="#here-to-can-be-ltphone-numbergtcus-or-ltphone-numbergt-ltgroupidgtgus-or-ltphone-numbergtltgroupidgtgus" id="here-to-can-be-ltphone-numbergtcus-or-ltphone-numbergt-ltgroupidgtgus-or-ltphone-numbergtltgroupidgtgus" style="color: inherit; text-decoration: none;">
 					<h5>Here, <code>to</code> can be <code>&lt;phone Number&gt;@c.us</code> or <code>&lt;phone Number&gt;-&lt;groupId&gt;@g.us</code> or <code>&lt;phone Number&gt;&lt;groupId&gt;@g.us</code></h5>
 				</a>
@@ -82,13 +81,15 @@
 					<h2>Summary</h2>
 				</a>
 				<ul>
-					<li><a href="#getallcontacts">getAllContacts</a></li>
+					<li><a href="#gethost">getHost</a></li>
 				</ul>
-				<a href="#getallcontacts" id="getallcontacts" style="color: inherit; text-decoration: none;">
-					<h3>getAllContacts</h3>
+				<a href="#gethost" id="gethost" style="color: inherit; text-decoration: none;">
+					<h2>getHost</h2>
 				</a>
-				<p>Returns a list of contacts</p>
-				<pre><code class="language-javascript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">contacts</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">getAllContacts</span><span style="color: #000000">();</span>
+				<p>Get device info</p>
+				<pre><code class="language-javascript">
+<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">getHost</span><span style="color: #000000">();</span>
+
 </code></pre>
 			</div>
 		</div>
@@ -116,10 +117,10 @@
 					<li class=" pp-nav pp-page">
 						<a href="send_functions.html">Send <wbr>Messages</a>
 					</li>
-					<li class=" pp-nav pp-page">
+					<li class="current pp-nav pp-page">
 						<a href="profile_functions.html">Profile <wbr>Functions</a>
 					</li>
-					<li class="current pp-nav pp-page">
+					<li class=" pp-nav pp-page">
 						<a href="retrieving_data.html">Retrieving <wbr>Data</a>
 					</li>
 					<li class="label pp-nav pp-group">
