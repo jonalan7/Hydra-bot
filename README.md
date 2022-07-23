@@ -485,6 +485,15 @@ await client.sendImageFromBase64("0000000000@c.us", base64IMG, { caption: 'image
 });
 ```
 
+## Profile Functions
+
+```javascript
+
+// Get device info
+await client.getHost();
+
+```
+
 ## Retrieving Data
 
 ```javascript

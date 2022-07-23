@@ -52,7 +52,10 @@
             "title": "Send Messages",
             "source": "./docs/getting-started/send_functions.md"
           },
-    
+          {
+            "title": "Profile Functions",
+            "source": "./docs/getting-started/profile_functions.md"
+          },
           {
             "title": "Retrieving Data",
             "source": "./docs/getting-started/retrieving_data.md"
