@@ -8,6 +8,10 @@ export enum FunctionType {
    */
   sendAudioBase64 = 'sendAudioBase64',
   /**
+   * send image in base64
+   */
+  sendImageFromBase64 = 'sendImageFromBase64',
+  /**
    * send an audio message
    */
   sendAudio = 'sendAudio',

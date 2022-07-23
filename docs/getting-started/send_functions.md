@@ -12,6 +12,7 @@ Send messages separately
   - [sendAudio](#sendaudio)
   - [sendAudioBase64](#sendaudiobase64)
   - [sendImage](#sendimage)
+  - [sendImageFromBase64](#sendimagefrombase64)
 
 
 ### sendText
@@ -72,6 +73,19 @@ Send image message
 
 ```javascript
 await client.sendImage("0000000000@c.us", './file.jpg', { caption: 'image text' })
+.then((result) => {
+    console.log(result); // message result
+}).catch((error) => {
+    console.log(error); // message error
+});
+```
+
+### sendImageFromBase64
+
+Send image base64
+
+```javascript
+await client.sendImageFromBase64("0000000000@c.us", base64IMG, { caption: 'image text' })
 .then((result) => {
     console.log(result); // message result
 }).catch((error) => {
