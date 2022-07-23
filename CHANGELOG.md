@@ -1,3 +1,18 @@
+## [1.0.28](https://github.com/jonalan7/Hydra-bot/compare/v1.0.27...v1.0.28) (2022-07-23)
+
+
+### Bug Fixes
+
+* gitignore ([dfd02f2](https://github.com/jonalan7/Hydra-bot/commit/dfd02f27b48419e6ac0e1f9f2d8f6525e46035ca))
+
+
+### Features
+
+* image caption ([b4bb5be](https://github.com/jonalan7/Hydra-bot/commit/b4bb5be978d521c5c7e48f4b5a7b31c64de22903))
+* sendImageFromBase64 ([75dbe6d](https://github.com/jonalan7/Hydra-bot/commit/75dbe6dcfcfb02deb639d84b26312f656da709f7))
+
+
+
 ## [1.0.27](https://github.com/jonalan7/Hydra-bot/compare/v1.0.26...v1.0.27) (2022-07-22)
 
 
