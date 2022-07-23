@@ -90,15 +90,19 @@
     "gulp": "^4.0.2",
     "release-it": "^15.0.0",
     "shx": "^0.3.4",
-    "ts-node": "^10.8.0",
+    "ts-node": "^10.8.2",
     "typedoc": "^0.21.10",
+    "typedoc-default-themes": "^0.12.10",
     "typedoc-plugin-pages": "^1.1.0",
-    "typescript": "^4.7.2"
+    "typescript": "4.0.x"
   },
   "bin": {
     "admin": "./dist/bin/admin"
   },
   "directories": {
     "doc": "docs"
+  },
+  "peerDependencies": {
+    "typescript": ">= 4.0.x"
   }
 }
