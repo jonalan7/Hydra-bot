@@ -28,6 +28,7 @@ export class SenderLayer extends RetrieverLayer {
    */
   public async sendImage(to: string, filePath: string, options: any = {}) {
     return new Promise(async (resolve, reject) => {
+      Object.assign(options, { type: FunctionType.sendImage });
       let base64 = await downloadFileToBase64(filePath, [
         'image/gif',
         'image/png',
@@ -80,6 +81,53 @@ export class SenderLayer extends RetrieverLayer {
           { to, base64, options }
         )
         .catch();
+      if (result.erro == true) {
+        return reject(result);
+      } else {
+        return resolve(result);
+      }
+    });
+  }
+
+  /**
+   * Sends image message base64
+   * @param to Chat id
+   * @param base64 File path, http link or base64Encoded
+   */
+  public async sendImageFromBase64(
+    to: string,
+    base64: string,
+    options: any = {}
+  ) {
+    return new Promise(async (resolve, reject) => {
+      Object.assign(options, { type: FunctionType.sendImageFromBase64 });
+
+      let mimeType = base64MimeType(base64);
+      if (!mimeType) {
+        return reject({
+          erro: true,
+          to: to,
+          text: 'Invalid base64!',
+        });
+      }
+
+      if (!mimeType.includes('image')) {
+        return reject({
+          erro: true,
+          to: to,
+          text: 'Not an image, allowed formats gif, png, jpg, jpeg and webp',
+        });
+      }
+
+      const result = await this.page
+        .evaluate(
+          ({ to, base64, options }) => {
+            return API.sendMessage(to, base64, options);
+          },
+          { to, base64, options }
+        )
+        .catch();
+
       if (result.erro == true) {
         return reject(result);
       } else {
@@ -297,6 +345,16 @@ export class SenderLayer extends RetrieverLayer {
 
       if (options.type === FunctionType.sendAudioBase64) {
         this.sendAudioBase64(to, body, options)
+          .then((e: any) => {
+            return resolve(e);
+          })
+          .catch((e: any) => {
+            return reject(e);
+          });
+      }
+
+      if (options.type === FunctionType.sendImageFromBase64) {
+        this.sendImageFromBase64(to, body, options)
           .then((e: any) => {
             return resolve(e);
           })

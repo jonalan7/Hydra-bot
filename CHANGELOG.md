@@ -1,18 +1,35 @@
-## [1.0.27-0](https://github.com/jonalan7/Hydra-bot/compare/v1.0.26-nightly.0...v1.0.27-0) (2022-07-22)
-
+## [1.0.28](https://github.com/jonalan7/Hydra-bot/compare/v1.0.27...v1.0.28) (2022-07-23)
 
 ### Bug Fixes
 
-* filter Module ([52207b8](https://github.com/jonalan7/Hydra-bot/commit/52207b8a156edd4ec249e2d6c5e79317a44202d4))
-* resolve sendMessage ([01b09d3](https://github.com/jonalan7/Hydra-bot/commit/01b09d301787169814d0c63f606783add98b3358))
-
+- gitignore ([dfd02f2](https://github.com/jonalan7/Hydra-bot/commit/dfd02f27b48419e6ac0e1f9f2d8f6525e46035ca))
 
 ### Features
 
-* getHost ([b9f9f2f](https://github.com/jonalan7/Hydra-bot/commit/b9f9f2f43cc0c2128f7c124a92236f61d646190e))
-* setGroupDescription and docs ([4139feb](https://github.com/jonalan7/Hydra-bot/commit/4139feb158152cabf89286fbf374859862af401f))
+- image caption ([b4bb5be](https://github.com/jonalan7/Hydra-bot/commit/b4bb5be978d521c5c7e48f4b5a7b31c64de22903))
+- sendImageFromBase64 ([75dbe6d](https://github.com/jonalan7/Hydra-bot/commit/75dbe6dcfcfb02deb639d84b26312f656da709f7))
 
+## [1.0.27](https://github.com/jonalan7/Hydra-bot/compare/v1.0.26...v1.0.27) (2022-07-22)
 
+### Bug Fixes
+
+- filter Module ([52207b8](https://github.com/jonalan7/Hydra-bot/commit/52207b8a156edd4ec249e2d6c5e79317a44202d4))
+
+### Features
+
+- getHost ([b9f9f2f](https://github.com/jonalan7/Hydra-bot/commit/b9f9f2f43cc0c2128f7c124a92236f61d646190e))
+
+## [1.0.26](https://github.com/jonalan7/Hydra-bot/compare/v1.0.25...v1.0.26) (2022-07-20)
+
+### Bug Fixes
+
+- filter Module ([52207b8](https://github.com/jonalan7/Hydra-bot/commit/52207b8a156edd4ec249e2d6c5e79317a44202d4))
+- resolve sendMessage ([01b09d3](https://github.com/jonalan7/Hydra-bot/commit/01b09d301787169814d0c63f606783add98b3358))
+
+### Features
+
+- getHost ([b9f9f2f](https://github.com/jonalan7/Hydra-bot/commit/b9f9f2f43cc0c2128f7c124a92236f61d646190e))
+- setGroupDescription and docs ([4139feb](https://github.com/jonalan7/Hydra-bot/commit/4139feb158152cabf89286fbf374859862af401f))
 
 ## [1.0.26](https://github.com/jonalan7/Hydra-bot/compare/v1.0.25...v1.0.26) (2022-07-20)
 

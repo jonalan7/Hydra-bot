@@ -410,6 +410,21 @@ await client.sendMessage({
     body: './file.jpg', // you can use a directory or use a url
     options: {
         type: 'sendImage', // shipping type
+        caption: 'image text' // image text
+    }
+}).then((result) => {
+    console.log(result);  // message result
+}).catch((error) => {
+    console.log(error); // message error
+});
+
+// Send image Base64
+await client.sendMessage({
+    to: "0000000000@c.us", // you can pass the contact number or group number
+    body: base64IMG, // you can use a directory or use a url
+    options: {
+        type: 'sendImageFromBase64', // shipping type
+        caption: 'image text' // image text
     }
 }).then((result) => {
     console.log(result);  // message result
@@ -454,12 +469,29 @@ await client.sendAudioBase64("0000000000@c.us", base64MP3)
 });
 
 // Send image message
-await client.sendImage("0000000000@c.us", './file.jpg')
+await client.sendImage("0000000000@c.us", './file.jpg', { caption: 'image text' })
 .then((result) => {
     console.log(result); // message result
 }).catch((error) => {
     console.log(error); // message error
 });
+
+// Send image base64
+await client.sendImageFromBase64("0000000000@c.us", base64IMG, { caption: 'image text' })
+.then((result) => {
+    console.log(result); // message result
+}).catch((error) => {
+    console.log(error); // message error
+});
+```
+
+## Profile Functions
+
+```javascript
+
+// Get device info
+await client.getHost();
+
 ```
 
 ## Retrieving Data

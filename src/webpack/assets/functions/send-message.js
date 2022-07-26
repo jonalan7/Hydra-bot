@@ -6,7 +6,7 @@
  */
 export async function sendMessage(to, body, options = {}) {
 
-    const types = ['sendText', 'sendAudioBase64', 'sendAudio', 'sendFile'];
+    const types = ['sendText', 'sendAudioBase64', 'sendImageFromBase64', 'sendAudio', 'sendFile', 'sendImage'];
     let typesObj;
     types.reduce((a, v) => typesObj = ({
         ...a,
@@ -36,7 +36,9 @@ export async function sendMessage(to, body, options = {}) {
         if (
             options.type === typesObj.sendAudioBase64 ||
             options.type === typesObj.sendAudio ||
-            options.type === typesObj.sendFile
+            options.type === typesObj.sendFile ||
+            options.type === typesObj.sendImage ||
+            options.type === typesObj.sendImageFromBase64
         ) {
 
             let result = await Store.Chat.find(chat.id);
@@ -46,7 +48,7 @@ export async function sendMessage(to, body, options = {}) {
                 const media = mc._models[0];
                 let enc, type;
 
-                if (options.type === typesObj.sendFile) {
+                if (options.type === typesObj.sendFile || options.type === typesObj.sendImage || options.type === typesObj.sendImageFromBase64) {
                     type = media.type;
                     merge.caption = options?.caption;
                     merge.filename = options?.filename;

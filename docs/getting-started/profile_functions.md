@@ -1,16 +1,17 @@
-# Retrieving Data
-data reception functions
+# Profile Functions
 
 ##### Here, `to` can be `<phone Number>@c.us` or `<phone Number>-<groupId>@g.us` or `<phone Number><groupId>@g.us`
-
 [to use these functions it is necessary to initialize the bot, click and learn more.](../Getting%20Started/start_bot.html)
 
 ## Summary
- - [getAllContacts](#getallcontacts)
+ - [getHost](#gethost)
 
-### getAllContacts
+## getHost
 
-Returns a list of contacts
+Get device info
+
 ```javascript
-const contacts = await client.getAllContacts();
+
+await client.getHost();
+
 ```

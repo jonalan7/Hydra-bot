@@ -12,6 +12,7 @@ you can send messages only using one function!
  - [sendAudio](#sendaudio)
  - [sendAudioBase64](#sendaudiobase64)
  - [sendImage](#sendimage)
+ - [sendImageFromBase64](#sendimageFromBase64)
 
 
 ### sendText
@@ -92,6 +93,25 @@ await client.sendMessage({
     body: './file.jpg', // you can use a directory or use a url
     options: {
         type: 'sendImage', // shipping type
+        caption: 'image text' // image text
+    }
+}).then((result) => {
+    console.log(result);  // message result
+}).catch((error) => {
+    console.log(error); // message error
+});
+```
+
+### sendImageFromBase64
+
+```javascript
+// Send image Base64
+await client.sendMessage({
+    to: "0000000000@c.us", // you can pass the contact number or group number
+    body: base64IMG, // you can use a directory or use a url
+    options: {
+        type: 'sendImageFromBase64', // shipping type
+        caption: 'image text' // image text
     }
 }).then((result) => {
     console.log(result);  // message result

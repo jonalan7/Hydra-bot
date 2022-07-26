@@ -1,3 +1,5 @@
+import { InterfaceHost, contact, InterfaceScope } from '../model/interface';
+
 interface API {
   /**
    * Parameters to change group description
@@ -19,7 +21,7 @@ interface API {
    * returns a list of contacts
    * @returns contacts
    */
-  getAllContacts: () => void;
+  getAllContacts: () => Promise<contact>;
   /**
    * Add chat function
    */
@@ -29,7 +31,7 @@ interface API {
    * @param groupName Group name
    * @param contacts Participants id '000000000000@c.us'
    */
-  createGroup: (groupName: string, contacts: string | string[]) => Promise<any>;
+  createGroup: (groupName: string, contacts: string | string[]) => Promise<InterfaceScope>;
   /**
    * Add participant to Group
    * @param groupId Chat id ('0000000000-00000000@g.us' or '000000000000000000@g.us')
@@ -38,18 +40,18 @@ interface API {
   addParticipant: (
     groupId: string,
     contacts: string | string[]
-  ) => Promise<any>;
+  ) => Promise<InterfaceScope>;
   /**
    * Parameters to change group description
    * @param {string} groupId group number
    * @param {string} description group description
    */
-  setGroupDescription: (groupId: string, description: string) => Promise<any>;
+  setGroupDescription: (groupId: string, description: string) => Promise<InterfaceScope>;
   /**
    * Get information from the connected number
    * @returns Current host device details
    */
-  getHost: () => Promise<any>;
+  getHost: () => Promise<InterfaceHost>;
 }
 
 declare global {
