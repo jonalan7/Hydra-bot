@@ -2,12 +2,12 @@ export interface InterfaceScope {
   to: to | string;
   erro: boolean;
   text: string;
-  status: string;
+  status: string | id;
   type: string;
   body: string;
 }
 
-interface remote {
+interface id {
   server: string;
   user: string;
   _serialized: string;
@@ -15,7 +15,7 @@ interface remote {
 
 interface to {
   fromMe: boolean;
-  remote: remote;
+  remote: id;
   id: string;
   _serialized: string;
 }

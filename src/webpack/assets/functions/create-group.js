@@ -33,7 +33,7 @@ export async function createGroup(name, contactsId) {
   try {
     const result = await window.Store.createGroup(name, undefined, undefined, filterContact);
     return API.scope(
-      filterContact,
+      filterContact.id,
       false,
       result,
       "group created successfully",
@@ -42,7 +42,7 @@ export async function createGroup(name, contactsId) {
     );
   } catch {
     return API.scope(
-      filterContact,
+      filterContact.id,
       true,
       400,
       "error creating group",
