@@ -35,7 +35,7 @@ export async function addParticipant(groupId, contactsId) {
       200,
       `contact(s) successfully added!`,
       nameFunc,
-      contacts
+      contacts.id
     );
   } catch {
     return API.scope(
@@ -44,7 +44,7 @@ export async function addParticipant(groupId, contactsId) {
       400,
       `could not add a participant`,
       nameFunc,
-      contacts
+      contacts.id
     );
   }
 }
