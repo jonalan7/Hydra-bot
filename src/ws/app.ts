@@ -1,6 +1,7 @@
 import express, { Express, Request, Response } from 'express';
 import { options } from './model/interface';
 import cors from 'cors';
+import { rateLimit } from 'express-rate-limit';
 
 export function appExpress(options: options): Express {
   const app = express();
@@ -15,6 +16,14 @@ export function appExpress(options: options): Express {
     })
   );
 
+  const limiter = rateLimit({
+    windowMs: 1*60*1000, // 1 minute
+    max: 5
+  });
+  
+  // apply rate limiter to all requests
+  app.use(limiter);
+  
   const corsOptions: cors.CorsOptions = {
     origin: '*',
   };
