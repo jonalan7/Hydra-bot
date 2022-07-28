@@ -93,7 +93,7 @@
     "release-it": "^15.0.0",
     "sharp": "^0.30.4",
     "shx": "^0.3.4",
-    "ts-node": "^10.8.2",
+    "ts-node": "^10.9.1",
     "typedoc": "^0.21.10",
     "typedoc-default-themes": "^0.12.10",
     "typedoc-plugin-pages": "^1.1.0",
