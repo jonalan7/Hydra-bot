@@ -532,6 +532,14 @@ await client.setGroupDescription('00000000-000000@g.us', 'group description')
     console.log(error); // message error
 });
 
+// Change group image
+await client.setGroupImage('00000000000000@g.us', './file.jpg')
+.then((result) => {
+    console.log(result); // message result
+}).catch((error) => {
+    console.log(error); // message error
+});
+
 ```
 
 ### Debugging 

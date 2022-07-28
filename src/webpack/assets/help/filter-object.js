@@ -110,5 +110,10 @@ export const filterObjects = [{
         type: 'MyStatus',
         when: (module) =>
             module.getStatus && module.setMyStatus ? module : null,
-    }
+    },
+    {
+        type: 'Profile',
+        when: (module) =>
+            module.sendSetPicture && module.requestDeletePicture ? module : null,
+    },
 ];

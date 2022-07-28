@@ -5,4 +5,5 @@ export { InterfaceQrcode } from './qrcode';
 export { InterfaceScope } from './scope';
 export { InterfaceHost } from './host';
 export { id } from './id';
+export { CreateSize } from './create-size';
 export { contact } from './contact';
