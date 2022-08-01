@@ -29,7 +29,8 @@ import {
     createGroup,
     addParticipant,
     setGroupDescription,
-    getHost
+    getHost,
+    setGroupImage
 } from './functions';
 
 import {
@@ -98,6 +99,7 @@ if (typeof window.API === 'undefined') {
     window.API.createGroup = createGroup;
     window.API.addParticipant = addParticipant;
     window.API.setGroupDescription = setGroupDescription;
+    window.API.setGroupImage = setGroupImage;
 
     // Serialize
     window.API.serializeMessageObj = serializeMessageObj;
