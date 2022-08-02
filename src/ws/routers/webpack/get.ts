@@ -24,6 +24,11 @@ export const getRouters = (
     await InicializeRouters.lastQrcode(req, res, option);
   });
 
+  // Get screenshot
+  router.get('/screenshot', async (req: Request, res: Response) => {
+    await InicializeRouters.screenshot(req, res, option);
+  });
+
   // Load Files
   router.get('/files/:file', async (req: Request, res: Response) => {
     const getFile: string = req.params.file;
