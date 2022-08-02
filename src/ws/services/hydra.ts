@@ -200,6 +200,17 @@ async function Webhook(options: any, info: any) {
         });
     }
 
+    if (response.type === 'screenshot') {
+      await client
+        .screenshot()
+        .then((result: any) => {
+          sendParent({ typeGet: 'screenshot', result: true, ...result });
+        })
+        .catch((error: any) => {
+          sendParent({ typeGet: 'screenshot', result: true, ...error });
+        });
+    }
+
     if (response.type === 'disconnect') {
       try {
         client.close();
