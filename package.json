@@ -91,7 +91,7 @@
     "conventional-changelog-cli": "^2.2.2",
     "gulp": "^4.0.2",
     "release-it": "^15.0.0",
-    "sharp": "^0.30.4",
+    "sharp": "^0.30.7",
     "shx": "^0.3.4",
     "ts-node": "^10.8.2",
     "typedoc": "^0.21.10",
