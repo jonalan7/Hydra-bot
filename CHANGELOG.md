@@ -1,3 +1,19 @@
+## [1.0.28-1](https://github.com/jonalan7/Hydra-bot/compare/v1.0.29-0...v1.0.28-1) (2022-08-03)
+
+
+### Bug Fixes
+
+* addParticipant ([7b775e7](https://github.com/jonalan7/Hydra-bot/commit/7b775e7f3678eec1eec0d9a8ddc0545db53638a3))
+* createGroup ([18777f0](https://github.com/jonalan7/Hydra-bot/commit/18777f09460471caf223afb6b0b3a99e3dcda39a))
+
+
+### Features
+
+* Missing rate limiting ([fceaf57](https://github.com/jonalan7/Hydra-bot/commit/fceaf574a0921fdbb1af842163579f5f265ca776))
+* setGroupImage ([6814123](https://github.com/jonalan7/Hydra-bot/commit/6814123ff414592be0c2bd5f9f95adea7bfc3115))
+
+
+
 ## [1.0.29-0](https://github.com/jonalan7/Hydra-bot/compare/v1.0.27-0...v1.0.29-0) (2022-07-26)
 
 
