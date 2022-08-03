@@ -5,6 +5,7 @@ git:
 
 hooks:
   after:bump:
+    - 'npm run build'
     - 'npm run changelog:update'
 
 # automatic publish from github workflow
