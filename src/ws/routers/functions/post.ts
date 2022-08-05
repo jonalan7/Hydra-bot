@@ -245,18 +245,21 @@ export class InicializePost extends InicializeGet {
     const check = await sessionClient.checkClient($_HEADERS_USER);
     if (check) {
       const getId = await sessionClient.getSessionId($_HEADERS_USER);
+
       if (typeof getId === 'number') {
         const getUser = await sessionClient.getUser($_HEADERS_USER);
         getUser.child.send({ type: 'disconnect' });
         this.child.on('message', async (response: any) => {
-          if (
-            response.result && 
-            response.typeSend === 'disconnect'
-            ) {
+          if (response.result && response.typeSend === 'disconnect') {
             try {
               await sessionClient.deleteSession($_HEADERS_USER);
               return res.send(response);
-            } catch {}
+            } catch (error) {
+              return res.send({
+                erro: true,
+                text: "Error disconnect, can't delete the session",
+              });
+            }
           }
         });
       }
@@ -267,5 +270,4 @@ export class InicializePost extends InicializeGet {
       });
     }
   }
-  
 }
