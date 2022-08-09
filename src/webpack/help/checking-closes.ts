@@ -1,12 +1,15 @@
-import { Page, Browser } from 'puppeteer';
+export interface process {
+  close: any;
+  _process: any
+}
 
 export async function checkingCloses(
-  browser: Browser,
+  browser: process,
   callStatus: (e: boolean) => void
 ) {
   let processClose = false;
-  if (browser['_process']) {
-    browser['_process'].once('close', () => {
+  if (browser._process) {
+    browser._process.once('close', () => {
       processClose = true;
     });
   }
@@ -17,7 +20,7 @@ export async function checkingCloses(
         try {
           await new Promise((r) => setTimeout(r, 2000));
           if (processClose) {
-            browser.close().catch((e) => reject(e));
+            browser.close().catch((e: any) => reject(e));
             callStatus && callStatus(true);
             err = false;
           } else {
