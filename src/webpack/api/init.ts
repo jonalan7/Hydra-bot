@@ -54,7 +54,7 @@ export async function initServer(
       session: mergeOptionsDefault.session,
     };
 
-    const wpage: Browser | boolean = await initLaunch(mergeOptionsDefault, ev);
+    const wpage: Browser | boolean | any = await initLaunch(mergeOptionsDefault, ev);
 
     if (typeof wpage !== 'boolean') {
       ev.statusFind = {
