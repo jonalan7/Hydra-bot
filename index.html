@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>hydra-bot - v1.0.28</title>
-	<meta name="description" content="Documentation for hydra-bot - v1.0.28">
+	<title>hydra-bot - v1.0.29</title>
+	<meta name="description" content="Documentation for hydra-bot - v1.0.29">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
 	<link rel="stylesheet" href="assets/css/pages.css">
@@ -24,7 +24,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">hydra-bot - v1.0.28</a>
+					<a href="index.html" class="title">hydra-bot - v1.0.29</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -51,7 +51,7 @@
 	</div>
 	<div class="tsd-page-title">
 		<div class="container">
-			<h1>hydra-bot - v1.0.28</h1>
+			<h1>hydra-bot - v1.0.29</h1>
 		</div>
 	</div>
 </header>
@@ -142,95 +142,96 @@
 				<p>The service will be started on localhost on port 8080</p>
 				<pre><code class="language-javascript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">hydraBot</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;hydra-bot&#039;</span><span style="color: #000000">);</span>
 <span style="color: #000000">(</span><span style="color: #0000FF">async</span><span style="color: #000000"> () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">    </span><span style="color: #008000">// start Web Service</span>
-<span style="color: #000000">    </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">WS</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">hydraBot</span><span style="color: #000000">.</span><span style="color: #795E26">initWs</span><span style="color: #000000">();</span>
+<span style="color: #000000">  </span><span style="color: #008000">// start Web Service</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">WS</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">hydraBot</span><span style="color: #000000">.</span><span style="color: #795E26">initWs</span><span style="color: #000000">();</span>
 <span style="color: #000000">})();</span>
 </code></pre>
 				<a href="#getting-started-bot-the-bot-in-raw-form-without-using-a-web-services" id="getting-started-bot-the-bot-in-raw-form-without-using-a-web-services" style="color: inherit; text-decoration: none;">
 					<h2>Getting started bot (the bot in raw form, without using a Web Services).</h2>
 				</a>
 				<p>If you want to work in free mode, using only the bot, dry the necessary information!</p>
-				<pre><code class="language-javascript">
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">hydraBot</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;hydra-bot&#039;</span><span style="color: #000000">);</span>
+				<pre><code class="language-javascript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">hydraBot</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;hydra-bot&#039;</span><span style="color: #000000">);</span>
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">mime</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;mime-types&#039;</span><span style="color: #000000">);</span>
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">fs</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;fs&#039;</span><span style="color: #000000">);</span>
 
 <span style="color: #000000">(</span><span style="color: #0000FF">async</span><span style="color: #000000"> () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">;</span>
+<span style="color: #000000">  </span><span style="color: #008000">// start bot service</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">ev</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">hydraBot</span><span style="color: #000000">.</span><span style="color: #795E26">initServer</span><span style="color: #000000">();</span>
 
-<span style="color: #000000">    </span><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">;</span>
-<span style="color: #000000">    </span><span style="color: #008000">// start bot service</span>
-<span style="color: #000000">    </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">ev</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">hydraBot</span><span style="color: #000000">.</span><span style="color: #795E26">initServer</span><span style="color: #000000">();</span>
+<span style="color: #000000">  </span><span style="color: #008000">// return to current whatsapp interface</span>
+<span style="color: #000000">  </span><span style="color: #001080">ev</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;interfaceChange&#039;</span><span style="color: #000000">, (</span><span style="color: #001080">change</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;interfaceChange: &#039;</span><span style="color: #000000">, </span><span style="color: #001080">change</span><span style="color: #000000">);</span>
+<span style="color: #000000">  });</span>
 
-<span style="color: #000000">    </span><span style="color: #008000">// return to current whatsapp interface</span>
-<span style="color: #000000">    </span><span style="color: #001080">ev</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;interfaceChange&#039;</span><span style="color: #000000">, (</span><span style="color: #001080">change</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">        </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;interfaceChange: &quot;</span><span style="color: #000000">, </span><span style="color: #001080">change</span><span style="color: #000000">);</span>
-<span style="color: #000000">    });</span>
+<span style="color: #000000">  </span><span style="color: #008000">// return qrcode parameters</span>
+<span style="color: #000000">  </span><span style="color: #001080">ev</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;qrcode&#039;</span><span style="color: #000000">, (</span><span style="color: #001080">qrcode</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;qrcode: &#039;</span><span style="color: #000000">, </span><span style="color: #001080">qrcode</span><span style="color: #000000">);</span>
+<span style="color: #000000">  });</span>
 
-<span style="color: #000000">    </span><span style="color: #008000">// return qrcode parameters</span>
-<span style="color: #000000">    </span><span style="color: #001080">ev</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;qrcode&#039;</span><span style="color: #000000">, (</span><span style="color: #001080">qrcode</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">        </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;qrcode: &#039;</span><span style="color: #000000">, </span><span style="color: #001080">qrcode</span><span style="color: #000000">);</span>
-<span style="color: #000000">    });</span>
+<span style="color: #000000">  </span><span style="color: #008000">// return connection information</span>
+<span style="color: #000000">  </span><span style="color: #001080">ev</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;connection&#039;</span><span style="color: #000000">, </span><span style="color: #0000FF">async</span><span style="color: #000000"> (</span><span style="color: #001080">conn</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #008000">// browser information!</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">conn</span><span style="color: #000000">.</span><span style="color: #001080">statusFind</span><span style="color: #000000"> === </span><span style="color: #A31515">&#039;browser&#039;</span><span style="color: #000000">) {</span>
+<span style="color: #000000">      </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;info Browser: &#039;</span><span style="color: #000000">, </span><span style="color: #001080">conn</span><span style="color: #000000">.</span><span style="color: #001080">text</span><span style="color: #000000">);</span>
+<span style="color: #000000">    }</span>
 
-<span style="color: #000000">    </span><span style="color: #008000">// return connection information</span>
-<span style="color: #000000">    </span><span style="color: #001080">ev</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;connection&#039;</span><span style="color: #000000">, </span><span style="color: #0000FF">async</span><span style="color: #000000"> (</span><span style="color: #001080">conn</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #008000">// Was connected to whatsapp chat</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">conn</span><span style="color: #000000">.</span><span style="color: #001080">connect</span><span style="color: #000000">) {</span>
+<span style="color: #000000">      </span><span style="color: #001080">client</span><span style="color: #000000"> = </span><span style="color: #001080">conn</span><span style="color: #000000">.</span><span style="color: #001080">client</span><span style="color: #000000">;</span>
+<span style="color: #000000">      </span><span style="color: #008000">// send a text message</span>
+<span style="color: #000000">      </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span>
+<span style="color: #000000">        .</span><span style="color: #795E26">sendMessage</span><span style="color: #000000">({</span>
+<span style="color: #000000">          </span><span style="color: #001080">to:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;0000000000@c.us&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// you can pass the contact number or group number</span>
+<span style="color: #000000">          </span><span style="color: #001080">body:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;hi i&#039;m hydra bot&quot;</span><span style="color: #000000">, </span><span style="color: #008000">// message text</span>
+<span style="color: #000000">          </span><span style="color: #001080">options:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">            </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;sendText&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// shipping type</span>
+<span style="color: #000000">          },</span>
+<span style="color: #000000">        })</span>
+<span style="color: #000000">        .</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">          </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">result</span><span style="color: #000000">); </span><span style="color: #008000">// message result</span>
+<span style="color: #000000">        })</span>
+<span style="color: #000000">        .</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">          </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">error</span><span style="color: #000000">); </span><span style="color: #008000">// message error</span>
+<span style="color: #000000">        });</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">  });</span>
 
-<span style="color: #000000">        </span><span style="color: #008000">// browser information!</span>
-<span style="color: #000000">        </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">conn</span><span style="color: #000000">.</span><span style="color: #001080">statusFind</span><span style="color: #000000"> === </span><span style="color: #A31515">&#039;browser&#039;</span><span style="color: #000000">) {</span>
-<span style="color: #000000">            </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;info Browser: &#039;</span><span style="color: #000000">, </span><span style="color: #001080">conn</span><span style="color: #000000">.</span><span style="color: #001080">text</span><span style="color: #000000">);</span>
-<span style="color: #000000">        }</span>
+<span style="color: #000000">  </span><span style="color: #008000">// return receive new messages</span>
+<span style="color: #000000">  </span><span style="color: #001080">ev</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;newMessage&#039;</span><span style="color: #000000">, </span><span style="color: #0000FF">async</span><span style="color: #000000"> (</span><span style="color: #001080">newMsg</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #008000">// when is received</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (!</span><span style="color: #001080">newMsg</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">.</span><span style="color: #001080">isSentByMe</span><span style="color: #000000">) {</span>
+<span style="color: #000000">      </span><span style="color: #008000">// message received!</span>
+<span style="color: #000000">      </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;NewMessageReceived: &#039;</span><span style="color: #000000">, </span><span style="color: #001080">newMsg</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">);</span>
+<span style="color: #000000">      </span><span style="color: #008000">// dowload files</span>
+<span style="color: #000000">      </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">newMsg</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">.</span><span style="color: #001080">isMedia</span><span style="color: #000000"> === </span><span style="color: #0000FF">true</span><span style="color: #000000"> || </span><span style="color: #001080">newMsg</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">.</span><span style="color: #001080">isMMS</span><span style="color: #000000"> === </span><span style="color: #0000FF">true</span><span style="color: #000000">) {</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">buffer</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">decryptFile</span><span style="color: #000000">(</span><span style="color: #001080">newMsg</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">);</span>
+<span style="color: #000000">        </span><span style="color: #008000">// At this point you can do whatever you want with the buffer</span>
+<span style="color: #000000">        </span><span style="color: #008000">// Most likely you want to write it into a file</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">fileName</span><span style="color: #000000"> = </span><span style="color: #A31515">`some-file-name.</span><span style="color: #0000FF">${</span><span style="color: #001080">mime</span><span style="color: #000000FF">.</span><span style="color: #795E26">extension</span><span style="color: #000000FF">(</span>
+<span style="color: #000000FF">          </span><span style="color: #001080">newMsg</span><span style="color: #000000FF">.</span><span style="color: #001080">result</span><span style="color: #000000FF">.</span><span style="color: #001080">mimetype</span>
+<span style="color: #000000FF">        )</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">;</span>
+<span style="color: #000000">        </span><span style="color: #001080">fs</span><span style="color: #000000">.</span><span style="color: #795E26">writeFile</span><span style="color: #000000">(</span><span style="color: #001080">fileName</span><span style="color: #000000">, </span><span style="color: #001080">buffer</span><span style="color: #000000">, (</span><span style="color: #001080">err</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">          </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">err</span><span style="color: #000000">) {</span>
+<span style="color: #000000">            </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">err</span><span style="color: #000000">);</span>
+<span style="color: #000000">          }</span>
+<span style="color: #000000">        });</span>
+<span style="color: #000000">      }</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">    </span><span style="color: #008000">// when is it sent</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (!!</span><span style="color: #001080">newMsg</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">.</span><span style="color: #001080">isSentByMe</span><span style="color: #000000">) {</span>
+<span style="color: #000000">      </span><span style="color: #008000">// Message sent</span>
+<span style="color: #000000">      </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;NewMessageSent: &#039;</span><span style="color: #000000">, </span><span style="color: #001080">newMsg</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">);</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">  });</span>
 
-<span style="color: #000000">        </span><span style="color: #008000">// Was connected to whatsapp chat</span>
-<span style="color: #000000">        </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">conn</span><span style="color: #000000">.</span><span style="color: #001080">connect</span><span style="color: #000000">) {</span>
-<span style="color: #000000">            </span><span style="color: #001080">client</span><span style="color: #000000"> = </span><span style="color: #001080">conn</span><span style="color: #000000">.</span><span style="color: #001080">client</span><span style="color: #000000">;</span>
-<span style="color: #000000">            </span><span style="color: #008000">// send a text message</span>
-<span style="color: #000000">            </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">sendMessage</span><span style="color: #000000">({</span>
-<span style="color: #000000">                </span><span style="color: #001080">to:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;0000000000@c.us&quot;</span><span style="color: #000000">, </span><span style="color: #008000">// you can pass the contact number or group number</span>
-<span style="color: #000000">                </span><span style="color: #001080">body:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;hi i&#039;m hydra bot&quot;</span><span style="color: #000000">, </span><span style="color: #008000">// message text</span>
-<span style="color: #000000">                </span><span style="color: #001080">options:</span><span style="color: #000000"> {</span>
-<span style="color: #000000">                    </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;sendText&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// shipping type</span>
-<span style="color: #000000">                }</span>
-<span style="color: #000000">            }).</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">                </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">result</span><span style="color: #000000">); </span><span style="color: #008000">// message result</span>
-<span style="color: #000000">            }).</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">                </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">error</span><span style="color: #000000">); </span><span style="color: #008000">// message error</span>
-<span style="color: #000000">            });</span>
-<span style="color: #000000">        }</span>
-<span style="color: #000000">    });</span>
-
-<span style="color: #000000">    </span><span style="color: #008000">// return receive new messages</span>
-<span style="color: #000000">    </span><span style="color: #001080">ev</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;newMessage&#039;</span><span style="color: #000000">, </span><span style="color: #0000FF">async</span><span style="color: #000000"> (</span><span style="color: #001080">newMsg</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">        </span><span style="color: #008000">// when is received</span>
-<span style="color: #000000">        </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (!</span><span style="color: #001080">newMsg</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">.</span><span style="color: #001080">isSentByMe</span><span style="color: #000000">) {</span>
-<span style="color: #000000">            </span><span style="color: #008000">// message received!</span>
-<span style="color: #000000">            </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;NewMessageReceived: &#039;</span><span style="color: #000000">, </span><span style="color: #001080">newMsg</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">);</span>
-<span style="color: #000000">            </span><span style="color: #008000">// dowload files</span>
-<span style="color: #000000">            </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">newMsg</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">.</span><span style="color: #001080">isMedia</span><span style="color: #000000"> === </span><span style="color: #0000FF">true</span><span style="color: #000000"> || </span><span style="color: #001080">newMsg</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">.</span><span style="color: #001080">isMMS</span><span style="color: #000000"> === </span><span style="color: #0000FF">true</span><span style="color: #000000">) {</span>
-<span style="color: #000000">                </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">buffer</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">decryptFile</span><span style="color: #000000">(</span><span style="color: #001080">newMsg</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">);</span>
-<span style="color: #000000">                </span><span style="color: #008000">// At this point you can do whatever you want with the buffer</span>
-<span style="color: #000000">                </span><span style="color: #008000">// Most likely you want to write it into a file</span>
-<span style="color: #000000">                </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">fileName</span><span style="color: #000000"> = </span><span style="color: #A31515">`some-file-name.</span><span style="color: #0000FF">${</span><span style="color: #001080">mime</span><span style="color: #000000FF">.</span><span style="color: #795E26">extension</span><span style="color: #000000FF">(</span><span style="color: #001080">newMsg</span><span style="color: #000000FF">.</span><span style="color: #001080">result</span><span style="color: #000000FF">.</span><span style="color: #001080">mimetype</span><span style="color: #000000FF">)</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">;</span>
-<span style="color: #000000">                </span><span style="color: #001080">fs</span><span style="color: #000000">.</span><span style="color: #795E26">writeFile</span><span style="color: #000000">(</span><span style="color: #001080">fileName</span><span style="color: #000000">, </span><span style="color: #001080">buffer</span><span style="color: #000000">, (</span><span style="color: #001080">err</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">                    </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">err</span><span style="color: #000000">) {</span>
-<span style="color: #000000">                        </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">err</span><span style="color: #000000">);</span>
-<span style="color: #000000">                    }</span>
-<span style="color: #000000">                });</span>
-<span style="color: #000000">            }</span>
-<span style="color: #000000">        }</span>
-<span style="color: #000000">        </span><span style="color: #008000">// when is it sent</span>
-<span style="color: #000000">        </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (!!</span><span style="color: #001080">newMsg</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">.</span><span style="color: #001080">isSentByMe</span><span style="color: #000000">) {</span>
-<span style="color: #000000">            </span><span style="color: #008000">// Message sent</span>
-<span style="color: #000000">            </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;NewMessageSent: &#039;</span><span style="color: #000000">, </span><span style="color: #001080">newMsg</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">);</span>
-<span style="color: #000000">        }</span>
-<span style="color: #000000">    });</span>
-
-<span style="color: #000000">    </span><span style="color: #008000">// returns the status of each message</span>
-<span style="color: #000000">    </span><span style="color: #001080">ev</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;newOnAck&#039;</span><span style="color: #000000">, </span><span style="color: #0000FF">async</span><span style="color: #000000"> (</span><span style="color: #001080">event</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">        </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;id Message: &#039;</span><span style="color: #000000">, </span><span style="color: #001080">event</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">.</span><span style="color: #001080">id</span><span style="color: #000000">.</span><span style="color: #001080">_serialized</span><span style="color: #000000">); </span><span style="color: #008000">// message id  </span>
-<span style="color: #000000">        </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Status Message: &#039;</span><span style="color: #000000">, </span><span style="color: #001080">event</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">.</span><span style="color: #001080">ack</span><span style="color: #000000">); </span><span style="color: #008000">// -7 = MD_DOWNGRADE, -6 = INACTIVE, -5 = CONTENT_UNUPLOADABLE, -4 = CONTENT_TOO_BIG, -3 = CONTENT_GONE, -2 = EXPIRED, -1 = FAILED, 0 = CLOCK, 1 = SENT, 2 = RECEIVED, 3 = READ, 4 = PLAYED</span>
-<span style="color: #000000">        </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;From Message: &#039;</span><span style="color: #000000">, </span><span style="color: #001080">event</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">.</span><span style="color: #001080">from</span><span style="color: #000000">); </span><span style="color: #008000">// from message</span>
-<span style="color: #000000">        </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;To Message: &#039;</span><span style="color: #000000">, </span><span style="color: #001080">event</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">.</span><span style="color: #001080">to</span><span style="color: #000000">); </span><span style="color: #008000">// to message</span>
-<span style="color: #000000">    });</span>
-
+<span style="color: #000000">  </span><span style="color: #008000">// returns the status of each message</span>
+<span style="color: #000000">  </span><span style="color: #001080">ev</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;newOnAck&#039;</span><span style="color: #000000">, </span><span style="color: #0000FF">async</span><span style="color: #000000"> (</span><span style="color: #001080">event</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;id Message: &#039;</span><span style="color: #000000">, </span><span style="color: #001080">event</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">.</span><span style="color: #001080">id</span><span style="color: #000000">.</span><span style="color: #001080">_serialized</span><span style="color: #000000">); </span><span style="color: #008000">// message id</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Status Message: &#039;</span><span style="color: #000000">, </span><span style="color: #001080">event</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">.</span><span style="color: #001080">ack</span><span style="color: #000000">); </span><span style="color: #008000">// -7 = MD_DOWNGRADE, -6 = INACTIVE, -5 = CONTENT_UNUPLOADABLE, -4 = CONTENT_TOO_BIG, -3 = CONTENT_GONE, -2 = EXPIRED, -1 = FAILED, 0 = CLOCK, 1 = SENT, 2 = RECEIVED, 3 = READ, 4 = PLAYED</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;From Message: &#039;</span><span style="color: #000000">, </span><span style="color: #001080">event</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">.</span><span style="color: #001080">from</span><span style="color: #000000">); </span><span style="color: #008000">// from message</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;To Message: &#039;</span><span style="color: #000000">, </span><span style="color: #001080">event</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">.</span><span style="color: #001080">to</span><span style="color: #000000">); </span><span style="color: #008000">// to message</span>
+<span style="color: #000000">  });</span>
 <span style="color: #000000">})();</span>
 </code></pre>
 				<a href="#downloading-files" id="downloading-files" style="color: inherit; text-decoration: none;">
@@ -243,47 +244,47 @@
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">mime</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;mime-types&#039;</span><span style="color: #000000">);</span>
 
 <span style="color: #000000">(</span><span style="color: #0000FF">async</span><span style="color: #000000"> () </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">    </span><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">;</span>
-<span style="color: #000000">    </span><span style="color: #008000">// start bot service</span>
-<span style="color: #000000">    </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">ev</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">hydraBot</span><span style="color: #000000">.</span><span style="color: #795E26">initServer</span><span style="color: #000000">();</span>
-<span style="color: #000000">    </span><span style="color: #008000">// return connection information</span>
-<span style="color: #000000">    </span><span style="color: #001080">ev</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;connection&#039;</span><span style="color: #000000">, </span><span style="color: #0000FF">async</span><span style="color: #000000"> (</span><span style="color: #001080">conn</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">        </span><span style="color: #008000">// Was connected to whatsapp chat</span>
-<span style="color: #000000">        </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">conn</span><span style="color: #000000">.</span><span style="color: #001080">connect</span><span style="color: #000000">) {</span>
-<span style="color: #000000">            </span><span style="color: #001080">client</span><span style="color: #000000"> = </span><span style="color: #001080">conn</span><span style="color: #000000">.</span><span style="color: #001080">client</span><span style="color: #000000">;</span>
-<span style="color: #000000">        }</span>
-<span style="color: #000000">    });</span>
-<span style="color: #000000">    </span><span style="color: #001080">ev</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;newMessage&#039;</span><span style="color: #000000">, </span><span style="color: #0000FF">async</span><span style="color: #000000"> (</span><span style="color: #001080">newMsg</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">             </span><span style="color: #008000">// when is received</span>
-<span style="color: #000000">            </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (!</span><span style="color: #001080">newMsg</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">.</span><span style="color: #001080">isSentByMe</span><span style="color: #000000">) {</span>
-<span style="color: #000000">                </span><span style="color: #008000">// message received!</span>
-<span style="color: #000000">                </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;NewMessageReceived: &#039;</span><span style="color: #000000">, </span><span style="color: #001080">newMsg</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">);</span>
-<span style="color: #000000">                </span><span style="color: #008000">// dowload files</span>
-<span style="color: #000000">                </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">newMsg</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">.</span><span style="color: #001080">isMedia</span><span style="color: #000000"> === </span><span style="color: #0000FF">true</span><span style="color: #000000"> || </span><span style="color: #001080">newMsg</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">.</span><span style="color: #001080">isMMS</span><span style="color: #000000"> === </span><span style="color: #0000FF">true</span><span style="color: #000000">) {</span>
-<span style="color: #000000">                    </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">buffer</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">decryptFile</span><span style="color: #000000">(</span><span style="color: #001080">newMsg</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">);</span>
-<span style="color: #000000">                    </span><span style="color: #008000">// At this point you can do whatever you want with the buffer</span>
-<span style="color: #000000">                    </span><span style="color: #008000">// Most likely you want to write it into a file</span>
-<span style="color: #000000">                    </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">fileName</span><span style="color: #000000"> = </span><span style="color: #A31515">`some-file-name.</span><span style="color: #0000FF">${</span><span style="color: #001080">mime</span><span style="color: #000000FF">.</span><span style="color: #795E26">extension</span><span style="color: #000000FF">(</span><span style="color: #001080">newMsg</span><span style="color: #000000FF">.</span><span style="color: #001080">result</span><span style="color: #000000FF">.</span><span style="color: #001080">mimetype</span><span style="color: #000000FF">)</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">;</span>
-<span style="color: #000000">                    </span><span style="color: #001080">fs</span><span style="color: #000000">.</span><span style="color: #795E26">writeFile</span><span style="color: #000000">(</span><span style="color: #001080">fileName</span><span style="color: #000000">, </span><span style="color: #001080">buffer</span><span style="color: #000000">, (</span><span style="color: #001080">err</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">                        </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">err</span><span style="color: #000000">) {</span>
-<span style="color: #000000">                         </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">err</span><span style="color: #000000">);</span>
-<span style="color: #000000">                        }</span>
-<span style="color: #000000">                    });</span>
-<span style="color: #000000">                }</span>
-<span style="color: #000000">            }</span>
-<span style="color: #000000">    });</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">;</span>
+<span style="color: #000000">  </span><span style="color: #008000">// start bot service</span>
+<span style="color: #000000">  </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">ev</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">hydraBot</span><span style="color: #000000">.</span><span style="color: #795E26">initServer</span><span style="color: #000000">();</span>
+<span style="color: #000000">  </span><span style="color: #008000">// return connection information</span>
+<span style="color: #000000">  </span><span style="color: #001080">ev</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;connection&#039;</span><span style="color: #000000">, </span><span style="color: #0000FF">async</span><span style="color: #000000"> (</span><span style="color: #001080">conn</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #008000">// Was connected to whatsapp chat</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">conn</span><span style="color: #000000">.</span><span style="color: #001080">connect</span><span style="color: #000000">) {</span>
+<span style="color: #000000">      </span><span style="color: #001080">client</span><span style="color: #000000"> = </span><span style="color: #001080">conn</span><span style="color: #000000">.</span><span style="color: #001080">client</span><span style="color: #000000">;</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">  });</span>
+<span style="color: #000000">  </span><span style="color: #001080">ev</span><span style="color: #000000">.</span><span style="color: #795E26">on</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;newMessage&#039;</span><span style="color: #000000">, </span><span style="color: #0000FF">async</span><span style="color: #000000"> (</span><span style="color: #001080">newMsg</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #008000">// when is received</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (!</span><span style="color: #001080">newMsg</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">.</span><span style="color: #001080">isSentByMe</span><span style="color: #000000">) {</span>
+<span style="color: #000000">      </span><span style="color: #008000">// message received!</span>
+<span style="color: #000000">      </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;NewMessageReceived: &#039;</span><span style="color: #000000">, </span><span style="color: #001080">newMsg</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">);</span>
+<span style="color: #000000">      </span><span style="color: #008000">// dowload files</span>
+<span style="color: #000000">      </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">newMsg</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">.</span><span style="color: #001080">isMedia</span><span style="color: #000000"> === </span><span style="color: #0000FF">true</span><span style="color: #000000"> || </span><span style="color: #001080">newMsg</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">.</span><span style="color: #001080">isMMS</span><span style="color: #000000"> === </span><span style="color: #0000FF">true</span><span style="color: #000000">) {</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">buffer</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">decryptFile</span><span style="color: #000000">(</span><span style="color: #001080">newMsg</span><span style="color: #000000">.</span><span style="color: #001080">result</span><span style="color: #000000">);</span>
+<span style="color: #000000">        </span><span style="color: #008000">// At this point you can do whatever you want with the buffer</span>
+<span style="color: #000000">        </span><span style="color: #008000">// Most likely you want to write it into a file</span>
+<span style="color: #000000">        </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">fileName</span><span style="color: #000000"> = </span><span style="color: #A31515">`some-file-name.</span><span style="color: #0000FF">${</span><span style="color: #001080">mime</span><span style="color: #000000FF">.</span><span style="color: #795E26">extension</span><span style="color: #000000FF">(</span>
+<span style="color: #000000FF">          </span><span style="color: #001080">newMsg</span><span style="color: #000000FF">.</span><span style="color: #001080">result</span><span style="color: #000000FF">.</span><span style="color: #001080">mimetype</span>
+<span style="color: #000000FF">        )</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000">;</span>
+<span style="color: #000000">        </span><span style="color: #001080">fs</span><span style="color: #000000">.</span><span style="color: #795E26">writeFile</span><span style="color: #000000">(</span><span style="color: #001080">fileName</span><span style="color: #000000">, </span><span style="color: #001080">buffer</span><span style="color: #000000">, (</span><span style="color: #001080">err</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">          </span><span style="color: #AF00DB">if</span><span style="color: #000000"> (</span><span style="color: #001080">err</span><span style="color: #000000">) {</span>
+<span style="color: #000000">            </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">err</span><span style="color: #000000">);</span>
+<span style="color: #000000">          }</span>
+<span style="color: #000000">        });</span>
+<span style="color: #000000">      }</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">  });</span>
 <span style="color: #000000">})();</span>
 </code></pre>
 				<a href="#optional-create-parameters-the-bot-in-raw-form-without-using-a-web-services" id="optional-create-parameters-the-bot-in-raw-form-without-using-a-web-services" style="color: inherit; text-decoration: none;">
 					<h2>Optional create parameters (the bot in raw form, without using a Web Services)</h2>
 				</a>
-				<pre><code class="language-javascript">
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">hydraBot</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;hydra-bot&#039;</span><span style="color: #000000">);</span>
+				<pre><code class="language-javascript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">hydraBot</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;hydra-bot&#039;</span><span style="color: #000000">);</span>
 
-<span style="color: #001080">hydraBot</span><span style="color: #000000">.</span><span style="color: #795E26">initServer</span><span style="color: #000000">(</span>
-<span style="color: #000000">{</span>
-<span style="color: #000000">  </span><span style="color: #001080">session:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;session&quot;</span><span style="color: #000000">, </span><span style="color: #008000">// Name of the token to be generated, a folder with all customer information will be created</span>
-<span style="color: #000000">  </span><span style="color: #001080">pathNameToken:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;token&quot;</span><span style="color: #000000">, </span><span style="color: #008000">// The path and name of the folder where the client tokens will be saved</span>
+<span style="color: #001080">hydraBot</span><span style="color: #000000">.</span><span style="color: #795E26">initServer</span><span style="color: #000000">({</span>
+<span style="color: #000000">  </span><span style="color: #001080">session:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;session&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// Name of the token to be generated, a folder with all customer information will be created</span>
+<span style="color: #000000">  </span><span style="color: #001080">pathNameToken:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;token&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// The path and name of the folder where the client tokens will be saved</span>
 <span style="color: #000000">  </span><span style="color: #001080">printQRInTerminal:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #008000">// The QR CODE will be printed on the terminal if true</span>
 <span style="color: #000000">  </span><span style="color: #001080">updatesLog:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #008000">// Logs info updates automatically in terminal</span>
 <span style="color: #000000">  </span><span style="color: #001080">timeAutoClose:</span><span style="color: #000000"> </span><span style="color: #098658">60000</span><span style="color: #000000">, </span><span style="color: #008000">// If you don&#039;t read the QR CODE by default 60 seconds, it will automatically close the client&#039;s browser to save memory, if you want to disable it, set 0 or false</span>
@@ -291,24 +292,20 @@
 <span style="color: #000000">  </span><span style="color: #001080">puppeteerOptions:</span><span style="color: #000000"> {</span>
 <span style="color: #000000">    </span><span style="color: #001080">headless:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #008000">// Start the project with the browser open or not!</span>
 <span style="color: #000000">    </span><span style="color: #001080">args:</span><span style="color: #000000"> [], </span><span style="color: #008000">// Additional arguments to pass to the browser instance. adding any parameter you will replace the default args of the project</span>
-<span style="color: #000000">    </span><span style="color: #001080">executablePath:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;useChrome&#039;</span><span style="color: #000000"> </span><span style="color: #008000">// The browser that will be used for the project, you can specify a path, if you don&#039;t pass any parameters it will open the installed browser.</span>
-<span style="color: #000000">  }</span>
-<span style="color: #000000">}</span>
-<span style="color: #000000">);</span>
-
+<span style="color: #000000">    </span><span style="color: #001080">executablePath:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;useChrome&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// The browser that will be used for the project, you can specify a path, if you don&#039;t pass any parameters it will open the installed browser.</span>
+<span style="color: #000000">  },</span>
+<span style="color: #000000">});</span>
 </code></pre>
 				<a href="#optional-create-parameters-web-services" id="optional-create-parameters-web-services" style="color: inherit; text-decoration: none;">
 					<h2>Optional create parameters Web Services</h2>
 				</a>
-				<pre><code class="language-javascript">
-<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">hydraBot</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;hydra-bot&#039;</span><span style="color: #000000">);</span>
+				<pre><code class="language-javascript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">hydraBot</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;hydra-bot&#039;</span><span style="color: #000000">);</span>
 
-<span style="color: #001080">hydraBot</span><span style="color: #000000">.</span><span style="color: #795E26">initWs</span><span style="color: #000000">(</span>
-<span style="color: #000000">{</span>
+<span style="color: #001080">hydraBot</span><span style="color: #000000">.</span><span style="color: #795E26">initWs</span><span style="color: #000000">({</span>
 <span style="color: #000000">  </span><span style="color: #001080">port:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;8080&#039;</span><span style="color: #000000">,</span>
 <span style="color: #000000">  </span><span style="color: #001080">url:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// point a URL to receive a callback!</span>
 <span style="color: #000000">  </span><span style="color: #001080">authentication:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #008000">// ask for authentication in routes</span>
-<span style="color: #000000">  </span><span style="color: #001080">pathNameToken:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;token&quot;</span><span style="color: #000000">, </span><span style="color: #008000">// The path and name of the folder where the client tokens will be saved</span>
+<span style="color: #000000">  </span><span style="color: #001080">pathNameToken:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;token&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// The path and name of the folder where the client tokens will be saved</span>
 <span style="color: #000000">  </span><span style="color: #001080">printQRInTerminal:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #008000">// The QR CODE will be printed on the terminal if true</span>
 <span style="color: #000000">  </span><span style="color: #001080">updatesLog:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #008000">// Logs info updates automatically in terminal</span>
 <span style="color: #000000">  </span><span style="color: #001080">timeAutoClose:</span><span style="color: #000000"> </span><span style="color: #098658">60000</span><span style="color: #000000">, </span><span style="color: #008000">// If you don&#039;t read the QR CODE by default 60 seconds, it will automatically close the client&#039;s browser to save memory, if you want to disable it, set 0 or false</span>
@@ -316,11 +313,9 @@
 <span style="color: #000000">  </span><span style="color: #001080">puppeteerOptions:</span><span style="color: #000000"> {</span>
 <span style="color: #000000">    </span><span style="color: #001080">headless:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #008000">// Start the project with the browser open or not!</span>
 <span style="color: #000000">    </span><span style="color: #001080">args:</span><span style="color: #000000"> [], </span><span style="color: #008000">// Additional arguments to pass to the browser instance. adding any parameter you will replace the default args of the project</span>
-<span style="color: #000000">    </span><span style="color: #001080">executablePath:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;useChrome&#039;</span><span style="color: #000000"> </span><span style="color: #008000">// The browser that will be used for the project, you can specify a path, if you don&#039;t pass any parameters it will open the installed browser.</span>
-<span style="color: #000000">  }</span>
-<span style="color: #000000">}</span>
-<span style="color: #000000">);</span>
-
+<span style="color: #000000">    </span><span style="color: #001080">executablePath:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;useChrome&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// The browser that will be used for the project, you can specify a path, if you don&#039;t pass any parameters it will open the installed browser.</span>
+<span style="color: #000000">  },</span>
+<span style="color: #000000">});</span>
 </code></pre>
 				<a href="#commands-for-administration-via-terminal" id="commands-for-administration-via-terminal" style="color: inherit; text-decoration: none;">
 					<h3>Commands for administration via terminal</h3>
@@ -395,9 +390,9 @@
 					<h5>All user wheels have a pattern of <code>Headers</code>, to be able to access them, to create a administrator</h5>
 				</a>
 				<pre><code class="language-json"><span style="color: #000000">{</span>
-<span style="color: #000000">    </span><span style="color: #0451A5">&quot;Content-Type&quot;</span><span style="color: #000000"> : </span><span style="color: #A31515">&quot;application/json&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #0451A5">&quot;admin&quot;</span><span style="color: #000000"> : </span><span style="color: #A31515">&quot;admin&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #0451A5">&quot;admin_pass&quot;</span><span style="color: #000000"> : </span><span style="color: #A31515">&quot;admin&quot;</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;Content-Type&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;application/json&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;admin&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;admin&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;admin_pass&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;admin&quot;</span>
 <span style="color: #000000">}</span>
 </code></pre>
 				<a href="#list-of-routes-for-user-management" id="list-of-routes-for-user-management" style="color: inherit; text-decoration: none;">
@@ -475,9 +470,9 @@
 				</a>
 				<p>The headers must be parameterized as :</p>
 				<pre><code class="language-json"><span style="color: #000000">{</span>
-<span style="color: #000000">    </span><span style="color: #0451A5">&quot;Content-Type&quot;</span><span style="color: #000000"> : </span><span style="color: #A31515">&quot;application/json&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #0451A5">&quot;user&quot;</span><span style="color: #000000"> : </span><span style="color: #A31515">&quot;user&quot;</span><span style="color: #000000">,</span>
-<span style="color: #000000">    </span><span style="color: #0451A5">&quot;user_pass&quot;</span><span style="color: #000000"> : </span><span style="color: #A31515">&quot;user&quot;</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;Content-Type&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;application/json&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;user&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;user&quot;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">&quot;user_pass&quot;</span><span style="color: #000000">: </span><span style="color: #A31515">&quot;user&quot;</span>
 <span style="color: #000000">}</span>
 </code></pre>
 				<a href="#using-webhook" id="using-webhook" style="color: inherit; text-decoration: none;">
@@ -512,19 +507,19 @@
 							<td>POST</td>
 							<td><code>/sendFile</code></td>
 							<td>Send file to a number</td>
-							<td><code>{ &quot;to&quot;: &quot;contact number&quot;,  &quot;file_path&quot;: &quot;https://docs.marklogic.com/guide/node-dev.pdf&quot;, &quot;file_name&quot;: &quot;node.js&quot; }</code></td>
+							<td><code>{ &quot;to&quot;: &quot;contact number&quot;, &quot;file_path&quot;: &quot;https://docs.marklogic.com/guide/node-dev.pdf&quot;, &quot;file_name&quot;: &quot;node.js&quot; }</code></td>
 						</tr>
 						<tr>
 							<td>POST</td>
 							<td><code>/sendAudio</code></td>
 							<td>Send audio</td>
-							<td><code>{ &quot;to&quot;: &quot;contact number&quot;,  &quot;url_mp3&quot;: &quot;https://cdn.freesound.org/previews/620/620094_4935038-lq.mp3&quot;, &quot;file_name&quot;: &quot;node.js&quot; }</code></td>
+							<td><code>{ &quot;to&quot;: &quot;contact number&quot;, &quot;url_mp3&quot;: &quot;https://cdn.freesound.org/previews/620/620094_4935038-lq.mp3&quot;, &quot;file_name&quot;: &quot;node.js&quot; }</code></td>
 						</tr>
 						<tr>
 							<td>POST</td>
 							<td><code>/sendImage</code></td>
 							<td>Send image message</td>
-							<td><code>{ &quot;to&quot;: &quot;contact number&quot;,  &quot;url_img&quot;: &quot;https://i.pinimg.com/564x/a9/b1/18/a9b118761788b1ab260aae2835c468cd.jpg&quot; }</code></td>
+							<td><code>{ &quot;to&quot;: &quot;contact number&quot;, &quot;url_img&quot;: &quot;https://i.pinimg.com/564x/a9/b1/18/a9b118761788b1ab260aae2835c468cd.jpg&quot; }</code></td>
 						</tr>
 						<tr>
 							<td>POST</td>
@@ -569,6 +564,12 @@
 							<td>Check if the QR-Code is active</td>
 							<td><code>EMPTY</code></td>
 						</tr>
+						<tr>
+							<td>GET</td>
+							<td><code>/screenshot</code></td>
+							<td>Get screenshot</td>
+							<td><code>EMPTY</code></td>
+						</tr>
 				</tbody></table>
 				<a href="#basic-send-options-functions-more-features-still-under-development" id="basic-send-options-functions-more-features-still-under-development" style="color: inherit; text-decoration: none;">
 					<h2>Basic send options functions (more features still under development)</h2>
@@ -578,185 +579,226 @@
 					<h5>Here, <code>to</code> can be <code>&lt;phone Number&gt;@c.us</code> or <code>&lt;phone Number&gt;-&lt;groupId&gt;@g.us</code> or <code>&lt;phone Number&gt;&lt;groupId&gt;@g.us</code></h5>
 				</a>
 				<p>you can send messages only using one function!</p>
-				<pre><code class="language-javascript">
-<span style="color: #008000">// send text message</span>
-<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">sendMessage</span><span style="color: #000000">({</span>
-<span style="color: #000000">    </span><span style="color: #001080">to:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;0000000000@c.us&quot;</span><span style="color: #000000">, </span><span style="color: #008000">// you can pass the contact number or group number</span>
-<span style="color: #000000">    </span><span style="color: #001080">body:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;A message sent by hydra-bot&quot;</span><span style="color: #000000">, </span><span style="color: #008000">// message text</span>
+				<pre><code class="language-javascript"><span style="color: #008000">// send text message</span>
+<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">sendMessage</span><span style="color: #000000">({</span>
+<span style="color: #000000">    </span><span style="color: #001080">to:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;0000000000@c.us&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// you can pass the contact number or group number</span>
+<span style="color: #000000">    </span><span style="color: #001080">body:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;A message sent by hydra-bot&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// message text</span>
 <span style="color: #000000">    </span><span style="color: #001080">options:</span><span style="color: #000000"> {</span>
-<span style="color: #000000">        </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;sendText&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// shipping type</span>
-<span style="color: #000000">    }</span>
-<span style="color: #000000">}).</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;sendText&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// shipping type</span>
+<span style="color: #000000">    },</span>
+<span style="color: #000000">  })</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">result</span><span style="color: #000000">); </span><span style="color: #008000">// message result</span>
-<span style="color: #000000">}).</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  })</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">error</span><span style="color: #000000">); </span><span style="color: #008000">// message error</span>
-<span style="color: #000000">});</span>
+<span style="color: #000000">  });</span>
 
 <span style="color: #008000">// send files</span>
-<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">sendMessage</span><span style="color: #000000">({</span>
-<span style="color: #000000">    </span><span style="color: #001080">to:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;0000000000@c.us&quot;</span><span style="color: #000000">, </span><span style="color: #008000">// you can pass the contact number or group number</span>
+<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">sendMessage</span><span style="color: #000000">({</span>
+<span style="color: #000000">    </span><span style="color: #001080">to:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;0000000000@c.us&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// you can pass the contact number or group number</span>
 <span style="color: #000000">    </span><span style="color: #001080">body:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;./file.pdf&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// you can use a directory or use a url</span>
 <span style="color: #000000">    </span><span style="color: #001080">options:</span><span style="color: #000000"> {</span>
-<span style="color: #000000">        </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;sendFile&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// shipping type</span>
-<span style="color: #000000">        </span><span style="color: #001080">filename:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;filename&#039;</span><span style="color: #000000"> </span><span style="color: #008000">// put the file name here</span>
-<span style="color: #000000">    }</span>
-<span style="color: #000000">}).</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">result</span><span style="color: #000000">);  </span><span style="color: #008000">// message result</span>
-<span style="color: #000000">}).</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;sendFile&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// shipping type</span>
+<span style="color: #000000">      </span><span style="color: #001080">filename:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;filename&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// put the file name here</span>
+<span style="color: #000000">    },</span>
+<span style="color: #000000">  })</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">result</span><span style="color: #000000">); </span><span style="color: #008000">// message result</span>
+<span style="color: #000000">  })</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">error</span><span style="color: #000000">); </span><span style="color: #008000">// message error</span>
-<span style="color: #000000">});</span>
+<span style="color: #000000">  });</span>
 
 <span style="color: #008000">// send file audio</span>
-<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">sendMessage</span><span style="color: #000000">({</span>
-<span style="color: #000000">    </span><span style="color: #001080">to:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;0000000000@c.us&quot;</span><span style="color: #000000">, </span><span style="color: #008000">// you can pass the contact number or group number</span>
+<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">sendMessage</span><span style="color: #000000">({</span>
+<span style="color: #000000">    </span><span style="color: #001080">to:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;0000000000@c.us&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// you can pass the contact number or group number</span>
 <span style="color: #000000">    </span><span style="color: #001080">body:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;./file.mp3&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// you can use a directory or use a url</span>
 <span style="color: #000000">    </span><span style="color: #001080">options:</span><span style="color: #000000"> {</span>
-<span style="color: #000000">        </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;sendAudio&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// shipping type</span>
-<span style="color: #000000">    }</span>
-<span style="color: #000000">}).</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">result</span><span style="color: #000000">);  </span><span style="color: #008000">// message result</span>
-<span style="color: #000000">}).</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;sendAudio&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// shipping type</span>
+<span style="color: #000000">    },</span>
+<span style="color: #000000">  })</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">result</span><span style="color: #000000">); </span><span style="color: #008000">// message result</span>
+<span style="color: #000000">  })</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">error</span><span style="color: #000000">); </span><span style="color: #008000">// message error</span>
-<span style="color: #000000">});</span>
+<span style="color: #000000">  });</span>
 
 <span style="color: #008000">// Send audio file base64</span>
-<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">sendMessage</span><span style="color: #000000">({</span>
-<span style="color: #000000">    </span><span style="color: #001080">to:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;0000000000@c.us&quot;</span><span style="color: #000000">, </span><span style="color: #008000">// you can pass the contact number or group number</span>
+<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">sendMessage</span><span style="color: #000000">({</span>
+<span style="color: #000000">    </span><span style="color: #001080">to:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;0000000000@c.us&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// you can pass the contact number or group number</span>
 <span style="color: #000000">    </span><span style="color: #001080">body:</span><span style="color: #000000"> </span><span style="color: #001080">base64MP3</span><span style="color: #000000">, </span><span style="color: #008000">// you can use a directory or use a url</span>
 <span style="color: #000000">    </span><span style="color: #001080">options:</span><span style="color: #000000"> {</span>
-<span style="color: #000000">        </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;sendAudioBase64&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// shipping type</span>
-<span style="color: #000000">    }</span>
-<span style="color: #000000">}).</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">result</span><span style="color: #000000">);  </span><span style="color: #008000">// message result</span>
-<span style="color: #000000">}).</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;sendAudioBase64&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// shipping type</span>
+<span style="color: #000000">    },</span>
+<span style="color: #000000">  })</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">result</span><span style="color: #000000">); </span><span style="color: #008000">// message result</span>
+<span style="color: #000000">  })</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">error</span><span style="color: #000000">); </span><span style="color: #008000">// message error</span>
-<span style="color: #000000">});</span>
+<span style="color: #000000">  });</span>
 
 <span style="color: #008000">// Send image message</span>
-<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">sendMessage</span><span style="color: #000000">({</span>
-<span style="color: #000000">    </span><span style="color: #001080">to:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;0000000000@c.us&quot;</span><span style="color: #000000">, </span><span style="color: #008000">// you can pass the contact number or group number</span>
+<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">sendMessage</span><span style="color: #000000">({</span>
+<span style="color: #000000">    </span><span style="color: #001080">to:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;0000000000@c.us&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// you can pass the contact number or group number</span>
 <span style="color: #000000">    </span><span style="color: #001080">body:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;./file.jpg&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// you can use a directory or use a url</span>
 <span style="color: #000000">    </span><span style="color: #001080">options:</span><span style="color: #000000"> {</span>
-<span style="color: #000000">        </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;sendImage&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// shipping type</span>
-<span style="color: #000000">        </span><span style="color: #001080">caption:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;image text&#039;</span><span style="color: #000000"> </span><span style="color: #008000">// image text</span>
-<span style="color: #000000">    }</span>
-<span style="color: #000000">}).</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">result</span><span style="color: #000000">);  </span><span style="color: #008000">// message result</span>
-<span style="color: #000000">}).</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;sendImage&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// shipping type</span>
+<span style="color: #000000">      </span><span style="color: #001080">caption:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;image text&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// image text</span>
+<span style="color: #000000">    },</span>
+<span style="color: #000000">  })</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">result</span><span style="color: #000000">); </span><span style="color: #008000">// message result</span>
+<span style="color: #000000">  })</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">error</span><span style="color: #000000">); </span><span style="color: #008000">// message error</span>
-<span style="color: #000000">});</span>
+<span style="color: #000000">  });</span>
 
 <span style="color: #008000">// Send image Base64</span>
-<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">sendMessage</span><span style="color: #000000">({</span>
-<span style="color: #000000">    </span><span style="color: #001080">to:</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;0000000000@c.us&quot;</span><span style="color: #000000">, </span><span style="color: #008000">// you can pass the contact number or group number</span>
+<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">sendMessage</span><span style="color: #000000">({</span>
+<span style="color: #000000">    </span><span style="color: #001080">to:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;0000000000@c.us&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// you can pass the contact number or group number</span>
 <span style="color: #000000">    </span><span style="color: #001080">body:</span><span style="color: #000000"> </span><span style="color: #001080">base64IMG</span><span style="color: #000000">, </span><span style="color: #008000">// you can use a directory or use a url</span>
 <span style="color: #000000">    </span><span style="color: #001080">options:</span><span style="color: #000000"> {</span>
-<span style="color: #000000">        </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;sendImageFromBase64&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// shipping type</span>
-<span style="color: #000000">        </span><span style="color: #001080">caption:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;image text&#039;</span><span style="color: #000000"> </span><span style="color: #008000">// image text</span>
-<span style="color: #000000">    }</span>
-<span style="color: #000000">}).</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
-<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">result</span><span style="color: #000000">);  </span><span style="color: #008000">// message result</span>
-<span style="color: #000000">}).</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #001080">type:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;sendImageFromBase64&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// shipping type</span>
+<span style="color: #000000">      </span><span style="color: #001080">caption:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;image text&#039;</span><span style="color: #000000">, </span><span style="color: #008000">// image text</span>
+<span style="color: #000000">    },</span>
+<span style="color: #000000">  })</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">result</span><span style="color: #000000">); </span><span style="color: #008000">// message result</span>
+<span style="color: #000000">  })</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">error</span><span style="color: #000000">); </span><span style="color: #008000">// message error</span>
-<span style="color: #000000">});</span>
-
+<span style="color: #000000">  });</span>
 </code></pre>
 				<a href="#basic-send-functions" id="basic-send-functions" style="color: inherit; text-decoration: none;">
 					<h2>Basic send functions</h2>
 				</a>
 				<pre><code class="language-javascript"><span style="color: #008000">// Sends a text message to given chat</span>
-<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">sendText</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;0000000000@c.us&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&quot;A message sent by hydra-bot&quot;</span><span style="color: #000000">)</span>
-<span style="color: #000000">.</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">sendText</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;0000000000@c.us&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;A message sent by hydra-bot&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">result</span><span style="color: #000000">); </span><span style="color: #008000">// message result</span>
-<span style="color: #000000">}).</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  })</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">error</span><span style="color: #000000">); </span><span style="color: #008000">// message error</span>
-<span style="color: #000000">});</span>
+<span style="color: #000000">  });</span>
 
 <span style="color: #008000">// Sends file from path</span>
-<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">sendFile</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;0000000000@c.us&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;./file.pdf&#039;</span><span style="color: #000000">, { </span><span style="color: #001080">filename:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;filename&#039;</span><span style="color: #000000"> })</span>
-<span style="color: #000000">.</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">sendFile</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;0000000000@c.us&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;./file.pdf&#039;</span><span style="color: #000000">, { </span><span style="color: #001080">filename:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;filename&#039;</span><span style="color: #000000"> })</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">result</span><span style="color: #000000">); </span><span style="color: #008000">// message result</span>
-<span style="color: #000000">}).</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  })</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">error</span><span style="color: #000000">); </span><span style="color: #008000">// message error</span>
-<span style="color: #000000">});</span>
+<span style="color: #000000">  });</span>
 
 <span style="color: #008000">// Send audio file</span>
-<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">sendAudio</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;0000000000@c.us&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;./file.mp3&#039;</span><span style="color: #000000">)</span>
-<span style="color: #000000">.</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">sendAudio</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;0000000000@c.us&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;./file.mp3&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">result</span><span style="color: #000000">); </span><span style="color: #008000">// message result</span>
-<span style="color: #000000">}).</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  })</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">error</span><span style="color: #000000">); </span><span style="color: #008000">// message error</span>
-<span style="color: #000000">});</span>
+<span style="color: #000000">  });</span>
 
 <span style="color: #008000">// Send audio base64</span>
-<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">sendAudioBase64</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;0000000000@c.us&quot;</span><span style="color: #000000">, </span><span style="color: #001080">base64MP3</span><span style="color: #000000">)</span>
-<span style="color: #000000">.</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">sendAudioBase64</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;0000000000@c.us&#039;</span><span style="color: #000000">, </span><span style="color: #001080">base64MP3</span><span style="color: #000000">)</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">result</span><span style="color: #000000">); </span><span style="color: #008000">// message result</span>
-<span style="color: #000000">}).</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  })</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">error</span><span style="color: #000000">); </span><span style="color: #008000">// message error</span>
-<span style="color: #000000">});</span>
+<span style="color: #000000">  });</span>
 
 <span style="color: #008000">// Send image message</span>
-<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">sendImage</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;0000000000@c.us&quot;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;./file.jpg&#039;</span><span style="color: #000000">, { </span><span style="color: #001080">caption:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;image text&#039;</span><span style="color: #000000"> })</span>
-<span style="color: #000000">.</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">sendImage</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;0000000000@c.us&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;./file.jpg&#039;</span><span style="color: #000000">, { </span><span style="color: #001080">caption:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;image text&#039;</span><span style="color: #000000"> })</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">result</span><span style="color: #000000">); </span><span style="color: #008000">// message result</span>
-<span style="color: #000000">}).</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  })</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">error</span><span style="color: #000000">); </span><span style="color: #008000">// message error</span>
-<span style="color: #000000">});</span>
+<span style="color: #000000">  });</span>
 
 <span style="color: #008000">// Send image base64</span>
-<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">sendImageFromBase64</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;0000000000@c.us&quot;</span><span style="color: #000000">, </span><span style="color: #001080">base64IMG</span><span style="color: #000000">, { </span><span style="color: #001080">caption:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;image text&#039;</span><span style="color: #000000"> })</span>
-<span style="color: #000000">.</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">sendImageFromBase64</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;0000000000@c.us&#039;</span><span style="color: #000000">, </span><span style="color: #001080">base64IMG</span><span style="color: #000000">, { </span><span style="color: #001080">caption:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;image text&#039;</span><span style="color: #000000"> })</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">result</span><span style="color: #000000">); </span><span style="color: #008000">// message result</span>
-<span style="color: #000000">}).</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  })</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">error</span><span style="color: #000000">); </span><span style="color: #008000">// message error</span>
-<span style="color: #000000">});</span>
+<span style="color: #000000">  });</span>
 </code></pre>
 				<a href="#profile-functions" id="profile-functions" style="color: inherit; text-decoration: none;">
 					<h2>Profile Functions</h2>
 				</a>
-				<pre><code class="language-javascript">
-<span style="color: #008000">// Get device info</span>
+				<pre><code class="language-javascript"><span style="color: #008000">// Get device info</span>
 <span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">getHost</span><span style="color: #000000">();</span>
-
 </code></pre>
 				<a href="#retrieving-data" id="retrieving-data" style="color: inherit; text-decoration: none;">
 					<h2>Retrieving Data</h2>
 				</a>
-				<pre><code class="language-javascript">
-<span style="color: #008000">// returns a list of contacts</span>
+				<pre><code class="language-javascript"><span style="color: #008000">// returns a list of contacts</span>
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">contacts</span><span style="color: #000000"> = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">getAllContacts</span><span style="color: #000000">();</span>
-
 </code></pre>
 				<a href="#group-management" id="group-management" style="color: inherit; text-decoration: none;">
 					<h2>Group Management</h2>
 				</a>
 				<p>Group number example <code>&lt;phone Number&gt;-&lt;groupId&gt;@g.us</code> or <code>&lt;phone Number&gt;&lt;groupId&gt;@g.us</code></p>
-				<pre><code class="language-javascript">
-<span style="color: #008000">// Create group</span>
-<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">createGroup</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Group name&#039;</span><span style="color: #000000">,  [</span><span style="color: #A31515">&#039;111111111111@c.us&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;222222222222@c.us&#039;</span><span style="color: #000000">])</span>
-<span style="color: #000000">.</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+				<pre><code class="language-javascript"><span style="color: #008000">// Create group</span>
+<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">createGroup</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Group name&#039;</span><span style="color: #000000">, [</span><span style="color: #A31515">&#039;111111111111@c.us&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;222222222222@c.us&#039;</span><span style="color: #000000">])</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">result</span><span style="color: #000000">); </span><span style="color: #008000">// message result</span>
-<span style="color: #000000">}).</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  })</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">error</span><span style="color: #000000">); </span><span style="color: #008000">// message error</span>
-<span style="color: #000000">});</span>
+<span style="color: #000000">  });</span>
 
 <span style="color: #008000">// Add participant to Group</span>
-<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">addParticipant</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;00000000-000000@g.us&#039;</span><span style="color: #000000">,  [</span><span style="color: #A31515">&#039;111111111111@c.us&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;222222222222@c.us&#039;</span><span style="color: #000000">])</span>
-<span style="color: #000000">.</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">addParticipant</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;00000000-000000@g.us&#039;</span><span style="color: #000000">, [</span>
+<span style="color: #000000">    </span><span style="color: #A31515">&#039;111111111111@c.us&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #A31515">&#039;222222222222@c.us&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  ])</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">result</span><span style="color: #000000">); </span><span style="color: #008000">// message result</span>
-<span style="color: #000000">}).</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  })</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">error</span><span style="color: #000000">); </span><span style="color: #008000">// message error</span>
-<span style="color: #000000">});</span>
+<span style="color: #000000">  });</span>
 
 <span style="color: #008000">// Change group description</span>
-<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span><span style="color: #000000">.</span><span style="color: #795E26">setGroupDescription</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;00000000-000000@g.us&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;group description&#039;</span><span style="color: #000000">)</span>
-<span style="color: #000000">.</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">setGroupDescription</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;00000000-000000@g.us&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;group description&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">result</span><span style="color: #000000">); </span><span style="color: #008000">// message result</span>
-<span style="color: #000000">}).</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  })</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
 <span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">error</span><span style="color: #000000">); </span><span style="color: #008000">// message error</span>
-<span style="color: #000000">});</span>
+<span style="color: #000000">  });</span>
 
+<span style="color: #008000">// Change group image</span>
+<span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #001080">client</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">setGroupImage</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;00000000000000@g.us&#039;</span><span style="color: #000000">, </span><span style="color: #A31515">&#039;./file.jpg&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">result</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">result</span><span style="color: #000000">); </span><span style="color: #008000">// message result</span>
+<span style="color: #000000">  })</span>
+<span style="color: #000000">  .</span><span style="color: #795E26">catch</span><span style="color: #000000">((</span><span style="color: #001080">error</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">error</span><span style="color: #000000">); </span><span style="color: #008000">// message error</span>
+<span style="color: #000000">  });</span>
 </code></pre>
 				<a href="#debugging" id="debugging" style="color: inherit; text-decoration: none;">
 					<h3>Debugging</h3>
