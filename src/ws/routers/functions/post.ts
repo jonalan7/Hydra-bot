@@ -248,7 +248,17 @@ export class InicializePost extends InicializeGet {
 
       if (typeof getId === 'number') {
         const getUser = await sessionClient.getUser($_HEADERS_USER);
-        getUser.child.send({ type: 'disconnect' });
+
+        try {
+          getUser.child.send({ type: 'disconnect' });
+        } catch (error) {
+          console.log(error);
+          return res.send({
+            erro: true,
+            text: 'Not connected',
+          });
+        }
+
         this.child.on('message', async (response: any) => {
           if (response.result && response.typeSend === 'disconnect') {
             try {
