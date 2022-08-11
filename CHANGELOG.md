@@ -1,15 +1,28 @@
+<<<<<<< HEAD
 ## [1.0.28-1](https://github.com/jonalan7/Hydra-bot/compare/v1.0.29-0...v1.0.28-1) (2022-08-03)
+=======
+## [1.0.29](https://github.com/jonalan7/Hydra-bot/compare/v1.0.28...v1.0.29) (2022-08-09)
+>>>>>>> cb3b18bf0d402cdd05e25fc660344261c1c7c29c
 
 
 ### Bug Fixes
 
 * addParticipant ([7b775e7](https://github.com/jonalan7/Hydra-bot/commit/7b775e7f3678eec1eec0d9a8ddc0545db53638a3))
 * createGroup ([18777f0](https://github.com/jonalan7/Hydra-bot/commit/18777f09460471caf223afb6b0b3a99e3dcda39a))
+<<<<<<< HEAD
+=======
+* lint wpage ([efe37cc](https://github.com/jonalan7/Hydra-bot/commit/efe37cc5f4134d13e12d51d6c15f7d841d418247))
+>>>>>>> cb3b18bf0d402cdd05e25fc660344261c1c7c29c
 
 
 ### Features
 
 * Missing rate limiting ([fceaf57](https://github.com/jonalan7/Hydra-bot/commit/fceaf574a0921fdbb1af842163579f5f265ca776))
+<<<<<<< HEAD
+=======
+* package ([7e25bf4](https://github.com/jonalan7/Hydra-bot/commit/7e25bf47364df7fff6afba638169f5cea24fa4c4))
+* process ([52a2de9](https://github.com/jonalan7/Hydra-bot/commit/52a2de9947a7495b676b5747c8f3537c6d234d49))
+>>>>>>> cb3b18bf0d402cdd05e25fc660344261c1c7c29c
 * setGroupImage ([6814123](https://github.com/jonalan7/Hydra-bot/commit/6814123ff414592be0c2bd5f9f95adea7bfc3115))
 
 

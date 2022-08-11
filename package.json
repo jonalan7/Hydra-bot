@@ -1,6 +1,10 @@
 {
   "name": "hydra-bot",
+<<<<<<< HEAD
   "version": "1.0.28-1",
+=======
+  "version": "1.0.29",
+>>>>>>> cb3b18bf0d402cdd05e25fc660344261c1c7c29c
   "description": "The most reliable WhatsApp tool for chatbots with advanced features. Hydra bot is an open source project developed by the JavaScript community with the aim of exporting functions from WhatsApp Web to the node js, . The most complete javascript library for Whatsapp, 100% Open Source.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

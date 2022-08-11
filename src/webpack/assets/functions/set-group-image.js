@@ -18,15 +18,14 @@ export async function setGroupImage(obj, groupId) {
         groupId = new Store.WidFactory.createWid(groupId);
         let base64 = 'data:image/jpeg;base64,';
         try {
-            const f = await Store.Profile.sendSetPicture(groupId, base64 + obj.b, base64 + obj.a);
-            console.log(f)
+            const sendPinture = await Store.Profile.sendSetPicture(groupId, base64 + obj.b, base64 + obj.a);
             return API.scope(
                 groupId,
                 false,
                 200,
                 `Image changed successfully`,
                 nameFunc,
-                f
+                sendPinture
             );
         } catch {
             return API.scope(
