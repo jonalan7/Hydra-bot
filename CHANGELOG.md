@@ -1,3 +1,12 @@
+## [1.0.30](https://github.com/jonalan7/Hydra-bot/compare/v1.0.29...v1.0.30) (2022-08-20)
+
+
+### Features
+
+* checkNumber ([e75c31e](https://github.com/jonalan7/Hydra-bot/commit/e75c31e69c1810afb7c4192bc2f03a41164d7743))
+
+
+
 <<<<<<< HEAD
 ## [1.0.28-1](https://github.com/jonalan7/Hydra-bot/compare/v1.0.29-0...v1.0.28-1) (2022-08-03)
 =======
