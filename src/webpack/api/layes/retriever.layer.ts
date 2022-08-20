@@ -41,4 +41,15 @@ export class RetrieverLayer extends GroupLayer {
       .catch(() => undefined);
     return { base64Image: `data:image/png;base64,${base64}` };
   }
+
+  /**
+   * Check if the number exists
+   * @param {string} number phone number
+   */
+  public async checkNumber(number: string) {
+    return await this.page.evaluate(
+      (number) => API.checkNumberStatus(number),
+      number
+    );
+  }
 }

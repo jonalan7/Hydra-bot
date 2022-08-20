@@ -7,10 +7,17 @@ data reception functions
 
 ## Summary
  - [getAllContacts](#getallcontacts)
+ - [checkNumber](#checknumber)
 
 ### getAllContacts
 
 Returns a list of contacts
 ```javascript
 const contacts = await client.getAllContacts();
+```
+
+### checkNumber
+Check if the number exists
+```javascript
+const result = await client.checkNumber("<phone Number>@c.us");
 ```
