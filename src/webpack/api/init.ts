@@ -95,8 +95,6 @@ export async function initServer(options?: CreateOptions) {
             onType: onMode.connection,
             session: mergeOptionsDefault.session,
           };
-        }).catch(() => {
-          console.log('The client has been closed');
         });
 
         ev.on(onMode.interfaceChange, async (interFace: any) => {

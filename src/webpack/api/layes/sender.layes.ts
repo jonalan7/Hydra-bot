@@ -10,13 +10,14 @@ import {
   filenameFromMimeType,
 } from '../../help';
 import * as path from 'path';
+import { CallbackOnStatus } from './callback-on.layes';
 
 export class SenderLayer extends RetrieverLayer {
   constructor(
     public page: Page,
     public browser: Browser,
     public options: CreateOptions,
-    public ev: any
+    public ev: CallbackOnStatus
   ) {
     super(page, browser, options, ev);
   }

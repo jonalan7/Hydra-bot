@@ -18,12 +18,15 @@ async function Webhook(options: any, info: any) {
     return new Promise(async (resolve, reject) => {
       if (info) {
         Object.assign(info, { token: options.token });
+        info.onType !== 'newMessage' && console.log(`Webhook log: `, info);
+
         await axios
           .post(options.url, info)
           .then(function (response) {
             resolve(response);
           })
           .catch((err) => {
+            console.log('Error from webhook server: ', err);
             reject(err);
           });
       }
@@ -58,6 +61,8 @@ async function Webhook(options: any, info: any) {
     if (!msg.result.isSentByMe) {
       if (msg.result.isMedia === true || msg.result.isMMS === true) {
         try {
+          console.log('Client: ', client);
+
           const buffer = await client.decryptFile(msg.result);
           const folder: string = path.join(
             path.resolve(process.cwd(), 'files')

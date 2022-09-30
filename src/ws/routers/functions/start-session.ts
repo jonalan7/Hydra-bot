@@ -28,6 +28,7 @@ export async function startSession(
   }
 
   const session = await sessionClient.newSession($_HEADERS_USER);
+  console.log('Start season for user: ', $_HEADERS_USER);
 
   if (session) {
     const MergeToken =
@@ -93,7 +94,6 @@ export async function startSession(
 
     return res.send({ erro: false, text: 'Wait for connection' });
   } else {
-    
     const getId = await sessionClient.getSessionId($_HEADERS_USER);
     const check = await sessionClient.checkClient($_HEADERS_USER);
 

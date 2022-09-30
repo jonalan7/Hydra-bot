@@ -2,7 +2,7 @@ import { Page, Browser } from 'puppeteer';
 import { CreateOptions } from '../../model/interface/';
 import * as qrcode from 'qrcode-terminal';
 import { onMode } from '../../model/enum';
-
+import { CallbackOnStatus } from './callback-on.layes';
 
 export class scraping {
   public startScanQrcode: boolean;
@@ -13,8 +13,7 @@ export class scraping {
     public page: Page,
     public browser: Browser,
     public options: CreateOptions,
-    public ev: any
-
+    public ev: CallbackOnStatus
   ) {
     this.startScanQrcode = false;
   }
@@ -37,7 +36,9 @@ export class scraping {
   }
 
   protected startAutoClose() {
-    let remain: Number | Boolean | any = this.options.timeAutoClose ? this.options.timeAutoClose : false;
+    let remain: Number | Boolean | any = this.options.timeAutoClose
+      ? this.options.timeAutoClose
+      : false;
     if (
       this.options.timeAutoClose &&
       this.options.timeAutoClose > 0 &&
@@ -59,7 +60,7 @@ export class scraping {
                 status: 'autoClose',
                 statusFind: 'browser',
                 onType: onMode.connection,
-                session: this.options.session
+                session: this.options.session,
               };
               this.cancelAutoClose();
               this.tryAutoClose();

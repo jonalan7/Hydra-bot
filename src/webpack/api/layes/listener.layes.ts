@@ -4,6 +4,7 @@ import { Page, Browser } from 'puppeteer';
 import { Whatsapp } from './whatsapp';
 import { CreateOptions } from '../../model/interface';
 import { sleep } from '../../help';
+import { CallbackOnStatus } from './callback-on.layes';
 
 export class ListenerLayer extends Whatsapp {
   urlCode = '';
@@ -11,7 +12,7 @@ export class ListenerLayer extends Whatsapp {
     public page: Page,
     public browser: Browser,
     public options: CreateOptions,
-    public ev: any
+    public ev: CallbackOnStatus
   ) {
     super(page, browser, options, ev);
   }
