@@ -1,12 +1,12 @@
-import { Page, Browser } from 'puppeteer';
+import { Browser } from 'puppeteer';
 
 export async function checkingCloses(
   browser: Browser,
   callStatus: (e: boolean) => void
 ) {
   let processClose = false;
-  if (browser['_process']) {
-    browser['_process'].once('close', () => {
+  if (browser.process()) {
+    browser.on('disconnected', () => {
       processClose = true;
     });
   }

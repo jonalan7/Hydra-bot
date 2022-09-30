@@ -9,17 +9,15 @@ import { checkUpdates } from './check-up-to-date';
 
 const ev = new CallbackOnStatus();
 
-export async function initServer(
-  createOption?: CreateOptions
-): Promise<webPack | any>;
+// export async function initServer(
+//   createOption?: CreateOptions
+// ): Promise<webPack>;
 
 /**
  * Start the bot
  */
-export async function initServer(
-  options?: CreateOptions
-): Promise<webPack | any> {
-  return new Promise(async (resolve) => {
+export async function initServer(options?: CreateOptions) {
+  return new Promise<CallbackOnStatus>(async (resolve) => {
     resolve(ev);
 
     const mergeOptionsDefault = { ...defaultConfig, ...options };
@@ -54,7 +52,7 @@ export async function initServer(
       session: mergeOptionsDefault.session,
     };
 
-    const wpage: Browser | boolean = await initLaunch(mergeOptionsDefault, ev);
+    const wpage = await initLaunch(mergeOptionsDefault, ev);
 
     if (typeof wpage !== 'boolean') {
       ev.statusFind = {
@@ -66,7 +64,7 @@ export async function initServer(
         session: mergeOptionsDefault.session,
       };
 
-      const page: boolean | Page = await initBrowser(wpage);
+      const page = await initBrowser(wpage);
       if (typeof page !== 'boolean') {
         ev.statusFind = {
           erro: false,
@@ -134,8 +132,8 @@ export async function initServer(
       } else {
         ev.statusFind = {
           erro: true,
-          text: 'Error open whatzapp',
-          status: 'noOpenWhatzapp',
+          text: 'Error open whatsapp',
+          status: 'noOpenWhatsapp',
           statusFind: 'browser',
           onType: onMode.connection,
           session: mergeOptionsDefault.session,

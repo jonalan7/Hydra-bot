@@ -9,8 +9,8 @@ import { puppeteerConfig } from '../help';
 
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 
-export async function initBrowser(Browser: Browser): Promise<Page | boolean> {
-  const wpage: Page = await oneTab(Browser);
+export async function initBrowser(Browser: Browser) {
+  const wpage = await oneTab(Browser);
   if (wpage) {
     try {
       await wpage.setUserAgent(puppeteerConfig.useragentOverride);
@@ -206,9 +206,7 @@ export async function initLaunch(
   }
 }
 
-export async function oneTab(
-  Browser: Browser | BrowserContext
-): Promise<Page | any> {
+export async function oneTab(Browser: Browser | BrowserContext) {
   try {
     const page: Page[] = await Browser.pages();
     if (page.length) return page[0];
@@ -218,7 +216,7 @@ export async function oneTab(
   }
 }
 
-export function getPathChrome(): string | undefined {
+export function getPathChrome() {
   try {
     const chromeInstalations: string[] =
       ChromeLauncher.Launcher.getInstallations();
