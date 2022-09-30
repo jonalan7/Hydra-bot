@@ -1,4 +1,4 @@
-import { InterfaceHost, contact, InterfaceScope } from '../model/interface';
+import { InterfaceHost, contact, InterfaceScope, checkNumber } from '../model/interface';
 
 interface API {
   /**
@@ -31,7 +31,10 @@ interface API {
    * @param groupName Group name
    * @param contacts Participants id '000000000000@c.us'
    */
-  createGroup: (groupName: string, contacts: string | string[]) => Promise<InterfaceScope>;
+  createGroup: (
+    groupName: string,
+    contacts: string | string[]
+  ) => Promise<InterfaceScope>;
   /**
    * Add participant to Group
    * @param groupId Chat id ('0000000000-00000000@g.us' or '000000000000000000@g.us')
@@ -46,12 +49,26 @@ interface API {
    * @param {string} groupId group number
    * @param {string} description group description
    */
-  setGroupDescription: (groupId: string, description: string) => Promise<InterfaceScope>;
+  setGroupDescription: (
+    groupId: string,
+    description: string
+  ) => Promise<InterfaceScope>;
   /**
    * Get information from the connected number
    * @returns Current host device details
    */
   getHost: () => Promise<InterfaceHost>;
+  /**
+   * Parameters to change group image
+   * @param {string} groupId group number
+   * @param {string} path of image
+   */
+  setGroupImage: (path: string, to: string) => Promise<InterfaceScope>;
+  /**
+   * check if the number exists
+   * @param {string} number phone number
+   */
+  checkNumberStatus: (number: string) => Promise<checkNumber>;
 }
 
 declare global {
