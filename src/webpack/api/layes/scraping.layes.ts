@@ -53,7 +53,6 @@ export class scraping {
 
           if (typeof remain === 'number') {
             remain -= 1000;
-            console.log('Set auto close to: ', remain);
             this.autoCloseRemain = Math.round(remain / 1000);
             if (remain <= 0) {
               this.ev.statusFind = {
