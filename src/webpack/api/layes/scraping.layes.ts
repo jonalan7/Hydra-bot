@@ -6,7 +6,7 @@ import { CallbackOnStatus } from './callback-on.layes';
 
 export class scraping {
   public startScanQrcode: boolean;
-  public autoCloseInterval: any;
+  public autoCloseInterval: NodeJS.Timer | undefined;
   public autoCloseRemain: number = 0;
 
   constructor(
@@ -25,18 +25,18 @@ export class scraping {
       !this.autoCloseInterval &&
       !this.page.isClosed()
     ) {
-      this.page.close().catch(() => {});
-      this.browser.close().catch(() => {});
+      this.page.close().catch((err) => console.error(err));
+      this.browser.close().catch((err) => console.error(err));
     }
   }
 
   public cancelAutoClose() {
-    clearInterval(this.autoCloseInterval);
-    this.autoCloseInterval = null;
+    this.autoCloseInterval && clearInterval(this.autoCloseInterval);
+    this.autoCloseInterval = undefined;
   }
 
   protected startAutoClose() {
-    let remain: Number | Boolean | any = this.options.timeAutoClose
+    let remain: Number | Boolean = this.options.timeAutoClose
       ? this.options.timeAutoClose
       : false;
     if (
@@ -50,8 +50,10 @@ export class scraping {
             this.cancelAutoClose();
             return;
           }
-          if (Number.isInteger(remain)) {
+
+          if (typeof remain === 'number') {
             remain -= 1000;
+            console.log('Set auto close to: ', remain);
             this.autoCloseRemain = Math.round(remain / 1000);
             if (remain <= 0) {
               this.ev.statusFind = {
