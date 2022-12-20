@@ -24,7 +24,7 @@ class configUsers {
 
   async CheckUserLogin(req: any) {
     const checkHeaders = this.CheckUserHeaders(req);
-    if (checkHeaders.erro === false) {
+    if (checkHeaders.error === false) {
       const $_HEADERS = req.headers;
       const checkUser = await this.dbUser.checkUser(
         $_HEADERS.user,
@@ -61,7 +61,7 @@ class configUsers {
 
   async CheckAdminLogin(req: any) {
     const checkHeaders = this.CheckAdminHeaders(req);
-    if (checkHeaders.erro === false) {
+    if (checkHeaders.error === false) {
       const $_HEADERS = req.headers;
       const checkAdmin = await this.dbAdmin.checkUser(
         $_HEADERS.admin,

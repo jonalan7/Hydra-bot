@@ -4,7 +4,7 @@ class InicializePutUser {
   async activateUserRouter(req: any, res: any) {
     const body = req.body;
     const checkADM = await Users.CheckAdminLogin(req);
-    if (checkADM.erro === false) {
+    if (checkADM.error === false) {
       if (!!body.id && body.id.length) {
         const change = await Users.dbUser.activateUser(body.id);
         if (typeof change === 'boolean' && change === true) {
@@ -32,7 +32,7 @@ class InicializePutUser {
   async deactivateUserRouter(req: any, res: any) {
     const body = req.body;
     const checkADM = await Users.CheckAdminLogin(req);
-    if (checkADM.erro === false) {
+    if (checkADM.error === false) {
       if (!!body.id && body.id.length) {
         const change = await Users.dbUser.deactivateUser(body.id);
         if (typeof change === 'boolean' && change === true) {
@@ -60,7 +60,7 @@ class InicializePutUser {
   async changeNameRouter(req: any, res: any) {
     const body = req.body;
     const checkADM = await Users.CheckAdminLogin(req);
-    if (checkADM.erro === false) {
+    if (checkADM.error === false) {
       if (!!body.id && body.id.length && !!body.name && body.name.length) {
         const change = await Users.dbUser.changeTheName(body.id, body.name);
         if (typeof change === 'boolean' && change === true) {
@@ -88,7 +88,7 @@ class InicializePutUser {
   async changePasswordRouter(req: any, res: any) {
     const body = req.body;
     const checkADM = await Users.CheckAdminLogin(req);
-    if (checkADM.erro === false) {
+    if (checkADM.error === false) {
       if (
         !!body.id &&
         body.id.length &&

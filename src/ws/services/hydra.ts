@@ -91,7 +91,7 @@ async function Webhook(options: any, info: any) {
   });
 
   ev.on(onMode.connection, async (conn: any) => {
-    if (conn.erro) {
+    if (conn.error) {
       if (
         conn.statusFind === 'browser' &&
         (conn.status === 'browserClosed' ||

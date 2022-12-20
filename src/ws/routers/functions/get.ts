@@ -12,7 +12,7 @@ export class InicializeGet {
 
     if (option.authentication) {
       const user = await Users.CheckUserLogin(req);
-      if (user.erro) {
+      if (user.error) {
         return res.send(user);
       }
     }
@@ -56,7 +56,7 @@ export class InicializeGet {
     if (!!$_GET.name && $_GET.name.length) {
       if (option.authentication) {
         const user = await Users.CheckUserLogin(req);
-        if (user.erro) {
+        if (user.error) {
           return res.send(user);
         }
       }
@@ -102,7 +102,7 @@ export class InicializeGet {
 
     if (option.authentication) {
       const user = await Users.CheckUserLogin(req);
-      if (user.erro) {
+      if (user.error) {
         return res.send(user);
       }
     }
@@ -140,7 +140,7 @@ export class InicializeGet {
 
     if (option.authentication) {
       const user = await Users.CheckUserLogin(req);
-      if (user.erro) {
+      if (user.error) {
         return res.send(user);
       }
     }

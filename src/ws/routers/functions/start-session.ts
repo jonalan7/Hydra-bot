@@ -18,7 +18,7 @@ export async function startSession(
 
   if (option.authentication) {
     const user = await Users.CheckUserLogin(req);
-    if (user.erro) {
+    if (user.error) {
       return res.send(user);
     }
   }

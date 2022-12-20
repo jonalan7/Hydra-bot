@@ -4,7 +4,7 @@ class InicializePostUser {
   async createUserRouter(req: any, res: any) {
     const body = req.body;
     const checkADM = await Users.CheckAdminLogin(req);
-    if (checkADM.erro === false) {
+    if (checkADM.error === false) {
       if (
         !!body.name &&
         body.name.length &&

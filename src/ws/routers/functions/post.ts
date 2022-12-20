@@ -8,7 +8,7 @@ import { InicializeRouters } from './inicialize-routers';
 export class InicializePost extends InicializeGet {
   static async checkUser(req: Request, res: Response) {
     const user = await Users.CheckUserLogin(req);
-    if (user.erro === false) {
+    if (user.error === false) {
       res.send({
         error: false,
         text: 'Existing user',
@@ -24,7 +24,7 @@ export class InicializePost extends InicializeGet {
 
     if (option.authentication) {
       const user = await Users.CheckUserLogin(req);
-      if (user.erro) {
+      if (user.error) {
         return res.send(user);
       }
     }
@@ -76,7 +76,7 @@ export class InicializePost extends InicializeGet {
 
     if (option.authentication) {
       const user = await Users.CheckUserLogin(req);
-      if (user.erro) {
+      if (user.error) {
         return res.send(user);
       }
     }
@@ -135,7 +135,7 @@ export class InicializePost extends InicializeGet {
 
     if (option.authentication) {
       const user = await Users.CheckUserLogin(req);
-      if (user.erro) {
+      if (user.error) {
         return res.send(user);
       }
     }
@@ -187,7 +187,7 @@ export class InicializePost extends InicializeGet {
 
     if (option.authentication) {
       const user = await Users.CheckUserLogin(req);
-      if (user.erro) {
+      if (user.error) {
         return res.send(user);
       }
     }
@@ -237,7 +237,7 @@ export class InicializePost extends InicializeGet {
 
     if (option.authentication) {
       const user = await Users.CheckUserLogin(req);
-      if (user.erro) {
+      if (user.error) {
         return res.send(user);
       }
     }

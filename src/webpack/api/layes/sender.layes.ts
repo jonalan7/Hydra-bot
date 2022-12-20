@@ -82,7 +82,7 @@ export class SenderLayer extends RetrieverLayer {
           { to, base64, options }
         )
         .catch();
-      if (result.erro == true) {
+      if (result.error == true) {
         return reject(result);
       } else {
         return resolve(result);
@@ -129,7 +129,7 @@ export class SenderLayer extends RetrieverLayer {
         )
         .catch();
 
-      if (result.erro == true) {
+      if (result.error == true) {
         return reject(result);
       } else {
         return resolve(result);
@@ -183,7 +183,7 @@ export class SenderLayer extends RetrieverLayer {
           { to, base64, options }
         )
         .catch();
-      if (result.erro == true) {
+      if (result.error == true) {
         return reject(result);
       } else {
         return resolve(result);
@@ -208,7 +208,7 @@ export class SenderLayer extends RetrieverLayer {
           { to, body, options }
         )
         .catch();
-      if (result.erro == true) {
+      if (result.error == true) {
         return reject(result);
       } else {
         return resolve(result);
@@ -244,7 +244,7 @@ export class SenderLayer extends RetrieverLayer {
             { to, base64, options }
           )
           .catch();
-        if (result.erro == true) {
+        if (result.error == true) {
           return reject(result);
         } else {
           return resolve(result);
@@ -295,7 +295,7 @@ export class SenderLayer extends RetrieverLayer {
             { to, base64, options }
           )
           .catch();
-        if (result.erro == true) {
+        if (result.error == true) {
           return reject(result);
         } else {
           return resolve(result);
