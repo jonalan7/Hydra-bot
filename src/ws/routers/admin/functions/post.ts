@@ -17,18 +17,18 @@ class InicializePostUser {
         );
         if (typeof insertUser === 'object') {
           res.send({
-            erro: false,
+            error: false,
             text: 'User successfully registered',
             info: insertUser,
           });
         } else {
           res.send({
-            erro: true,
+            error: true,
           });
         }
       } else {
         res.send({
-          erro: true,
+          error: true,
           text: 'Object incorrect',
         });
       }

@@ -10,7 +10,7 @@ export class InicializePost extends InicializeGet {
     const user = await Users.CheckUserLogin(req);
     if (user.erro === false) {
       res.send({
-        erro: false,
+        error: false,
         text: 'Existing user',
       });
     } else {
@@ -51,20 +51,20 @@ export class InicializePost extends InicializeGet {
             });
           } else {
             return res.send({
-              erro: true,
+              error: true,
               text: 'Waiting for connection with whatsapp',
             });
           }
         }
       } else {
         return res.send({
-          erro: true,
+          error: true,
           text: 'Not connected',
         });
       }
     } else {
       return res.send({
-        erro: true,
+        error: true,
         text: 'The parameters are missing',
       });
     }
@@ -110,20 +110,20 @@ export class InicializePost extends InicializeGet {
             });
           } else {
             return res.send({
-              erro: true,
+              error: true,
               text: 'Waiting for connection with whatsapp',
             });
           }
         }
       } else {
         return res.send({
-          erro: true,
+          error: true,
           text: 'Not connected',
         });
       }
     } else {
       return res.send({
-        erro: true,
+        error: true,
         text: 'The parameters are missing',
       });
     }
@@ -162,20 +162,20 @@ export class InicializePost extends InicializeGet {
             });
           } else {
             return res.send({
-              erro: true,
+              error: true,
               text: 'Waiting for connection with whatsapp',
             });
           }
         }
       } else {
         return res.send({
-          erro: true,
+          error: true,
           text: 'Not connected',
         });
       }
     } else {
       return res.send({
-        erro: true,
+        error: true,
         text: 'The parameters are missing',
       });
     }
@@ -213,20 +213,20 @@ export class InicializePost extends InicializeGet {
             });
           } else {
             return res.send({
-              erro: true,
+              error: true,
               text: 'Waiting for connection with whatsapp',
             });
           }
         }
       } else {
         return res.send({
-          erro: true,
+          error: true,
           text: 'Not connected',
         });
       }
     } else {
       return res.send({
-        erro: true,
+        error: true,
         text: 'The parameters are missing',
       });
     }
@@ -254,7 +254,7 @@ export class InicializePost extends InicializeGet {
         } catch (error) {
           console.log(error);
           return res.send({
-            erro: true,
+            error: true,
             text: 'Not connected',
           });
         }
@@ -266,7 +266,7 @@ export class InicializePost extends InicializeGet {
               return res.send(response);
             } catch (error) {
               return res.send({
-                erro: true,
+                error: true,
                 text: "Error disconnect, can't delete the session",
               });
             }
@@ -275,7 +275,7 @@ export class InicializePost extends InicializeGet {
       }
     } else {
       return res.send({
-        erro: true,
+        error: true,
         text: 'Not connected',
       });
     }

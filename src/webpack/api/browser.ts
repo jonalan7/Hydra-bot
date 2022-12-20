@@ -100,7 +100,7 @@ export async function initLaunch(
     let init = true;
 
     ev.statusFind = {
-      erro: false,
+      error: false,
       text: 'Await download Chromium',
       status: 'chromium',
       statusFind: 'browser',
@@ -114,7 +114,7 @@ export async function initLaunch(
         (downloadedByte, totalBytes) => {
           if (init) {
             ev.statusFind = {
-              erro: false,
+              error: false,
               text: 'Checking the total bytes to download!',
               status: 'chromium',
               statusFind: 'browser',
@@ -124,7 +124,7 @@ export async function initLaunch(
 
             if (totalBytes) {
               ev.statusFind = {
-                erro: false,
+                error: false,
                 text: `Total Bytes ${totalBytes}`,
                 status: 'chromium',
                 statusFind: 'browser',
@@ -137,7 +137,7 @@ export async function initLaunch(
 
           if (downloadedByte) {
             ev.statusFind = {
-              erro: false,
+              error: false,
               text: `Total Bytes: ${totalBytes} download: ${downloadedByte}`,
               status: 'chromium',
               statusFind: 'browser',
@@ -148,7 +148,7 @@ export async function initLaunch(
 
           if (downloadedByte === totalBytes) {
             ev.statusFind = {
-              erro: false,
+              error: false,
               text: `Extract files... await...`,
               status: 'chromium',
               statusFind: 'browser',
@@ -163,7 +163,7 @@ export async function initLaunch(
           options.puppeteerOptions.executablePath =
             revisionInfo?.executablePath;
           ev.statusFind = {
-            erro: false,
+            error: false,
             text: `download completed, path: ${revisionInfo?.executablePath}`,
             status: 'chromium',
             statusFind: 'browser',
@@ -178,7 +178,7 @@ export async function initLaunch(
       })
       .catch((e) => {
         ev.statusFind = {
-          erro: true,
+          error: true,
           text: `Error chromium`,
           status: 'chromium',
           statusFind: 'browser',

@@ -56,7 +56,7 @@ export class scraping {
             this.autoCloseRemain = Math.round(remain / 1000);
             if (remain <= 0) {
               this.ev.statusFind = {
-                erro: false,
+                error: false,
                 text: 'Auto close called!',
                 status: 'autoClose',
                 statusFind: 'browser',

@@ -30,7 +30,7 @@ export class ListenerLayer extends Whatsapp {
       if (this.urlCode !== result.urlCode) {
         this.urlCode = result.urlCode;
         this.ev.statusFind = {
-          erro: false,
+          error: false,
           qrcode: result.urlCode,
           base64Image: result.base64Image,
           onType: onMode.qrcode,

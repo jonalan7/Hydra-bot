@@ -24,7 +24,7 @@ export async function startSession(
   }
 
   if (body.url && body.url.length && !reHttp.test(body.url)) {
-    return res.send({ erro: true, text: 'Error http webHook' });
+    return res.send({ error: true, text: 'Error http webHook' });
   }
 
   const session = await sessionClient.newSession($_HEADERS_USER);
@@ -92,7 +92,7 @@ export async function startSession(
 
     sessionClient.addInfoSession($_HEADERS_USER, { child: child });
 
-    return res.send({ erro: false, text: 'Wait for connection' });
+    return res.send({ error: false, text: 'Wait for connection' });
   } else {
     const getId = await sessionClient.getSessionId($_HEADERS_USER);
     const check = await sessionClient.checkClient($_HEADERS_USER);
@@ -104,9 +104,9 @@ export async function startSession(
         getId
       );
       if (check && client) {
-        return res.send({ erro: false, text: 'Successfully connected!' });
+        return res.send({ error: false, text: 'Successfully connected!' });
       } else {
-        return res.send({ erro: false, text: 'Wait for connection' });
+        return res.send({ error: false, text: 'Wait for connection' });
       }
     }
   }

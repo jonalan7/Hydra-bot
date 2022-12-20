@@ -9,18 +9,18 @@ class InicializeDeleteUser {
         const deleteUser = await Users.dbUser.deleteUserId($_GET.id);
         if (typeof deleteUser === 'boolean' && deleteUser === true) {
           res.send({
-            erro: false,
+            error: false,
             text: 'User successfully deleted',
           });
         } else {
           res.send({
-            erro: false,
+            error: false,
             text: deleteUser,
           });
         }
       } else {
         res.send({
-          erro: false,
+          error: false,
           text: 'Object incorrect',
         });
       }

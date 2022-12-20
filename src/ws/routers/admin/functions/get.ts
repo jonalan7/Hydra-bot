@@ -11,7 +11,7 @@ class InicializeGetUser {
           res.send(user);
         } else {
           res.send({
-            erro: true,
+            error: true,
             text: 'User not found',
           });
         }

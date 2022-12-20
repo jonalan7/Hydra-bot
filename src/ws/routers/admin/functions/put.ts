@@ -9,18 +9,18 @@ class InicializePutUser {
         const change = await Users.dbUser.activateUser(body.id);
         if (typeof change === 'boolean' && change === true) {
           res.send({
-            erro: false,
+            error: false,
             text: 'User successfully activated!',
           });
         } else {
           res.send({
-            erro: true,
+            error: true,
             text: change,
           });
         }
       } else {
         res.send({
-          erro: true,
+          error: true,
           text: 'Object incorrect',
         });
       }
@@ -37,18 +37,18 @@ class InicializePutUser {
         const change = await Users.dbUser.deactivateUser(body.id);
         if (typeof change === 'boolean' && change === true) {
           res.send({
-            erro: false,
+            error: false,
             text: 'User deactivated successfully!',
           });
         } else {
           res.send({
-            erro: true,
+            error: true,
             text: change,
           });
         }
       } else {
         res.send({
-          erro: true,
+          error: true,
           text: 'Object incorrect',
         });
       }
@@ -65,18 +65,18 @@ class InicializePutUser {
         const change = await Users.dbUser.changeTheName(body.id, body.name);
         if (typeof change === 'boolean' && change === true) {
           res.send({
-            erro: false,
+            error: false,
             text: 'change name successfully',
           });
         } else {
           res.send({
-            erro: true,
+            error: true,
             text: change,
           });
         }
       } else {
         res.send({
-          erro: true,
+          error: true,
           text: 'Object incorrect',
         });
       }
@@ -98,18 +98,18 @@ class InicializePutUser {
         const change = await Users.dbUser.changeThePass(body.id, body.password);
         if (typeof change === 'boolean' && change === true) {
           res.send({
-            erro: false,
+            error: false,
             text: 'change password successfully',
           });
         } else {
           res.send({
-            erro: true,
+            error: true,
             text: change,
           });
         }
       } else {
         res.send({
-          erro: true,
+          error: true,
           text: 'Object incorrect',
         });
       }

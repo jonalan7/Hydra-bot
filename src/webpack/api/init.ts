@@ -43,7 +43,7 @@ export async function initServer(options?: CreateOptions) {
     }
 
     ev.statusFind = {
-      erro: false,
+      error: false,
       text: 'Starting browser...',
       status: 'initBrowser',
       statusFind: 'browser',
@@ -55,7 +55,7 @@ export async function initServer(options?: CreateOptions) {
 
     if (typeof wpage !== 'boolean') {
       ev.statusFind = {
-        erro: false,
+        error: false,
         text: 'Opening whatsapp page!',
         status: 'initWhatsapp',
         statusFind: 'browser',
@@ -66,7 +66,7 @@ export async function initServer(options?: CreateOptions) {
       const page = await initBrowser(wpage);
       if (typeof page !== 'boolean') {
         ev.statusFind = {
-          erro: false,
+          error: false,
           page: page,
           statusFind: 'page',
           onType: onMode.connection,
@@ -76,7 +76,7 @@ export async function initServer(options?: CreateOptions) {
         await sleep(100);
 
         ev.statusFind = {
-          erro: false,
+          error: false,
           text: 'Website accessed successfully',
           status: 'openedWhatsapp',
           statusFind: 'browser',
@@ -87,7 +87,7 @@ export async function initServer(options?: CreateOptions) {
         const client = new webPack(page, wpage, mergeOptionsDefault, ev);
         checkingCloses(wpage, () => {
           ev.statusFind = {
-            erro: true,
+            error: true,
             text: 'The browser has closed',
             status: 'browserClosed',
             statusFind: 'browser',
@@ -105,7 +105,7 @@ export async function initServer(options?: CreateOptions) {
             ) {
               client.addChatWapi();
               ev.statusFind = {
-                erro: false,
+                error: false,
                 connect: true,
                 onType: onMode.connection,
                 session: mergeOptionsDefault.session,
@@ -117,7 +117,7 @@ export async function initServer(options?: CreateOptions) {
               interFace.result.info === 'NORMAL'
             ) {
               ev.statusFind = {
-                erro: false,
+                error: false,
                 qrcode: interFace.result.info,
                 onType: onMode.connection,
                 session: mergeOptionsDefault.session,
@@ -128,7 +128,7 @@ export async function initServer(options?: CreateOptions) {
         });
       } else {
         ev.statusFind = {
-          erro: true,
+          error: true,
           text: 'Error open whatsapp',
           status: 'noOpenWhatsapp',
           statusFind: 'browser',
@@ -139,7 +139,7 @@ export async function initServer(options?: CreateOptions) {
       }
     } else {
       ev.statusFind = {
-        erro: true,
+        error: true,
         text: 'Error open browser...',
         status: 'noOpenBrowser',
         statusFind: 'browser',
