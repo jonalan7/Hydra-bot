@@ -7,8 +7,6 @@ import { onMode } from '../model/enum';
 import { checkingCloses, sleep } from '../help';
 import { checkUpdates } from './check-up-to-date';
 
-const ev = new CallbackOnStatus();
-
 // export async function initServer(
 //   createOption?: CreateOptions
 // ): Promise<webPack>;
@@ -17,6 +15,7 @@ const ev = new CallbackOnStatus();
  * Start the bot
  */
 export async function initServer(options?: CreateOptions) {
+  const ev = new CallbackOnStatus();
   return new Promise<CallbackOnStatus>(async (resolve) => {
     resolve(ev);
 
