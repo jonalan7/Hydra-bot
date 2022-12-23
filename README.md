@@ -30,8 +30,7 @@ To maintain quality, we are receiving support! We thank you in advance for the o
 
 | Company | URL                                                |                                                                      Logo                                                                      |
 | :------ | -------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------: |
-| redrive | [https://redrive.com.br/](https://redrive.com.br/) | <a target="_blank" href="https://redrive.com.br/" target="_blank"> <img title="redrive.com.br" height="25" src="img/logo-redrive-png.png"></a> |
-| zaplus  | [https://zaplus.chat/](https://zaplus.chat/)       |                                        <img title="zaplus.chat" height="25" src="img/logo_zaplus.png">                                         |
+| redrive | [https://redrive.com.br/](https://redrive.com.br/) | <a target="_blank" href="https://redrive.com.br/" target="_blank"> <img title="redrive.com.br" height="25" src="img/logo-redrive-png.png"></a> |                                         |
 | tabchat | [https://tabchat.com.br/](https://tabchat.com.br/) |                                    <img title="tabchat.com.br" height="25" src="img/logo-horizontal.webp">                                     |
 
 ## WhatSapp Group
