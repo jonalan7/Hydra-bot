@@ -116,4 +116,9 @@ export const filterObjects = [{
         when: (module) =>
             module.sendSetPicture && module.requestDeletePicture ? module : null,
     },
+    {
+        type: 'Contacts',
+        when: (module) => 
+            module.ContactCollection ? module : null,
+    }
 ];

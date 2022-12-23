@@ -6,10 +6,13 @@ export async function getHost() {
   if (fromwWid) {
     const idUser = await API.sendExist(fromwWid._serialized);
     if (idUser && idUser.status !== 404) {
-      const infoUser = await Store.MyStatus.getStatus(idUser);
+      const infoUser = await Store.Contacts.ContactCollection.get(
+        fromwWid?._serialized
+      );
       if (infoUser) {
         return await API.serializeMeObj(infoUser);
       }
     }
   }
+  return {};
 }
