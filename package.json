@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "dev": "nodemon -e js,ts,ejs --watch src --watch bot-test/index.js --exec npm run start",
     "clear": "shx rm -rf dist",
     "build:hydra": "tsc",
     "build:api": "cd src/webpack/assets && webpack",
@@ -91,6 +92,7 @@
     "@types/shelljs": "^0.8.11",
     "conventional-changelog-cli": "^2.2.2",
     "gulp": "^4.0.2",
+    "nodemon": "^2.0.20",
     "release-it": "^15.4.2",
     "shx": "^0.3.4",
     "ts-node": "^10.8.2",
