@@ -2,9 +2,9 @@ import { Page, Browser } from 'puppeteer';
 import { CreateOptions } from '../../model/interface/';
 import * as qrcode from 'qrcode-terminal';
 import { onMode } from '../../model/enum';
+import { onMod } from './on-wpp';
 
-
-export class scraping {
+export class scraping extends onMod {
   public startScanQrcode: boolean;
   public autoCloseInterval: any;
   public autoCloseRemain: number = 0;
@@ -16,6 +16,7 @@ export class scraping {
     public ev: any
 
   ) {
+    super(page, browser, options, ev);
     this.startScanQrcode = false;
   }
 
