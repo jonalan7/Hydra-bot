@@ -66,7 +66,7 @@
     "crypto-js": "^4.1.1",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
-    "express-rate-limit": "^6.5.1",
+    "express-rate-limit": "^6.7.0",
     "futoin-hkdf": "^1.5.1",
     "knex": "^2.1.0",
     "latest-version": "^5.1.0",
