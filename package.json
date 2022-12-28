@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "dev": "nodemon -e js,ts,ejs --watch src --watch bot-test/index.js --exec npm run start",
     "clear": "shx rm -rf dist",
     "build:hydra": "tsc",
     "build:api": "cd src/webpack/assets && webpack",
@@ -85,19 +86,20 @@
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/mime-types": "^2.1.1",
-    "@types/node": "^17.0.45",
+    "@types/node": "^18.11.17",
     "@types/qrcode-terminal": "^0.12.0",
     "@types/sharp": "^0.30.4",
     "@types/shelljs": "^0.8.11",
     "conventional-changelog-cli": "^2.2.2",
     "gulp": "^4.0.2",
-    "release-it": "^15.0.0",
+    "nodemon": "^2.0.20",
+    "release-it": "^15.4.2",
     "shx": "^0.3.4",
     "ts-node": "^10.8.2",
     "typedoc": "^0.21.10",
     "typedoc-default-themes": "^0.12.10",
     "typedoc-plugin-pages": "^1.1.0",
-    "typescript": "^4.8.4"
+    "typescript": "4.9.x"
   },
   "bin": {
     "admin": "./dist/bin/admin"

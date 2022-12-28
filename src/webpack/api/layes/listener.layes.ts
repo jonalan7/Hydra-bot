@@ -60,26 +60,17 @@ export class ListenerLayer extends Whatsapp {
           .exposeFunction(func, (...args: any) =>
             this.listenerEmitter.emit(func, ...args)
           )
-          .catch(() => {});
+          .catch(() => { });
       }
     }
-
-    await this.page
-      .evaluate(() => {
-        window.API.interfaceChange((e: any) => {
-          window.interfaceChange(e);
-        });
-        window.API.newMessage((e: any) => {
-          window.newMessage(e);
-        });
-        window.API.newOnAck((e: any) => {
-          window.newOnAck(e);
-        });
-      })
-      .catch(() => {});
+    
     this.listener(onMode.interfaceChange);
     this.listener(onMode.newMessage);
     this.listener(onMode.newOnAck);
+    
+    this.interfaceChange();
+    this.newMessage();
+    this.newOnAck()
   }
 
   private listener(type: string): { dispose: () => void } {

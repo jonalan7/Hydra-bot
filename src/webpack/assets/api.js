@@ -34,12 +34,6 @@ import {
 } from './functions';
 
 import {
-    addOnStream,
-    addOnNewMessage,
-    AddOnAck
-} from './listeners';
-
-import {
     serializeMessageObj,
     serializeChatObj,
     serializeContactObj,
@@ -109,8 +103,4 @@ if (typeof window.API === 'undefined') {
     window.API.serializeRawObj = serializeRawObj;
     window.API.serializeMeObj = serializeMeObj;
 
-    // On
-    addOnStream();
-    addOnNewMessage();
-    AddOnAck();
 }

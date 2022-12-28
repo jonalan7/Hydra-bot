@@ -6,18 +6,6 @@ interface API {
    */
   sendMessage: (to: string, body: String, options: object) => Promise<any>;
   /**
-   * receive which interface the user is on!
-   */
-  interfaceChange: (callback: Function) => void;
-  /**
-   * monitor new messages
-   */
-  newMessage: (callback: Function) => void;
-  /**
-   * monitor the status of a message
-   */
-  newOnAck: (callback: Function) => void;
-  /**
    * returns a list of contacts
    * @returns contacts
    */
@@ -69,6 +57,11 @@ interface API {
    * @param {string} number phone number
    */
   checkNumberStatus: (number: string) => Promise<checkNumber>;
+  /**
+   * Set message information!
+   * @param {object} msg mensagens
+   */
+  serializeMessageObj: (msg: object) => void;
 }
 
 declare global {
@@ -78,6 +71,7 @@ declare global {
     interfaceChange: any;
     newMessage: any;
     newOnAck: any;
+    serializeMessageObj: any;
   }
   const API: API;
 }
