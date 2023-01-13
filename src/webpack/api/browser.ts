@@ -193,11 +193,17 @@ export async function initLaunch(
     return false;
   }
 
+  const puppeteerOptionsArgs = options.puppeteerOptions.args;
+
   try {
     puppeteer.use(StealthPlugin());
     return await puppeteer.launch({
       headless: options.puppeteerOptions?.headless,
-      args: options.puppeteerOptions?.args,
+      args: puppeteerOptionsArgs
+        ? puppeteerOptionsArgs?.length > 0
+          ? options.puppeteerOptions.args
+          : puppeteerConfig.chromiumArgs
+        : puppeteerConfig.chromiumArgs,
       executablePath: options.puppeteerOptions?.executablePath,
       userDataDir: options.puppeteerOptions?.userDataDir,
     });
