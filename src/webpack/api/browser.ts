@@ -111,7 +111,7 @@ export async function initLaunch(
     await browserFetcher
       .download(
         options.puppeteerOptions?.chromiumVersion,
-        (downloadedByte, totalBytes) => {
+        (downloadedByte: any, totalBytes: any) => {
           if (init) {
             ev.statusFind = {
               error: false,
@@ -158,7 +158,7 @@ export async function initLaunch(
           }
         }
       )
-      .then((revisionInfo) => {
+      .then((revisionInfo: { executablePath: string | undefined }) => {
         if (options.puppeteerOptions?.executablePath) {
           options.puppeteerOptions.executablePath =
             revisionInfo?.executablePath;
@@ -176,7 +176,7 @@ export async function initLaunch(
           options.puppeteerOptions.args.push(`--single-process`);
         }
       })
-      .catch((e) => {
+      .catch((e: any) => {
         ev.statusFind = {
           error: true,
           text: `Error chromium`,
