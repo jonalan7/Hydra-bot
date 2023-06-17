@@ -10,8 +10,14 @@ export class onMod {
   ) {}
 
   public interfaceChange() {
+    this.page.on('console', (message) => console.log(`${message.text()}`));
+
     this.page
       .evaluate(() => {
+        setTimeout(() => {
+          console.log(window.Store);
+        }, 3000);
+
         const getData = () => {
           return {
             displayInfo: window.Store.Stream.displayInfo,
@@ -48,63 +54,6 @@ export class onMod {
         });
       })
       .catch(() => {});
-  }
-
-  public waitForStore(
-    stores: string | string[],
-    callback?: () => void
-  ): Promise<void> {
-    const storePromises: { [x: string]: Promise<boolean> } = {};
-
-    console.log('stores ', storePromises);
-
-    if (!Array.isArray(stores)) {
-      stores = [stores];
-    }
-
-    const isUndefined = (p: string): boolean =>
-      typeof window.Store[p] === 'undefined';
-
-    console.log('isUndefined ', isUndefined);
-
-    const missing: string[] = stores.filter(isUndefined);
-
-    console.log('missing ', missing);
-
-    const promises: Promise<boolean>[] = missing.map((s: string) => {
-      if (!storePromises[s]) {
-        storePromises[s] = new Promise((resolve) => {
-          let time: number | null = null;
-
-          const listen = (e: Event): void => {
-            const customEvent = e as CustomEvent<string>; // Cast the event to CustomEvent<string>
-
-            const name: string = (customEvent && customEvent.detail) || '';
-
-            if (name === s || !isUndefined(s)) {
-              window.removeEventListener('storeLoaded', listen);
-              clearInterval(time!);
-              console.log('resolved');
-
-              resolve(true);
-            }
-          };
-
-          window.addEventListener('storeLoaded', listen);
-          time = setInterval(listen, 1000);
-        });
-      }
-
-      return storePromises[s];
-    });
-
-    const all: Promise<boolean[]> = Promise.all(promises);
-
-    if (typeof callback === 'function') {
-      all.then(callback);
-    }
-
-    return all.then(() => {});
   }
 
   public newMessage() {
