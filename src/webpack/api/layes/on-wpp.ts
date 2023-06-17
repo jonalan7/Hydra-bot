@@ -20,7 +20,25 @@ export class onMod {
           };
         };
 
-        this.waitForStore('Stream', () => {
+        const checkAvailability = () => {
+          return new Promise((resolve) => {
+            const check = () => {
+              if (window.Store && window.Store.Stream) {
+                console.log('store or stream now available');
+                resolve(true);
+              } else {
+                console.log("store or stream isn't available");
+                setTimeout(check, 1000); // Check again after 1 second
+              }
+            };
+
+            check();
+          });
+        };
+
+        console.log('run interface change');
+
+        checkAvailability().then(() => {
           window.Store.Stream.on(
             'change:info change:displayInfo change:mode',
             () => {
@@ -38,6 +56,8 @@ export class onMod {
   ): Promise<void> {
     const storePromises: { [x: string]: Promise<boolean> } = {};
 
+    console.log('stores ', storePromises);
+
     if (!Array.isArray(stores)) {
       stores = [stores];
     }
@@ -45,7 +65,11 @@ export class onMod {
     const isUndefined = (p: string): boolean =>
       typeof window.Store[p] === 'undefined';
 
+    console.log('isUndefined ', isUndefined);
+
     const missing: string[] = stores.filter(isUndefined);
+
+    console.log('missing ', missing);
 
     const promises: Promise<boolean>[] = missing.map((s: string) => {
       if (!storePromises[s]) {
@@ -60,6 +84,7 @@ export class onMod {
             if (name === s || !isUndefined(s)) {
               window.removeEventListener('storeLoaded', listen);
               clearInterval(time!);
+              console.log('resolved');
 
               resolve(true);
             }
