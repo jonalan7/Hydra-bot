@@ -42,25 +42,27 @@ import {
   serializeMeObj,
 } from './serializers';
 
+window.Store = {};
+
 //initialized scrap webpack
 (async () => {
   if (typeof window[injectConfig.webpack] === 'undefined') {
     window[injectConfig.webpack] = [];
   }
-  window.Store = {};
   while (true) {
     try {
       const webPackLast = window[injectConfig.webpack].length - 1;
+      console.log(window.Store);
       if (
         !window[injectConfig.webpack][webPackLast][0].includes(
           injectConfig.parasite
         )
       ) {
         await injectParasiteSnake();
-        return;
+        break;
       }
     } catch {
-      await sleep(1000);
+      await sleep(2000);
     }
   }
 })();

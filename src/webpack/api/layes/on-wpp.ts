@@ -10,14 +10,8 @@ export class onMod {
   ) {}
 
   public interfaceChange() {
-    this.page.on('console', (message) => console.log(`${message.text()}`));
-
     this.page
       .evaluate(() => {
-        setTimeout(() => {
-          console.log(window.Store);
-        }, 3000);
-
         const getData = () => {
           return {
             displayInfo: window.Store.Stream.displayInfo,
