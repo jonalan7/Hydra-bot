@@ -5,7 +5,7 @@ export interface puppeteerOptions {
    * specify whether the browser is visible or invisible, invisible to true and visible to false
    * @default true
    */
-  headless?: boolean | string;
+  headless?: boolean | 'new';
   /**
    * when started, the project will automatically download Chromium if it can't find it
    * @default true
