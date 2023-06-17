@@ -1,3 +1,7 @@
+## [1.0.31-8](https://github.com/jonalan7/Hydra-bot/compare/v1.0.31-7...v1.0.31-8) (2023-06-17)
+
+
+
 ## [1.0.31-7](https://github.com/jonalan7/Hydra-bot/compare/v1.0.31-6...v1.0.31-7) (2023-06-17)
 
 
