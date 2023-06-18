@@ -46,26 +46,41 @@ window.Store = {};
 
 //initialized scrap webpack
 (async () => {
-  if (typeof window[injectConfig.webpack] === 'undefined') {
-    window[injectConfig.webpack] = [];
-  }
+  await waitForObjects();
   while (true) {
-    try {
-      const webPackLast = window[injectConfig.webpack].length - 1;
-      console.log(window.Store);
-      if (
-        !window[injectConfig.webpack][webPackLast][0].includes(
-          injectConfig.parasite
-        )
-      ) {
-        await injectParasiteSnake();
-        break;
-      }
-    } catch {
-      await sleep(2000);
+    const webPackLast = window[injectConfig.webpack].length - 1;
+    if (
+      !window[injectConfig.webpack][webPackLast][0].includes(
+        injectConfig.parasite
+      ) &&
+      document.querySelectorAll('#app .os-win').length === 1
+    ) {
+      injectParasiteSnake();
+      break;
     }
+    await sleep(2000);
   }
 })();
+
+async function waitForObjects() {
+  return new Promise((resolve) => {
+    const checkObjects = () => {
+      if (
+        window[injectConfig.webpack] &&
+        Array.isArray(window[injectConfig.webpack]) &&
+        window[injectConfig.webpack].every(
+          (item) => Array.isArray(item) && item.length > 0
+        )
+      ) {
+        resolve();
+      } else {
+        setTimeout(checkObjects, 200);
+      }
+    };
+
+    checkObjects();
+  });
+}
 
 if (typeof window.API === 'undefined') {
   window.API = {};
