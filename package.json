@@ -71,7 +71,7 @@
     "knex": "^2.1.0",
     "latest-version": "^5.1.0",
     "mime-types": "^2.1.35",
-    "puppeteer": "^20.0.0",
+    "puppeteer": "^20.7.2",
     "puppeteer-extra": "^3.3.6",
     "puppeteer-extra-plugin-stealth": "^2.11.2",
     "qrcode-terminal": "^0.12.0",

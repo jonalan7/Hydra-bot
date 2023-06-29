@@ -46,7 +46,10 @@ window.Store = {};
 
 //initialized scrap webpack
 (async () => {
-  await waitForObjects();
+  //   await waitForObjects();
+  if (typeof window[injectConfig.webpack] === 'undefined') {
+    window[injectConfig.webpack] = [];
+  }
   while (true) {
     const webPackLast = window[injectConfig.webpack].length - 1;
     if (

@@ -10,6 +10,7 @@ export const injectParasiteSnake = async () => {
       });
 
       const filterMod = await filterModule(filterObjects, modules);
+      console.log('filterMod ', JSON.stringify(filterMod));
 
       filterMod.forEach((needObj) => {
         if (needObj.yesModule) {
