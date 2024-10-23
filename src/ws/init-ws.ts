@@ -1,6 +1,6 @@
 import { options, defaultConfigWs } from './model/interface';
 import { appExpress } from './app';
-import express, { Express, Request, Response} from 'express';
+import { Express, Request, Response } from 'express';
 import { ServiceWs } from './services/services-ws';
 import { CreateOptions, defaultConfig } from '../webpack/model/interface';
 import { checkUpdates } from '../webpack/api/check-up-to-date';

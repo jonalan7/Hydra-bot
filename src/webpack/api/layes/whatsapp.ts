@@ -1,10 +1,10 @@
-import { scraping } from './scraping.layes';
+import { Scraping } from './scraping.layes';
 import { magix, makeOptions, puppeteerConfig, sleep } from '../../help';
 import axios from 'axios';
 import { Page, Browser } from 'puppeteer';
 import { CreateOptions } from '../../model/interface';
 
-export class Whatsapp extends scraping {
+export class Whatsapp extends Scraping {
   constructor(
     public page: Page,
     public browser: Browser,
@@ -56,10 +56,4 @@ export class Whatsapp extends scraping {
     );
   }
 
-  /**
-   * Add chat function
-   */
-  public async addChatWapi() {
-    await this.page.evaluate(() => API.addChatWapi());
-  }
 }

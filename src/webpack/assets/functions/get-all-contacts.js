@@ -3,11 +3,9 @@
  * @returns contacts
  */
 export const getAllContacts = function () {
-    const allContacts = window.Store.Contact.map((contact) =>
-        API.serializeContactObj(contact)
-    );
-    return allContacts.filter((result) =>
-        result.isUser === true
-    );
+    const filterIsContact = Store.Contact._models.filter(
+        (e) => e.isAddressBookContact
+      );
+      return filterIsContact.map((contact) => WAPI._serializeContactObj(contact));
 };
 

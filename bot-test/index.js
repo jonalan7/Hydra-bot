@@ -1,17 +1,80 @@
 const hydraBot = require('../dist');
+
 (async () => {
-    // start Web Service
-    const WS = await hydraBot.initWs({
-      port: '8001',
-      authentication: true, // ask for authentication in routes
-      printQRInTerminal: true, // The QR CODE will be printed on the terminal if true
-      updatesLog: true, // Logs info updates automatically in terminal
-      timeAutoClose: 60000, // If you don't read the QR CODE by default 60 seconds, it will automatically close the client's browser to save memory, if you want to disable it, set 0 or false
-      puppeteerOptions: {
-        headless: false, // Start the project with the browser open or not!
-        args: [], // Additional arguments to pass to the browser instance. adding any parameter you will replace the default args of the project
-        executablePath: 'useChrome', // The browser that will be used for the project, you can specify a path, if you don't pass any parameters it will open the installed browser.
-      },
-    });
-  })();
-  
+  let client;
+  // start bot service
+  const ev = await hydraBot.initServer({
+    puppeteerOptions: {
+      headless: false,
+      devtools: true
+    },
+    printQRInTerminal: true
+  });
+
+  // return to current whatsapp interface
+  ev.on('interfaceChange', (change) => {
+    console.log('interfaceChange: ', change);
+  });
+
+  // return qrcode parameters
+  ev.on('qrcode', (qrcode) => {
+    console.log('qrcode: ', qrcode);
+  });
+
+  // return connection information
+  ev.on('connection', async (conn) => {
+    // browser information!
+    if (conn.statusFind === 'browser') {
+      console.log('info Browser: ', conn.text);
+    }
+
+    // Was connected to whatsapp chat
+    if (conn.connect) {
+      client = conn.client;
+      await client
+        .sendText('000000000000@c.us', 'A message sent by hydra-bot')
+        .then((result) => {
+          console.log(result); // message result
+        })
+        .catch((error) => {
+          console.log(error); // message error
+        });
+    }
+  });
+
+  // return receive new messages
+  ev.on('newMessage', async (newMsg) => {
+    // when is received
+    if (!newMsg.result.isSentByMe) {
+      // message received!
+      console.log('NewMessageReceived: ', newMsg.result);
+      // dowload files
+      if (newMsg.result.isMedia === true || newMsg.result.isMMS === true) {
+        const buffer = await client.decryptFile(newMsg.result);
+        // At this point you can do whatever you want with the buffer
+        // Most likely you want to write it into a file
+        const fileName = `some-file-name.${mime.extension(
+          newMsg.result.mimetype
+        )}`;
+        fs.writeFile(fileName, buffer, (err) => {
+          if (err) {
+            console.log(err);
+          }
+        });
+      }
+    }
+    // when is it sent
+    if (!!newMsg.result.isSentByMe) {
+      // Message sent
+      console.log('NewMessageSent: ', newMsg.result);
+    }
+  });
+
+  // returns the status of each message
+  ev.on('newOnAck', async (event) => {
+    console.log('id Message: ', event.result.id._serialized); // message id
+    console.log('Status Message: ', event.result.ack); // -7 = MD_DOWNGRADE, -6 = INACTIVE, -5 = CONTENT_UNUPLOADABLE, -4 = CONTENT_TOO_BIG, -3 = CONTENT_GONE, -2 = EXPIRED, -1 = FAILED, 0 = CLOCK, 1 = SENT, 2 = RECEIVED, 3 = READ, 4 = PLAYED
+    console.log('From Message: ', event.result.from); // from message
+    console.log('To Message: ', event.result.to); // to message
+  });
+})();

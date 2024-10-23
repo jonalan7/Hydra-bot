@@ -5,5 +5,4 @@ export { getNewMessageId } from './get-new-message';
 export { sendExist } from './send-exist';
 export { checkNumberStatus } from './check-number-status';
 export { sendCheckType } from './send-check-type';
-export { isMD } from './is-md'; 
-export { addChatWapi } from './add-chat-wapi';
+export { isMD } from './is-md';

@@ -11,10 +11,6 @@ interface API {
    */
   getAllContacts: () => Promise<contact>;
   /**
-   * Add chat function
-   */
-  addChatWapi: () => void;
-  /**
    * Creates a new chat group
    * @param groupName Group name
    * @param contacts Participants id '000000000000@c.us'
@@ -72,6 +68,7 @@ declare global {
     newMessage: any;
     newOnAck: any;
     serializeMessageObj: any;
+    __debug: any;
   }
   const API: API;
 }

@@ -1,34 +1,21 @@
 export const serializeMessageObj = (obj) => {
-    if (obj == undefined) {
+    if (obj === undefined) {
         return null;
     }
 
-    const chat = obj['chat'] ? API.serializeChatObj(obj['chat']) : {};
+    const serializedObj = window.API.serializeRawObj(obj);
+
+    const chat = obj.chat ? API.serializeChatObj(obj.chat) : {};
     if (obj.quotedMsg) obj.quotedMsgObj();
 
-    return Object.assign(window.API.serializeRawObj(obj), {
+    return {
+        ...serializedObj,
         id: obj.id._serialized,
         from: obj.from._serialized,
-        quotedParticipant: obj.quotedParticipant ?
-            obj.quotedParticipant._serialized ?
-            obj.quotedParticipant._serialized :
-            undefined :
-            undefined,
-        author: obj.author ?
-            obj.author._serialized ?
-            obj.author._serialized :
-            undefined :
-            undefined,
-        chatId: obj.id && obj.id.remote ?
-            obj.id.remote :
-            obj.chatId && obj.chatId._serialized ?
-            obj.chatId._serialized :
-            undefined,
-        to: obj.to ?
-            obj.to._serialized ?
-            obj.to._serialized :
-            undefined :
-            undefined,
+        quotedParticipant: obj.quotedParticipant ? obj.quotedParticipant._serialized : undefined,
+        author: obj.author ? obj.author._serialized : undefined,
+        chatId: obj.id && obj.id.remote ? obj.id.remote : obj.chatId && obj.chatId._serialized ? obj.chatId._serialized : undefined,
+        to: obj.to ? obj.to._serialized : undefined,
         isSentByMe: obj.isSentByMe,
         fromMe: obj.id.fromMe,
         sender: obj.senderObj ? API.serializeContactObj(obj.senderObj) : null,
@@ -76,6 +63,8 @@ export const serializeMessageObj = (obj) => {
         replyButtons: undefined,
         dynamicReplyButtons: undefined,
         buttons: undefined,
-        hydratedButtons: undefined
-    });
+        hydratedButtons: undefined,
+        isGroupMsg: obj?.to?.server === 'g.us' || obj?.from?.server === 'g.us',
+        groupInfo: (obj?.to?.server === 'g.us' || obj?.from?.server === 'g.us') ? chats.find((chat) => chat.id._serialized === obj.from._serialized).contact : null
+    };
 };

@@ -1,7 +1,7 @@
 import {
     sleep,
     injectConfig,
-    injectParasiteSnake,
+    injectParasite,
     processFiles,
     base64ToFile,
     generateMediaKey,
@@ -19,7 +19,6 @@ import {
     checkNumberStatus,
     isMD,
     sendCheckType,
-    addChatWapi,
 } from './functions/help';
 
 import {
@@ -40,24 +39,13 @@ import {
     serializeProfilePicThumb,
     serializeRawObj,
     serializeMeObj,
-} from './serializers'
+} from './serializers';
 
-//initialized scrap webpack
-(async () => {
-    window[injectConfig.webpack] = window[injectConfig.webpack] || [];
-    window.Store = {};
-    while (true) {
-        try {
-            const webPackLast = window[injectConfig.webpack].length - 1;
-            if (!window[injectConfig.webpack][webPackLast][0].includes(injectConfig.parasite)) {
-                await injectParasiteSnake();
-                return;
-            }
-        } catch {
-            await sleep(1000);
-        }
-    }
-})();
+import {
+    initParasite
+} from './init-parasite'
+
+initParasite();
 
 if (typeof window.API === 'undefined') {
     window.API = {};
@@ -78,10 +66,9 @@ if (typeof window.API === 'undefined') {
     window.API.encryptAndUploadFile = encryptAndUploadFile;
     window.API.getFileHash = getFileHash;
     window.API.sendCheckType = sendCheckType;
-    window.API.addChatWapi = addChatWapi;
 
     // Functions
-    
+
     // Send
     window.API.sendMessage = sendMessage;
 

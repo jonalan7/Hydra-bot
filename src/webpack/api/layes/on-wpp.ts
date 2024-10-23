@@ -23,7 +23,10 @@ export class onMod {
       window.Store.Stream.on('change:info change:displayInfo change:mode', () => {
         window.interfaceChange(getData());
       });
-    }).catch(() => { });
+
+      window.interfaceChange(getData());
+      
+    }).catch((e) => { console.log(e); });
   }
 
   public newMessage() {

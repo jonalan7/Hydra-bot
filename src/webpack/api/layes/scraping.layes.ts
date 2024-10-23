@@ -4,7 +4,7 @@ import * as qrcode from 'qrcode-terminal';
 import { onMode } from '../../model/enum';
 import { onMod } from './on-wpp';
 
-export class scraping extends onMod {
+export class Scraping extends onMod {
   public startScanQrcode: boolean;
   public autoCloseInterval: any;
   public autoCloseRemain: number = 0;
@@ -14,7 +14,6 @@ export class scraping extends onMod {
     public browser: Browser,
     public options: CreateOptions,
     public ev: any
-
   ) {
     super(page, browser, options, ev);
     this.startScanQrcode = false;
@@ -38,7 +37,9 @@ export class scraping extends onMod {
   }
 
   protected startAutoClose() {
-    let remain: Number | Boolean | any = this.options.timeAutoClose ? this.options.timeAutoClose : false;
+    let remain: Number | Boolean | any = this.options.timeAutoClose
+      ? this.options.timeAutoClose
+      : false;
     if (
       this.options.timeAutoClose &&
       this.options.timeAutoClose > 0 &&
@@ -60,7 +61,7 @@ export class scraping extends onMod {
                 status: 'autoClose',
                 statusFind: 'browser',
                 onType: onMode.connection,
-                session: this.options.session
+                session: this.options.session,
               };
               this.cancelAutoClose();
               this.tryAutoClose();
@@ -74,9 +75,8 @@ export class scraping extends onMod {
   public async qrCode() {
     let click = await this.page
       .evaluate(() => {
-        const buttonReload = document.querySelector('button');
-        if (buttonReload != null) {
-          buttonReload.click();
+        const buttonReload = document.querySelector('button._akas');
+        if (buttonReload) {
           return true;
         }
         return false;
@@ -84,7 +84,10 @@ export class scraping extends onMod {
       .catch();
 
     if (click) {
-      await this.page.waitForNavigation().catch();
+      const buttonReloadElementHandle = await this.page.$('button._akas');
+      if (buttonReloadElementHandle) {
+        await buttonReloadElementHandle.click();
+      }
     }
 
     const result = await this.page
@@ -92,7 +95,7 @@ export class scraping extends onMod {
         const selectorImg = document.querySelector('canvas');
         if (selectorImg) {
           const selectorUrl = selectorImg.closest('[data-ref]');
-          const buttonReload = document.querySelector('button');
+          const buttonReload = document.querySelector('button._akas');
 
           if (
             buttonReload === null &&

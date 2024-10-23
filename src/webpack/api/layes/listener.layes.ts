@@ -46,7 +46,7 @@ export class ListenerLayer extends Whatsapp {
 
   private listenerEmitter = new EventEmitter();
 
-  public async initLitener() {
+  public async initListener() {
     const functions = [...Object.values(onMode)];
 
     for (const func of functions) {

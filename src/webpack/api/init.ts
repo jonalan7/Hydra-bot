@@ -1,7 +1,7 @@
 import { CreateOptions, defaultConfig } from '../model/interface';
 import { initLaunch, initBrowser } from './browser';
 import { Browser, Page } from 'puppeteer';
-import { webPack } from '../inject/webpack';
+import { WebPack } from '../inject/webpack';
 import { CallbackOnStatus } from './layes/callback-on.layes';
 import { onMode } from '../model/enum';
 import { checkingCloses, sleep } from '../help';
@@ -11,14 +11,14 @@ const ev = new CallbackOnStatus();
 
 export async function initServer(
   createOption?: CreateOptions
-): Promise<webPack | any>;
+): Promise<WebPack | any>;
 
 /**
  * Start the bot
  */
 export async function initServer(
   options?: CreateOptions
-): Promise<webPack | any> {
+): Promise<WebPack | any> {
   return new Promise(async (resolve) => {
     resolve(ev);
 
@@ -87,7 +87,7 @@ export async function initServer(
           session: mergeOptionsDefault.session,
         };
 
-        const client = new webPack(page, wpage, mergeOptionsDefault, ev);
+        const client = new WebPack(page, wpage, mergeOptionsDefault, ev);
         checkingCloses(wpage, () => {
           ev.statusFind = {
             erro: true,
@@ -104,11 +104,11 @@ export async function initServer(
         ev.on(onMode.interfaceChange, async (interFace: any) => {
           try {
             client.cancelAutoClose();
+
             if (
               interFace.result.mode === 'MAIN' &&
               interFace.result.info === 'NORMAL'
             ) {
-              client.addChatWapi();
               ev.statusFind = {
                 erro: false,
                 connect: true,

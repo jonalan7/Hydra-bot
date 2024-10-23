@@ -30,6 +30,7 @@ export class CallbackOnStatus {
    * @param type types of monitoring
    * @param callback returns of monitoring
    */
+  
   public async on(type: onMode, callback: (state: any) => void) {
     switch (type) {
       case onMode.interfaceChange:

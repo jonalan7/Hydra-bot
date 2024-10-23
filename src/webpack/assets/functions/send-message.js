@@ -100,7 +100,7 @@ export async function sendMessage(to, body, options = {}) {
 
         try {
             const result = (await Promise.all(window.Store.addAndSendMsgToChat(chat, message)))[1];
-            if (result === 'OK') {
+            if (result === 'success' || result === 'OK' || result?.messageSendResult === 'OK') {
                 return API.scope(newMsgId, false, result, null, options.type, body);
             }
             throw result;

@@ -1,7 +1,6 @@
 {
   "disableSources": false,
   "entryPoints": [
-    "src/index.ts",
     "./package.json"
   ],
   "excludeExternals": false,

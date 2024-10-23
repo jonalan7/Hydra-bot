@@ -1,8 +1,19 @@
-export const filterObjects = [{
+export const filterObjects = [
+    {
         type: 'Module',
         when: (module) =>
-            module.default && module.default.Chat && module.default.Msg ?
-            module.default : null,
+            module.default && module.default.Chat && module.default.Msg
+                ? module.default
+                : null,
+    },
+    {
+        type: 'Conn',
+        when: (module) => module.Conn ? module.Conn : null,
+    },
+    {
+        type: 'ChatCollection',
+        when: (module) =>
+            module.ChatCollection ? module.ChatCollection : null,
     },
     {
         type: 'addAndSendMsgToChat',
@@ -13,31 +24,31 @@ export const filterObjects = [{
         type: 'WidFactory',
         when: (module) =>
             module.isWidlike && module.createWid && module.createWidFromWidLike ?
-            module : null,
+                module : null,
     },
     {
         type: 'UserConstructor',
         when: (module) =>
             module.default &&
-            module.default.prototype &&
-            module.default.prototype.isServer &&
-            module.default.prototype.isUser ?
-            module.default : null,
+                module.default.prototype &&
+                module.default.prototype.isServer &&
+                module.default.prototype.isUser ?
+                module.default : null,
     },
     {
         type: 'WidFactory',
         when: (module) =>
             module.isWidlike && module.createWid && module.createWidFromWidLike ?
-            module : null,
+                module : null,
     },
     {
         type: 'MsgKey',
         when: (module) =>
             module.default &&
-            module.default.toString &&
-            typeof module.default.toString === 'function' &&
-            module.default.toString().includes('MsgKey error: obj is null/undefined') ?
-            module.default : null,
+                module.default.toString &&
+                typeof module.default.toString === 'function' &&
+                module.default.toString().includes('MsgKey error: obj is null/undefined') ?
+                module.default : null,
     },
     {
         type: 'State',
@@ -71,10 +82,10 @@ export const filterObjects = [{
         type: 'MediaCollection',
         when: (module) =>
             module.default &&
-            module.default.prototype &&
-            (module.default.prototype.processFiles !== undefined ||
-                module.default.prototype.processAttachments !== undefined) ?
-            module.default : null,
+                module.default.prototype &&
+                (module.default.prototype.processFiles !== undefined ||
+                    module.default.prototype.processAttachments !== undefined) ?
+                module.default : null,
     },
     {
         type: 'UploadUtils',
@@ -90,7 +101,7 @@ export const filterObjects = [{
         type: 'createGroup',
         when: (module) =>
             module.createGroup && module.sendForNeededAddRequest ?
-            module.createGroup : null,
+                module.createGroup : null,
     },
     {
         type: 'GroupDesc',
@@ -104,7 +115,7 @@ export const filterObjects = [{
         type: 'Participants',
         when: (module) =>
             module.addParticipants && module.promoteCommunityParticipants ?
-            module : null,
+                module : null,
     },
     {
         type: 'MyStatus',
@@ -118,7 +129,11 @@ export const filterObjects = [{
     },
     {
         type: 'Contacts',
-        when: (module) => 
+        when: (module) =>
             module.ContactCollection ? module : null,
-    }
+    },
+    {
+        type: 'MaybeMeUser',
+        when: (module) => (module.getMaybeMeUser ? module : null),
+    },
 ];

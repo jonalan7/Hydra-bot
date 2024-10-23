@@ -1,22 +1,36 @@
 export const serializeMeObj = async (obj) => {
-  if (obj == undefined) {
+  if (!obj) {
     return null;
   }
 
   const newObj = {};
+  const { platform, pushname } = window?.Store?.Conn || {};
+  const {
+    eurl,
+    filehash,
+    fullDirectPath,
+    previewDirectPath,
+    previewEurl,
+    timestamp,
+    lastHostUsed: { ips } = {}
+  } = obj?.profilePicThumb?.attributes || {};
   
   Object.assign(newObj, {
-    id: obj.id ? obj.id : null,
-    displayName: obj.displayName ? obj.displayName : null,
-    verifiedName: obj.verifiedName ? obj.verifiedName : null,
-    searchName: obj.searchName ? obj.searchName : null,
-    pushname: obj.pushname ? obj.pushname : null,
-    notifyName: obj.notifyName ? obj.notifyName : null,
-    isBusiness: obj.isBusiness ? obj.isBusiness : null,
-    formattedUser: obj.formattedUser ? obj.formattedUser : null,
-    eurl: obj.profilePicThumb.attributes.eurl ? obj.profilePicThumb.attributes.eurl : null,
-    ...obj.profilePicThumb.attributes,
-    ...obj.businessProfile.attributes,
+    id: obj.id || null,
+    platform: platform || null,
+    name: obj.name || null,
+    shortName: obj.shortName || null,
+    isBusiness: obj.isBusiness || false,
+    pushname: pushname || null,
+    eurl: eurl || null,
+    filehash: filehash || null,
+    fullDirectPath: fullDirectPath || null,
+    previewDirectPath: previewDirectPath || null,
+    previewEurl: previewEurl || null,
+    timestamp: timestamp || null,
+    ips: ips || null,
+    status: obj?.status?.status || null,
   });
+
   return newObj;
 };
