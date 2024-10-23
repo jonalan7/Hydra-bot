@@ -1,3 +1,19 @@
+## [1.0.31](https://github.com/jonalan7/Hydra-bot/compare/v1.0.30...v1.0.31) (2024-10-23)
+
+
+### Bug Fixes
+
+* getHost ([b25d180](https://github.com/jonalan7/Hydra-bot/commit/b25d180b44574a6fa3c9ef8aea3992ef297ee16e))
+* initial corrections ([c56d3f3](https://github.com/jonalan7/Hydra-bot/commit/c56d3f3c1e5077693967af3baef73389ff53dde0))
+* onMod ([19e5814](https://github.com/jonalan7/Hydra-bot/commit/19e5814cd70461971006042e7f5cc9881a557e79))
+
+
+### Features
+
+* add nodemon dev ([b8ab0fa](https://github.com/jonalan7/Hydra-bot/commit/b8ab0fa398fdb3e902b670bd9b7ff313fa4e90ac))
+
+
+
 ## [1.0.30](https://github.com/jonalan7/Hydra-bot/compare/v1.0.29...v1.0.30) (2022-08-20)
 
 
