@@ -96,10 +96,10 @@
     "release-it": "^15.4.2",
     "shx": "^0.3.4",
     "ts-node": "^10.8.2",
-    "typedoc": "^0.21.10",
+    "typedoc": "^0.21.9",
     "typedoc-default-themes": "^0.12.10",
     "typedoc-plugin-pages": "^1.1.0",
-    "typescript": "^5.6.3"
+    "typescript": "4.9.x"
   },
   "bin": {
     "admin": "./dist/bin/admin"
