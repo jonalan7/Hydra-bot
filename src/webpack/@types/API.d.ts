@@ -57,7 +57,7 @@ interface API {
    * Set message information!
    * @param {object} msg mensagens
    */
-  serializeMessageObj: (msg: object) => void;
+  serializeMessageObj: (msg: object) => Promise<void>;
 }
 
 declare global {

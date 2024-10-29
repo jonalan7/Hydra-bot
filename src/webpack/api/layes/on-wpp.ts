@@ -25,19 +25,16 @@ export class onMod {
       });
 
       window.interfaceChange(getData());
-      
-    }).catch((e) => { console.log(e); });
+
+    }).catch(() => { });
   }
 
   public newMessage() {
     this.page.evaluate(() => {
-      let isHeroEqual = {};
-      window.Store.Msg.on('add', (newMessage: any) => {
-        if (!Object.is(isHeroEqual, newMessage)) {
-          isHeroEqual = newMessage;
-          if (newMessage && newMessage.isNewMsg) {
-            window.newMessage(API.serializeMessageObj(newMessage));
-          }
+      window.Store.Msg.on('add', async (newMessage: any) => {
+        if (newMessage && newMessage.isNewMsg) {
+          const serialize = await API.serializeMessageObj(newMessage)
+          window.newMessage(serialize);
         }
       });
     }).catch(() => { });
@@ -45,16 +42,12 @@ export class onMod {
 
   public newOnAck() {
     this.page.evaluate(() => {
-      let isHeroEqual = {};
       window.Store.Msg.on('change:ack', (newOnAck: any) => {
-        if (!Object.is(isHeroEqual, newOnAck)) {
-          isHeroEqual = newOnAck;
-          if (newOnAck) {
-            window.newOnAck(newOnAck);
-          }
+        if (newOnAck) {
+          window.newOnAck(newOnAck);
         }
       });
     }).catch(() => { });
   }
-  
+
 }

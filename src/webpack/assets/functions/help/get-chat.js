@@ -3,7 +3,7 @@
  * @param {string} chatId Contact number
  * @returns {(Object|undefined)}
  */
-export function getChat(chatId) {
+export const getChat = async (chatId) => {
 
     if (!chatId) return false;
 
@@ -15,9 +15,26 @@ export function getChat(chatId) {
             const ConstructChat = new window.Store.UserConstructor(chatId, {
                 intentionallyUsePrivateConstructor: !0,
             });
-            found = window.Store.Chat.find(ConstructChat) || false;
+            const chatWid = new Store.WidFactory.createWid(chatId);
+            await Store.Chat.add(
+                {
+                    createdLocally: true,
+                    id: chatWid,
+                },
+                {
+                    merge: true,
+                }
+
+            );
+            found = Store.Chat.find(ConstructChat) || false;
         }
     }
-
+    if (found) {
+        found.sendMessage = found.sendMessage
+            ? found.sendMessage
+            : function () {
+                return window.Store.sendMessage.apply(this, arguments);
+            };
+    }
     return found;
 }
