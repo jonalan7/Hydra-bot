@@ -79,6 +79,7 @@ jobs:
       - name: Create gh-pages branch if it doesn't exist
         run: |
           git checkout -B gh-pages || git checkout gh-pages
+          git pull origin gh-pages  # Adiciona esta linha
           git push -u origin gh-pages
 
       - name: Deploy API-Docs
@@ -87,3 +88,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./api-docs
+          force_orphan: true

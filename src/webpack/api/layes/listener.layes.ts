@@ -51,7 +51,7 @@ export class ListenerLayer extends Whatsapp {
 
     for (const func of functions) {
       const has = await this.page
-        .evaluate((func) => typeof window[func] === 'function', func)
+        .evaluate((func: string) => typeof (window as any)[func] === 'function', func)
         .catch(() => false);
 
       if (!has) {

@@ -47,7 +47,7 @@ interface API {
    * @param {string} groupId group number
    * @param {string} path of image
    */
-  setGroupImage: (path: string, to: string) => Promise<InterfaceScope>;
+  setGroupImage: (path: object, to: string) => Promise<InterfaceScope>;
   /**
    * check if the number exists
    * @param {string} number phone number

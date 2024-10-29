@@ -62,6 +62,7 @@ export const magix = (
   });
   const iv = mediaKeyExpanded.slice(0, 16);
   const cipherKey = mediaKeyExpanded.slice(16, 48);
+  //@ts-ignore
   const decipher = crypto.createDecipheriv('aes-256-cbc', cipherKey, iv);
   const decoded: Buffer = decipher.update(encodedBytes);
   const mediaDataBuffer = expectedSize
@@ -79,6 +80,7 @@ const fixPadding = (data: Buffer, expectedSize: number) => {
     } else if (data.length + padding == expectedSize) {
       // console.log(`adding: ${padding} bytes`);
       let arr = new Uint16Array(padding).map((b) => padding);
+      //@ts-ignore
       data = Buffer.concat([data, Buffer.from(arr)]);
     }
   }
