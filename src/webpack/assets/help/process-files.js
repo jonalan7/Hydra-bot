@@ -8,16 +8,16 @@ export async function processFiles(chat, blobs) {
     });
 
     await mediaCollection.processAttachments(
-        Debug.VERSION === '0.4.613' ?
-        blobs :
         blobs.map((blob) => {
-            return {
-                file: blob,
-            };
+          return {
+            file: blob,
+            filename: blob.name,
+            mimetype: blob.type,
+          };
         }),
-        chat,
+        true,
         chat
-    );
+      );
 
     return mediaCollection;
 }

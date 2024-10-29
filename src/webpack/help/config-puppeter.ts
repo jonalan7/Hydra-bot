@@ -1,8 +1,9 @@
 export const puppeteerConfig = {
   whatsappUrl: 'https://web.whatsapp.com',
   useragentOverride:
-    'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.63 Safari/537.36',
+    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3641.0 Safari/537.36',
   chromiumArgs: [
+    '--disable-service-workers',
     '--no-zygote',
     '--log-level=3',
     '--disable-site-isolation-trials',
@@ -27,9 +28,6 @@ export const puppeteerConfig = {
     '--disable-histogram-customizer',
     '--disable-gl-extensions',
     '--disable-composited-antialiasing',
-    // '--auto-open-devtools-for-tabs',
-    '--user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.5005.63 Safari/537.36',
-    //// new
     '--disable-background-networking',
     '--enable-features=NetworkService,NetworkServiceInProcess',
     '--disable-background-timer-throttling',
@@ -53,5 +51,7 @@ export const puppeteerConfig = {
     '--use-mock-keychain',
     '--enable-blink-features=IdleDetection',
     '--export-tagged-pdf',
+    `--hostname=test`,
+    'about:blank',
   ],
 };
