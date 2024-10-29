@@ -9,5 +9,4 @@ export { encryptAndUploadFile } from './encrypt-and-upload-file';
 export { filterModule } from './filter-module';
 export { getModuleList } from './get-module-list';
 
-export { injectConfig } from './inject-config';
 export { filterObjects } from './filter-object';

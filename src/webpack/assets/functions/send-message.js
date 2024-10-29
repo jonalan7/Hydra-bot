@@ -6,7 +6,15 @@
  */
 export async function sendMessage(to, body, options = {}) {
 
-    const types = ['sendText', 'sendAudioBase64', 'sendImageFromBase64', 'sendAudio', 'sendFile', 'sendImage'];
+    const types = [
+        'sendText',
+        'sendAudioBase64',
+        'sendImageFromBase64',
+        'sendAudio',
+        'sendFile',
+        'sendImage'
+    ];
+
     let typesObj;
     types.reduce((a, v) => typesObj = ({
         ...a,
@@ -48,7 +56,11 @@ export async function sendMessage(to, body, options = {}) {
                 const media = mc._models[0];
                 let enc, type;
 
-                if (options.type === typesObj.sendFile || options.type === typesObj.sendImage || options.type === typesObj.sendImageFromBase64) {
+                if (
+                    options.type === typesObj.sendFile ||
+                    options.type === typesObj.sendImage ||
+                    options.type === typesObj.sendImageFromBase64
+                ) {
                     type = media.type;
                     merge.caption = options?.caption;
                     merge.filename = options?.filename;
@@ -100,7 +112,11 @@ export async function sendMessage(to, body, options = {}) {
 
         try {
             const result = (await Promise.all(window.Store.addAndSendMsgToChat(chat, message)))[1];
-            if (result === 'success' || result === 'OK' || result?.messageSendResult === 'OK') {
+            if (
+                result === 'success' ||
+                result === 'OK' ||
+                result?.messageSendResult === 'OK'
+            ) {
                 return API.scope(newMsgId, false, result, null, options.type, body);
             }
             throw result;
@@ -117,6 +133,12 @@ export async function sendMessage(to, body, options = {}) {
     }
 }
 
+/**
+ * Function to base send message
+ * @param {*} param - Object with information to send the message
+ * @param {*} merge - Object with information to merge with the message
+ * @returns - Object with message information
+ */
 export function baseSendMessage(param, merge) {
     const message = {
         id: param.newMsgId,

@@ -1,13 +1,10 @@
 import {
-    sleep,
-    injectConfig,
-    injectParasite,
     processFiles,
     base64ToFile,
     generateMediaKey,
     arrayBufferToBase64,
     encryptAndUploadFile,
-    getFileHash,
+    getFileHash
 } from './help';
 
 import {
@@ -19,6 +16,8 @@ import {
     checkNumberStatus,
     isMD,
     sendCheckType,
+    returnChat,
+    checkChatExist
 } from './functions/help';
 
 import {
@@ -29,7 +28,9 @@ import {
     addParticipant,
     setGroupDescription,
     getHost,
-    setGroupImage
+    setGroupImage,
+    getAllChats,
+    getContact
 } from './functions';
 
 import {
@@ -50,7 +51,7 @@ initParasite();
 if (typeof window.API === 'undefined') {
     window.API = {};
 
-    // Helps
+    // Helps Functions
     window.API.getChat = getChat;
     window.API.scope = scope;
     window.API.getNewId = getNewId;
@@ -66,23 +67,25 @@ if (typeof window.API === 'undefined') {
     window.API.encryptAndUploadFile = encryptAndUploadFile;
     window.API.getFileHash = getFileHash;
     window.API.sendCheckType = sendCheckType;
+    window.API.returnChat = returnChat;
+    window.API.checkChatExist = checkChatExist;
 
-    // Functions
-
-    // Send
+    // Send Functions
     window.API.sendMessage = sendMessage;
-
-    // Host
+   
+    // Host Functions
     window.API.getAllContacts = getAllContacts;
     window.API.getHost = getHost;
+    window.API.getAllChats = getAllChats;
+    window.API.getContact = getContact
 
-    // Group
+    // Group Functions
     window.API.createGroup = createGroup;
     window.API.addParticipant = addParticipant;
     window.API.setGroupDescription = setGroupDescription;
     window.API.setGroupImage = setGroupImage;
 
-    // Serialize
+    // Serialize Functions
     window.API.serializeMessageObj = serializeMessageObj;
     window.API.serializeChatObj = serializeChatObj;
     window.API.serializeContactObj = serializeContactObj;

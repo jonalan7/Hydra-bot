@@ -1,4 +1,17 @@
-export async function sendExist(chatId, returnChat = true, Send = true) {
+/**
+ * Function to check if the number exists and return the chat
+ * @param {*} chatId 
+ * @param {*} returnChat 
+ * @param {*} Send 
+ * @returns 
+ */
+export const sendExist = async (chatId, returnChat = true, Send = true) => {
+   
+    const checkContact = API.getContact(chatId);
+    if (checkContact) {
+      return await API.returnChat(chatId);
+    }
+
     const checkType = await API.sendCheckType(chatId);
     if (!!checkType && checkType.status === 404) {
         return checkType;

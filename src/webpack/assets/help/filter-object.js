@@ -21,12 +21,6 @@ export const filterObjects = [
             module.addAndSendMsgToChat ? module.addAndSendMsgToChat : null,
     },
     {
-        type: 'WidFactory',
-        when: (module) =>
-            module.isWidlike && module.createWid && module.createWidFromWidLike ?
-                module : null,
-    },
-    {
         type: 'UserConstructor',
         when: (module) =>
             module.default &&
@@ -37,9 +31,7 @@ export const filterObjects = [
     },
     {
         type: 'WidFactory',
-        when: (module) =>
-            module.isWidlike && module.createWid && module.createWidFromWidLike ?
-                module : null,
+        when: (module) => (module.createWid ? module : null),
     },
     {
         type: 'MsgKey',
@@ -61,13 +53,7 @@ export const filterObjects = [
     },
     {
         type: 'checkNumber',
-        when: (module) =>
-            module.default && module.default.queryExist ? module.default : null,
-    },
-    {
-        type: 'checkNumberMD',
-        when: (module) =>
-            module.queryExists && module.queryPhoneExists ? module : null,
+        when: (module) => (module.queryExist ? module : null)
     },
     {
         type: 'ReadSeen',
