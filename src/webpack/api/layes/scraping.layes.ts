@@ -119,7 +119,7 @@ export class Scraping extends onMod {
   async asciiQr(code: string): Promise<string> {
     return new Promise((resolve) => {
       try {
-        qrcode.generate(code, { small: true }, (qrcode) => {
+        qrcode.generate(code, { small: true }, (qrcode: any) => {
           resolve(qrcode);
         });
       } catch (e) {}

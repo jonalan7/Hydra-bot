@@ -31,14 +31,14 @@ const hydraBot = require('../dist');
     // Was connected to whatsapp chat
     if (conn.connect) {
       client = conn.client;
-      await client
-        .sendText('000000000000@c.us', 'A message sent by hydra-bot')
-        .then((result) => {
-          console.log(result); // message result
-        })
-        .catch((error) => {
-          console.log(error); // message error
-        });
+      // await client
+      //   .sendText('000000000000@c.us', 'A message sent by hydra-bot')
+      //   .then((result) => {
+      //     console.log(result); // message result
+      //   })
+      //   .catch((error) => {
+      //     console.log(error); // message error
+      //   });
     }
   });
 

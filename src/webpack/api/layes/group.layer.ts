@@ -142,5 +142,4 @@ export class GroupLayer extends ListenerLayer {
       }
     });
   }
-  
 }

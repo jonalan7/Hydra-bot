@@ -30,9 +30,10 @@ export class WebPack extends SenderLayer {
       const storeModuleExists = await this.page.evaluate(() => {
         const isStoreUndefined = typeof window?.Store === 'undefined';
         const isApiUndefined = typeof window?.API === 'undefined';
-        const isStoreEmpty = window?.Store && !Object.keys(window?.Store).length;
+        const isStoreEmpty =
+          window?.Store && !Object.keys(window?.Store).length;
         const isApiEmpty = window?.API && !Object.keys(window?.API).length;
-        
+
         return isStoreUndefined || isApiUndefined || isStoreEmpty || isApiEmpty;
       });
 
@@ -53,7 +54,6 @@ export class WebPack extends SenderLayer {
       console.error('Erro ao iniciar o serviço:', error);
     }
   }
-
 
   private async loadDebugModule() {
     return this.page.evaluate(() => {
@@ -93,7 +93,11 @@ export class WebPack extends SenderLayer {
         };
 
         const checkObjects = () => {
-          if (checkStoreLoaded() && window?.Store?.Stream && window?.Store?.Msg) {
+          if (
+            checkStoreLoaded() &&
+            window?.Store?.Stream &&
+            window?.Store?.Msg
+          ) {
             resolve(true);
           } else {
             setTimeout(checkObjects, 200);

@@ -158,7 +158,7 @@ export async function initLaunch(
           }
         }
       )
-      .then((revisionInfo: { executablePath: string | undefined; }) => {
+      .then((revisionInfo: { executablePath: string | undefined }) => {
         if (options.puppeteerOptions?.executablePath) {
           options.puppeteerOptions.executablePath =
             revisionInfo?.executablePath;

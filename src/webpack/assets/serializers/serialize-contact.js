@@ -1,7 +1,7 @@
 /**
  * Function to serialize contact object
- * @param {*} obj 
- * @returns 
+ * @param {*} obj
+ * @returns
  */
 export const serializeContactObj = (obj) => {
   if (obj == undefined) {

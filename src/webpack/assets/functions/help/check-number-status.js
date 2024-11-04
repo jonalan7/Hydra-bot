@@ -8,13 +8,10 @@ export const checkNumberStatus = async (id, conn = false) => {
   return new Promise(async (resolve, reject) => {
     try {
       const err = {
-        error: 404
+        error: 404,
       };
       const connection =
-        Store &&
-          Store.State &&
-          Store.State.Socket &&
-          Store.State.Socket.state
+        Store && Store.State && Store.State.Socket && Store.State.Socket.state
           ? Store.State.Socket.state
           : '';
 
@@ -26,7 +23,6 @@ export const checkNumberStatus = async (id, conn = false) => {
         });
         throw err;
       }
-    
 
       if (conn === true) {
         if (connection !== 'CONNECTED') {
@@ -38,7 +34,7 @@ export const checkNumberStatus = async (id, conn = false) => {
           throw err;
         }
       }
-      
+
       const chat = await API.checkChatExist(id);
       if (chat) {
         const data = {
@@ -86,7 +82,7 @@ export const checkNumberStatus = async (id, conn = false) => {
             throw err;
           });
       } else {
-         Object.assign(err, {
+        Object.assign(err, {
           connection: connection,
           numberExists: false,
         });
@@ -103,4 +99,4 @@ export const checkNumberStatus = async (id, conn = false) => {
       reject(scope);
     }
   });
-}
+};

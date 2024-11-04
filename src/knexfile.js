@@ -9,5 +9,5 @@ module.exports = {
     migrations: {
       directory: `${__dirname}/ws/migrations`,
     },
-  }
+  },
 };

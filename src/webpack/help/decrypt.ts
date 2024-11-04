@@ -14,15 +14,14 @@ export const makeOptions = (useragentOverride: string) => ({
   },
 });
 
-
 export interface Article {
-    IMAGE: string,
-    VIDEO: string,
-    AUDIO: string,
-    PTT: string,
-    DOCUMENT: string,
-    STICKER: string,
-}  
+  IMAGE: string;
+  VIDEO: string;
+  AUDIO: string;
+  PTT: string;
+  DOCUMENT: string;
+  STICKER: string;
+}
 
 export const mediaTypes: Article = {
   IMAGE: 'Image',

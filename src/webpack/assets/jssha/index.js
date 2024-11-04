@@ -461,23 +461,23 @@
                   128 > g
                     ? m.push(g)
                     : 2048 > g
-                    ? (m.push(192 | (g >>> 6)), m.push(128 | (g & 63)))
-                    : 55296 > g || 57344 <= g
-                    ? m.push(
-                        224 | (g >>> 12),
-                        128 | ((g >>> 6) & 63),
-                        128 | (g & 63)
-                      )
-                    : ((f += 1),
-                      (g =
-                        65536 +
-                        (((g & 1023) << 10) | (a.charCodeAt(f) & 1023))),
-                      m.push(
-                        240 | (g >>> 18),
-                        128 | ((g >>> 12) & 63),
-                        128 | ((g >>> 6) & 63),
-                        128 | (g & 63)
-                      )),
+                      ? (m.push(192 | (g >>> 6)), m.push(128 | (g & 63)))
+                      : 55296 > g || 57344 <= g
+                        ? m.push(
+                            224 | (g >>> 12),
+                            128 | ((g >>> 6) & 63),
+                            128 | (g & 63)
+                          )
+                        : ((f += 1),
+                          (g =
+                            65536 +
+                            (((g & 1023) << 10) | (a.charCodeAt(f) & 1023))),
+                          m.push(
+                            240 | (g >>> 18),
+                            128 | ((g >>> 12) & 63),
+                            128 | ((g >>> 6) & 63),
+                            128 | (g & 63)
+                          )),
                   n = 0;
                 n < m.length;
                 n += 1
@@ -596,8 +596,11 @@
       ? ((b -= 32),
         new a((e.b << b) | (e.a >>> (32 - b)), (e.a << b) | (e.b >>> (32 - b))))
       : 0 !== b
-      ? new a((e.a << b) | (e.b >>> (32 - b)), (e.b << b) | (e.a >>> (32 - b)))
-      : e;
+        ? new a(
+            (e.a << b) | (e.b >>> (32 - b)),
+            (e.b << b) | (e.a >>> (32 - b))
+          )
+        : e;
   }
   function x(a, b) {
     return (a >>> b) | (a << (32 - b));
@@ -843,10 +846,10 @@
           20 > f
             ? H(y(k, 5), (c & l) ^ (~c & g), m, 1518500249, d[f])
             : 40 > f
-            ? H(y(k, 5), c ^ l ^ g, m, 1859775393, d[f])
-            : 60 > f
-            ? H(y(k, 5), W(c, l, g), m, 2400959708, d[f])
-            : H(y(k, 5), c ^ l ^ g, m, 3395469782, d[f])),
+              ? H(y(k, 5), c ^ l ^ g, m, 1859775393, d[f])
+              : 60 > f
+                ? H(y(k, 5), W(c, l, g), m, 2400959708, d[f])
+                : H(y(k, 5), c ^ l ^ g, m, 3395469782, d[f])),
         (m = g),
         (g = l),
         (l = y(c, 30)),
@@ -1135,7 +1138,9 @@
         return C;
       })
     : 'undefined' !== typeof exports
-    ? ('undefined' !== typeof module && module.exports && (module.exports = C),
-      (exports = C))
-    : (aa.jsSHA = C);
+      ? ('undefined' !== typeof module &&
+          module.exports &&
+          (module.exports = C),
+        (exports = C))
+      : (aa.jsSHA = C);
 })(this);

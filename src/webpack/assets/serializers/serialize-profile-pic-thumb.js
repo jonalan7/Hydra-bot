@@ -1,7 +1,7 @@
 /**
  * Function to serialize the profile pic thumb
- * @param {*} obj 
- * @returns 
+ * @param {*} obj
+ * @returns
  */
 export const serializeProfilePicThumb = (obj) => {
   if (obj == undefined) {

@@ -93,7 +93,6 @@ export async function startSession(
 
     return res.send({ erro: false, text: 'Wait for connection' });
   } else {
-    
     const getId = await sessionClient.getSessionId($_HEADERS_USER);
     const check = await sessionClient.checkClient($_HEADERS_USER);
 

@@ -1,4 +1,3 @@
-
 export { getChat } from './get-chat';
 export { getNewId } from './get-mew-id';
 export { getNewMessageId } from './get-new-message';

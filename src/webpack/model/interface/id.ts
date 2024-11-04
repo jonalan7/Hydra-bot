@@ -1,5 +1,5 @@
 export interface id {
-    server: string;
-    user: string;
-    _serialized: string;
-  }
+  server: string;
+  user: string;
+  _serialized: string;
+}

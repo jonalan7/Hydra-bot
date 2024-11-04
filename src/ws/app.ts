@@ -17,13 +17,13 @@ export function appExpress(options: options): Express {
   );
 
   const limiter = rateLimit({
-    windowMs: 1*60*1000, // 1 minute
-    max: 5
+    windowMs: 1 * 60 * 1000, // 1 minute
+    max: 5,
   });
-  
+
   // apply rate limiter to all requests
   app.use(limiter);
-  
+
   const corsOptions: cors.CorsOptions = {
     origin: '*',
   };

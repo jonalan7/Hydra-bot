@@ -6,7 +6,7 @@ import * as fs from 'fs';
  * @param path file path
  * @param mime Optional, will retrieve file mime automatically if not defined (Example: 'image/png')
  */
- export async function fileToBase64(path: string, mime?: string) {
+export async function fileToBase64(path: string, mime?: string) {
   if (fs.existsSync(path)) {
     const base64 = fs.readFileSync(path, { encoding: 'base64' });
     if (mime === undefined) {

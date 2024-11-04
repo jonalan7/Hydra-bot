@@ -106,18 +106,13 @@
 
     /* Completeness */
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
-    "skipLibCheck": true,
+    "skipLibCheck": true
     /* Skip type checking all .d.ts files. */
   },
   "typedocOptions": {
-    "entryPoints": [
-      "src/index.ts",
-      "./package.json"
-    ],
-    "out": "api-docs",
+    "entryPoints": ["src/index.ts", "./package.json"],
+    "out": "api-docs"
   },
-  "include": [
-    "src/**/*",
-  ],
+  "include": ["src/**/*"],
   "exclude": ["img/*"]
 }

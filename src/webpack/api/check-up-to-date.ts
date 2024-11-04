@@ -2,13 +2,11 @@ import latestVersion from 'latest-version';
 import { upToDate } from '../utils/semver';
 import boxen from 'boxen';
 import chalk from 'chalk';
-const { version }  = require('../../../package.json');
-
+const { version } = require('../../../package.json');
 
 let updatesChecked = false;
 
 export async function checkUpdates() {
-
   if (!updatesChecked) {
     updatesChecked = true;
     return await checkVenomVersion();

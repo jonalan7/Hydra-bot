@@ -30,11 +30,11 @@ module.exports = class dbLite {
         return false;
       }
       return {
-        erro: 'User not found'
+        erro: 'User not found',
       };
     }
     return {
-      erro: 'Pass the id parameters'
+      erro: 'Pass the id parameters',
     };
   }
 
@@ -55,11 +55,11 @@ module.exports = class dbLite {
         return false;
       }
       return {
-        erro: 'User not found'
+        erro: 'User not found',
       };
     }
     return {
-      erro: 'Pass the id parameters'
+      erro: 'Pass the id parameters',
     };
   }
 
@@ -142,11 +142,11 @@ module.exports = class dbLite {
         return false;
       }
       return {
-        erro: 'User not found'
+        erro: 'User not found',
       };
     }
     return {
-      erro: 'Pass the id parameters'
+      erro: 'Pass the id parameters',
     };
   }
 
@@ -185,9 +185,11 @@ module.exports = class dbLite {
     if (userId) {
       const checkUser = await this.selectUserId(userId);
       if (checkUser) {
-        const delUser = await db(this.tb).where({
-          id: userId
-        }).del();
+        const delUser = await db(this.tb)
+          .where({
+            id: userId,
+          })
+          .del();
         if (delUser) {
           return true;
         }

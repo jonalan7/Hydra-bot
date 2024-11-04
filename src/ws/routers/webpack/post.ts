@@ -44,8 +44,6 @@ const postRouters = (router: Express, option: CreateOptions | options) => {
   router.post('/webhooktest', async (req: Request, res: Response) => {
     console.log('Webhooktest Return object ', req.body);
   });
-
-
 };
 
 export { postRouters };

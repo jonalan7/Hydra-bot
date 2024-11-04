@@ -1,7 +1,7 @@
 /**
  * Function to serialize the me object
- * @param {*} obj 
- * @returns 
+ * @param {*} obj
+ * @returns
  */
 export const serializeMeObj = async (obj) => {
   if (obj == undefined) {

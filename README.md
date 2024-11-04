@@ -29,8 +29,8 @@ You can use this project in two ways, the first is using Web Services using a se
 To maintain quality, we are receiving support! We thank you in advance for the opportunity to develop and maintain this project!
 
 | Company | URL                                                |                                                                      Logo                                                                      |
-| :------ | -------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------: |
-| redrive | [https://redrive.com.br/](https://redrive.com.br/) | <a target="_blank" href="https://redrive.com.br/" target="_blank"> <img title="redrive.com.br" height="25" src="img/logo-redrive-png.png"></a> |                                         |
+| :------ | -------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------: | --- |
+| redrive | [https://redrive.com.br/](https://redrive.com.br/) | <a target="_blank" href="https://redrive.com.br/" target="_blank"> <img title="redrive.com.br" height="25" src="img/logo-redrive-png.png"></a> |     |
 | tabchat | [https://tabchat.com.br/](https://tabchat.com.br/) |                                    <img title="tabchat.com.br" height="25" src="img/logo-horizontal.webp">                                     |
 
 ## WhatSapp Group

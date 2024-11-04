@@ -10,7 +10,10 @@ import RouterdeleteAdmin from '../routers/admin/delete';
 import RouterputAdmin from '../routers/admin/put';
 
 export class ServiceWs {
-  constructor(public app: Express, public option: CreateOptions | options) {
+  constructor(
+    public app: Express,
+    public option: CreateOptions | options
+  ) {
     this.requireRouter();
   }
 

@@ -88,7 +88,7 @@ export const defaultConfig: CreateOptions = {
     ignoreHTTPSErrors: true,
     userDataDir: '',
     downloadChromium: true,
-    chromiumVersion: '818858'
+    chromiumVersion: '818858',
   },
   printQRInTerminal: true,
   timeAutoClose: 60000,

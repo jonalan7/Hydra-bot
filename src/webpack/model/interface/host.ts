@@ -28,7 +28,7 @@ export interface InterfaceHost {
   longitude: string;
   notifyName: string;
   pendingPic: string;
-  profileOptions: profileOptions
+  profileOptions: profileOptions;
   raw: string;
   searchName: string;
   stale: boolean;
@@ -39,7 +39,7 @@ export interface InterfaceHost {
   website: string[];
 }
 
-interface profileOptions{
+interface profileOptions {
   cartEnabled: boolean;
   commerceExperience: string;
   directConnection: string;
@@ -55,5 +55,3 @@ interface categories {
   id: string;
   localized_display_name: string;
 }
-
-

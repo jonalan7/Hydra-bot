@@ -4,18 +4,15 @@
  * @param {(Array| String)} contactsId contact number
  */
 export async function addParticipant(groupId, contactsId) {
-  const nameFunc = (new Error().stack.match(/at (.*?) /))[1].replace('Object.', '');
+  const nameFunc = new Error().stack
+    .match(/at (.*?) /)[1]
+    .replace('Object.', '');
   if (!Array.isArray(contactsId)) {
     contactsId = [contactsId];
   }
   const chatGroup = Store.Chat.get(groupId);
   if (!chatGroup) {
-    return API.scope(
-      null,
-      true,
-      404,
-      `group not found: ${groupId}`
-    );
+    return API.scope(null, true, 404, `group not found: ${groupId}`);
   }
   const contacts = await Promise.all(contactsId.map((c) => API.sendExist(c)));
   const checkErro = contacts.filter((e) => e.erro === true)[0];

@@ -55,5 +55,4 @@ export class Whatsapp extends Scraping {
       message.size
     );
   }
-
 }

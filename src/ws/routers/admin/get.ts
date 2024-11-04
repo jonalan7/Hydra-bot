@@ -9,5 +9,4 @@ export = (router: any) => {
   router.get('/get_user_by_id/:id', async (req: any, res: any) => {
     await functionGetUsers.getUserIdRouter(req, res);
   });
-
 };

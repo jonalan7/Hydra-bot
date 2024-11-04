@@ -1,4 +1,9 @@
-import { InterfaceHost, contact, InterfaceScope, checkNumber } from '../model/interface';
+import {
+  InterfaceHost,
+  contact,
+  InterfaceScope,
+  checkNumber,
+} from '../model/interface';
 
 interface API {
   /**

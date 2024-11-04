@@ -1,7 +1,7 @@
-import { InterfaceMode } from "./interface-mode";
+import { InterfaceMode } from './interface-mode';
 
 export interface interfaceChange {
-    displayInfo: string;
-    mode: string;
-    info: InterfaceMode;
-  }
+  displayInfo: string;
+  mode: string;
+  info: InterfaceMode;
+}

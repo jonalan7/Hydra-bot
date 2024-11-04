@@ -12,14 +12,14 @@ export interface options {
    */
   authentication?: boolean;
   /**
-   * @default 'null' 
+   * @default 'null'
    */
-  token?: string
+  token?: string;
   session?: string | string[] | undefined;
 }
 
 export const defaultConfigWs: options = {
   port: '8080',
   url: '',
-  authentication: true
+  authentication: true,
 };

@@ -39,7 +39,10 @@ export const sessionClient = class Session {
   }
 
   // add new objects to the session!
-  static async addInfoSession(nameSession: string | string[] | undefined, exted: any) {
+  static async addInfoSession(
+    nameSession: string | string[] | undefined,
+    exted: any
+  ) {
     nameSession = this.replaceNameSession(nameSession);
     // checking if the session name and object have been passed!
     if (!!nameSession && typeof exted === 'object') {

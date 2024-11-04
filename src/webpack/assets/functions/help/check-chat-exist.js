@@ -4,12 +4,12 @@
  * @returns - Return the status of the number
  */
 export const checkChatExist = async (id) => {
-    try {
-      const chat = await Store.Chat.find(id);
-      if (chat?.chatEntryPoint === 'Chatlist') {
-        return chat.id;
-      }
-    } catch (error) {
-      return false;
+  try {
+    const chat = await Store.Chat.find(id);
+    if (chat?.chatEntryPoint === 'Chatlist') {
+      return chat.id;
     }
-  };
+  } catch {
+    return false;
+  }
+};

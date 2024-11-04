@@ -1,71 +1,60 @@
 ## [1.0.31](https://github.com/jonalan7/Hydra-bot/compare/v1.0.30...v1.0.31) (2024-10-23)
 
-
 ### Bug Fixes
 
-* getHost ([b25d180](https://github.com/jonalan7/Hydra-bot/commit/b25d180b44574a6fa3c9ef8aea3992ef297ee16e))
-* initial corrections ([c56d3f3](https://github.com/jonalan7/Hydra-bot/commit/c56d3f3c1e5077693967af3baef73389ff53dde0))
-* onMod ([19e5814](https://github.com/jonalan7/Hydra-bot/commit/19e5814cd70461971006042e7f5cc9881a557e79))
-
+- getHost ([b25d180](https://github.com/jonalan7/Hydra-bot/commit/b25d180b44574a6fa3c9ef8aea3992ef297ee16e))
+- initial corrections ([c56d3f3](https://github.com/jonalan7/Hydra-bot/commit/c56d3f3c1e5077693967af3baef73389ff53dde0))
+- onMod ([19e5814](https://github.com/jonalan7/Hydra-bot/commit/19e5814cd70461971006042e7f5cc9881a557e79))
 
 ### Features
 
-* add nodemon dev ([b8ab0fa](https://github.com/jonalan7/Hydra-bot/commit/b8ab0fa398fdb3e902b670bd9b7ff313fa4e90ac))
-
-
+- add nodemon dev ([b8ab0fa](https://github.com/jonalan7/Hydra-bot/commit/b8ab0fa398fdb3e902b670bd9b7ff313fa4e90ac))
 
 ## [1.0.30](https://github.com/jonalan7/Hydra-bot/compare/v1.0.29...v1.0.30) (2022-08-20)
 
-
 ### Features
 
-* checkNumber ([e75c31e](https://github.com/jonalan7/Hydra-bot/commit/e75c31e69c1810afb7c4192bc2f03a41164d7743))
-
-
+- checkNumber ([e75c31e](https://github.com/jonalan7/Hydra-bot/commit/e75c31e69c1810afb7c4192bc2f03a41164d7743))
 
 <<<<<<< HEAD
-## [1.0.28-1](https://github.com/jonalan7/Hydra-bot/compare/v1.0.29-0...v1.0.28-1) (2022-08-03)
-=======
-## [1.0.29](https://github.com/jonalan7/Hydra-bot/compare/v1.0.28...v1.0.29) (2022-08-09)
->>>>>>> cb3b18bf0d402cdd05e25fc660344261c1c7c29c
 
+## [1.0.28-1](https://github.com/jonalan7/Hydra-bot/compare/v1.0.29-0...v1.0.28-1) (2022-08-03)
+
+=======
+
+## [1.0.29](https://github.com/jonalan7/Hydra-bot/compare/v1.0.28...v1.0.29) (2022-08-09)
+
+> > > > > > > cb3b18bf0d402cdd05e25fc660344261c1c7c29c
 
 ### Bug Fixes
 
-* addParticipant ([7b775e7](https://github.com/jonalan7/Hydra-bot/commit/7b775e7f3678eec1eec0d9a8ddc0545db53638a3))
-* createGroup ([18777f0](https://github.com/jonalan7/Hydra-bot/commit/18777f09460471caf223afb6b0b3a99e3dcda39a))
-<<<<<<< HEAD
-=======
-* lint wpage ([efe37cc](https://github.com/jonalan7/Hydra-bot/commit/efe37cc5f4134d13e12d51d6c15f7d841d418247))
->>>>>>> cb3b18bf0d402cdd05e25fc660344261c1c7c29c
-
+- addParticipant ([7b775e7](https://github.com/jonalan7/Hydra-bot/commit/7b775e7f3678eec1eec0d9a8ddc0545db53638a3))
+- createGroup ([18777f0](https://github.com/jonalan7/Hydra-bot/commit/18777f09460471caf223afb6b0b3a99e3dcda39a))
+  <<<<<<< HEAD
+  =======
+- lint wpage ([efe37cc](https://github.com/jonalan7/Hydra-bot/commit/efe37cc5f4134d13e12d51d6c15f7d841d418247))
+  > > > > > > > cb3b18bf0d402cdd05e25fc660344261c1c7c29c
 
 ### Features
 
-* Missing rate limiting ([fceaf57](https://github.com/jonalan7/Hydra-bot/commit/fceaf574a0921fdbb1af842163579f5f265ca776))
-<<<<<<< HEAD
-=======
-* package ([7e25bf4](https://github.com/jonalan7/Hydra-bot/commit/7e25bf47364df7fff6afba638169f5cea24fa4c4))
-* process ([52a2de9](https://github.com/jonalan7/Hydra-bot/commit/52a2de9947a7495b676b5747c8f3537c6d234d49))
->>>>>>> cb3b18bf0d402cdd05e25fc660344261c1c7c29c
-* setGroupImage ([6814123](https://github.com/jonalan7/Hydra-bot/commit/6814123ff414592be0c2bd5f9f95adea7bfc3115))
-
-
+- Missing rate limiting ([fceaf57](https://github.com/jonalan7/Hydra-bot/commit/fceaf574a0921fdbb1af842163579f5f265ca776))
+  <<<<<<< HEAD
+  =======
+- package ([7e25bf4](https://github.com/jonalan7/Hydra-bot/commit/7e25bf47364df7fff6afba638169f5cea24fa4c4))
+- process ([52a2de9](https://github.com/jonalan7/Hydra-bot/commit/52a2de9947a7495b676b5747c8f3537c6d234d49))
+  > > > > > > > cb3b18bf0d402cdd05e25fc660344261c1c7c29c
+- setGroupImage ([6814123](https://github.com/jonalan7/Hydra-bot/commit/6814123ff414592be0c2bd5f9f95adea7bfc3115))
 
 ## [1.0.29-0](https://github.com/jonalan7/Hydra-bot/compare/v1.0.27-0...v1.0.29-0) (2022-07-26)
 
-
 ### Bug Fixes
 
-* gitignore ([dfd02f2](https://github.com/jonalan7/Hydra-bot/commit/dfd02f27b48419e6ac0e1f9f2d8f6525e46035ca))
-
+- gitignore ([dfd02f2](https://github.com/jonalan7/Hydra-bot/commit/dfd02f27b48419e6ac0e1f9f2d8f6525e46035ca))
 
 ### Features
 
-* image caption ([b4bb5be](https://github.com/jonalan7/Hydra-bot/commit/b4bb5be978d521c5c7e48f4b5a7b31c64de22903))
-* sendImageFromBase64 ([75dbe6d](https://github.com/jonalan7/Hydra-bot/commit/75dbe6dcfcfb02deb639d84b26312f656da709f7))
-
-
+- image caption ([b4bb5be](https://github.com/jonalan7/Hydra-bot/commit/b4bb5be978d521c5c7e48f4b5a7b31c64de22903))
+- sendImageFromBase64 ([75dbe6d](https://github.com/jonalan7/Hydra-bot/commit/75dbe6dcfcfb02deb639d84b26312f656da709f7))
 
 ## [1.0.28](https://github.com/jonalan7/Hydra-bot/compare/v1.0.27...v1.0.28) (2022-07-23)
 

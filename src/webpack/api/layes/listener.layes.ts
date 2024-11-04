@@ -51,7 +51,10 @@ export class ListenerLayer extends Whatsapp {
 
     for (const func of functions) {
       const has = await this.page
-        .evaluate((func: string) => typeof (window as any)[func] === 'function', func)
+        .evaluate(
+          (func: string) => typeof (window as any)[func] === 'function',
+          func
+        )
         .catch(() => false);
 
       if (!has) {
@@ -59,17 +62,17 @@ export class ListenerLayer extends Whatsapp {
           .exposeFunction(func, (...args: any) =>
             this.listenerEmitter.emit(func, ...args)
           )
-          .catch(() => { });
+          .catch(() => {});
       }
     }
-    
+
     this.listener(onMode.interfaceChange);
     this.listener(onMode.newMessage);
     this.listener(onMode.newOnAck);
-    
+
     this.interfaceChange();
     this.newMessage();
-    this.newOnAck()
+    this.newOnAck();
   }
 
   private listener(type: string): { dispose: () => void } {
