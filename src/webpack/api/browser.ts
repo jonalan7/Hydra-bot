@@ -200,6 +200,7 @@ export async function initLaunch(
       args: options.puppeteerOptions?.args,
       executablePath: options.puppeteerOptions?.executablePath,
       userDataDir: options.puppeteerOptions?.userDataDir,
+      devtools: options.puppeteerOptions?.devtools,
     });
   } catch (e) {
     return false;

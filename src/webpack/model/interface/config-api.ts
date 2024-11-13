@@ -34,6 +34,10 @@ export interface puppeteerOptions {
    * @default null
    */
   ignoreHTTPSErrors?: boolean;
+  /**
+   * @default false
+   */
+  devtools?: boolean;
 }
 
 /**
@@ -89,6 +93,7 @@ export const defaultConfig: CreateOptions = {
     userDataDir: '',
     downloadChromium: true,
     chromiumVersion: '818858',
+    devtools: false,
   },
   printQRInTerminal: true,
   timeAutoClose: 60000,
