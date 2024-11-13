@@ -1,7 +1,6 @@
 import { GroupLayer } from './group.layer';
 import { Page, Browser } from 'puppeteer';
 import { CreateOptions, InterfaceHost, contact } from '../../model/interface';
-import { onMode } from '../../model/enum';
 
 export class RetrieverLayer extends GroupLayer {
   constructor(

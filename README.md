@@ -233,6 +233,7 @@ hydraBot.initServer({
 const hydraBot = require('hydra-bot');
 
 hydraBot.initWs({
+  hostServer: 'http://localhost',
   port: '8080',
   url: '', // point a URL to receive a callback!
   authentication: true, // ask for authentication in routes

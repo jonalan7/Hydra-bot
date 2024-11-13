@@ -1,7 +1,7 @@
 import express, { Express, Request, Response } from 'express';
 import { options } from './model/interface';
-import cors from 'cors';
 import { rateLimit } from 'express-rate-limit';
+import cors from 'cors';
 
 export function appExpress(options: options): Express {
   const app = express();

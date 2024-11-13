@@ -35,7 +35,9 @@ export async function startSession(
         ? $_HEADERS_USER + $_HEADERS_PASS
         : '';
     const token = crypto.createHash('md5').update(MergeToken).digest('hex');
-    option.session = $_HEADERS_USER;
+
+    option.session =
+      typeof $_HEADERS_USER === 'string' ? $_HEADERS_USER : undefined;
     option.url = body.url;
     option.token = token;
 

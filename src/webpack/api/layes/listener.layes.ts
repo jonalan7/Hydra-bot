@@ -28,13 +28,13 @@ export class ListenerLayer extends Whatsapp {
       }
       if (this.urlCode !== result.urlCode) {
         this.urlCode = result.urlCode;
-        this.ev.statusFind = {
+        this.ev.emitStatusFind({
           erro: false,
           qrcode: result.urlCode,
           base64Image: result.base64Image,
           onType: onMode.qrcode,
           session: this.options.session,
-        };
+        });
         const qr = await this.asciiQr(this.urlCode).catch(() => undefined);
         if (this.options.printQRInTerminal) {
           console.log(qr);
@@ -77,20 +77,20 @@ export class ListenerLayer extends Whatsapp {
 
   private listener(type: string): { dispose: () => void } {
     this.listenerEmitter.on(type, (event) => {
-      this.ev.statusFind = {
+      this.ev.emitStatusFind({
         onType: type,
         session: this.options.session,
         result: event,
-      };
+      });
     });
     return {
       dispose: () => {
         this.listenerEmitter.off(type, (event) => {
-          this.ev.statusFind = {
+          this.ev.emitStatusFind({
             onType: type,
             session: this.options.session,
             result: event,
-          };
+          });
         });
       },
     };

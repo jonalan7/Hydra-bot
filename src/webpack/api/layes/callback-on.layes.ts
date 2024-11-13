@@ -1,73 +1,26 @@
 import { onMode } from '../../model/enum';
-import { sleep } from '../../help';
+import { EventEmitter } from 'events';
 
 /**
- * attribution and behavior change of a given event
+ * Attribution and behavior change of a given event
  */
 export class CallbackOnStatus {
-  public statusFind: any;
-  constructor() {
-    this.statusFind = '';
+  private listenerEmitter = new EventEmitter();
+
+  /**
+   * Emit an event with the specified type and arguments
+   * @param args Event arguments, including onType to specify the event type
+   */
+  public emitStatusFind(args: any) {
+    this.listenerEmitter.emit(args.onType, args);
   }
 
   /**
-   * waiting for event change
-   * @param event returns event status
+   * Listen for specific user events
+   * @param type Type of event to monitor
+   * @param callback Function to call with event data
    */
-  async onChange(event: (status: any) => void) {
-    let change = null;
-    while (true) {
-      if (this.statusFind !== change) {
-        change = this.statusFind;
-        event && event(change);
-      }
-      await sleep(50);
-    }
-  }
-
-  /**
-   * here you can monitor user events
-   * @param type types of monitoring
-   * @param callback returns of monitoring
-   */
-
-  public async on(type: onMode, callback: (state: any) => void) {
-    switch (type) {
-      case onMode.interfaceChange:
-        this.onChange((event) => {
-          if (event.onType === onMode.interfaceChange) {
-            callback(event);
-          }
-        });
-        break;
-      case onMode.newOnAck:
-        this.onChange((event) => {
-          if (event.onType === onMode.newOnAck) {
-            callback(event);
-          }
-        });
-        break;
-      case onMode.newMessage:
-        this.onChange((event) => {
-          if (event.onType === onMode.newMessage) {
-            callback(event);
-          }
-        });
-        break;
-      case onMode.qrcode:
-        this.onChange((event) => {
-          if (event.onType === onMode.qrcode) {
-            callback(event);
-          }
-        });
-        break;
-      case onMode.connection:
-        this.onChange((event) => {
-          if (event.onType === onMode.connection) {
-            callback(event);
-          }
-        });
-        break;
-    }
+  public on(type: onMode, callback: (state: any) => void) {
+    this.listenerEmitter.on(type, callback);
   }
 }

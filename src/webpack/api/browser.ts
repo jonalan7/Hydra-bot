@@ -3,7 +3,7 @@ import puppeteer from 'puppeteer-extra';
 import * as ChromeLauncher from 'chrome-launcher';
 import * as path from 'path';
 import * as fs from 'fs';
-import { onMode } from '../model/enum';
+import { onMode, TypeStatusFind } from '../model/enum';
 import { CreateOptions } from '../model/interface';
 import { puppeteerConfig } from '../help';
 
@@ -99,62 +99,62 @@ export async function initLaunch(
     const browserFetcher = puppeteer.createBrowserFetcher({});
     let init = true;
 
-    ev.statusFind = {
+    ev.emitStatusFind({
       erro: false,
       text: 'Await download Chromium',
-      status: 'chromium',
+      status: TypeStatusFind.chromium,
       statusFind: 'browser',
       onType: onMode.connection,
       session: options.session,
-    };
+    });
 
     await browserFetcher
       .download(
         options.puppeteerOptions?.chromiumVersion,
         (downloadedByte: number, totalBytes: number) => {
           if (init) {
-            ev.statusFind = {
+            ev.emitStatusFind({
               erro: false,
               text: 'Checking the total bytes to download!',
-              status: 'chromium',
+              status: TypeStatusFind.chromium,
               statusFind: 'browser',
               onType: onMode.connection,
               session: options.session,
-            };
+            });
 
             if (totalBytes) {
-              ev.statusFind = {
+              ev.emitStatusFind({
                 erro: false,
                 text: `Total Bytes ${totalBytes}`,
-                status: 'chromium',
+                status: TypeStatusFind.chromium,
                 statusFind: 'browser',
                 onType: onMode.connection,
                 session: options.session,
-              };
+              });
             }
             init = true;
           }
 
           if (downloadedByte) {
-            ev.statusFind = {
+            ev.emitStatusFind({
               erro: false,
               text: `Total Bytes: ${totalBytes} download: ${downloadedByte}`,
-              status: 'chromium',
+              status: TypeStatusFind.chromium,
               statusFind: 'browser',
               onType: onMode.connection,
               session: options.session,
-            };
+            });
           }
 
           if (downloadedByte === totalBytes) {
-            ev.statusFind = {
+            ev.emitStatusFind({
               erro: false,
               text: `Extract files... await...`,
-              status: 'chromium',
+              status: TypeStatusFind.chromium,
               statusFind: 'browser',
               onType: onMode.connection,
               session: options.session,
-            };
+            });
           }
         }
       )
@@ -162,14 +162,14 @@ export async function initLaunch(
         if (options.puppeteerOptions?.executablePath) {
           options.puppeteerOptions.executablePath =
             revisionInfo?.executablePath;
-          ev.statusFind = {
+          ev.emitStatusFind({
             erro: false,
             text: `download completed, path: ${revisionInfo?.executablePath}`,
-            status: 'chromium',
+            status: TypeStatusFind.chromium,
             statusFind: 'browser',
             onType: onMode.connection,
             session: options.session,
-          };
+          });
         }
 
         if (options.puppeteerOptions?.args) {
@@ -177,15 +177,15 @@ export async function initLaunch(
         }
       })
       .catch((e: any) => {
-        ev.statusFind = {
+        ev.emitStatusFind({
           erro: true,
           text: `Error chromium`,
-          status: 'chromium',
+          status: TypeStatusFind.chromium,
           statusFind: 'browser',
           onType: onMode.connection,
           session: options.session,
           result: e,
-        };
+        });
       });
   }
 

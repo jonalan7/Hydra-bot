@@ -6,17 +6,18 @@ import { CreateOptions, defaultConfig } from '../webpack/model/interface';
 import { checkUpdates } from '../webpack/api/check-up-to-date';
 
 export async function initWs(
-  createOption?: CreateOptions | options | any
+  createOption?: CreateOptions | options
 ): Promise<any>;
 
 /**
  * Start the Web Service
  */
-export async function initWs(
-  options?: CreateOptions | options | any
-): Promise<any> {
-  const mergeOptions = { ...defaultConfigWs, ...options };
-  const mergeWebPack = { ...defaultConfig, ...mergeOptions };
+export async function initWs(options?: CreateOptions & options): Promise<any> {
+  const mergeOptions: options = { ...defaultConfigWs, ...options };
+  const mergeWebPack: CreateOptions & options = {
+    ...defaultConfig,
+    ...mergeOptions,
+  };
 
   if (!!options?.puppeteerOptions) {
     mergeWebPack.puppeteerOptions = {
@@ -33,9 +34,19 @@ export async function initWs(
 
   new ServiceWs(app, mergeWebPack);
 
-  app.listen(mergeWebPack.port, () => {
-    console.log(`Web service on http://localhost:${mergeWebPack.port}`);
-  });
+  app
+    .listen(mergeWebPack.port, () => {
+      console.log(
+        `Web service on ${mergeWebPack.hostServer}:${mergeWebPack.port}`
+      );
+    })
+    .on('error', (err: NodeJS.ErrnoException) => {
+      if (err.code === 'EADDRINUSE') {
+        console.error(`Port ${mergeWebPack.port} is already in use.`);
+      } else {
+        console.error(`Server error: ${err.message}`);
+      }
+    });
 
   app.use(function (req: Request, res: Response) {
     res.send({
