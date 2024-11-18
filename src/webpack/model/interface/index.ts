@@ -8,3 +8,4 @@ export { id } from './id';
 export { CreateSize } from './create-size';
 export { contact } from './contact';
 export { checkNumber } from './check-number';
+export { StatusFind } from './status-find';

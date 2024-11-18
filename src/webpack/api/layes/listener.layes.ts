@@ -4,6 +4,7 @@ import { Page, Browser } from 'puppeteer';
 import { Whatsapp } from './whatsapp';
 import { CreateOptions } from '../../model/interface';
 import { sleep } from '../../help';
+import { CallbackOnStatus } from './callback-on.layes';
 
 export class ListenerLayer extends Whatsapp {
   urlCode = '';
@@ -11,7 +12,7 @@ export class ListenerLayer extends Whatsapp {
     public page: Page,
     public browser: Browser,
     public options: CreateOptions,
-    public ev: any
+    public ev: CallbackOnStatus,
   ) {
     super(page, browser, options, ev);
   }
@@ -78,7 +79,7 @@ export class ListenerLayer extends Whatsapp {
   private listener(type: string): { dispose: () => void } {
     this.listenerEmitter.on(type, (event) => {
       this.ev.emitStatusFind({
-        onType: type,
+        onType: type as onMode,
         session: this.options.session,
         result: event,
       });
@@ -87,7 +88,7 @@ export class ListenerLayer extends Whatsapp {
       dispose: () => {
         this.listenerEmitter.off(type, (event) => {
           this.ev.emitStatusFind({
-            onType: type,
+            onType: type as onMode,
             session: this.options.session,
             result: event,
           });

@@ -132,7 +132,7 @@ export async function initServer(
               });
               await client.qrCodeScan();
             }
-          } catch {}
+          } catch { }
         });
       } else {
         ev.emitStatusFind({
