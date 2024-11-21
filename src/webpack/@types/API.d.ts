@@ -63,6 +63,10 @@ interface API {
    * @param {object} msg mensagens
    */
   serializeMessageObj: (msg: object) => Promise<void>;
+  /**
+   * Get version of the current whatsapp
+   */
+  getWAVersion: () => Promise<string>;
 }
 
 declare global {
