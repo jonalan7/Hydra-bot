@@ -31,6 +31,7 @@ import {
   setGroupImage,
   getAllChats,
   getContact,
+  getWAVersion
 } from './functions';
 
 import {
@@ -76,6 +77,7 @@ if (typeof window.API === 'undefined') {
   window.API.getHost = getHost;
   window.API.getAllChats = getAllChats;
   window.API.getContact = getContact;
+  window.API.getWAVersion = getWAVersion;
 
   // Group Functions
   window.API.createGroup = createGroup;

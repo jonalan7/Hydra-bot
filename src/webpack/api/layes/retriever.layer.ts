@@ -51,4 +51,11 @@ export class RetrieverLayer extends GroupLayer {
       number
     );
   }
+
+  /**
+   * Get version of the current whatsapp
+   */
+  public async getWAVersion() {
+    return await this.page.evaluate(() => API.getWAVersion());
+  }
 }
