@@ -30,11 +30,11 @@ module.exports = class dbLite {
         return false;
       }
       return {
-        erro: 'User not found',
+        error: 'User not found',
       };
     }
     return {
-      erro: 'Pass the id parameters',
+      error: 'Pass the id parameters',
     };
   }
 
@@ -55,11 +55,11 @@ module.exports = class dbLite {
         return false;
       }
       return {
-        erro: 'User not found',
+        error: 'User not found',
       };
     }
     return {
-      erro: 'Pass the id parameters',
+      error: 'Pass the id parameters',
     };
   }
 
@@ -89,15 +89,15 @@ module.exports = class dbLite {
           return false;
         }
         return {
-          erro: 'Registered user',
+          error: 'Registered user',
         };
       }
       return {
-        erro: 'Username is already in use',
+        error: 'Username is already in use',
       };
     }
     return {
-      erro: 'Is missing parameters',
+      error: 'Is missing parameters',
     };
   }
 
@@ -142,11 +142,11 @@ module.exports = class dbLite {
         return false;
       }
       return {
-        erro: 'User not found',
+        error: 'User not found',
       };
     }
     return {
-      erro: 'Pass the id parameters',
+      error: 'Pass the id parameters',
     };
   }
 
@@ -196,7 +196,7 @@ module.exports = class dbLite {
         return false;
       }
       return {
-        erro: 'User not found',
+        error: 'User not found',
       };
     }
   }

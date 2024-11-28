@@ -3,12 +3,17 @@ import puppeteer from 'puppeteer-extra';
 import * as ChromeLauncher from 'chrome-launcher';
 import * as path from 'path';
 import * as fs from 'fs';
-import { onMode, TypeStatusFind } from '../model/enum';
+import { OnMode, TypeStatusFind } from '../model/enum';
 import { CreateOptions } from '../model/interface';
 import { puppeteerConfig } from '../help';
 
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 
+/**
+ * Function to create a new tab in the browser instance
+ * @param Browser - Browser instance to create a new tab
+ * @returns - Returns a new tab or false if it fails
+ */
 export async function initBrowser(Browser: Browser): Promise<Page | boolean> {
   const wpage: Page = await oneTab(Browser);
   if (wpage) {
@@ -39,6 +44,10 @@ export async function initBrowser(Browser: Browser): Promise<Page | boolean> {
   }
   return false;
 }
+/**
+ * Function to create a new session in the browser instance
+ * @param options - Options to create a new session in the browser instance
+ */
 export function PathSession(options: CreateOptions) {
   options.mkdirFolderToken = options.mkdirFolderToken
     ? options.mkdirFolderToken
@@ -80,6 +89,12 @@ export function PathSession(options: CreateOptions) {
   puppeteerConfig.chromiumArgs.push(`--user-data-dir=${pathSession}`);
 }
 
+/**
+ * Function to create a new session in the browser instance
+ * @param options - Options to create a new session in the browser instance
+ * @param ev - Event to emit status
+ * @returns - Returns a new browser instance or false if it fails
+ */
 export async function initLaunch(
   options: CreateOptions,
   ev: any
@@ -100,11 +115,11 @@ export async function initLaunch(
     let init = true;
 
     ev.emitStatusFind({
-      erro: false,
+      error: false,
       text: 'Await download Chromium',
       status: TypeStatusFind.chromium,
       statusFind: 'browser',
-      onType: onMode.connection,
+      onType: OnMode.connection,
       session: options.session,
     });
 
@@ -114,21 +129,21 @@ export async function initLaunch(
         (downloadedByte: number, totalBytes: number) => {
           if (init) {
             ev.emitStatusFind({
-              erro: false,
+              error: false,
               text: 'Checking the total bytes to download!',
               status: TypeStatusFind.chromium,
               statusFind: 'browser',
-              onType: onMode.connection,
+              onType: OnMode.connection,
               session: options.session,
             });
 
             if (totalBytes) {
               ev.emitStatusFind({
-                erro: false,
+                error: false,
                 text: `Total Bytes ${totalBytes}`,
                 status: TypeStatusFind.chromium,
                 statusFind: 'browser',
-                onType: onMode.connection,
+                onType: OnMode.connection,
                 session: options.session,
               });
             }
@@ -137,22 +152,22 @@ export async function initLaunch(
 
           if (downloadedByte) {
             ev.emitStatusFind({
-              erro: false,
+              error: false,
               text: `Total Bytes: ${totalBytes} download: ${downloadedByte}`,
               status: TypeStatusFind.chromium,
               statusFind: 'browser',
-              onType: onMode.connection,
+              onType: OnMode.connection,
               session: options.session,
             });
           }
 
           if (downloadedByte === totalBytes) {
             ev.emitStatusFind({
-              erro: false,
+              error: false,
               text: `Extract files... await...`,
               status: TypeStatusFind.chromium,
               statusFind: 'browser',
-              onType: onMode.connection,
+              onType: OnMode.connection,
               session: options.session,
             });
           }
@@ -163,11 +178,11 @@ export async function initLaunch(
           options.puppeteerOptions.executablePath =
             revisionInfo?.executablePath;
           ev.emitStatusFind({
-            erro: false,
+            error: false,
             text: `download completed, path: ${revisionInfo?.executablePath}`,
             status: TypeStatusFind.chromium,
             statusFind: 'browser',
-            onType: onMode.connection,
+            onType: OnMode.connection,
             session: options.session,
           });
         }
@@ -178,11 +193,11 @@ export async function initLaunch(
       })
       .catch((e: any) => {
         ev.emitStatusFind({
-          erro: true,
+          error: true,
           text: `Error chromium`,
           status: TypeStatusFind.chromium,
           statusFind: 'browser',
-          onType: onMode.connection,
+          onType: OnMode.connection,
           session: options.session,
           result: e,
         });
@@ -207,6 +222,11 @@ export async function initLaunch(
   }
 }
 
+/**
+ * Function to create a new tab in the browser instance
+ * @param Browser - Browser instance to create a new tab
+ * @returns - Returns a new tab or false if it fails
+ */
 export async function oneTab(
   Browser: Browser | BrowserContext
 ): Promise<Page | any> {

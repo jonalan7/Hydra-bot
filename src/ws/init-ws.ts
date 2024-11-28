@@ -52,7 +52,7 @@ export async function initWs(options?: CreateOptions & options): Promise<any> {
     res.send({
       text: 'Route does not exist!',
       status: '404',
-      erro: true,
+      error: true,
     });
   });
 }

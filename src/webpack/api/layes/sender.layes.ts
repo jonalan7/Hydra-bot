@@ -1,5 +1,5 @@
 import { Page, Browser } from 'puppeteer';
-import { sendOptions, InterfaceScope } from '../../model/interface';
+import { SendOptions, InterfaceScope } from '../../model/interface';
 import { RetrieverLayer } from './retriever.layer';
 import { CreateOptions } from '../../model/interface';
 import { base64MimeType } from '../../help';
@@ -43,7 +43,7 @@ export class SenderLayer extends RetrieverLayer {
 
       if (!base64) {
         return reject({
-          erro: true,
+          error: true,
           to: to,
           text: 'No such file or directory, open "' + filePath + '"',
         });
@@ -57,7 +57,7 @@ export class SenderLayer extends RetrieverLayer {
 
       if (!mimeType) {
         return reject({
-          erro: true,
+          error: true,
           to: to,
           text: 'Invalid base64!',
         });
@@ -65,7 +65,7 @@ export class SenderLayer extends RetrieverLayer {
 
       if (!mimeType.includes('image')) {
         return reject({
-          erro: true,
+          error: true,
           to: to,
           text: 'Not an image, allowed formats gif, png, jpg, jpeg and webp',
         });
@@ -105,7 +105,7 @@ export class SenderLayer extends RetrieverLayer {
       let mimeType = base64MimeType(base64);
       if (!mimeType) {
         return reject({
-          erro: true,
+          error: true,
           to: to,
           text: 'Invalid base64!',
         });
@@ -113,7 +113,7 @@ export class SenderLayer extends RetrieverLayer {
 
       if (!mimeType.includes('image')) {
         return reject({
-          erro: true,
+          error: true,
           to: to,
           text: 'Not an image, allowed formats gif, png, jpg, jpeg and webp',
         });
@@ -152,7 +152,7 @@ export class SenderLayer extends RetrieverLayer {
 
       if (!base64) {
         return reject({
-          erro: true,
+          error: true,
           to: to,
           text: 'No such file or directory, open "' + filePath + '"',
         });
@@ -166,7 +166,7 @@ export class SenderLayer extends RetrieverLayer {
 
       if (!mimeType) {
         return reject({
-          erro: true,
+          error: true,
           to: to,
           text: 'Invalid base64!',
         });
@@ -228,7 +228,7 @@ export class SenderLayer extends RetrieverLayer {
 
       if (!mimeType) {
         return reject({
-          erro: true,
+          error: true,
           to: to,
           text: 'Invalid base64!',
         });
@@ -250,7 +250,7 @@ export class SenderLayer extends RetrieverLayer {
         }
       } else {
         return reject({
-          erro: true,
+          error: true,
           to: to,
           text: 'Use the MP3 format to be able to send an audio!',
         });
@@ -277,7 +277,7 @@ export class SenderLayer extends RetrieverLayer {
 
       if (!base64) {
         return reject({
-          erro: true,
+          error: true,
           to: to,
           text: 'No such file or directory, open "' + filePath + '"',
         });
@@ -301,7 +301,7 @@ export class SenderLayer extends RetrieverLayer {
         }
       } else {
         return reject({
-          erro: true,
+          error: true,
           to: to,
           text: 'Use the MP3 format to be able to send an audio!',
         });
@@ -309,13 +309,13 @@ export class SenderLayer extends RetrieverLayer {
     });
   }
 
-  async sendMessage(options: sendOptions): Promise<any>;
+  async sendMessage(options: SendOptions): Promise<any>;
 
   /**
    * Send messages
    * @param sendOptions Send options
    */
-  public async sendMessage(sendOptions: sendOptions): Promise<InterfaceScope> {
+  public async sendMessage(sendOptions: SendOptions): Promise<InterfaceScope> {
     return new Promise(async (resolve, reject) => {
       const to: any = sendOptions.to,
         body: any = sendOptions.body,
@@ -323,7 +323,7 @@ export class SenderLayer extends RetrieverLayer {
 
       if (!Object.values(FunctionType).includes(options.type)) {
         return reject({
-          erro: true,
+          error: true,
           text: `pass the message type, examples: ${Object.values(
             FunctionType
           ).join(', ')}`,

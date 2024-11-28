@@ -31,7 +31,7 @@ import {
   setGroupImage,
   getAllChats,
   getContact,
-  getWAVersion
+  getWAVersion,
 } from './functions';
 
 import {
@@ -41,6 +41,8 @@ import {
   serializeProfilePicThumb,
   serializeRawObj,
   serializeMeObj,
+  serializeReactions,
+  serializeIntroReactions,
 } from './serializers';
 
 import { initParasite } from './init-parasite';
@@ -92,4 +94,6 @@ if (typeof window.API === 'undefined') {
   window.API.serializeProfilePicThumb = serializeProfilePicThumb;
   window.API.serializeRawObj = serializeRawObj;
   window.API.serializeMeObj = serializeMeObj;
+  window.API.serializeReactions = serializeReactions;
+  window.API.serializeIntroReactions = serializeIntroReactions;
 }

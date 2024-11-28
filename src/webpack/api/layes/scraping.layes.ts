@@ -1,10 +1,10 @@
 import { Page, Browser } from 'puppeteer';
 import { CreateOptions } from '../../model/interface/';
 import * as qrcode from 'qrcode-terminal';
-import { onMode, TypeStatusFind } from '../../model/enum';
-import { onMod } from './on-wpp';
+import { OnMode, TypeStatusFind } from '../../model/enum';
+import { OnMod } from './on-wpp';
 
-export class Scraping extends onMod {
+export class Scraping extends OnMod {
   public startScanQrcode: boolean;
   public autoCloseInterval: any;
   public autoCloseRemain: number = 0;
@@ -56,11 +56,11 @@ export class Scraping extends onMod {
             this.autoCloseRemain = Math.round(remain / 1000);
             if (remain <= 0) {
               this.ev.emitStatusFind({
-                erro: false,
+                error: false,
                 text: 'Auto close called!',
                 status: TypeStatusFind.autoClose,
                 statusFind: 'browser',
-                onType: onMode.connection,
+                onType: OnMode.connection,
                 session: this.options.session,
               });
               this.cancelAutoClose();

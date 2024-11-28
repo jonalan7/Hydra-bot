@@ -19,11 +19,11 @@ const mime = require('mime-types');
     });
     ev.on('newMessage', async (newMsg) => {
              // when is received
-            if (!newMsg.result.isSentByMe) {
+            if (!newMsg.result.fromMe) {
                 // message received!
                 console.log('NewMessageReceived: ', newMsg.result);
                 // dowload files
-                if (newMsg.result.isMedia === true || newMsg.result.isMMS === true) {
+                if (newMsg.result.isMedia) {
                     const buffer = await client.decryptFile(newMsg.result);
                     // At this point you can do whatever you want with the buffer
                     // Most likely you want to write it into a file

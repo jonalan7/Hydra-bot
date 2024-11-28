@@ -1,7 +1,7 @@
-import { id } from './index';
+import { Id } from './index';
 
 export interface InterfaceHost {
-  id: id;
+  id: Id;
   address: string;
   coverPhoto: string;
   customUrlPath: string;

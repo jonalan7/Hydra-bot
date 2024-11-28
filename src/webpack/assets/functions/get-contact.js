@@ -4,9 +4,9 @@
  * @returns
  */
 export const getContact = (id) => {
-  const found = window.Store.Contact.get(id);
+  const found = Store.Contact.get(id);
   if (found) {
-    return window.API.serializeContactObj(found);
+    return API.serializeContactObj(found);
   }
   return false;
 };

@@ -30,10 +30,13 @@ const hydraBot = require('hydra-bot');
 
         // Was connected to whatsapp chat
         if (conn.connect) {
+            client = conn.client; // class client from hydra-bot
+            const getMe = await client.getHost();
+            const hostNumber = getMe.id._serialized; // number host
+            console.log('Host Number: ', hostNumber);
             // send a text message
-            client = conn.client;
             await client.sendMessage({
-                to: "0000000000@c.us", // you can pass the contact number or group number
+                to: hostNumber, // you can pass the contact number or group number
                 body: "hi i'm hydra bot", // message text
                 options: {
                     type: 'sendText', // shipping type
@@ -47,15 +50,14 @@ const hydraBot = require('hydra-bot');
         }
     });
 
-    // return receive new messages
     ev.on('newMessage', async (newMsg) => {
         // when is received
-        if (!newMsg.result.isSentByMe) {
+        if (!newMsg.result.fromMe) {
             // message received!
             console.log('NewMessageReceived: ', newMsg.result);
         }
         // when is it sent
-        if (!!newMsg.result.isSentByMe) {
+        if (!!newMsg.result.fromMe) {
             // Message sent
             console.log('NewMessageSent: ', newMsg.result);
         }

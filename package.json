@@ -12,7 +12,7 @@
     "build": "tsc && npm run formart:fix && npm run gulp:copyall && npm run build:api ",
     "build:docs": "typedoc && git add docs/*",
     "start:botservicets": "tsc && node bot-test/bot-service.ts",
-    "start:botservicejs": "npm run build && node bot-test/bot-service.js",
+    "build:dev": "npm run build && ts-node test/dev/bot.ts",
     "knex": "cd src && npx knex migrate:latest",
     "del:module": "shx rm -rf node_modules",
     "release": "release-it",

@@ -1,7 +1,7 @@
 /**
  * Returns the current version of the WhatsApp Web API
- * @returns 
+ * @returns
  */
-export const getWAVersion =() => {
-    return window.Debug.VERSION;
-}
+export const getWAVersion = () => {
+  return window.Debug.VERSION;
+};

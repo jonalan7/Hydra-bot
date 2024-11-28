@@ -34,7 +34,7 @@ export class GroupLayer extends ListenerLayer {
           { groupName, contacts }
         )
         .catch();
-      if (result.erro == true) {
+      if (result.error == true) {
         return reject(result);
       } else {
         return resolve(result);
@@ -58,7 +58,7 @@ export class GroupLayer extends ListenerLayer {
           { groupId, contacts }
         )
         .catch();
-      if (result.erro == true) {
+      if (result.error == true) {
         return reject(result);
       } else {
         return resolve(result);
@@ -83,7 +83,7 @@ export class GroupLayer extends ListenerLayer {
         { groupId, description }
       );
 
-      if (result.erro == true) {
+      if (result.error == true) {
         return reject(result);
       } else {
         return resolve(result);
@@ -130,7 +130,7 @@ export class GroupLayer extends ListenerLayer {
               groupId,
             }
           );
-          if (result.erro == true) {
+          if (result.error == true) {
             return reject(result);
           } else {
             return resolve(result);

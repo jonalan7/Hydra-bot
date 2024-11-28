@@ -7,17 +7,17 @@ export const serializeChatObj = (obj) => {
   if (obj == undefined) {
     return null;
   }
-  return Object.assign(window.API.serializeRawObj(obj), {
+  return Object.assign(API.serializeRawObj(obj), {
     kind: obj?.kind,
     isGroup: obj?.isGroup,
-    contact: obj?.contact ? window.API.serializeContactObj(obj?.contact) : null,
+    contact: obj?.contact ? API.serializeContactObj(obj?.contact) : null,
     groupMetadata: obj?.groupMetadata
-      ? window.API.serializeRawObj(obj?.groupMetadata)
+      ? API.serializeRawObj(obj?.groupMetadata)
       : null,
-    presence: obj?.presence ? window.API.serializeRawObj(obj?.presence) : null,
+    presence: obj?.presence ? API.serializeRawObj(obj?.presence) : null,
     msgs: null,
     tcToken: null,
-    isOnline: obj?.__x_presence?.attributes?.isOnline || null,
+    isOnline: obj?.__x_presence?.attributes?.isOnline,
     lastSeen: obj?.previewMessage?.__x_ephemeralStartTimestamp
       ? obj.previewMessage.__x_ephemeralStartTimestamp * 1000
       : null,

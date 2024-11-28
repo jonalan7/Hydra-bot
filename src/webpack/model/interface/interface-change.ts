@@ -1,7 +1,15 @@
-import { InterfaceMode } from './interface-mode';
+import { InterfaceMode } from '../enum';
+import { ReactionIntro, InterfaceQrcode } from '../interface';
+interface ResultInfo {
+  displayInfo: string;
+  mode: InterfaceMode;
+  info: string;
+}
 
 export interface interfaceChange {
-  displayInfo: string;
-  mode: string;
-  info: InterfaceMode;
+  onType: string;
+  session: string;
+  result: Partial<ResultInfo> &
+    Partial<ReactionIntro> &
+    Partial<InterfaceQrcode>;
 }

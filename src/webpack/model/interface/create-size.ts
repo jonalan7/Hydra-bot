@@ -1,4 +1,6 @@
 export interface CreateSize {
-  width?: number;
-  height?: number;
+  width: number;
+  height: number;
 }
+
+export type OptionalCreateSize = Partial<CreateSize>;

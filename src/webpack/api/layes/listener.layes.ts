@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events';
-import { onMode } from '../../model/enum/';
+import { OnMode } from '../../model/enum/';
 import { Page, Browser } from 'puppeteer';
 import { Whatsapp } from './whatsapp';
 import { CreateOptions } from '../../model/interface';
@@ -12,7 +12,7 @@ export class ListenerLayer extends Whatsapp {
     public page: Page,
     public browser: Browser,
     public options: CreateOptions,
-    public ev: CallbackOnStatus,
+    public ev: CallbackOnStatus
   ) {
     super(page, browser, options, ev);
   }
@@ -30,12 +30,13 @@ export class ListenerLayer extends Whatsapp {
       if (this.urlCode !== result.urlCode) {
         this.urlCode = result.urlCode;
         this.ev.emitStatusFind({
-          erro: false,
+          error: false,
           qrcode: result.urlCode,
           base64Image: result.base64Image,
-          onType: onMode.qrcode,
+          onType: OnMode.qrcode,
           session: this.options.session,
         });
+
         const qr = await this.asciiQr(this.urlCode).catch(() => undefined);
         if (this.options.printQRInTerminal) {
           console.log(qr);
@@ -48,7 +49,7 @@ export class ListenerLayer extends Whatsapp {
   private listenerEmitter = new EventEmitter();
 
   public async initListener() {
-    const functions = [...Object.values(onMode)];
+    const functions = [...Object.values(OnMode)];
 
     for (const func of functions) {
       const has = await this.page
@@ -67,19 +68,29 @@ export class ListenerLayer extends Whatsapp {
       }
     }
 
-    this.listener(onMode.interfaceChange);
-    this.listener(onMode.newMessage);
-    this.listener(onMode.newOnAck);
+    // Listen to the events
+    this.listener(OnMode.interfaceChange);
+    this.listener(OnMode.newMessage);
+    this.listener(OnMode.newOnAck);
+    this.listener(OnMode.newEditMessage);
+    this.listener(OnMode.newDeleteMessage);
+    this.listener(OnMode.onReactionMessage);
+    this.listener(OnMode.onIntroReactionMessage);
 
+    // Start the listener
     this.interfaceChange();
     this.newMessage();
     this.newOnAck();
+    this.newEditMessage();
+    this.newDeleteMessage();
+    this.onReactionMessage();
+    this.onIntroReactionMessage();
   }
 
   private listener(type: string): { dispose: () => void } {
     this.listenerEmitter.on(type, (event) => {
       this.ev.emitStatusFind({
-        onType: type as onMode,
+        onType: type as OnMode,
         session: this.options.session,
         result: event,
       });
@@ -88,7 +99,7 @@ export class ListenerLayer extends Whatsapp {
       dispose: () => {
         this.listenerEmitter.off(type, (event) => {
           this.ev.emitStatusFind({
-            onType: type as onMode,
+            onType: type as OnMode,
             session: this.options.session,
             result: event,
           });

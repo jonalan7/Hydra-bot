@@ -6,4 +6,4 @@ token
 *.tgz
 dist.zip
 api-docs
-files
+test/dowload/*

@@ -11,4 +11,5 @@ export const getAllChats = async () => {
       return chats;
     }
   }
+  return false;
 };

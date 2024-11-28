@@ -1,4 +1,4 @@
-export interface id {
+export interface Id {
   server: string;
   user: string;
   _serialized: string;

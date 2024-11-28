@@ -8,46 +8,54 @@ export const serializeMessageObj = async (obj, groupInfo = true) => {
   if (obj === undefined) {
     return null;
   }
-  const _chat = obj['chat'] ? await API.serializeChatObj(obj['chat']) : {};
+
   let objGroup = null;
   if (groupInfo) {
     let chats = await API.getAllChats();
-    objGroup =
-      obj?.to?.server === 'g.us' || obj?.from?.server === 'g.us'
-        ? chats.find((chat) => chat?.id?._serialized === obj?.from?._serialized)
-            .contact
-        : null;
+    if (chats) {
+      objGroup =
+        obj?.to?.server === 'g.us' || obj?.from?.server === 'g.us'
+          ? chats.find(
+              (chat) => chat?.id?._serialized === obj?.from?._serialized
+            ).contact
+          : null;
+    }
   }
 
-  const serializeAds = obj?.ctwaContext
-    ? {
-        conversionSource: obj?.ctwaContext?.conversionSource,
-        description: obj?.ctwaContext?.description,
-        isSuspiciousLink: obj?.ctwaContext?.isSuspiciousLink,
-        mediaType: obj?.ctwaContext?.mediaType,
-        mediaUrl: obj?.ctwaContext?.mediaUrl,
-        sourceUrl: obj?.ctwaContext?.sourceUrl,
-        thumbnail: obj?.ctwaContext?.thumbnail,
-        thumbnailUrl: obj?.ctwaContext?.thumbnailUrl,
-        title: obj?.ctwaContext?.title,
-      }
-    : undefined;
+  const obkAds = {
+    conversionSource: obj?.ctwaContext?.conversionSource,
+    description: obj?.ctwaContext?.description,
+    isSuspiciousLink: obj?.ctwaContext?.isSuspiciousLink,
+    mediaType: obj?.ctwaContext?.mediaType,
+    mediaUrl: obj?.ctwaContext?.mediaUrl,
+    sourceUrl: obj?.ctwaContext?.sourceUrl,
+    thumbnail: obj?.ctwaContext?.thumbnail,
+    thumbnailUrl: obj?.ctwaContext?.thumbnailUrl,
+    title: obj?.ctwaContext?.title,
+  };
+
+  const _chat = obj?.chat ? await API.serializeChatObj(obj?.chat) : {};
+
+  const isMedia =
+    obj.clientUrl !== undefined ? obj.clientUrl : obj.deprecatedMms3Url;
+
+  const quotedStanzaId = obj?.quotedStanzaID || obj?.quotedStanzaID;
+
+  if (obj?.quotedMsg && obj?.quotedMsg.messageSecret) {
+    obj.quotedMsg.messageSecret = null;
+  }
 
   return {
     ...window.API.serializeRawObj(obj),
     id: obj?.id?._serialized,
     msgKey: obj?.id,
     from: obj?.from?._serialized,
-    quotedParticipant: obj?.quotedParticipant?._serialized
-      ? obj?.quotedParticipant?._serialized
-      : undefined,
-    author: obj?.author?._serialized ? obj?.author?._serialized : undefined,
-    chatId: obj?.id?.remote
-      ? obj?.id?.remote
-      : obj?.chatId?._serialized
-        ? obj?.chatId?._serialized
-        : undefined,
-    to: obj?.to?._serialized ? obj?.to?._serialized : undefined,
+    quotedParticipant:
+      obj?.quotedParticipant?._serialized ||
+      obj?.quotedParticipant?._serialized,
+    author: obj?.author?._serialized || obj?.author?._serialized,
+    chatId: obj?.id?.remote || obj?.chatId?._serialized,
+    to: obj?.to?._serialized,
     fromMe: obj?.id?.fromMe,
     sender: obj?.senderObj
       ? await API.serializeContactObj(obj?.senderObj)
@@ -57,8 +65,7 @@ export const serializeMessageObj = async (obj, groupInfo = true) => {
     content: obj?.body,
     body: obj?.body,
     isLink: obj?.isLink,
-    isMMS: obj?.isMMS,
-    isMedia: obj?.isMedia,
+    isMedia: isMedia ? true : false,
     isNotification: obj?.isNotification,
     isPSA: obj?.isPSA,
     type: obj?.type,
@@ -66,8 +73,8 @@ export const serializeMessageObj = async (obj, groupInfo = true) => {
     isOnline: _chat?.isOnline,
     lastSeen: _chat?.lastSeen,
     quotedMsgObj: obj?.quotedMsg,
-    quotedStanzaId: obj?.quotedStanzaID ? obj?.quotedStanzaID : undefined,
-    mediaData: window.API.serializeRawObj(obj?.mediaData),
+    quotedStanzaId: quotedStanzaId,
+    mediaData: API.serializeRawObj(obj?.mediaData),
     caption: obj?.caption,
     deprecatedMms3Url: obj?.deprecatedMms3Url,
     directPath: obj?.directPath,
@@ -86,8 +93,8 @@ export const serializeMessageObj = async (obj, groupInfo = true) => {
     width: obj?.width,
     self: obj?.self,
     initialPageSize: obj?.initialPageSize,
-    lat: obj?.lat ? obj.lat : undefined,
-    lng: obj?.lng ? obj.lng : undefined,
+    lat: obj?.lat,
+    lng: obj?.lng,
     ack: obj?.ack,
     scanLengths: null,
     scansSidecar: null,
@@ -99,11 +106,10 @@ export const serializeMessageObj = async (obj, groupInfo = true) => {
     hydratedButtons: obj?.hydratedButtons,
     subtype: obj?.subtype,
     thumbnail: obj?.thumbnail,
-    isGroupMsg:
-      obj?.to?.server === 'g.us' || obj?.from?.server === 'g.us' ? true : false,
+    isGroupMsg: obj?.to?.server === 'g.us' || obj?.from?.server === 'g.us',
     groupInfo: objGroup,
     title: obj?.title,
-    ctwaContext: serializeAds,
-    messageSecret: obj?.messageSecret && undefined,
+    ctwaContext: obj?.ctwaContext || obkAds,
+    messageSecret: null,
   };
 };

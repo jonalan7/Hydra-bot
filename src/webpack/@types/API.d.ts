@@ -3,7 +3,9 @@ import {
   contact,
   InterfaceScope,
   checkNumber,
+  ReactionIntro,
 } from '../model/interface';
+import { interfaceChange } from '../model/interface/interface-change';
 
 interface API {
   /**
@@ -67,16 +69,35 @@ interface API {
    * Get version of the current whatsapp
    */
   getWAVersion: () => Promise<string>;
+  /**
+   * Serialize reactions
+   */
+  serializeReactions: (
+    emoji: object,
+    collections: object,
+    type: object
+  ) => Promise<object[]>;
+  /**
+   * Serialoze intro reactions
+   */
+  serializeIntroReactions: (
+    emoji: object,
+    type: object
+  ) => Promise<ReactionIntro | []>;
 }
 
 declare global {
   interface Window {
     API: API;
     Store: any;
-    interfaceChange: any;
-    newMessage: any;
     newOnAck: any;
+    newMessage: any;
+    newEditMessage: any;
+    interfaceChange: any;
+    newDeleteMessage: any;
     serializeMessageObj: any;
+    onIntroReactionMessage: any;
+    onReactionMessage: any;
     __debug: any;
   }
   const API: API;

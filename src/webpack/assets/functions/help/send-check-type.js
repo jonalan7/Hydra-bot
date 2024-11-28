@@ -2,10 +2,12 @@ export function sendCheckType(chatId = undefined) {
   if (!chatId) {
     return API.scope(chatId, true, 404, 'It is necessary to pass a number!');
   }
+
   if (typeof chatId === 'string') {
     const contact = '@c.us';
     const broadcast = '@broadcast';
     const grup = '@g.us';
+
     if (
       contact !== chatId.substr(-contact.length, contact.length) &&
       broadcast !== chatId.substr(-broadcast.length, broadcast.length) &&
@@ -18,6 +20,7 @@ export function sendCheckType(chatId = undefined) {
         'The chat number must contain the parameters @c.us, @broadcast or @g.us. At the end of the number!'
       );
     }
+
     if (
       contact === chatId.substr(-contact.length, contact.length) &&
       ((chatId.match(/(@c.us)/g) && chatId.match(/(@c.us)/g).length > 1) ||

@@ -9,11 +9,11 @@ let updatesChecked = false;
 export async function checkUpdates() {
   if (!updatesChecked) {
     updatesChecked = true;
-    return await checkVenomVersion();
+    return await checkVersion();
   }
 }
 
-async function checkVenomVersion() {
+async function checkVersion() {
   try {
     await latestVersion('hydra-bot').then((latest) => {
       if (upToDate(version, latest)) {

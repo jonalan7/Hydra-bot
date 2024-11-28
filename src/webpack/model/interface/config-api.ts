@@ -1,6 +1,6 @@
 import { puppeteerConfig } from '../../help';
 
-export interface puppeteerOptions {
+export interface PuppeteerOptions {
   /**
    * specify whether the browser is visible or invisible, invisible to true and visible to false
    * @default true
@@ -67,7 +67,7 @@ export interface CreateOptions {
   /**
    * puppeteer Options
    */
-  puppeteerOptions?: puppeteerOptions;
+  puppeteerOptions?: PuppeteerOptions;
   /**
    * the QR CODE will be printed on the terminal
    * @default true

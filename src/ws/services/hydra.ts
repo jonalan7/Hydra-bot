@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {
   initServer,
-  onMode,
+  OnMode,
   interfaceChange,
   InterfaceQrcode,
 } from '../../index';
@@ -38,11 +38,11 @@ async function Webhook(options: any, info: any) {
   const ev = await initServer(objOptions);
   let client: any;
 
-  ev.on(onMode.interfaceChange, (change: interfaceChange) => {
+  ev.on(OnMode.interfaceChange, (change: interfaceChange) => {
     Webhook(objOptions, change);
   });
 
-  ev.on(onMode.qrcode, (qrcode: InterfaceQrcode) => {
+  ev.on(OnMode.qrcode, (qrcode: InterfaceQrcode) => {
     Webhook(objOptions, qrcode);
     sendParent({
       base64Image: qrcode.base64Image,
@@ -50,11 +50,11 @@ async function Webhook(options: any, info: any) {
     });
   });
 
-  ev.on(onMode.newOnAck, (ack: any) => {
+  ev.on(OnMode.newOnAck, (ack: any) => {
     Webhook(objOptions, ack);
   });
 
-  ev.on(onMode.newMessage, async (msg: any) => {
+  ev.on(OnMode.newMessage, async (msg: any) => {
     if (!msg.result.isSentByMe) {
       if (msg.result.isMedia === true || msg.result.isMMS === true) {
         try {
@@ -85,7 +85,7 @@ async function Webhook(options: any, info: any) {
     Webhook(objOptions, msg);
   });
 
-  ev.on(onMode.connection, async (conn: any) => {
+  ev.on(OnMode.connection, async (conn: any) => {
     if (conn.erro) {
       if (
         conn.statusFind === 'browser' &&

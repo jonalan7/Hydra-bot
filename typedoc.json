@@ -55,6 +55,10 @@
           {
             "title": "Retrieving Data",
             "source": "./docs/getting-started/retrieving_data.md"
+          },
+          {
+            "title": "Events",
+            "source": "./docs/getting-started/events.md"
           }
         ]
       },

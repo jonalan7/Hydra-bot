@@ -1,5 +1,5 @@
-import { onMode } from '../../model/enum';
-import { StatusFind } from '../../model/interface';
+import { OnMode } from '../../model/enum';
+import { StatusFind, InterfaceQrcode } from '../../model/interface';
 import { EventEmitter } from 'events';
 
 /**
@@ -12,11 +12,11 @@ export class CallbackOnStatus {
    * Emit an event with the specified type and arguments
    * @param args Event arguments, including onType to specify the event type
    */
-  public emitStatusFind(args: StatusFind) {
+  public emitStatusFind(args: InterfaceQrcode | StatusFind | any) {
     if (!args.onType) {
       throw new Error('onType is required to emit an event');
     }
-      this.listenerEmitter.emit(args.onType, args);
+    this.listenerEmitter.emit(args.onType, args);
   }
 
   /**
@@ -24,7 +24,10 @@ export class CallbackOnStatus {
    * @param type Type of event to monitor
    * @param callback Function to call with event data
    */
-  public on(type: onMode, callback: (state: StatusFind) => void) {
+  public on(
+    type: OnMode,
+    callback: (state: StatusFind | InterfaceQrcode | any) => void
+  ) {
     this.listenerEmitter.on(type, callback);
   }
 }

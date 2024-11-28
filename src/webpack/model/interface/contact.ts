@@ -1,7 +1,7 @@
-import { id } from './id';
+import { Id } from './id';
 
-export interface contact {
-  id: id;
+export interface Contact {
+  id: Id;
   pushname: string;
   type: string;
   labels: string[];

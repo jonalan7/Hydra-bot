@@ -8,7 +8,7 @@ export async function scope(
 ) {
   let e = {
     to: id,
-    erro: erro,
+    error: erro,
     text: text,
     status: status,
     type: type,

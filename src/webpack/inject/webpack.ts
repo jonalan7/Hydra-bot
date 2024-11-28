@@ -1,5 +1,5 @@
 import { Page, Browser } from 'puppeteer';
-import { SenderLayer } from '../api/layes/sender.layes';
+import { SenderLayer } from '../api/layes';
 import { CreateOptions } from '../model/interface';
 
 import * as fs from 'fs';

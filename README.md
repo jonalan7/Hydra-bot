@@ -105,11 +105,15 @@ const fs = require('fs');
 
     // Was connected to whatsapp chat
     if (conn.connect) {
-      client = conn.client;
+      client = conn.client; // class client from hydra-bot
+      const getMe = await client.getHost();
+      const hostNumber = getMe.id._serialized; // number host
+      console.log('Host Number: ', hostNumber);
+
       // send a text message
       await client
         .sendMessage({
-          to: '0000000000@c.us', // you can pass the contact number or group number
+          to: hostNumber, // you can pass the contact number or group number
           body: "hi i'm hydra bot", // message text
           options: {
             type: 'sendText', // shipping type
@@ -127,11 +131,11 @@ const fs = require('fs');
   // return receive new messages
   ev.on('newMessage', async (newMsg) => {
     // when is received
-    if (!newMsg.result.isSentByMe) {
+    if (!newMsg.result.fromMe) {
       // message received!
       console.log('NewMessageReceived: ', newMsg.result);
       // dowload files
-      if (newMsg.result.isMedia === true || newMsg.result.isMMS === true) {
+      if (newMsg.result.isMedia) {
         const buffer = await client.decryptFile(newMsg.result);
         // At this point you can do whatever you want with the buffer
         // Most likely you want to write it into a file
@@ -146,7 +150,7 @@ const fs = require('fs');
       }
     }
     // when is it sent
-    if (!!newMsg.result.isSentByMe) {
+    if (!!newMsg.result.fromMe) {
       // Message sent
       console.log('NewMessageSent: ', newMsg.result);
     }
@@ -176,6 +180,7 @@ const mime = require('mime-types');
   let client;
   // start bot service
   const ev = await hydraBot.initServer();
+
   // return connection information
   ev.on('connection', async (conn) => {
     // Was connected to whatsapp chat
@@ -183,13 +188,14 @@ const mime = require('mime-types');
       client = conn.client;
     }
   });
+
   ev.on('newMessage', async (newMsg) => {
     // when is received
-    if (!newMsg.result.isSentByMe) {
+    if (!newMsg.result.fromMe) {
       // message received!
       console.log('NewMessageReceived: ', newMsg.result);
       // dowload files
-      if (newMsg.result.isMedia === true || newMsg.result.isMMS === true) {
+      if (newMsg.result.isMedia) {
         const buffer = await client.decryptFile(newMsg.result);
         // At this point you can do whatever you want with the buffer
         // Most likely you want to write it into a file
@@ -530,6 +536,9 @@ await client.getHost();
 ```javascript
 // returns a list of contacts
 const contacts = await client.getAllContacts();
+
+// return whatsapp version
+const version = await client.getWAVersion();
 ```
 
 ## Group Management
@@ -581,6 +590,81 @@ await client
   });
 ```
 
+## Events
+
+List of events triggered in the project
+
+```javascript
+
+// Event triggered when there's a change in the WhatsApp interface
+// The change information can include elements like screen changes or navigation.
+ev.on("interfaceChange", (change: any) => {
+  // Processes the interface change, like navigation between screens
+  console.log("Interface change detected:", change);
+});
+
+// Event triggered when a QR code is generated, typically used for authentication
+// The QR code is sent to the client as a string or object containing data for login.
+ev.on("qrcode", (qrcode) => {
+  // Displays the generated QR code for WhatsApp Web authentication
+  console.log("QR Code for authentication:", qrcode);
+});
+
+// Event triggered when there is a connection change, such as connection loss or establishment
+// Connection data may include network status or connection errors.
+ev.on('connection', async (conn) => {
+  // Displays information about the connection status
+  console.log("Connection status:", conn);
+  if (conn.connect) {
+    // Was connected to whatsapp chat
+    console.error("Has connected");
+  }
+});
+
+// Event triggered when a new message is received
+// The message may include data such as sender, content, timestamp, etc.
+ev.on("newMessage", (newMsg) => {
+  // Displays the data of the new received message
+  console.log("New message received:", newMsg);
+});
+
+// Event triggered when a message is edited
+// The edited message may include the previous content and the new content.
+ev.on("newEditMessage", async (editMessage) => {
+  // Processes the edited message by checking changes in content
+  console.log("Message edited:", editMessage);
+});
+
+// Event triggered when a message is deleted
+// The deleted message may include the message ID and other related details.
+ev.on("newDeleteMessage", async (deleteMessage) => {
+  // Processes the deletion of the message and notifies the user
+  console.log("Message deleted:", deleteMessage);
+});
+
+// Event triggered when there is a new intro reaction (emoji) to a message
+// This can be used to analyze which reactions were added to new messages.
+ev.on("onIntroReactionMessage", async (introReaction) => {
+  // Processes the intro reaction (emoji) to the new message
+  console.log("New intro reaction received:", introReaction);
+});
+
+// Event triggered when an emoji reaction is added to an existing message
+// The reaction may include details like the emoji, sender, and associated message.
+ev.on("onReactionMessage", async (reaction) => {
+  // Processes the reaction added to an existing message
+  console.log("Reaction added to message:", reaction);
+});
+
+// Event triggered to return the status of each message (e.g., read, delivered, etc.)
+// This can include data such as delivery and read status, allowing message state tracking.
+ev.on("newOnAck", async (event) => {
+  // Processes the acknowledgment status of the message
+  console.log("Message ack status:", event);
+});
+
+```
+
 ### Debugging
 
 Building the hydra-bot is very simple
@@ -595,10 +679,10 @@ To build the entire project just run
 
 ## Test
 
-run a test inside the project
+Run a test inside the project
 
 ```bash
-> npm start
+> npm run build:dev
 ```
 
 ## Maintainers

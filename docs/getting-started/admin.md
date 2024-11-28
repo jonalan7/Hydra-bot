@@ -1,11 +1,11 @@
 # Example Postman
-Use Postman to test routes!
+Use **Postman** to test the routes!
 [Postman example](https://github.com/jonalan7/Hydra-bot/blob/master/Postman/postman_collection.json)
 [Download Postman](https://www.postman.com/downloads/)
 
 ### Commands for administration via terminal
 
-To start the administration interface use:
+To start the administration interface, run the following command in the terminal:
 
 ```bash
 > yarn admin
@@ -21,30 +21,32 @@ Install yarn Ubuntu:
 ```
 
 #### what is an administrator for?
-Administrators will be able to manage API users via Webhook.
+Administrators are responsible for managing API users via Webhook. They can execute commands that allow creating, deleting, and managing user data.
 
-List of commands in the terminal:
+## Available Commands in the Terminal for Administration:
+
+Here is the list of commands an administrator can use in the terminal to manage users:
 
 | Command       | Description                                      |
 |---------------|--------------------------------------------------|
-| `/create`     | Create user                                      |
-| `/delete`     | Delete user                                      |
-| `/selectid`   | Show user by id                                  |
-| `/selectname` | Select user by name                              |
+| `/create`     | Create a new user                                |
+| `/delete`     | Delete an existing user                          |
+| `/selectid`   | Show a user by ID                                |
+| `/selectname` | Show a user by name                              |
 | `/getall`     | List all users                                   |
 | `/deactivate` | Disable user                                     |
 | `/activate`   | Activate User                                    |
-| `/changename` | Change username                                  |
-| `/password`   | Change user password                             |
+| `/changename` | Change a user's name                             |
+| `/password`   | Change a user's password                         |
 | `/cls`        | Clear screen/terminal                            |
-| `/help`       | List all commands for administration in terminal |
-| `/exit`       | Exit manager                                     |
+| `/help`       | List all available commands for administration   |
+| `/exit`       | Exit the administration manager                  |
 
 
 ### Administration via Webhook
-Routes for handling and querying users.
-List of commands using `REST API`
-All user wheels have a pattern of `Headers`, to be able to access them, to create a administrador:
+These routes allow you to manage and query users using a REST API. An administrator can access these routes by authenticating with a specific header that includes the admin credentials.
+
+To authenticate requests via Webhook, you need to include the following headers in the request:
 
 ```json
 {
@@ -54,7 +56,7 @@ All user wheels have a pattern of `Headers`, to be able to access them, to creat
 }
 ```
 
-### List of routes for user management: 
+### List of Routes for User Management:
 
 With an [administrator](#commands-for-administration-via-terminal) (there is a default administrator, the username and password as admin), he can access via Web Service with the following routes:
 
@@ -68,3 +70,21 @@ With an [administrator](#commands-for-administration-via-terminal) (there is a d
 | PUT  | `/activate_user`         | Activate User        | `{"id":"USER ID"}`                                  |
 | PUT  | `/change_name`           | Change username      | `{"id":"USER ID","name":"NEW USERNAME"}`            |
 | PUT  | `/change_password`       | Change user password | `{"id":"USER ID","password":"NEW SECURE PASSWORD"}` |
+
+### How to Use the Routes:
+
+- **POST `/create_user`**: This route creates a new user. Send a JSON body containing the name and password of the user you want to create.
+
+- **DELETE `/delete_user/USER_ID`**: This route deletes a specific user by their USER_ID. No body is required in the request.
+
+- **GET `/get_user_by_id/USER_ID`**: To retrieve a user by their ID, send a GET request. No body is required.
+
+- **GET `/get_all_users`**: This route lists all users. No body is required in the request.
+
+- **PUT `/deactivate_user`**: To deactivate a user, send a JSON body containing the USER_ID of the user you want to disable.
+
+- **PUT `/activate_user`**: This route activates a disabled user. Send the USER_ID in the request body.
+
+- **PUT `/change_name`**: To change a user's name, send the USER_ID and the new name in the request body.
+
+- **PUT `/change_password`**: This route changes a user's password. Send the USER_ID and the new password in the request body.

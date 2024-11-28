@@ -41,7 +41,7 @@ export const checkNumberStatus = async (id, conn = false) => {
           status: 200,
           numberExists: true,
           id: chat,
-          erro: false,
+          error: false,
           checkNumberStatus: false,
         };
         return resolve(data);
@@ -57,7 +57,7 @@ export const checkNumberStatus = async (id, conn = false) => {
                 status: 200,
                 numberExists: true,
                 id: result.wid,
-                erro: false,
+                error: false,
                 checkNumberStatus: true,
               };
               return resolve(data);
@@ -94,7 +94,7 @@ export const checkNumberStatus = async (id, conn = false) => {
         text: e.text,
         numberExists: e.numberExists,
         connection: e.connection,
-        erro: true,
+        error: true,
       };
       reject(scope);
     }
