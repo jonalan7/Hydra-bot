@@ -1,3 +1,32 @@
+## [1.0.32](https://github.com/jonalan7/Hydra-bot/compare/v1.0.31...v1.0.32) (2024-12-01)
+
+
+### Bug Fixes
+
+* add API.getWAVersion to types ([87b553e](https://github.com/jonalan7/Hydra-bot/commit/87b553e7cf40bf28995925f3a3e14a300241f239))
+* CallbackOnStatus code simplification ([0a06572](https://github.com/jonalan7/Hydra-bot/commit/0a065729162cae189aa8bb046c1f0c8613156f06))
+* checkNumberStatus ([d46388d](https://github.com/jonalan7/Hydra-bot/commit/d46388d9f7ca17769d05ba286f89a398f6b825f5))
+* continue-on-error ([e7bca8b](https://github.com/jonalan7/Hydra-bot/commit/e7bca8be5925be9dd2c9dd930fd27eb76f34584c))
+* doc ([4e6e0b9](https://github.com/jonalan7/Hydra-bot/commit/4e6e0b97ede84b824b407f7bbc346beab996fbf2))
+* docs ([9bc91fe](https://github.com/jonalan7/Hydra-bot/commit/9bc91fedfb3cce302e04a5d8ee02ffd176da7574))
+* docs ([85e009c](https://github.com/jonalan7/Hydra-bot/commit/85e009cc7dcaaa58d7b04d3587395a2b84d493bb))
+* serialize message ([eb29768](https://github.com/jonalan7/Hydra-bot/commit/eb29768a936a5aabd53428b10996ddc9dc8decd9))
+* workflows node-version ([0b592bf](https://github.com/jonalan7/Hydra-bot/commit/0b592bf503776e208f04d0d9b8d7e6dd29592eff))
+
+
+### Features
+
+* add devtools ([35de344](https://github.com/jonalan7/Hydra-bot/commit/35de34481e96f2ff2717a5c5014e1fe6ca341b09))
+* add interface StatusFind ([3de0126](https://github.com/jonalan7/Hydra-bot/commit/3de012668d7237ad5ffee9c9855110591e80d03b))
+* Clear npm cache ([f3fa1cd](https://github.com/jonalan7/Hydra-bot/commit/f3fa1cd2841e807850fd260596deb70439b7cdb6))
+* files corrections  and config puppeter ([5a4c95d](https://github.com/jonalan7/Hydra-bot/commit/5a4c95dad3f3cdbc7f4063249a0e54eefb708315))
+* get version wpp ([8715dda](https://github.com/jonalan7/Hydra-bot/commit/8715ddac161248352a9d125964c74f90c00ea0d5))
+* module update ([09a941c](https://github.com/jonalan7/Hydra-bot/commit/09a941cfb9e219a219a33a27e9aff78399b06f8b))
+* New features and documentation fixes ([59c9131](https://github.com/jonalan7/Hydra-bot/commit/59c9131533891576b46a65bee4bf923fad13fc97))
+* prettier ([9f40a9f](https://github.com/jonalan7/Hydra-bot/commit/9f40a9f1cf2f78603fe0b569b5b270ad809b1514))
+
+
+
 ## [1.0.31](https://github.com/jonalan7/Hydra-bot/compare/v1.0.30...v1.0.31) (2024-10-23)
 
 ### Bug Fixes
