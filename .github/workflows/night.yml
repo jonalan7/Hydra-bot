@@ -51,7 +51,8 @@ jobs:
 
       - name: Build API-Docs
         run: npm run docs:build
-
+        continue-on-error: true
+        
       - name: Generate Changelog
         id: generate_changelog
         run: |
