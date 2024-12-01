@@ -76,12 +76,6 @@ jobs:
         run: npm run docs:build
         continue-on-error: true
 
-      - name: Create gh-pages branch if it doesn't exist
-        run: |
-          git checkout -B gh-pages || git checkout gh-pages
-          git pull origin gh-pages  # Adiciona esta linha
-          git push -u origin gh-pages
-
       - name: Deploy API-Docs
         uses: peaceiris/actions-gh-pages@v3
         continue-on-error: true
