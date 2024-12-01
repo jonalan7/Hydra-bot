@@ -15,7 +15,6 @@ you can send messages only using one function!
  - [sendImage](#sendimage)
  - [sendImageFromBase64](#sendimageFromBase64)
 
-
 ### sendText
 
 ```javascript
