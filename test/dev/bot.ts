@@ -50,6 +50,56 @@ import fs from 'fs';
       const hostNumber = getMe.id._serialized; // number host
       console.log('Host Number: ', hostNumber);
 
+      // Get Functions
+      if (hydraBotTestFunctions.getAllChatsGroups) {
+        // get all groups
+        await client
+          .getAllChatsGroups()
+          .then((result) => {
+            console.log('Groups: ', result);
+          })
+          .catch((error) => {
+            console.log('Error Groups: ', error);
+          });
+      }
+
+      if (hydraBotTestFunctions.getWAVersion) {
+        // get version whatsapp
+        await client
+          .getWAVersion()
+          .then((result) => {
+            console.log('Version: ', result);
+          })
+          .catch((error) => {
+            console.log('Error Version: ', error);
+          });
+      }
+
+      if (hydraBotTestFunctions.getHost) {
+        // get host information
+        await client
+          .getHost()
+          .then((result) => {
+            console.log('Host: ', result);
+          })
+          .catch((error) => {
+            console.log('Error Host: ', error);
+          });
+      }
+
+      if (hydraBotTestFunctions.getAllContact) {
+        // get all contacts
+        await client
+          .getAllContacts()
+          .then((result) => {
+            console.log('Contacts: ', result);
+          })
+          .catch((error) => {
+            console.log('Error Contacts: ', error);
+          });
+      }
+
+      // Send Functions
       if (hydraBotTestFunctions.sendText) {
         // send message to host example
         await client

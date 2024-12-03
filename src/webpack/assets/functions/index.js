@@ -15,3 +15,4 @@ export { getContact } from './get-contact';
 export { getAllChats } from './get-all-chats';
 export { getAllContacts } from './get-all-contacts';
 export { getWAVersion } from './get-wa-version';
+export { getAllChatsGroups } from './get-all-chats-groups';

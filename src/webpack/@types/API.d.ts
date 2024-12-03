@@ -1,74 +1,88 @@
+// Importações organizadas por categoria
+
+// Interfaces
 import {
   InterfaceHost,
-  contact,
   InterfaceScope,
+  contact,
   checkNumber,
   ReactionIntro,
 } from '../model/interface';
+
+// Funcionalidades específicas
 import { interfaceChange } from '../model/interface/interface-change';
 
+// Declaração da interface API organizada por categoria
 interface API {
+  // Mensagens
   /**
-   * Parameters to change group description
+   * Send a message to a contact or group
    */
-  sendMessage: (to: string, body: String, options: object) => Promise<any>;
+  sendMessage: (to: string, body: string, options: object) => Promise<any>;
+
   /**
-   * returns a list of contacts
-   * @returns contacts
+   * Serialize a message object
+   */
+  serializeMessageObj: (msg: object) => Promise<void>;
+
+  // Contatos
+  /**
+   * Returns a list of all contacts
    */
   getAllContacts: () => Promise<contact>;
+
+  // Grupos
+  /**
+   * Get all chat groups
+   */
+  getAllChatsGroups: () => Promise<any>;
+
   /**
    * Creates a new chat group
-   * @param groupName Group name
-   * @param contacts Participants id '000000000000@c.us'
    */
   createGroup: (
     groupName: string,
     contacts: string | string[]
   ) => Promise<InterfaceScope>;
+
   /**
-   * Add participant to Group
-   * @param groupId Chat id ('0000000000-00000000@g.us' or '000000000000000000@g.us')
-   * @param contacts Participants id '000000000000@c.us'
+   * Add participants to a group
    */
   addParticipant: (
     groupId: string,
     contacts: string | string[]
   ) => Promise<InterfaceScope>;
+
   /**
-   * Parameters to change group description
-   * @param {string} groupId group number
-   * @param {string} description group description
+   * Set the group description
    */
   setGroupDescription: (
     groupId: string,
     description: string
   ) => Promise<InterfaceScope>;
+
   /**
-   * Get information from the connected number
-   * @returns Current host device details
-   */
-  getHost: () => Promise<InterfaceHost>;
-  /**
-   * Parameters to change group image
-   * @param {string} groupId group number
-   * @param {string} path of image
+   * Set the group image
    */
   setGroupImage: (path: object, to: string) => Promise<InterfaceScope>;
+
+  // Host e números
   /**
-   * check if the number exists
-   * @param {string} number phone number
+   * Get information about the connected number
+   */
+  getHost: () => Promise<InterfaceHost>;
+
+  /**
+   * Check if a number exists
    */
   checkNumberStatus: (number: string) => Promise<checkNumber>;
+
+  // Versão e reações
   /**
-   * Set message information!
-   * @param {object} msg mensagens
-   */
-  serializeMessageObj: (msg: object) => Promise<void>;
-  /**
-   * Get version of the current whatsapp
+   * Get the current WhatsApp version
    */
   getWAVersion: () => Promise<string>;
+
   /**
    * Serialize reactions
    */
@@ -77,8 +91,9 @@ interface API {
     collections: object,
     type: object
   ) => Promise<object[]>;
+
   /**
-   * Serialoze intro reactions
+   * Serialize intro reactions
    */
   serializeIntroReactions: (
     emoji: object,
@@ -86,6 +101,7 @@ interface API {
   ) => Promise<ReactionIntro | []>;
 }
 
+// Declaração global organizada
 declare global {
   interface Window {
     API: API;
@@ -100,6 +116,7 @@ declare global {
     onReactionMessage: any;
     __debug: any;
   }
+
   const API: API;
 }
 

@@ -19,6 +19,15 @@ export class GroupLayer extends ListenerLayer {
   }
 
   /**
+   * Retrieve all groups
+   */
+  public async getAllChatsGroups() {
+    return this.handleApiCall(
+      async () => await API.getAllChatsGroups(),
+      'getAllChatsGroups'
+    );
+  }
+  /**
    * Creates a new chat group
    * @param {string} groupName Group name
    * @param {(string | string[])} contacts Participants id '000000000000@c.us'

@@ -546,6 +546,9 @@ const version = await client.getWAVersion();
 Group number example `<phone Number>-<groupId>@g.us` or `<phone Number><groupId>@g.us`
 
 ```javascript
+// Get all Group
+const allGroups = await client.getAllChatsGroups();
+
 // Create group
 await client
   .createGroup('Group name', ['111111111111@c.us', '222222222222@c.us'])

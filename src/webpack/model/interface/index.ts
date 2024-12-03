@@ -11,3 +11,4 @@ export { CheckNumber } from './check-number';
 export { StatusFind } from './status-find';
 export { IdMessage } from './id-message';
 export { ReactionIntro } from './reaction-intro';
+export { ScopeMsgErros } from './scope-msg-erros';

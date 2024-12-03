@@ -32,6 +32,7 @@ import {
   getAllChats,
   getContact,
   getWAVersion,
+  getAllChatsGroups,
 } from './functions';
 
 import {
@@ -80,6 +81,7 @@ if (typeof window.API === 'undefined') {
   window.API.getAllChats = getAllChats;
   window.API.getContact = getContact;
   window.API.getWAVersion = getWAVersion;
+  window.API.getAllChatsGroups = getAllChatsGroups;
 
   // Group Functions
   window.API.createGroup = createGroup;

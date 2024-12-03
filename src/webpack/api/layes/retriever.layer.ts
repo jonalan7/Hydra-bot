@@ -13,11 +13,14 @@ export class RetrieverLayer extends GroupLayer {
   }
 
   /**
-   * returns a list of contacts
-   * @returns contacts
+   * Returns a list of contacts
+   * @returns List of contacts
    */
   public async getAllContacts(): Promise<Contact> {
-    return await this.page.evaluate(() => API.getAllContacts());
+    return this.handleApiCall(
+      async () => await API.getAllContacts(),
+      'getAllContacts'
+    );
   }
 
   /**
@@ -25,7 +28,18 @@ export class RetrieverLayer extends GroupLayer {
    * @returns Current host device details
    */
   public async getHost(): Promise<InterfaceHost> {
-    return await this.page.evaluate(() => API.getHost());
+    return this.handleApiCall(async () => await API.getHost(), 'getHost');
+  }
+
+  /**
+   * Get version of the current whatsapp
+   * @returns Current whatsapp version
+   */
+  public async getWAVersion() {
+    return this.handleApiCall(
+      async () => await API.getWAVersion(),
+      'getWAVersion'
+    );
   }
 
   /**
@@ -50,12 +64,5 @@ export class RetrieverLayer extends GroupLayer {
       (number) => API.checkNumberStatus(number),
       number
     );
-  }
-
-  /**
-   * Get version of the current whatsapp
-   */
-  public async getWAVersion() {
-    return await this.page.evaluate(() => API.getWAVersion());
   }
 }

@@ -14,14 +14,20 @@ export const hydraBotTestFunctions = {
   sendText: false,
   sendImage: false,
 
+  // Receive
+  getAllContact: false,
+  getHost: false,
+  getWAVersion: false,
+  getAllChatsGroups: false,
+
   // Events
   newOnAck: false,
   dowloadFiles: false,
   interfaceChange: false,
   qrcode: false,
   newMessage: false,
-  newEditMessage: true,
-  newDeleteMessage: true,
-  onReactionMessage: true,
-  onIntroReactionMessage: true,
+  newEditMessage: false,
+  newDeleteMessage: false,
+  onReactionMessage: false,
+  onIntroReactionMessage: false,
 };

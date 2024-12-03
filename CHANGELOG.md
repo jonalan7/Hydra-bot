@@ -1,11 +1,8 @@
 ## [1.0.33](https://github.com/jonalan7/Hydra-bot/compare/v1.0.32...v1.0.33) (2024-12-01)
 
-
 ### Bug Fixes
 
-* remote create brach automatic docs ([06a829a](https://github.com/jonalan7/Hydra-bot/commit/06a829aca1344e8a9dd5047845d0542dc3553077))
-
-
+- remote create brach automatic docs ([06a829a](https://github.com/jonalan7/Hydra-bot/commit/06a829aca1344e8a9dd5047845d0542dc3553077))
 
 ## [1.0.32](https://github.com/jonalan7/Hydra-bot/compare/v1.0.31...v1.0.32) (2024-12-01)
 

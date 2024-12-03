@@ -6,10 +6,24 @@ To use these functions, it is necessary to initialize the bot.
 [**Click here to learn more.**](../Getting%20Started/start_bot.html)
 
 ## Summary
+ - [getAllChatsGroups](#getAllChatsGroups)
  - [createGroup](#creategroup)
  - [addParticipant](#addparticipant)
  - [setGroupDescription](#setgroupdescription)
  - [setGroupImage](#setgroupimage)
+
+### Retrieve all groups
+
+Get all Group
+
+```javascript
+await client.getAllChatsGroups()
+.then((result) => {
+    console.log(result); // message result
+}).catch((error) => {
+    console.log(error); // message error
+});
+```
 
 ### createGroup
 

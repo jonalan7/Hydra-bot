@@ -1,14 +1,17 @@
 import { Page, Browser } from 'puppeteer';
 import { CreateOptions } from '../../model/interface/';
 import { ReactionIntro } from '../../model/interface';
+import { HelperLayer } from './helpers';
 
-export class OnMod {
+export class OnMod extends HelperLayer {
   constructor(
     public page: Page,
     public browser: Browser,
     public options: CreateOptions,
     public ev: any
-  ) {}
+  ) {
+    super(page, browser, options, ev);
+  }
 
   /**
    * Execute a page evaluation with error handling.
