@@ -11,6 +11,7 @@ To use these functions, it is necessary to initialize the bot.
  - [addParticipant](#addparticipant)
  - [setGroupDescription](#setgroupdescription)
  - [setGroupImage](#setgroupimage)
+ - [getGroupParticipant](#getGroupParticipant)
 
 ### Retrieve all groups
 
@@ -77,4 +78,18 @@ await client.setGroupImage('00000000000000@g.us', './file.jpg')
 });
 ```
 
+### getGroupParticipant
+
+Get all participants in the group
+
+```javascript
+await client
+  .getGroupParticipant('00000000000-0000000000@g.us')
+  .then((result) => {
+    console.log('Participants: ', result);
+  })
+  .catch((error) => {
+    console.log('Error Participants: ', error);
+  });
+```
 

@@ -1,5 +1,3 @@
-// Importações organizadas por categoria
-
 // Interfaces
 import {
   InterfaceHost,
@@ -9,34 +7,29 @@ import {
   ReactionIntro,
 } from '../model/interface';
 
-// Funcionalidades específicas
-import { interfaceChange } from '../model/interface/interface-change';
+import { FunctionsLayer, FunctionParameters } from '../model/enum';
 
-// Declaração da interface API organizada por categoria
 interface API {
-  // Mensagens
   /**
    * Send a message to a contact or group
    */
   sendMessage: (to: string, body: string, options: object) => Promise<any>;
-
   /**
    * Serialize a message object
    */
   serializeMessageObj: (msg: object) => Promise<void>;
-
-  // Contatos
   /**
    * Returns a list of all contacts
    */
   getAllContacts: () => Promise<contact>;
-
-  // Grupos
   /**
    * Get all chat groups
    */
   getAllChatsGroups: () => Promise<any>;
-
+  /**
+   * Get group participants
+   */
+  getGroupParticipant: (groupId: string) => Promise<any>;
   /**
    * Creates a new chat group
    */
@@ -44,7 +37,6 @@ interface API {
     groupName: string,
     contacts: string | string[]
   ) => Promise<InterfaceScope>;
-
   /**
    * Add participants to a group
    */
@@ -52,7 +44,6 @@ interface API {
     groupId: string,
     contacts: string | string[]
   ) => Promise<InterfaceScope>;
-
   /**
    * Set the group description
    */
@@ -60,29 +51,22 @@ interface API {
     groupId: string,
     description: string
   ) => Promise<InterfaceScope>;
-
   /**
    * Set the group image
    */
   setGroupImage: (path: object, to: string) => Promise<InterfaceScope>;
-
-  // Host e números
   /**
    * Get information about the connected number
    */
   getHost: () => Promise<InterfaceHost>;
-
   /**
    * Check if a number exists
    */
   checkNumberStatus: (number: string) => Promise<checkNumber>;
-
-  // Versão e reações
   /**
    * Get the current WhatsApp version
    */
   getWAVersion: () => Promise<string>;
-
   /**
    * Serialize reactions
    */
@@ -91,7 +75,6 @@ interface API {
     collections: object,
     type: object
   ) => Promise<object[]>;
-
   /**
    * Serialize intro reactions
    */
@@ -99,6 +82,12 @@ interface API {
     emoji: object,
     type: object
   ) => Promise<ReactionIntro | []>;
+  /**
+   * Load and get all messages in a chat
+   */
+  loadAndGetAllMessagesInChat: (chatId: string, date: string) => Promise<any>;
+
+  [key: string]: (...args: any[]) => any;
 }
 
 // Declaração global organizada
@@ -119,5 +108,3 @@ declare global {
 
   const API: API;
 }
-
-export {};

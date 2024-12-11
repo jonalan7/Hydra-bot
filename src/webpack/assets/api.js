@@ -18,6 +18,8 @@ import {
   sendCheckType,
   returnChat,
   checkChatExist,
+  sleep,
+  waitForSelector,
 } from './functions/help';
 
 import {
@@ -33,6 +35,8 @@ import {
   getContact,
   getWAVersion,
   getAllChatsGroups,
+  getGroupParticipant,
+  loadAndGetAllMessagesInChat,
 } from './functions';
 
 import {
@@ -44,6 +48,7 @@ import {
   serializeMeObj,
   serializeReactions,
   serializeIntroReactions,
+  serializeGroupParticipant,
 } from './serializers';
 
 import { initParasite } from './init-parasite';
@@ -71,6 +76,11 @@ if (typeof window.API === 'undefined') {
   window.API.sendCheckType = sendCheckType;
   window.API.returnChat = returnChat;
   window.API.checkChatExist = checkChatExist;
+  window.API.sleep = sleep;
+  window.API.waitForSelector = waitForSelector;
+
+  // Get Functions
+  window.API.loadAndGetAllMessagesInChat = loadAndGetAllMessagesInChat;
 
   // Send Functions
   window.API.sendMessage = sendMessage;
@@ -88,6 +98,7 @@ if (typeof window.API === 'undefined') {
   window.API.addParticipant = addParticipant;
   window.API.setGroupDescription = setGroupDescription;
   window.API.setGroupImage = setGroupImage;
+  window.API.getGroupParticipant = getGroupParticipant;
 
   // Serialize Functions
   window.API.serializeMessageObj = serializeMessageObj;
@@ -98,4 +109,5 @@ if (typeof window.API === 'undefined') {
   window.API.serializeMeObj = serializeMeObj;
   window.API.serializeReactions = serializeReactions;
   window.API.serializeIntroReactions = serializeIntroReactions;
+  window.API.serializeGroupParticipant = serializeGroupParticipant;
 }

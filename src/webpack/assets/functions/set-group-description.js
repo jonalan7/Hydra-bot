@@ -13,7 +13,7 @@ export async function setGroupDescription(groupId, description) {
   const chat = await API.sendExist(groupId);
   if (chat && chat.status != 404) {
     try {
-      await window.Store.GroupDesc.setGroupDesc(chat, description);
+      await Store.GroupDesc.setGroupDesc(chat, description);
       return API.scope(
         groupId,
         false,

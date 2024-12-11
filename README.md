@@ -83,6 +83,7 @@ const fs = require('fs');
 
 (async () => {
   let client;
+  let checkConnect = false;
   // start bot service
   const ev = await hydraBot.initServer();
 
@@ -104,7 +105,8 @@ const fs = require('fs');
     }
 
     // Was connected to whatsapp chat
-    if (conn.connect) {
+    if (conn.connect && !checkConnect) {
+      checkConnect = true;
       client = conn.client; // class client from hydra-bot
       const getMe = await client.getHost();
       const hostNumber = getMe.id._serialized; // number host
@@ -539,6 +541,12 @@ const contacts = await client.getAllContacts();
 
 // return whatsapp version
 const version = await client.getWAVersion();
+
+// Load all messages in chat by date
+const listMsg = await client.loadAndGetAllMessagesInChat(
+  '<phone Number>@c.us',
+  'YYYY-MM-DD'
+);
 ```
 
 ## Group Management
@@ -546,6 +554,16 @@ const version = await client.getWAVersion();
 Group number example `<phone Number>-<groupId>@g.us` or `<phone Number><groupId>@g.us`
 
 ```javascript
+// get all participants in the group
+await client
+  .getGroupParticipant('00000000000-0000000000@g.us')
+  .then((result) => {
+    console.log('Participants: ', result);
+  })
+  .catch((error) => {
+    console.log('Error Participants: ', error);
+  });
+
 // Get all Group
 const allGroups = await client.getAllChatsGroups();
 

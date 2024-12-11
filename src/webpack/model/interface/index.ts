@@ -1,6 +1,6 @@
 export { PuppeteerOptions, CreateOptions, defaultConfig } from './config-api';
 export { SendOptions } from './send-layer';
-export { interfaceChange } from './interface-change';
+export { InterfaceChange } from './interface-change';
 export { InterfaceQrcode } from './qrcode';
 export { InterfaceScope } from './scope';
 export { InterfaceHost } from './host';

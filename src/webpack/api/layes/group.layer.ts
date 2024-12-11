@@ -7,6 +7,7 @@ import {
   base64MimeType,
   resizeImg,
 } from '../../help';
+import { FunctionsLayer } from '../../model/enum';
 
 export class GroupLayer extends ListenerLayer {
   constructor(
@@ -19,14 +20,23 @@ export class GroupLayer extends ListenerLayer {
   }
 
   /**
+   * Get group participants
+   * @param {string} groupId Group id exemple: 000000000000-0000000000@c.us
+   */
+  public async getGroupParticipant(groupId: string) {
+    return this.handleApiCallParametres(
+      FunctionsLayer.getGroupParticipant,
+      groupId
+    );
+  }
+
+  /**
    * Retrieve all groups
    */
   public async getAllChatsGroups() {
-    return this.handleApiCall(
-      async () => await API.getAllChatsGroups(),
-      'getAllChatsGroups'
-    );
+    return this.handleApiCallParametres(FunctionsLayer.getAllChatsGroups);
   }
+
   /**
    * Creates a new chat group
    * @param {string} groupName Group name
@@ -36,19 +46,11 @@ export class GroupLayer extends ListenerLayer {
     groupName: string,
     contacts: string | string[]
   ): Promise<InterfaceScope> {
-    return new Promise(async (resolve, reject) => {
-      const result = await this.page
-        .evaluate(
-          ({ groupName, contacts }) => API.createGroup(groupName, contacts),
-          { groupName, contacts }
-        )
-        .catch();
-      if (result.error == true) {
-        return reject(result);
-      } else {
-        return resolve(result);
-      }
-    });
+    return this.handleApiCallParametres(
+      FunctionsLayer.createGroup,
+      groupName,
+      contacts
+    );
   }
 
   /**
@@ -60,19 +62,11 @@ export class GroupLayer extends ListenerLayer {
     groupId: string,
     contacts: string | string[]
   ): Promise<InterfaceScope> {
-    return new Promise(async (resolve, reject) => {
-      const result = await this.page
-        .evaluate(
-          ({ groupId, contacts }) => API.addParticipant(groupId, contacts),
-          { groupId, contacts }
-        )
-        .catch();
-      if (result.error == true) {
-        return reject(result);
-      } else {
-        return resolve(result);
-      }
-    });
+    return this.handleApiCallParametres(
+      FunctionsLayer.addParticipant,
+      groupId,
+      contacts
+    );
   }
 
   /**
@@ -84,20 +78,11 @@ export class GroupLayer extends ListenerLayer {
     groupId: string,
     description: string
   ): Promise<InterfaceScope> {
-    return new Promise(async (resolve, reject) => {
-      const result = await this.page.evaluate(
-        ({ groupId, description }) => {
-          return API.setGroupDescription(groupId, description);
-        },
-        { groupId, description }
-      );
-
-      if (result.error == true) {
-        return reject(result);
-      } else {
-        return resolve(result);
-      }
-    });
+    return this.handleApiCallParametres(
+      FunctionsLayer.setGroupDescription,
+      groupId,
+      description
+    );
   }
 
   /**

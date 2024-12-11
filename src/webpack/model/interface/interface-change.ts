@@ -1,15 +1,20 @@
-import { InterfaceMode } from '../enum';
+import { InterfaceMode, InterfaceState } from '../enum';
 import { ReactionIntro, InterfaceQrcode } from '../interface';
+
 interface ResultInfo {
-  displayInfo: string;
+  displayInfo: InterfaceState;
   mode: InterfaceMode;
-  info: string;
+  info: InterfaceState;
 }
 
-export interface interfaceChange {
+export interface InterfaceChange {
   onType: string;
   session: string;
   result: Partial<ResultInfo> &
     Partial<ReactionIntro> &
     Partial<InterfaceQrcode>;
+  // Qrcode
+  error?: boolean;
+  qrcode?: string;
+  base64Image?: string;
 }

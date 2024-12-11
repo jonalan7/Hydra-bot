@@ -1,6 +1,7 @@
 import { GroupLayer } from './group.layer';
 import { Page, Browser } from 'puppeteer';
 import { CreateOptions, InterfaceHost, Contact } from '../../model/interface';
+import { FunctionsLayer } from '../../model/enum';
 
 export class RetrieverLayer extends GroupLayer {
   constructor(
@@ -13,14 +14,24 @@ export class RetrieverLayer extends GroupLayer {
   }
 
   /**
+   * F
+   * @param chatId - Chat id
+   * @param date - Date to get messages
+   * @returns
+   */
+  public async loadAndGetAllMessagesInChat(chatId: string, date: string) {
+    return this.handleApiCallParametres(
+      FunctionsLayer.loadAndGetAllMessagesInChat,
+      chatId,
+      date
+    );
+  }
+  /**
    * Returns a list of contacts
    * @returns List of contacts
    */
   public async getAllContacts(): Promise<Contact> {
-    return this.handleApiCall(
-      async () => await API.getAllContacts(),
-      'getAllContacts'
-    );
+    return this.handleApiCallParametres(FunctionsLayer.getAllContacts);
   }
 
   /**
@@ -28,7 +39,7 @@ export class RetrieverLayer extends GroupLayer {
    * @returns Current host device details
    */
   public async getHost(): Promise<InterfaceHost> {
-    return this.handleApiCall(async () => await API.getHost(), 'getHost');
+    return this.handleApiCallParametres(FunctionsLayer.getHost);
   }
 
   /**
@@ -36,10 +47,7 @@ export class RetrieverLayer extends GroupLayer {
    * @returns Current whatsapp version
    */
   public async getWAVersion() {
-    return this.handleApiCall(
-      async () => await API.getWAVersion(),
-      'getWAVersion'
-    );
+    return this.handleApiCallParametres(FunctionsLayer.getWAVersion);
   }
 
   /**
@@ -60,8 +68,8 @@ export class RetrieverLayer extends GroupLayer {
    * @param {string} number phone number
    */
   public async checkNumber(number: string) {
-    return await this.page.evaluate(
-      (number) => API.checkNumberStatus(number),
+    return this.handleApiCallParametres(
+      FunctionsLayer.checkNumberStatus,
       number
     );
   }

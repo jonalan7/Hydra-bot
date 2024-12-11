@@ -1,11 +1,4 @@
-export async function scope(
-  id,
-  erro,
-  status,
-  text = null,
-  type = null,
-  body = null
-) {
+export function scope(id, erro, status, text = null, type = null, body = null) {
   let e = {
     to: id,
     error: erro,

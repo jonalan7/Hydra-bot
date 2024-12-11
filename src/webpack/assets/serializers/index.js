@@ -8,3 +8,4 @@ export {
   serializeReactions,
   serializeIntroReactions,
 } from './serialize-reactions';
+export { serializeGroupParticipant } from './seialize-group-participant';

@@ -10,6 +10,7 @@ import {
   filenameFromMimeType,
 } from '../../help';
 import * as path from 'path';
+import { FunctionsLayer } from '../../model/enum';
 
 export class SenderLayer extends RetrieverLayer {
   constructor(
@@ -196,23 +197,13 @@ export class SenderLayer extends RetrieverLayer {
    * @param body text message
    */
   public sendText(to: string, body: string, options: any = {}) {
-    return new Promise(async (resolve, reject) => {
-      Object.assign(options, { type: FunctionType.sendText });
-
-      const result = await this.page
-        .evaluate(
-          ({ to, body, options }) => {
-            return API.sendMessage(to, body, options);
-          },
-          { to, body, options }
-        )
-        .catch();
-      if (result.erro == true) {
-        return reject(result);
-      } else {
-        return resolve(result);
-      }
-    });
+    Object.assign(options, { type: FunctionType.sendText });
+    return this.handleApiCallParametres(
+      FunctionsLayer.sendMessage,
+      to,
+      body,
+      options
+    );
   }
 
   /**

@@ -2,7 +2,7 @@ import axios from 'axios';
 import {
   initServer,
   OnMode,
-  interfaceChange,
+  InterfaceChange,
   InterfaceQrcode,
 } from '../../index';
 import mime from 'mime-types';
@@ -38,7 +38,7 @@ async function Webhook(options: any, info: any) {
   const ev = await initServer(objOptions);
   let client: any;
 
-  ev.on(OnMode.interfaceChange, (change: interfaceChange) => {
+  ev.on(OnMode.interfaceChange, (change: InterfaceChange) => {
     Webhook(objOptions, change);
   });
 

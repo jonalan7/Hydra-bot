@@ -19,6 +19,8 @@ export const hydraBotTestFunctions = {
   getHost: false,
   getWAVersion: false,
   getAllChatsGroups: false,
+  getGroupParticipant: false,
+  loadAndGetAllMessagesInCha: false,
 
   // Events
   newOnAck: false,

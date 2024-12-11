@@ -10,3 +10,6 @@ export { checkNumberStatus } from './check-number-status';
 export { isMD } from './is-md';
 export { returnChat } from './return-to-chat';
 export { scope } from './scope';
+
+export { sleep } from './sleep';
+export { waitForSelector } from './wait-for-selector';

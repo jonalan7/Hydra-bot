@@ -124,4 +124,12 @@ export const filterObjects = [
     type: 'MaybeMeUser',
     when: (module) => (module.getMaybeMeUser ? module : null),
   },
+  {
+    type: 'Cmd',
+    when: (module) => (module.CmdImpl && module.Cmd ? module.Cmd : null),
+  },
+  {
+    type: 'GrupsConfig',
+    when: (module) => (module.updateReadOnly ? module : null),
+  },
 ];

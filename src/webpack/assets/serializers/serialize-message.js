@@ -48,6 +48,7 @@ export const serializeMessageObj = async (obj, groupInfo = true) => {
   return {
     ...window.API.serializeRawObj(obj),
     id: obj?.id?._serialized,
+    startOfDay: obj?.startOfDay,
     msgKey: obj?.id,
     from: obj?.from?._serialized,
     quotedParticipant:

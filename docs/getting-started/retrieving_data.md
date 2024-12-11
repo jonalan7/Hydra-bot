@@ -9,6 +9,7 @@ To use these functions, it is necessary to initialize the bot.
 ## Summary
  - [getAllContacts](#getallcontacts)
  - [checkNumber](#checknumber)
+ - [loadAndGetAllMessagesInChat](#loadAndGetAllMessagesInChat)
 
 ### getAllContacts
 
@@ -18,7 +19,15 @@ const contacts = await client.getAllContacts();
 ```
 
 ### checkNumber
+
 Check if the number exists
 ```javascript
 const result = await client.checkNumber("<phone Number>@c.us");
+```
+
+### loadAndGetAllMessagesInChat
+
+Load all messages in chat by date
+```javascript
+const result = await client.loadAndGetAllMessagesInChat("<phone Number>@c.us", "YYYY-MM-DD");
 ```

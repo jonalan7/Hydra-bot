@@ -7,6 +7,7 @@ const hydraBot = require('hydra-bot');
 
 (async () => {
     let client;
+    let checkConnect = false;
     // start bot service
     const ev = await hydraBot.initServer();
 
@@ -29,7 +30,8 @@ const hydraBot = require('hydra-bot');
         }
 
         // Was connected to whatsapp chat
-        if (conn.connect) {
+        if (conn.connect && !checkConnect) {
+            checkConnect = true;
             client = conn.client; // class client from hydra-bot
             const getMe = await client.getHost();
             const hostNumber = getMe.id._serialized; // number host
