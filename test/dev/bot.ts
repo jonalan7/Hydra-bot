@@ -140,7 +140,7 @@ import fs from 'fs';
         if (hydraBotTestFunctions.sendText) {
           // send message to host example
           await client
-            .sendText('557599998584545@c.us', 'A message sent by hydra-bot')
+            .sendText(hostNumber, 'A message sent by hydra-bot')
             .then((result) => {
               console.log('Result sucess menssage send:', result);
             })
