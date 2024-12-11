@@ -1,3 +1,13 @@
+## [1.0.34](https://github.com/jonalan7/Hydra-bot/compare/v1.0.33...v1.0.34) (2024-12-11)
+
+
+### Features
+
+* add getAllChatsGroups and fix some functions ([4a4e637](https://github.com/jonalan7/Hydra-bot/commit/4a4e637169aed3e50a5167a19156079a7a415cdf))
+* changes and new functions ([2aea280](https://github.com/jonalan7/Hydra-bot/commit/2aea280a1a8421c93455835373bddccb281f6ccf))
+
+
+
 ## [1.0.33](https://github.com/jonalan7/Hydra-bot/compare/v1.0.32...v1.0.33) (2024-12-01)
 
 ### Bug Fixes
