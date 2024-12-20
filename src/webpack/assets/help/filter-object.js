@@ -132,4 +132,16 @@ export const filterObjects = [
     type: 'GrupsConfig',
     when: (module) => (module.updateReadOnly ? module : null),
   },
+  {
+    type: 'Comms',
+    when: (module) =>
+      module?.waitForConnection && module?.stopComms ? module : null,
+  },
+  {
+    type: 'SocketModel',
+    when: (module) =>
+      module?.Socket && module?.Socket?.clearCredentialsAndStoredData
+        ? module
+        : null,
+  },
 ];

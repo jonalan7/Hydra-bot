@@ -22,11 +22,16 @@ export const hydraBotTestFunctions = {
   getGroupParticipant: false,
   loadAndGetAllMessagesInCha: false,
 
+  // Navigation functions
+  browserClose: false,
+  logoutSession: false,
+  screenshot: true,
+
   // Events
   newOnAck: false,
   dowloadFiles: false,
   interfaceChange: false,
-  qrcode: false,
+  qrcode: true,
   newMessage: false,
   newEditMessage: false,
   newDeleteMessage: false,

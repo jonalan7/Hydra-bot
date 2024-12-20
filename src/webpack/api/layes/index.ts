@@ -6,3 +6,4 @@ export { RetrieverLayer } from './retriever.layer';
 export { Scraping } from './scraping.layes';
 export { SenderLayer } from './sender.layes';
 export { Whatsapp } from './whatsapp';
+export { Profile } from './profile.layes';

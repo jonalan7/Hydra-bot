@@ -10,6 +10,7 @@ export enum FunctionsLayer {
   setGroupDescription = 'setGroupDescription',
   sendMessage = 'sendMessage',
   loadAndGetAllMessagesInChat = 'loadAndGetAllMessagesInChat',
+  logoutSession = 'logoutSession',
 }
 
 export type FunctionParameters = {

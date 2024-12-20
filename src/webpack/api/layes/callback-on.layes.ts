@@ -1,4 +1,4 @@
-import { OnMode } from '../../model/enum';
+import { OnMode, OnModeListener } from '../../model/enum';
 import { StatusFind, InterfaceQrcode } from '../../model/interface';
 import { EventEmitter } from 'events';
 
@@ -25,7 +25,7 @@ export class CallbackOnStatus {
    * @param callback Function to call with event data
    */
   public on(
-    type: OnMode,
+    type: OnMode | OnModeListener,
     callback: (state: StatusFind | InterfaceQrcode | any) => void
   ) {
     this.listenerEmitter.on(type, callback);

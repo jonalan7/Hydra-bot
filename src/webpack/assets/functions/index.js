@@ -20,3 +20,4 @@ export { getAllContacts } from './get-all-contacts';
 export { getWAVersion } from './get-wa-version';
 export { getAllChatsGroups } from './get-all-chats-groups';
 export { getGroupParticipant } from './get-group-participant';
+export { logoutSession } from './logoutSession';

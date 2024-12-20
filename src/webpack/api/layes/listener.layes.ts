@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events';
-import { OnMode } from '../../model/enum/';
+import { OnMode, OnModeListener } from '../../model/enum/';
 import { Page, Browser } from 'puppeteer';
 import { Whatsapp } from './whatsapp';
 import { CreateOptions } from '../../model/interface';
@@ -49,42 +49,31 @@ export class ListenerLayer extends Whatsapp {
   private listenerEmitter = new EventEmitter();
 
   public async initListener() {
-    const functions = [...Object.values(OnMode)];
+    const functions = Object.values(OnModeListener);
 
     for (const func of functions) {
-      const has = await this.page
+      const hasFunction = await this.page
         .evaluate(
-          (func: string) => typeof (window as any)[func] === 'function',
+          (funcName: string) => typeof (window as any)[funcName] === 'function',
           func
         )
         .catch(() => false);
 
-      if (!has) {
+      if (!hasFunction) {
+        // Expose the function to the page
         await this.page
-          .exposeFunction(func, (...args: any) =>
-            this.listenerEmitter.emit(func, ...args)
-          )
-          .catch(() => {});
+          .exposeFunction(func, (...args: any[]) => {
+            this.listenerEmitter.emit(func, ...args);
+          })
+          .catch(() => undefined);
+
+        this.listener(OnModeListener[func]);
+        // Start the function if it's defined in this class
+        if (typeof this[func] === 'function') {
+          (this[func] as Function)();
+        }
       }
     }
-
-    // Listen to the events
-    this.listener(OnMode.interfaceChange);
-    this.listener(OnMode.newMessage);
-    this.listener(OnMode.newOnAck);
-    this.listener(OnMode.newEditMessage);
-    this.listener(OnMode.newDeleteMessage);
-    this.listener(OnMode.onReactionMessage);
-    this.listener(OnMode.onIntroReactionMessage);
-
-    // Start the listener
-    this.interfaceChange();
-    this.newMessage();
-    this.newOnAck();
-    this.newEditMessage();
-    this.newDeleteMessage();
-    this.onReactionMessage();
-    this.onIntroReactionMessage();
   }
 
   private listener(type: string): { dispose: () => void } {

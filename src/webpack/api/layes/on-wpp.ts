@@ -19,9 +19,7 @@ export class OnMod extends HelperLayer {
   private async safeEvaluate(evaluateFn: () => Promise<void>): Promise<void> {
     try {
       await this.page.evaluate(evaluateFn);
-    } catch (error) {
-      console.error('Evaluation error:', error);
-    }
+    } catch {}
   }
 
   /**

@@ -2,6 +2,7 @@ import axios from 'axios';
 import {
   initServer,
   OnMode,
+  OnModeListener,
   InterfaceChange,
   InterfaceQrcode,
 } from '../../index';
@@ -38,7 +39,7 @@ async function Webhook(options: any, info: any) {
   const ev = await initServer(objOptions);
   let client: any;
 
-  ev.on(OnMode.interfaceChange, (change: InterfaceChange) => {
+  ev.on(OnModeListener.interfaceChange, (change: InterfaceChange) => {
     Webhook(objOptions, change);
   });
 
@@ -50,11 +51,11 @@ async function Webhook(options: any, info: any) {
     });
   });
 
-  ev.on(OnMode.newOnAck, (ack: any) => {
+  ev.on(OnModeListener.newOnAck, (ack: any) => {
     Webhook(objOptions, ack);
   });
 
-  ev.on(OnMode.newMessage, async (msg: any) => {
+  ev.on(OnModeListener.newMessage, async (msg: any) => {
     if (!msg.result.isSentByMe) {
       if (msg.result.isMedia === true || msg.result.isMMS === true) {
         try {

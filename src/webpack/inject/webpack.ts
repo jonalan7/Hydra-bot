@@ -4,10 +4,9 @@ import { CreateOptions } from '../model/interface';
 
 import * as fs from 'fs';
 import * as path from 'path';
+import { Console } from 'console';
 
 export class WebPack extends SenderLayer {
-  public loadPageStatus: boolean = false;
-
   constructor(
     public page: Page,
     public browser: Browser,
@@ -18,25 +17,28 @@ export class WebPack extends SenderLayer {
     this.initService();
 
     this.page.on('load', async () => {
-      if (this.loadPageStatus) {
+      const storeModuleExists = await this.StoreModule();
+      if (storeModuleExists) {
         await this.initService();
-        this.loadPageStatus = false;
       }
     });
   }
 
+  async StoreModule() {
+    const storeModuleExists = await this.page.evaluate(() => {
+      const isStoreUndefined = typeof window?.Store === 'undefined';
+      const isApiUndefined = typeof window?.API === 'undefined';
+      const isStoreEmpty = window?.Store && !Object.keys(window?.Store).length;
+      const isApiEmpty = window?.API && !Object.keys(window?.API).length;
+
+      return isStoreUndefined || isApiUndefined || isStoreEmpty || isApiEmpty;
+    });
+    return storeModuleExists;
+  }
+
   async initService() {
     try {
-      const storeModuleExists = await this.page.evaluate(() => {
-        const isStoreUndefined = typeof window?.Store === 'undefined';
-        const isApiUndefined = typeof window?.API === 'undefined';
-        const isStoreEmpty =
-          window?.Store && !Object.keys(window?.Store).length;
-        const isApiEmpty = window?.API && !Object.keys(window?.API).length;
-
-        return isStoreUndefined || isApiUndefined || isStoreEmpty || isApiEmpty;
-      });
-
+      const storeModuleExists = await this.StoreModule();
       if (storeModuleExists) {
         await this.loadDebugModule();
 
@@ -44,14 +46,14 @@ export class WebPack extends SenderLayer {
           require.resolve(path.join(__dirname, '../assets/', 'api.js')),
           'utf8'
         );
-        await this.page.evaluate(apiScript);
 
+        await this.page.evaluate(apiScript);
         await this.checkStoreInitialization();
-        this.loadPageStatus = true;
+
         this.initListener();
       }
     } catch (error) {
-      console.error('Erro ao iniciar o serviço:', error);
+      await this.initService();
     }
   }
 

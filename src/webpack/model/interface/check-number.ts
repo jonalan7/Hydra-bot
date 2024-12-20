@@ -8,4 +8,5 @@ export interface CheckNumber {
   id: Id;
 }
 
-export type OptionalCheckNumber = Partial<CheckNumber>;
+export type OptionalCheckNumber = Partial<Omit<CheckNumber, 'id'>> &
+  Pick<CheckNumber, 'id'>;

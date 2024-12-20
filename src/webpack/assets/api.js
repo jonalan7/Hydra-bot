@@ -37,6 +37,7 @@ import {
   getAllChatsGroups,
   getGroupParticipant,
   loadAndGetAllMessagesInChat,
+  logoutSession,
 } from './functions';
 
 import {
@@ -92,6 +93,7 @@ if (typeof window.API === 'undefined') {
   window.API.getContact = getContact;
   window.API.getWAVersion = getWAVersion;
   window.API.getAllChatsGroups = getAllChatsGroups;
+  window.API.logoutSession = logoutSession;
 
   // Group Functions
   window.API.createGroup = createGroup;

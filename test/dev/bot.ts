@@ -1,6 +1,7 @@
 import {
   initServer,
   OnMode,
+  OnModeListener,
   WebPack,
   CallbackOnStatus,
   InterfaceChange,
@@ -30,7 +31,7 @@ import fs from 'fs';
     });
 
     // return to current whatsapp interface
-    ev.on(OnMode.interfaceChange, (change: InterfaceChange) => {
+    ev.on(OnModeListener.interfaceChange, (change: InterfaceChange) => {
       if (!hydraBotTestFunctions.interfaceChange) return;
       console.log('interfaceChange: ', change);
       const { mode, displayInfo } = change.result;
@@ -54,7 +55,7 @@ import fs from 'fs';
         console.log('info Browser: ', conn.text);
       }
 
-      console.log('Connection: ', conn.connect);
+      //console.log('Connection: ', conn);
 
       // Was connected to whatsapp chat
       if (conn.connect && !checkConnect) {
@@ -163,40 +164,60 @@ import fs from 'fs';
               console.log('Result error image send:', error);
             });
         }
+
+        if (hydraBotTestFunctions.browserClose) {
+          // close browser
+          await client.browserClose();
+        }
+
+        if (hydraBotTestFunctions.logoutSession) {
+          // logout session
+          await client.logoutSession();
+        }
+
+        if (hydraBotTestFunctions.screenshot) {
+          // get screenshot return base64 image
+          await client.screenshot().then((result) => {
+            console.log('Screenshot: ', result);
+          });
+        }
       }
     });
 
     // receive new messages reactions emoji
-    ev.on(OnMode.onReactionMessage, async (reaction: any) => {
+    ev.on(OnModeListener.onReactionMessage, async (reaction: any) => {
       if (!hydraBotTestFunctions.onReactionMessage) return;
       console.log('ReactionMessage: ', reaction);
     });
 
     // receive new message intro reactions emoji
-    ev.on(OnMode.onIntroReactionMessage, async (reaction: InterfaceChange) => {
-      if (!hydraBotTestFunctions.onIntroReactionMessage) return;
-      console.log('IntroReactionMessage: ', reaction.result.type);
-    });
+    ev.on(
+      OnModeListener.onIntroReactionMessage,
+      async (reaction: InterfaceChange) => {
+        if (!hydraBotTestFunctions.onIntroReactionMessage) return;
+        console.log('IntroReactionMessage: ', reaction.result.type);
+      }
+    );
 
     // receive delete messages
-    ev.on(OnMode.newDeleteMessage, async (message: any) => {
+    ev.on(OnModeListener.newDeleteMessage, async (message: any) => {
       if (!hydraBotTestFunctions.newDeleteMessage) return;
       console.log(`Delete message`, message);
     });
 
     // receive edit messages
-    ev.on(OnMode.newEditMessage, async (message: any) => {
+    ev.on(OnModeListener.newEditMessage, async (message: any) => {
       if (!hydraBotTestFunctions.newEditMessage) return;
       console.log(`Edite message`, message);
     });
 
     // return receive new messages
-    ev.on(OnMode.newMessage, async (newMsg: any) => {
+    ev.on(OnModeListener.newMessage, async (newMsg: any) => {
       if (!hydraBotTestFunctions.newMessage) return;
 
       // when is it received
       if (!newMsg.result.fromMe) {
-        // console.log('NewMessageReceived: ', newMsg.result);
+        console.log('NewMessageReceived: ', newMsg.result);
       }
       // when is it sent
       if (newMsg.result.fromMe) {
@@ -221,7 +242,7 @@ import fs from 'fs';
     });
 
     // returns the status of each message
-    ev.on(OnMode.newOnAck, async (event: any) => {
+    ev.on(OnModeListener.newOnAck, async (event: any) => {
       if (!hydraBotTestFunctions.newOnAck) return;
       console.log('id Message: ', event.result.id._serialized); // message id
       console.log('Status Message: ', event.result.ack); // -7 = MD_DOWNGRADE, -6 = INACTIVE, -5 = CONTENT_UNUPLOADABLE, -4 = CONTENT_TOO_BIG, -3 = CONTENT_GONE, -2 = EXPIRED, -1 = FAILED, 0 = CLOCK, 1 = SENT, 2 = RECEIVED, 3 = READ, 4 = PLAYED

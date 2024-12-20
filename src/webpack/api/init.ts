@@ -3,7 +3,12 @@ import { initLaunch, initBrowser } from './browser';
 import { Browser, Page } from 'puppeteer';
 import { WebPack } from '../inject/webpack';
 import { CallbackOnStatus } from './layes';
-import { OnMode, TypeStatusFind, InterfaceMode } from '../model/enum';
+import {
+  OnMode,
+  OnModeListener,
+  TypeStatusFind,
+  InterfaceMode,
+} from '../model/enum';
 import { checkingCloses, sleep } from '../help';
 import { checkUpdates } from './check-up-to-date';
 
@@ -106,7 +111,7 @@ export async function initServer(
           console.log('The client has been closed');
         });
 
-        ev.on(OnMode.interfaceChange, async (interFace: any) => {
+        ev.on(OnModeListener.interfaceChange, async (interFace: any) => {
           try {
             client.cancelAutoClose();
 

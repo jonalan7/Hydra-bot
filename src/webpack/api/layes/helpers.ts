@@ -1,6 +1,5 @@
 import { Page, Browser } from 'puppeteer';
 import { CreateOptions } from '../../model/interface/';
-import { includesMsgErros } from '../../help/includes-msg-erros';
 import { FunctionsLayer, FunctionParameters } from '../../model/enum';
 
 export class HelperLayer {

@@ -8,6 +8,7 @@ import {
 } from '../model/interface';
 
 import { FunctionsLayer, FunctionParameters } from '../model/enum';
+import { AmdDependency } from 'typescript';
 
 interface API {
   /**
@@ -59,6 +60,10 @@ interface API {
    * Get information about the connected number
    */
   getHost: () => Promise<InterfaceHost>;
+  /**
+   * Logout from WhatsApp Web
+   */
+  logoutSession: () => Promise<any>;
   /**
    * Check if a number exists
    */

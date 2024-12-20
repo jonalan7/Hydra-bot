@@ -531,6 +531,15 @@ await client
 ```javascript
 // Get device info
 await client.getHost();
+
+// Logout from WhatsApp Web
+await client.logoutSession();
+
+// Closes page and browser client
+await client.browserClose();
+
+// This function captures an image of the browser screen return base64 image
+await client.screenshot();
 ```
 
 ## Retrieving Data

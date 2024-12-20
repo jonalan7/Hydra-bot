@@ -1,9 +1,9 @@
-import { GroupLayer } from './group.layer';
+import { Profile } from './profile.layes';
 import { Page, Browser } from 'puppeteer';
 import { CreateOptions, InterfaceHost, Contact } from '../../model/interface';
 import { FunctionsLayer } from '../../model/enum';
 
-export class RetrieverLayer extends GroupLayer {
+export class RetrieverLayer extends Profile {
   constructor(
     public page: Page,
     public browser: Browser,
@@ -14,7 +14,7 @@ export class RetrieverLayer extends GroupLayer {
   }
 
   /**
-   * F
+   * Get all messages in chat by chatId
    * @param chatId - Chat id
    * @param date - Date to get messages
    * @returns
@@ -26,6 +26,7 @@ export class RetrieverLayer extends GroupLayer {
       date
     );
   }
+
   /**
    * Returns a list of contacts
    * @returns List of contacts
