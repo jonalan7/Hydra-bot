@@ -31,7 +31,7 @@ export const hydraBotTestFunctions = {
   newOnAck: false,
   dowloadFiles: false,
   interfaceChange: false,
-  qrcode: true,
+  qrcode: false,
   newMessage: false,
   newEditMessage: false,
   newDeleteMessage: false,

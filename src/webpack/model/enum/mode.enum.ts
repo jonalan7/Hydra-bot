@@ -38,4 +38,8 @@ export enum OnMode {
    * user connection information
    */
   connection = 'connection',
+  /**
+   * receive code phone number
+   */
+  codePhoneNumber = 'codePhoneNumber',
 }

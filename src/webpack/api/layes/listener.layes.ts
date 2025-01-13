@@ -3,11 +3,9 @@ import { OnMode, OnModeListener } from '../../model/enum/';
 import { Page, Browser } from 'puppeteer';
 import { Whatsapp } from './whatsapp';
 import { CreateOptions } from '../../model/interface';
-import { sleep } from '../../help';
 import { CallbackOnStatus } from './callback-on.layes';
 
 export class ListenerLayer extends Whatsapp {
-  urlCode = '';
   constructor(
     public page: Page,
     public browser: Browser,
@@ -15,35 +13,6 @@ export class ListenerLayer extends Whatsapp {
     public ev: CallbackOnStatus
   ) {
     super(page, browser, options, ev);
-  }
-
-  public async qrCodeScan() {
-    this.startAutoClose();
-    await this.page
-      .waitForFunction(`document.querySelector('canvas')`)
-      .catch(() => undefined);
-    while (true) {
-      const result = await this.qrCode().catch();
-      if (!result?.urlCode) {
-        break;
-      }
-      if (this.urlCode !== result.urlCode) {
-        this.urlCode = result.urlCode;
-        this.ev.emitStatusFind({
-          error: false,
-          qrcode: result.urlCode,
-          base64Image: result.base64Image,
-          onType: OnMode.qrcode,
-          session: this.options.session,
-        });
-
-        const qr = await this.asciiQr(this.urlCode).catch(() => undefined);
-        if (this.options.printQRInTerminal) {
-          console.log(qr);
-        }
-      }
-      await sleep(100)?.catch(() => undefined);
-    }
   }
 
   private listenerEmitter = new EventEmitter();

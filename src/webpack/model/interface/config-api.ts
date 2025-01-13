@@ -40,6 +40,24 @@ export interface PuppeteerOptions {
   devtools?: boolean;
 }
 
+export interface loginWithPhoneNumber {
+  /***
+   * phone number with country code Ex: 14159999999
+   * @default null
+   */
+  phoneNumber: string;
+  /**
+   * Waiting time for a new code
+   * @default 120000 // 2 minutes
+   */
+  timeRefeshCode?: number;
+  /**
+   * On / Off login with phone number
+   * @default true
+   */
+  isOn?: boolean;
+}
+
 /**
  * initial function optional parameters
  */
@@ -78,6 +96,10 @@ export interface CreateOptions {
    * @default 60000
    */
   timeAutoClose?: number;
+  /**
+   * if you want to log in with a phone number, you must pass the phone number and the time to wait for a new code
+   */
+  loginWithPhoneNumber?: loginWithPhoneNumber;
 }
 
 export const defaultConfig: CreateOptions = {
@@ -85,6 +107,11 @@ export const defaultConfig: CreateOptions = {
   updatesLog: true,
   pathNameToken: 'token',
   mkdirFolderToken: '',
+  loginWithPhoneNumber: {
+    phoneNumber: '',
+    timeRefeshCode: 120000,
+    isOn: true,
+  },
   puppeteerOptions: {
     headless: true,
     args: puppeteerConfig.chromiumArgs,

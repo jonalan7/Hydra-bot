@@ -21,13 +21,22 @@ import fs from 'fs';
 
     // start bot service
     const ev: CallbackOnStatus = await initServer({
-      session: 'session', // session name
+      session: 'sessions', // session name
+      loginWithPhoneNumber: {
+        phoneNumber: '5575998966713', // phone number with country
+        timeRefeshCode: 120000, // time to refresh code
+      },
       puppeteerOptions: {
         headless: false, // Open chrome browser in interface
         devtools: true, // Inspect the html element through the console
       },
       timeAutoClose: 0, // 0 = disabled, 1000 = 1 second, 2000 = 2 seconds, etc
       printQRInTerminal: true, // Print QR code in terminal
+    });
+
+    // return code phone number
+    ev.on(OnMode.codePhoneNumber, (status: any) => {
+      console.log('CodePhoneNumber: ', status);
     });
 
     // return to current whatsapp interface
@@ -50,6 +59,7 @@ import fs from 'fs';
 
     // return connection information
     ev.on(OnMode.connection, async (conn: any) => {
+      console.log('Connection: ', conn);
       // browser information!
       if (conn.statusFind === 'browser') {
         console.log('info Browser: ', conn.text);

@@ -137,7 +137,23 @@ export async function initServer(
                 onType: OnMode.connection,
                 session: mergeOptionsDefault.session,
               });
-              await client.qrCodeScan();
+
+              if (
+                typeof mergeOptionsDefault.loginWithPhoneNumber?.phoneNumber ===
+                  'string' &&
+                mergeOptionsDefault.loginWithPhoneNumber?.phoneNumber.length &&
+                mergeOptionsDefault.loginWithPhoneNumber?.isOn
+              ) {
+                if (!client.scanPhoneNumbersActive) {
+                  await client.scanPhoneNumbers();
+                  client.scanPhoneNumbersActive = false;
+                }
+              } else {
+                if (!client.scanQrCodeActive) {
+                  await client.qrCodeScan();
+                  client.scanQrCodeActive = false;
+                }
+              }
             }
           } catch {}
         });

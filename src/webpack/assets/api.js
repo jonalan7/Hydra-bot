@@ -38,6 +38,9 @@ import {
   getGroupParticipant,
   loadAndGetAllMessagesInChat,
   logoutSession,
+  getCodeForPhoneNumber,
+  refreshAltLinkingCode,
+  getInterface,
 } from './functions';
 
 import {
@@ -94,6 +97,9 @@ if (typeof window.API === 'undefined') {
   window.API.getWAVersion = getWAVersion;
   window.API.getAllChatsGroups = getAllChatsGroups;
   window.API.logoutSession = logoutSession;
+  window.API.getCodeForPhoneNumber = getCodeForPhoneNumber;
+  window.API.refreshAltLinkingCode = refreshAltLinkingCode;
+  window.API.getInterface = getInterface;
 
   // Group Functions
   window.API.createGroup = createGroup;

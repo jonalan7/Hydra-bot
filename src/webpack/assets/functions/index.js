@@ -21,3 +21,6 @@ export { getWAVersion } from './get-wa-version';
 export { getAllChatsGroups } from './get-all-chats-groups';
 export { getGroupParticipant } from './get-group-participant';
 export { logoutSession } from './logoutSession';
+export { getCodeForPhoneNumber } from './code-for-phone-number';
+export { refreshAltLinkingCode } from './refresh-alt-linking-code';
+export { getInterface } from './get-interface';

@@ -144,4 +144,18 @@ export const filterObjects = [
         ? module
         : null,
   },
+  {
+    type: 'LinkDeviceAction',
+    when: (module) =>
+      module?.genLinkDeviceCodeForPhoneNumber && module?.forceManualRefresh
+        ? module
+        : null,
+  },
+  {
+    type: 'DeviceLinkingApi',
+    when: (module) =>
+      module?.getPairingType && module?.handlePrimaryHelloInternal
+        ? module
+        : null,
+  },
 ];
