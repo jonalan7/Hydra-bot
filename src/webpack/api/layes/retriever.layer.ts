@@ -56,11 +56,9 @@ export class RetrieverLayer extends Profile {
    * @returns base64 image
    */
   public async screenshot() {
-    const base64 = await this.page
-      .screenshot({
-        encoding: 'base64',
-      })
-      .catch(() => undefined);
+    const base64 = await this.handleApiCallPage(FunctionsLayer.screenshot, {
+      encoding: 'base64',
+    });
     return { base64Image: `data:image/png;base64,${base64}` };
   }
 

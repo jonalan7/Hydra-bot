@@ -25,6 +25,7 @@
     "docs:clean": "shx rm -rf api-docs",
     "docs:copy-images": "shx cp -R ./img ./api-docs",
     "peer": "npm install --legacy-peer-deps",
+    "gulp:types": "cd gulp/types && gulp",
     "gulp:bin": "cd gulp/bin && gulp",
     "gulp:lessons": "cd gulp/lessons && gulp",
     "gulp:knex": "cd gulp/knex && gulp",
@@ -32,8 +33,14 @@
     "gulp:hydra": "cd gulp/hydra && gulp",
     "gulp:migrations": "cd gulp/migrations && gulp",
     "gulp:views": "cd gulp/views && gulp",
-    "gulp:copyall": "npm run gulp:bin && npm run gulp:lessons && npm run gulp:knex && npm run gulp:sqlite && npm run gulp:migrations && npm run gulp:views"
+    "gulp:copyall": "npm run gulp:bin && npm run gulp:lessons && npm run gulp:knex && npm run gulp:sqlite && npm run gulp:migrations && npm run gulp:views && npm run gulp:types",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
+  "include": [
+    "src/**/*",
+    "@types/**/*"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jonalan7/Hydra-bot.git"
@@ -90,9 +97,15 @@
     "@types/qrcode-terminal": "^0.12.2",
     "@types/sharp": "^0.30.4",
     "@types/shelljs": "^0.8.11",
+    "@typescript-eslint/eslint-plugin": "^8.19.1",
+    "@typescript-eslint/parser": "^8.19.1",
     "conventional-changelog-cli": "^2.2.2",
+    "eslint": "^9.17.0",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-promise": "^7.2.1",
     "gulp": "^4.0.2",
     "nodemon": "^2.0.20",
     "prettier": "^3.3.3",

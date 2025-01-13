@@ -10,6 +10,25 @@ export class HelperLayer {
     public ev: any
   ) {}
 
+  public async handleApiCallPage<K extends FunctionsLayer>(
+    functionName: K,
+    ...args: FunctionParameters[K]
+  ): Promise<any> {
+    try {
+      const page = this.page as unknown as Page;
+      const result = await (
+        page[functionName as unknown as keyof Page] as Function
+      )(...args);
+
+      if (result && (result as any).error) {
+        throw result;
+      }
+
+      return result;
+    } catch (error: any) {
+      throw error;
+    }
+  }
   /**
    * Function to handle API calls with error handling
    * @param functionName - Function name to be called in the API object

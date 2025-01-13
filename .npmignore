@@ -18,3 +18,4 @@ token/
 gulpfile.js
 files
 test
+node_modules/

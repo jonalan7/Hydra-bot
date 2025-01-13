@@ -1,16 +1,23 @@
-// Interfaces
 import {
   InterfaceHost,
   InterfaceScope,
-  contact,
-  checkNumber,
+  Contact,
+  CheckNumber,
   ReactionIntro,
-} from '../model/interface';
+} from '../webpack/model/interface';
 
-import { FunctionsLayer, FunctionParameters } from '../model/enum';
-import { AmdDependency } from 'typescript';
+import { ScreenshotOptions } from 'puppeteer';
 
-interface API {
+export interface API {
+  /**
+   * Function to take a screenshot
+   * @param options - Options for the screenshot
+   */
+  screenshot(
+    options: Readonly<ScreenshotOptions> & {
+      encoding: 'base64';
+    }
+  ): Promise<string>;
   /**
    * Send a message to a contact or group
    */
@@ -20,9 +27,21 @@ interface API {
    */
   serializeMessageObj: (msg: object) => Promise<void>;
   /**
+   * Get the code for a phone number
+   */
+  getCodeForPhoneNumber: (PhoneNumber: string) => Promise<any>;
+  /**
+   * Function refresh code for phone number
+   */
+  refreshAltLinkingCode: () => Promise<any>;
+  /**
+   * Get the interface
+   */
+  getInterface: () => Promise<any>;
+  /**
    * Returns a list of all contacts
    */
-  getAllContacts: () => Promise<contact>;
+  getAllContacts: () => Promise<Contact>;
   /**
    * Get all chat groups
    */
@@ -67,7 +86,7 @@ interface API {
   /**
    * Check if a number exists
    */
-  checkNumberStatus: (number: string) => Promise<checkNumber>;
+  checkNumberStatus: (number: string) => Promise<CheckNumber>;
   /**
    * Get the current WhatsApp version
    */

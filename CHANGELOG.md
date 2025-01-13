@@ -1,11 +1,8 @@
 ## [1.0.35](https://github.com/jonalan7/Hydra-bot/compare/v1.0.34...v1.0.35) (2024-12-20)
 
-
 ### Features
 
-* Fix module loading and add logoutSession, screenshot, and browserClose functionalities ([7cac73c](https://github.com/jonalan7/Hydra-bot/commit/7cac73cabfbbdb36109e71c59046a492611e4870))
-
-
+- Fix module loading and add logoutSession, screenshot, and browserClose functionalities ([7cac73c](https://github.com/jonalan7/Hydra-bot/commit/7cac73cabfbbdb36109e71c59046a492611e4870))
 
 ## [1.0.34](https://github.com/jonalan7/Hydra-bot/compare/v1.0.33...v1.0.34) (2024-12-11)
 

@@ -4,7 +4,6 @@ import { CreateOptions } from '../model/interface';
 
 import * as fs from 'fs';
 import * as path from 'path';
-import { Console } from 'console';
 
 export class WebPack extends SenderLayer {
   constructor(

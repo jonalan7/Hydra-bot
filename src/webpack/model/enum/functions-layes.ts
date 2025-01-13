@@ -11,6 +11,10 @@ export enum FunctionsLayer {
   sendMessage = 'sendMessage',
   loadAndGetAllMessagesInChat = 'loadAndGetAllMessagesInChat',
   logoutSession = 'logoutSession',
+  getCodeForPhoneNumber = 'getCodeForPhoneNumber',
+  refreshAltLinkingCode = 'refreshAltLinkingCode',
+  getInterface = 'getInterface',
+  screenshot = 'screenshot',
 }
 
 export type FunctionParameters = {
