@@ -1,3 +1,18 @@
+## [1.0.36](https://github.com/jonalan7/Hydra-bot/compare/v1.0.35...v1.0.36) (2025-01-20)
+
+
+### Bug Fixes
+
+* types npm ([8c4f68c](https://github.com/jonalan7/Hydra-bot/commit/8c4f68c206606cf5bcd9b6376179f7a45c92ea32))
+
+
+### Features
+
+* add login PhoneNumber ([52582a0](https://github.com/jonalan7/Hydra-bot/commit/52582a0a727c4b6f45fdb9619281fee167cf7273))
+* Initialization Types ([2c2ff60](https://github.com/jonalan7/Hydra-bot/commit/2c2ff604ec313a6610f4e54b11895ad395995144))
+
+
+
 ## [1.0.35](https://github.com/jonalan7/Hydra-bot/compare/v1.0.34...v1.0.35) (2024-12-20)
 
 ### Features
