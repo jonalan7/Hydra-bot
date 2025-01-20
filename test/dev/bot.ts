@@ -23,8 +23,9 @@ import fs from 'fs';
     const ev: CallbackOnStatus = await initServer({
       session: 'sessions', // session name
       loginWithPhoneNumber: {
-        phoneNumber: '5575998966713', // phone number with country
-        timeRefeshCode: 120000, // time to refresh code
+        phoneNumber: '0000000000000', // Phone number with country
+        timeRefeshCode: 120000, // Time to refresh code
+        isOn: false, // Login with phone number
       },
       puppeteerOptions: {
         headless: false, // Open chrome browser in interface

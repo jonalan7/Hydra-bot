@@ -84,6 +84,7 @@ const fs = require('fs');
 (async () => {
   let client;
   let checkConnect = false;
+
   // start bot service
   const ev = await hydraBot.initServer();
 
@@ -168,6 +169,46 @@ const fs = require('fs');
 })();
 ```
 
+## Initialization Types
+There are two ways to initialize: using a **QR Code** or a phone number.
+
+### QR Code Initialization
+To start the service using a **QR Code**, use the following code:
+
+```javascript
+const hydraBot = require('hydra-bot');
+
+(async () => {
+  const ev = await hydraBot.initServer();
+  // Returns QR Code parameters
+  ev.on('qrcode', (qrcode) => {
+    console.log('QR Code: ', qrcode);
+  });
+})();
+```
+
+### Phone Number Initialization
+To start using a **phone number**, you can input the number and receive a verification code on the phone:
+
+```javascript
+const hydraBot = require('hydra-bot');
+
+(async () => {
+  const ev = await hydraBot.initServer({
+    loginWithPhoneNumber: {
+      phoneNumber: '0000000000000', // Phone number with country code
+      timeRefeshCode: 120000, // Time to refresh the code (in milliseconds)
+      isOn: true // Enable login with phone number
+    }
+  });
+
+  // Returns the code sent to the phone number
+  ev.on('codePhoneNumber', (status) => {
+    console.log('Code Phone Number: ', status);
+  });
+})();
+```
+
 ## Downloading Files
 
 Puppeteer takes care of the file downloading. The decryption is being done as
@@ -221,6 +262,11 @@ const mime = require('mime-types');
 const hydraBot = require('hydra-bot');
 
 hydraBot.initServer({
+  loginWithPhoneNumber: { // Init login with phone number
+    phoneNumber: '000000000000', // phone number with country
+    timeRefeshCode: 120000, // time to refresh code
+    isOn: false, // Login with phone number
+  },
   session: 'session', // Name of the token to be generated, a folder with all customer information will be created
   pathNameToken: 'token', // The path and name of the folder where the client tokens will be saved
   printQRInTerminal: true, // The QR CODE will be printed on the terminal if true

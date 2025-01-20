@@ -75,3 +75,43 @@ const hydraBot = require('hydra-bot');
 
 })();
 ```
+
+## Initialization Types
+There are two ways to initialize: using a **QR Code** or a phone number.
+
+### QR Code Initialization
+To start the service using a **QR Code**, use the following code:
+
+```javascript
+const hydraBot = require('hydra-bot');
+
+(async () => {
+  const ev = await hydraBot.initServer();
+  // returns QR Code parameters
+  ev.on('qrcode', (qrcode) => {
+    console.log('QR Code: ', qrcode);
+  });
+})();
+```
+
+### Phone Number Initialization
+To start using a **phone number**, you can input the number and receive a verification code on the phone:
+
+```javascript
+const hydraBot = require('hydra-bot');
+
+(async () => {
+  const ev = await hydraBot.initServer({
+    loginWithPhoneNumber: {
+      phoneNumber: '0000000000000', // Phone number with country code
+      timeRefeshCode: 120000, // Time to refresh the code (in milliseconds)
+      isOn: true // Enable login with phone number
+    }
+  });
+
+  // returns the code sent to the phone number
+  ev.on('codePhoneNumber', (status) => {
+    console.log('Code Phone Number: ', status);
+  });
+})();
+```
