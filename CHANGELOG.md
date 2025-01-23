@@ -1,3 +1,12 @@
+## [1.0.37](https://github.com/jonalan7/Hydra-bot/compare/v1.0.36...v1.0.37) (2025-01-23)
+
+
+### Bug Fixes
+
+* @types/API ([953cc47](https://github.com/jonalan7/Hydra-bot/commit/953cc474ec9ce9017cde97e5efc334b5fc1224a3))
+
+
+
 ## [1.0.36](https://github.com/jonalan7/Hydra-bot/compare/v1.0.35...v1.0.36) (2025-01-20)
 
 ### Bug Fixes
