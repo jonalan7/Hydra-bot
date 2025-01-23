@@ -1,3 +1,4 @@
+import type { API } from '../../../@types/API';
 export enum FunctionsLayer {
   getGroupParticipant = 'getGroupParticipant',
   getAllChatsGroups = 'getAllChatsGroups',
@@ -18,5 +19,7 @@ export enum FunctionsLayer {
 }
 
 export type FunctionParameters = {
-  [K in keyof typeof API]: Parameters<(typeof API)[K]>;
+  [K in keyof API]: API[K] extends (...args: any[]) => any
+    ? Parameters<API[K]>
+    : never;
 };
