@@ -55,12 +55,31 @@ import {
   serializeGroupParticipant,
 } from './serializers';
 
+import {
+  eventInterfaceChange,
+  eventNewDeleteMessage,
+  eventNewEditMessage,
+  eventNewMessage,
+  eventOnReactionMessage,
+  eventOnIntroReactionMessage,
+  eventNewOnAck,
+} from './event-listener';
+
 import { initParasite } from './init-parasite';
 
 initParasite();
 
 if (typeof window.API === 'undefined') {
   window.API = {};
+
+  // Event Listeners
+  window.API.eventInterfaceChange = eventInterfaceChange;
+  window.API.eventNewDeleteMessage = eventNewDeleteMessage;
+  window.API.eventNewEditMessage = eventNewEditMessage;
+  window.API.eventNewMessage = eventNewMessage;
+  window.API.eventOnReactionMessage = eventOnReactionMessage;
+  window.API.eventOnIntroReactionMessage = eventOnIntroReactionMessage;
+  window.API.eventNewOnAck = eventNewOnAck;
 
   // Helps Functions
   window.API.getChat = getChat;

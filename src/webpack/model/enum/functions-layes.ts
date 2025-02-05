@@ -16,6 +16,15 @@ export enum FunctionsLayer {
   refreshAltLinkingCode = 'refreshAltLinkingCode',
   getInterface = 'getInterface',
   screenshot = 'screenshot',
+
+  // Events Listeners
+  eventInterfaceChange = 'eventInterfaceChange',
+  eventNewDeleteMessage = 'eventNewDeleteMessage',
+  eventNewEditMessage = 'eventNewEditMessage',
+  eventNewMessage = 'eventNewMessage',
+  eventOnReactionMessage = 'eventOnReactionMessage',
+  eventOnIntroReactionMessage = 'eventOnIntroReactionMessage',
+  eventNewOnAck = 'eventNewOnAck',
 }
 
 export type FunctionParameters = {

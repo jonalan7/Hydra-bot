@@ -112,6 +112,15 @@ export interface API {
   loadAndGetAllMessagesInChat: (chatId: string, date: string) => Promise<any>;
 
   [key: string]: (...args: any[]) => any;
+
+  // Events Listeners
+  eventInterfaceChange(): Promise<void>;
+  eventNewDeleteMessage(): Promise<void>;
+  eventNewEditMessage(): Promise<void>;
+  eventNewMessage(): Promise<void>;
+  eventOnReactionMessage(): Promise<void>;
+  eventOnIntroReactionMessage(): Promise<void>;
+  eventNewOnAck(): Promise<void>;
 }
 
 // Declaração global organizada

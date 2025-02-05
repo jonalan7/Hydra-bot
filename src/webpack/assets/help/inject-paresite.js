@@ -1,4 +1,13 @@
 import { filterObjects, filterModule, getModuleList } from './index';
+import {
+  eventInterfaceChange,
+  eventNewEditMessage,
+  eventNewDeleteMessage,
+  eventNewMessage,
+  eventOnReactionMessage,
+  eventOnIntroReactionMessage,
+  eventNewOnAck,
+} from '../event-listener';
 
 export const injectParasite = async () => {
   const modules = await getModuleList();
@@ -19,4 +28,16 @@ export const injectParasite = async () => {
       Store[key] = module[key];
     }
   });
+
+  // Handle Functions Event listeners
+  const handle = async () => {
+    eventInterfaceChange();
+    eventNewEditMessage();
+    eventNewDeleteMessage();
+    eventNewMessage();
+    eventOnReactionMessage();
+    eventOnIntroReactionMessage();
+    eventNewOnAck();
+  };
+  handle();
 };
