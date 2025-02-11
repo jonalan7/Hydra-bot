@@ -39,6 +39,7 @@ const addMessage = (date, newMessage, output) => {
  */
 export const loadAndGetAllMessagesInChat = async (chatId, endDate) => {
   try {
+    let active = false;
     if (endDate) {
       const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
       if (!dateRegex.test(endDate)) {
@@ -83,7 +84,15 @@ export const loadAndGetAllMessagesInChat = async (chatId, endDate) => {
       await API.sleep(2000);
 
       const [firstMsg] = messages;
-      if (endDate && formatTimestampToDate(firstMsg) <= endDate) {
+      if (!chat.active) {
+        active = true;
+        break;
+      }
+
+      if (
+        (endDate && formatTimestampToDate(firstMsg) <= endDate) ||
+        chat.endOfHistoryTransferType > 0
+      ) {
         break;
       }
     }
@@ -107,7 +116,12 @@ export const loadAndGetAllMessagesInChat = async (chatId, endDate) => {
       })
     );
 
-    return output;
+    return {
+      data: output,
+      msg: !active
+        ? 'Messages loaded successfully'
+        : 'Not all messages were loaded, chat is not active',
+    };
   } catch (error) {
     console.error('Error loading messages:', error);
     throw error;
