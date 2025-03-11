@@ -1,15 +1,15 @@
-export { getChat } from './get-chat';
-export { getNewId } from './get-mew-id';
-export { getNewMessageId } from './get-new-message';
-export { checkChatExist } from './check-chat-exist';
+export * from './get-chat';
+export * from './get-mew-id';
+export * from './get-new-message';
+export * from './check-chat-exist';
 
-export { sendExist } from './send-exist';
-export { sendCheckType } from './send-check-type';
+export * from './send-exist';
+export * from './send-check-type';
 
-export { checkNumberStatus } from './check-number-status';
-export { isMD } from './is-md';
-export { returnChat } from './return-to-chat';
-export { scope } from './scope';
+export * from './check-number-status';
+export * from './is-md';
+export * from './return-to-chat';
+export * from './scope';
 
-export { sleep } from './sleep';
-export { waitForSelector } from './wait-for-selector';
+export * from './sleep';
+export * from './wait-for-selector';

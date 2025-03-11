@@ -1,4 +1,4 @@
-import type { API } from '../../../@types/API';
+import { API } from '../';
 export enum FunctionsLayer {
   getGroupParticipant = 'getGroupParticipant',
   getAllChatsGroups = 'getAllChatsGroups',

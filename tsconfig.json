@@ -1,29 +1,15 @@
 {
   "compilerOptions": {
-    "target": "es2017",
+    "target": "es2018",
     "module": "commonjs",
-    "rootDir": "src",
-    "moduleResolution": "node",
-    "baseUrl": "./",
-    "paths": {
-      "API": ["src/@types/API.d.ts"]
-    },
-    "typeRoots": ["src/@types", "node_modules/@types"],
-    "resolveJsonModule": true,
     "declaration": true,
-    "sourceMap": true,
     "outDir": "./dist",
-    "removeComments": false,
-    "declarationDir": "./dist/types",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
+    "rootDir": "./src",
     "strict": true,
-    "skipLibCheck": true
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   },
-  "typedocOptions": {
-    "entryPoints": ["src/index.ts", "./package.json"],
-    "out": "api-docs"
-  },
-  "include": ["src/**/*", "src/@types/**/*"],
-  "exclude": ["img/*"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }
