@@ -8,7 +8,7 @@ import { CreateOptions } from '../model/interface';
 import { puppeteerConfig } from '../help';
 
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
-
+puppeteer.use(StealthPlugin());
 /**
  * Function to create a new tab in the browser instance
  * @param Browser - Browser instance to create a new tab
@@ -59,9 +59,7 @@ export function PathSession(options: CreateOptions) {
   );
 
   if (!fs.existsSync(folderNameToken)) {
-    fs.mkdirSync(folderNameToken, {
-      recursive: true,
-    });
+    fs.mkdirSync(folderNameToken, { recursive: true });
   }
 
   const pathSession = path.join(
@@ -74,9 +72,7 @@ export function PathSession(options: CreateOptions) {
   );
 
   if (!fs.existsSync(pathSession)) {
-    fs.mkdirSync(pathSession, {
-      recursive: true,
-    });
+    fs.mkdirSync(pathSession, { recursive: true });
   }
 
   fs.chmodSync(folderNameToken, '777');
@@ -209,10 +205,12 @@ export async function initLaunch(
   }
 
   try {
-    puppeteer.use(StealthPlugin());
     return await puppeteer.launch({
       headless: options.puppeteerOptions?.headless,
-      args: options.puppeteerOptions?.args,
+      args: [
+        ...puppeteerConfig.chromiumArgs,
+        ...(options.puppeteerOptions?.args || []),
+      ],
       executablePath: options.puppeteerOptions?.executablePath,
       userDataDir: options.puppeteerOptions?.userDataDir,
       devtools: options.puppeteerOptions?.devtools,

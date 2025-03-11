@@ -25,7 +25,7 @@ export const hydraBotTestFunctions = {
   // Navigation functions
   browserClose: false,
   logoutSession: false,
-  screenshot: true,
+  screenshot: false,
 
   // Events
   newOnAck: false,
