@@ -626,6 +626,9 @@ await client
 // Get all Group
 const allGroups = await client.getAllChatsGroups();
 
+// Get all Chats
+const AllChats = await client.getAllChats()
+
 // Create group
 await client
   .createGroup('Group name', ['111111111111@c.us', '222222222222@c.us'])

@@ -2,6 +2,7 @@ import { API } from '../';
 export enum FunctionsLayer {
   getGroupParticipant = 'getGroupParticipant',
   getAllChatsGroups = 'getAllChatsGroups',
+  getAllChats = 'getAllChats',
   getAllContacts = 'getAllContacts',
   getHost = 'getHost',
   getWAVersion = 'getWAVersion',

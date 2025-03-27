@@ -15,6 +15,7 @@ export const hydraBotTestFunctions = {
   sendImage: false,
 
   // Receive
+  getAllChats: true,
   getAllContact: false,
   getHost: false,
   getWAVersion: false,

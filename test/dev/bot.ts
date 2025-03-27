@@ -136,6 +136,18 @@ import fs from 'fs';
             });
         }
 
+        if (hydraBotTestFunctions.getAllChats) {
+          /// get all chats
+          await client
+            .getAllChats()
+            .then((result) => {
+              console.log('Chats: ', result);
+            })
+            .catch((error) => {
+              console.log('Error Chats: ', error);
+            });
+        }
+
         if (hydraBotTestFunctions.getAllContact) {
           // get all contacts
           await client

@@ -31,6 +31,13 @@ export class GroupLayer extends ListenerLayer {
   }
 
   /**
+   * Get all Chats
+   */
+  public async getAllChats() {
+    return this.handleApiCallParametres(FunctionsLayer.getAllChats);
+  }
+
+  /**
    * Retrieve all groups
    */
   public async getAllChatsGroups() {

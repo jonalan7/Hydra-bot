@@ -1,17 +1,13 @@
 ## [1.0.39](https://github.com/jonalan7/Hydra-bot/compare/v1.0.38...v1.0.39) (2025-03-11)
 
-
 ### Bug Fixes
 
-* crash when loading development information ([f194a62](https://github.com/jonalan7/Hydra-bot/commit/f194a62cb96f2b21f15c2a90f35c79462455f2dd))
-* loadAndGetAllMessagesInChat ([70625e4](https://github.com/jonalan7/Hydra-bot/commit/70625e40cd79bd67806c8258a3517e3105adacf6))
-
+- crash when loading development information ([f194a62](https://github.com/jonalan7/Hydra-bot/commit/f194a62cb96f2b21f15c2a90f35c79462455f2dd))
+- loadAndGetAllMessagesInChat ([70625e4](https://github.com/jonalan7/Hydra-bot/commit/70625e40cd79bd67806c8258a3517e3105adacf6))
 
 ### Features
 
-* placing the types to load locally ([f01af1e](https://github.com/jonalan7/Hydra-bot/commit/f01af1e452acd9afb1ce87a49d1c9e27ad1e1dca))
-
-
+- placing the types to load locally ([f01af1e](https://github.com/jonalan7/Hydra-bot/commit/f01af1e452acd9afb1ce87a49d1c9e27ad1e1dca))
 
 ## [1.0.38](https://github.com/jonalan7/Hydra-bot/compare/v1.0.37...v1.0.38) (2025-02-06)
 
