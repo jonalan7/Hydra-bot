@@ -1,3 +1,12 @@
+## [1.0.40](https://github.com/jonalan7/Hydra-bot/compare/v1.0.39...v1.0.40) (2025-03-27)
+
+
+### Features
+
+* getAllChats ([f868cc0](https://github.com/jonalan7/Hydra-bot/commit/f868cc07fc4cf659704b5bf7719b10d7433cde01))
+
+
+
 ## [1.0.39](https://github.com/jonalan7/Hydra-bot/compare/v1.0.38...v1.0.39) (2025-03-11)
 
 ### Bug Fixes

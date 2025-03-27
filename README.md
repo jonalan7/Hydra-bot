@@ -627,7 +627,7 @@ await client
 const allGroups = await client.getAllChatsGroups();
 
 // Get all Chats
-const AllChats = await client.getAllChats()
+const AllChats = await client.getAllChats();
 
 // Create group
 await client
