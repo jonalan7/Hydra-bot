@@ -15,13 +15,13 @@ export const hydraBotTestFunctions = {
   sendImage: false,
 
   // Receive
-  getAllChats: true,
+  getAllChats: false,
   getAllContact: false,
   getHost: false,
   getWAVersion: false,
   getAllChatsGroups: false,
   getGroupParticipant: false,
-  loadAndGetAllMessagesInCha: false,
+  loadAndGetAllMessagesInChat: false,
 
   // Navigation functions
   browserClose: false,

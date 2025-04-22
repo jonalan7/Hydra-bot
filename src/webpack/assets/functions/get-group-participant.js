@@ -15,7 +15,10 @@ export const getGroupParticipant = async (groupId) => {
       await Store.Cmd.openChatBottom(chat);
       await Store.GrupsConfig.updateReadOnly(chat);
 
-      const classInfoGroup = await API.waitForSelector('._amie');
+      const classInfoGroup = await API.waitForSelector(
+        "#main header div[role='button']"
+      );
+
       if (classInfoGroup) {
         classInfoGroup.click();
       }

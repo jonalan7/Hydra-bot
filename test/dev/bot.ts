@@ -76,7 +76,7 @@ import fs from 'fs';
         const hostNumber = getMe.id._serialized; // number host
         console.log('Host Number: ', hostNumber);
 
-        if (hydraBotTestFunctions.loadAndGetAllMessagesInCha) {
+        if (hydraBotTestFunctions.loadAndGetAllMessagesInChat) {
           // Load all messages in chat by date
           await client
             .loadAndGetAllMessagesInChat('00000000000@c.us', 'YYYY-MM-DD')
