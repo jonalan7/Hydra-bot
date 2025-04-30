@@ -79,9 +79,21 @@ import fs from 'fs';
         if (hydraBotTestFunctions.loadAndGetAllMessagesInChat) {
           // Load all messages in chat by date
           await client
-            .loadAndGetAllMessagesInChat('00000000000@c.us', 'YYYY-MM-DD')
+            .loadAndGetAllMessagesInChat(
+              // '14153103106@c.us',
+              '14158060429@c.us',
+              '2025-01-02',
+              '2025-04-21'
+            )
             .then((result) => {
-              console.log('Messages: ', result);
+              // console.log('Messages: ', result);
+              console.log('Day Count: ', result.data.length);
+              let messageCount = 0;
+              result.data.forEach((day: any) => {
+                console.log('Day: ', day.date, day.msgList.length);
+                messageCount += day.msgList.length;
+              });
+              console.log('Total Messages: ', messageCount);
             })
             .catch((error) => {
               console.log('Error Messages: ', error);
