@@ -16,14 +16,20 @@ export class RetrieverLayer extends Profile {
   /**
    * Get all messages in chat by chatId
    * @param chatId - Chat id
-   * @param date - Date to get messages
+   * @param startDate
+   * @param endDate
    * @returns
    */
-  public async loadAndGetAllMessagesInChat(chatId: string, date: string) {
+  public async loadAndGetAllMessagesInChat(
+    chatId: string,
+    startDate: string,
+    endDate: string
+  ) {
     return this.handleApiCallParametres(
       FunctionsLayer.loadAndGetAllMessagesInChat,
       chatId,
-      date
+      startDate,
+      endDate
     );
   }
 

@@ -32,24 +32,29 @@ const addMessage = (date, newMessage, output) => {
 };
 
 /**
- * Loads and retrieves all messages in a chat.
+ * Loads and retrieves all messages in a chat between the two given dates.
+ * Both dates are inclusive
  * @param {string} chatId - Chat ID.
- * @param {string} endDate - Optional end date in format YYYY-MM-DD.
+ * @param {string} startDate - start date in format YYYY-MM-DD.
+ * @param {string} endDate - end date in format YYYY-MM-DD.
  * @returns chat messages
  */
-export const loadAndGetAllMessagesInChat = async (chatId, endDate) => {
+export const loadAndGetAllMessagesInChat = async (
+  chatId,
+  startDate,
+  endDate
+) => {
   try {
     let active = false;
-    if (endDate) {
-      const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
-      if (!dateRegex.test(endDate)) {
-        throw API.scope(
-          null,
-          true,
-          404,
-          'Invalid endDate format. Expected YYYY-MM-DD.'
-        );
-      }
+
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+    if (!dateRegex.test(startDate) || !dateRegex.test(endDate)) {
+      throw API.scope(
+        null,
+        true,
+        404,
+        'Invalid Date format. Expected YYYY-MM-DD for startDate and endDate.'
+      );
     }
 
     const chat = await API.sendExist(chatId);
@@ -71,15 +76,21 @@ export const loadAndGetAllMessagesInChat = async (chatId, endDate) => {
       const loadButton = document.querySelector(
         `button[class="${loadMessagesButtonClass}"]`
       );
+
+      // If loadButton no longer exists, we must have reached the end of possible messages
+      if (!loadButton) {
+        break;
+      }
+
       const chatScroll = document.querySelector(
         `div[class="${chatScrollClass}"]`
       );
       if (chatScroll) {
         chatScroll.scrollTop = 0;
       }
-      if (loadButton) {
-        loadButton.click();
-      }
+
+      loadButton.click();
+
       await chat.onEmptyMRM();
       await API.sleep(2000);
 
@@ -90,7 +101,7 @@ export const loadAndGetAllMessagesInChat = async (chatId, endDate) => {
       }
 
       if (
-        (endDate && formatTimestampToDate(firstMsg) <= endDate) ||
+        (startDate && formatTimestampToDate(firstMsg) <= startDate) ||
         chat.endOfHistoryTransferType > 0
       ) {
         break;
@@ -109,7 +120,11 @@ export const loadAndGetAllMessagesInChat = async (chatId, endDate) => {
           false
         );
         const formattedDate = formatTimestampToDate(serializedMessage);
-        if (endDate && formattedDate <= endDate) {
+        if (startDate && formattedDate < startDate) {
+          return;
+        }
+
+        if (endDate && formattedDate > endDate) {
           return;
         }
         addMessage(formattedDate, serializedMessage, output);
