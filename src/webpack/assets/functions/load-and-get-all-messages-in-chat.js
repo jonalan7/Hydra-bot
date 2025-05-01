@@ -32,6 +32,27 @@ const addMessage = (date, newMessage, output) => {
 };
 
 /**
+ * Tries to open the chat until it becomes active or the maximum number of attempts is reached.
+ * @param {*} chat - Chat object
+ * @param {number} maxAttempts - Maximum number of attempts (default: 5)
+ * @param {number} delayMs - Delay between attempts in milliseconds (default: 500ms)
+ */
+const ensureChatIsActive = async (chat, maxAttempts = 5, delayMs = 500) => {
+  let attempt = 0;
+
+  while (!chat.active && attempt < maxAttempts) {
+    console.log(`Attempt ${attempt + 1} of ${maxAttempts} to activate chat...`);
+    await Store.Cmd.openChatBottom(chat);
+    await API.sleep(delayMs);
+    attempt++;
+  }
+
+  if (!chat.active) {
+    console.warn('Failed to activate chat after multiple attempts.');
+  }
+};
+
+/**
  * Loads and retrieves all messages in a chat between the two given dates.
  * Both dates are inclusive
  * @param {string} chatId - Chat ID.
@@ -69,30 +90,34 @@ export const loadAndGetAllMessagesInChat = async (
     const chatScrollClass =
       'x10l6tqk x13vifvy x17qophe xyw6214 x9f619 x78zum5 xdt5ytf xh8yej3 x5yr21d x6ikm8r x1rife3k xjbqb8w x1ewm37j';
 
-    await Store.Cmd.openChatBottom(chat);
-    const messages = chat.msgs._models;
+    await ensureChatIsActive(chat);
 
-    while (!chat.msgs.msgLoadState.noEarlierMsgs) {
+    const messages = chat.msgs._models;
+    let attempts = 0; // attempts to load messages not loaded
+    let initialQuantityMsg = chat.msgs.length; // Initial quantity of messages
+
+    while (!chat.msgs.msgLoadState.noEarlierMsgs && attempts < 5) {
       const loadButton = document.querySelector(
         `button[class="${loadMessagesButtonClass}"]`
       );
 
-      // If loadButton no longer exists, we must have reached the end of possible messages
-      if (!loadButton) {
-        break;
-      }
-
       const chatScroll = document.querySelector(
         `div[class="${chatScrollClass}"]`
       );
+
       if (chatScroll) {
         chatScroll.scrollTop = 0;
       }
+
+      // If loadButton no longer exists, we must have reached the end of possible messages
+      if (!loadButton) break;
 
       loadButton.click();
 
       await chat.onEmptyMRM();
       await API.sleep(2000);
+
+      const currentQuantityMsg = chat.msgs.length; // Current quantity of messages
 
       const [firstMsg] = messages;
       if (!chat.active) {
@@ -106,6 +131,14 @@ export const loadAndGetAllMessagesInChat = async (
       ) {
         break;
       }
+
+      if (currentQuantityMsg === initialQuantityMsg) {
+        attempts++;
+      } else {
+        attempts = 0; // Reset attempts if new messages were loaded
+      }
+
+      initialQuantityMsg = currentQuantityMsg;
     }
 
     const output = [];
