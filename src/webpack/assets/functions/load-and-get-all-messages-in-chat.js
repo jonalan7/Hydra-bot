@@ -32,24 +32,50 @@ const addMessage = (date, newMessage, output) => {
 };
 
 /**
- * Loads and retrieves all messages in a chat.
+ * Tries to open the chat until it becomes active or the maximum number of attempts is reached.
+ * @param {*} chat - Chat object
+ * @param {number} maxAttempts - Maximum number of attempts (default: 5)
+ * @param {number} delayMs - Delay between attempts in milliseconds (default: 500ms)
+ */
+const ensureChatIsActive = async (chat, maxAttempts = 5, delayMs = 500) => {
+  let attempt = 0;
+
+  while (!chat.active && attempt < maxAttempts) {
+    console.log(`Attempt ${attempt + 1} of ${maxAttempts} to activate chat...`);
+    await Store.Cmd.openChatBottom(chat);
+    await API.sleep(delayMs);
+    attempt++;
+  }
+
+  if (!chat.active) {
+    console.warn('Failed to activate chat after multiple attempts.');
+  }
+};
+
+/**
+ * Loads and retrieves all messages in a chat between the two given dates.
+ * Both dates are inclusive
  * @param {string} chatId - Chat ID.
- * @param {string} endDate - Optional end date in format YYYY-MM-DD.
+ * @param {string} startDate - start date in format YYYY-MM-DD.
+ * @param {string} endDate - end date in format YYYY-MM-DD.
  * @returns chat messages
  */
-export const loadAndGetAllMessagesInChat = async (chatId, endDate) => {
+export const loadAndGetAllMessagesInChat = async (
+  chatId,
+  startDate,
+  endDate
+) => {
   try {
     let active = false;
-    if (endDate) {
-      const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
-      if (!dateRegex.test(endDate)) {
-        throw API.scope(
-          null,
-          true,
-          404,
-          'Invalid endDate format. Expected YYYY-MM-DD.'
-        );
-      }
+
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+    if (!dateRegex.test(startDate) || !dateRegex.test(endDate)) {
+      throw API.scope(
+        null,
+        true,
+        404,
+        'Invalid Date format. Expected YYYY-MM-DD for startDate and endDate.'
+      );
     }
 
     const chat = await API.sendExist(chatId);
@@ -64,24 +90,34 @@ export const loadAndGetAllMessagesInChat = async (chatId, endDate) => {
     const chatScrollClass =
       'x10l6tqk x13vifvy x17qophe xyw6214 x9f619 x78zum5 xdt5ytf xh8yej3 x5yr21d x6ikm8r x1rife3k xjbqb8w x1ewm37j';
 
-    await Store.Cmd.openChatBottom(chat);
-    const messages = chat.msgs._models;
+    await ensureChatIsActive(chat);
 
-    while (!chat.msgs.msgLoadState.noEarlierMsgs) {
+    const messages = chat.msgs._models;
+    let attempts = 0; // attempts to load messages not loaded
+    let initialQuantityMsg = chat.msgs.length; // Initial quantity of messages
+
+    while (!chat.msgs.msgLoadState.noEarlierMsgs && attempts < 5) {
       const loadButton = document.querySelector(
         `button[class="${loadMessagesButtonClass}"]`
       );
+
       const chatScroll = document.querySelector(
         `div[class="${chatScrollClass}"]`
       );
+
       if (chatScroll) {
         chatScroll.scrollTop = 0;
       }
-      if (loadButton) {
-        loadButton.click();
-      }
+
+      // If loadButton no longer exists, we must have reached the end of possible messages
+      if (!loadButton) break;
+
+      loadButton.click();
+
       await chat.onEmptyMRM();
       await API.sleep(2000);
+
+      const currentQuantityMsg = chat.msgs.length; // Current quantity of messages
 
       const [firstMsg] = messages;
       if (!chat.active) {
@@ -90,11 +126,19 @@ export const loadAndGetAllMessagesInChat = async (chatId, endDate) => {
       }
 
       if (
-        (endDate && formatTimestampToDate(firstMsg) <= endDate) ||
+        (startDate && formatTimestampToDate(firstMsg) <= startDate) ||
         chat.endOfHistoryTransferType > 0
       ) {
         break;
       }
+
+      if (currentQuantityMsg === initialQuantityMsg) {
+        attempts++;
+      } else {
+        attempts = 0; // Reset attempts if new messages were loaded
+      }
+
+      initialQuantityMsg = currentQuantityMsg;
     }
 
     const output = [];
@@ -109,7 +153,11 @@ export const loadAndGetAllMessagesInChat = async (chatId, endDate) => {
           false
         );
         const formattedDate = formatTimestampToDate(serializedMessage);
-        if (endDate && formattedDate <= endDate) {
+        if (startDate && formattedDate < startDate) {
+          return;
+        }
+
+        if (endDate && formattedDate > endDate) {
           return;
         }
         addMessage(formattedDate, serializedMessage, output);

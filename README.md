@@ -601,9 +601,10 @@ const contacts = await client.getAllContacts();
 // return whatsapp version
 const version = await client.getWAVersion();
 
-// Load all messages in chat by date
+// Load all messages in chat by date for the given period
 const listMsg = await client.loadAndGetAllMessagesInChat(
   '<phone Number>@c.us',
+  'YYYY-MM-DD',
   'YYYY-MM-DD'
 );
 ```
