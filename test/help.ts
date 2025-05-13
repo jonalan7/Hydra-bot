@@ -21,7 +21,7 @@ export const hydraBotTestFunctions = {
   getWAVersion: false,
   getAllChatsGroups: false,
   getGroupParticipant: false,
-  loadAndGetAllMessagesInChat: false,
+  loadAndGetAllMessagesInChat: true,
 
   // Navigation functions
   browserClose: false,
@@ -30,7 +30,7 @@ export const hydraBotTestFunctions = {
 
   // Events
   newOnAck: false,
-  dowloadFiles: false,
+  downloadFiles: false,
   interfaceChange: false,
   qrcode: false,
   newMessage: false,

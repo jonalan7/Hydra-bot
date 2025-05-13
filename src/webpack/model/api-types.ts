@@ -112,7 +112,11 @@ export interface API {
   /**
    * Load and get all messages in a chat
    */
-  loadAndGetAllMessagesInChat: (chatId: string, date: string) => Promise<any>;
+  loadAndGetAllMessagesInChat: (
+    chatId: string,
+    startDate: string,
+    endDate: string
+  ) => Promise<any>;
 
   [key: string]: (...args: any[]) => any;
 

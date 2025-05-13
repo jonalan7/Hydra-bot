@@ -27,7 +27,7 @@ const result = await client.checkNumber("<phone Number>@c.us");
 
 ### loadAndGetAllMessagesInChat
 
-Load all messages in chat by date
+Load all messages in chat by date for the given period
 ```javascript
-const result = await client.loadAndGetAllMessagesInChat("<phone Number>@c.us", "YYYY-MM-DD");
+const result = await client.loadAndGetAllMessagesInChat("<phone Number>@c.us", "YYYY-MM-DD", "YYYY-MM-DD");
 ```
