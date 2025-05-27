@@ -1,3 +1,12 @@
+## [1.0.43](https://github.com/jonalan7/Hydra-bot/compare/v1.0.42...v1.0.43) (2025-05-27)
+
+
+### Features
+
+* add options proxy ([afe0545](https://github.com/jonalan7/Hydra-bot/commit/afe0545f0227afe0e394f1fe3f9a34f84259e1a2))
+
+
+
 ## [1.0.42](https://github.com/jonalan7/Hydra-bot/compare/v1.0.41...v1.0.42) (2025-05-13)
 
 ### Bug Fixes
