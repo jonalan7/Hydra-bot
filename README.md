@@ -281,6 +281,9 @@ hydraBot.initServer({
     headless: true, // Start the project with the browser open or not!
     args: [], // Additional arguments to pass to the browser instance. adding any parameter you will replace the default args of the project
     executablePath: 'useChrome', // The browser that will be used for the project, you can specify a path, if you don't pass any parameters it will open the installed browser.
+    proxyUsername: '', // Proxy username
+    proxyPassword: '', // Proxy password
+    listProxy: [], // List of proxies
   },
 });
 ```
@@ -304,6 +307,9 @@ hydraBot.initWs({
     headless: true, // Start the project with the browser open or not!
     args: [], // Additional arguments to pass to the browser instance. adding any parameter you will replace the default args of the project
     executablePath: 'useChrome', // The browser that will be used for the project, you can specify a path, if you don't pass any parameters it will open the installed browser.
+    proxyUsername: '', // Proxy username
+    proxyPassword: '', // Proxy password
+    listProxy: [], // List of proxies
   },
 });
 ```

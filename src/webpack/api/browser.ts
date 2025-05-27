@@ -12,17 +12,50 @@ puppeteer.use(StealthPlugin());
 /**
  * Function to create a new tab in the browser instance
  * @param Browser - Browser instance to create a new tab
+ * @param options - Options to create a new session in the browser instance
  * @returns - Returns a new tab or false if it fails
  */
-export async function initBrowser(Browser: Browser): Promise<Page | boolean> {
+export async function initBrowser(
+  Browser: Browser,
+  options: CreateOptions
+): Promise<Page | boolean> {
+  await closeExtraPages(Browser);
   const wpage: Page = await oneTab(Browser);
   if (wpage) {
     try {
       await wpage.setUserAgent(puppeteerConfig.useragentOverride);
       await wpage.setCacheEnabled(true);
-      await wpage.goto(puppeteerConfig.whatsappUrl, {
+
+      const puppeteerOpts = options.puppeteerOptions;
+
+      const proxyUsername = puppeteerOpts?.proxyUsername;
+      const proxyPassword = puppeteerOpts?.proxyPassword;
+      const listProxy = puppeteerOpts?.listProxy;
+
+      const hasProxyCredentials =
+        typeof proxyUsername === 'string' &&
+        proxyUsername.length > 0 &&
+        typeof proxyPassword === 'string' &&
+        proxyPassword.length > 0;
+
+      const hasProxyList = Array.isArray(listProxy) && listProxy.length > 0;
+
+      // If proxy credentials and list are provided, set the proxy
+      if (hasProxyCredentials && hasProxyList) {
+        await wpage.authenticate({
+          username: proxyUsername as string,
+          password: proxyPassword as string,
+        });
+      }
+
+      const response = await wpage.goto(puppeteerConfig.whatsappUrl, {
         waitUntil: 'domcontentloaded',
       });
+
+      if (response && response.status() === 407) {
+        return false;
+      }
+
       wpage.on('pageerror', ({ message }) => {
         const erroLogType1 = message.includes(
           'RegisterEffect is not a function'
@@ -204,6 +237,25 @@ export async function initLaunch(
     return false;
   }
 
+  const puppeteerOpts = options.puppeteerOptions;
+  const listProxy = puppeteerOpts?.listProxy;
+
+  if (Array.isArray(listProxy) && listProxy.length > 0) {
+    const proxy = listProxy[Math.floor(Math.random() * listProxy.length)];
+    const proxyArg = `--proxy-server=${proxy}`;
+
+    const passArgs = puppeteerOpts.args;
+
+    if (Array.isArray(passArgs) && passArgs.length > 0) {
+      options.puppeteerOptions.args = [...passArgs, proxyArg];
+    } else {
+      puppeteerConfig.chromiumArgs = [
+        ...puppeteerConfig.chromiumArgs,
+        proxyArg,
+      ];
+    }
+  }
+
   try {
     return await puppeteer.launch({
       headless: options.puppeteerOptions?.headless,
@@ -219,6 +271,16 @@ export async function initLaunch(
     return false;
   }
 }
+/**
+ * Function to close all extra pages in the browser instance
+ * @param browser - Browser instance to close extra pages
+ */
+export async function closeExtraPages(browser: Browser | BrowserContext) {
+  const pages = await browser.pages();
+  for (let i = 1; i < pages.length; i++) {
+    await pages[i].close();
+  }
+}
 
 /**
  * Function to create a new tab in the browser instance
@@ -230,13 +292,19 @@ export async function oneTab(
 ): Promise<Page | any> {
   try {
     const page: Page[] = await Browser.pages();
-    if (page.length) return page[0];
+    if (page.length) {
+      return page[0];
+    }
     return await Browser.newPage();
   } catch {
     return false;
   }
 }
 
+/**
+ * Function to get the path of the Chrome browser
+ * @return - Returns the path of the Chrome browser or undefined if it fails
+ * */
 export function getPathChrome(): string | undefined {
   try {
     const chromeInstalations: string[] =

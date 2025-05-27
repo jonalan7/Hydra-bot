@@ -1,11 +1,8 @@
 ## [1.0.42](https://github.com/jonalan7/Hydra-bot/compare/v1.0.41...v1.0.42) (2025-05-13)
 
-
 ### Bug Fixes
 
-* clicking the infinitely loading message button ([9fe75fb](https://github.com/jonalan7/Hydra-bot/commit/9fe75fb44521e1d592ce8d73c3d4664c0782cc72))
-
-
+- clicking the infinitely loading message button ([9fe75fb](https://github.com/jonalan7/Hydra-bot/commit/9fe75fb44521e1d592ce8d73c3d4664c0782cc72))
 
 ## [1.0.41](https://github.com/jonalan7/Hydra-bot/compare/v1.0.40...v1.0.41) (2025-04-22)
 

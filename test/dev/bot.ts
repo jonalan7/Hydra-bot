@@ -21,7 +21,7 @@ import fs from 'fs';
 
     // start bot service
     const ev: CallbackOnStatus = await initServer({
-      session: 'sessions', // session name
+      session: 'session', // session name
       loginWithPhoneNumber: {
         phoneNumber: '0000000000000', // Phone number with country
         timeRefeshCode: 120000, // Time to refresh code
@@ -30,6 +30,9 @@ import fs from 'fs';
       puppeteerOptions: {
         headless: false, // Open chrome browser in interface
         devtools: true, // Inspect the html element through the console
+        proxyUsername: '', // Proxy username
+        proxyPassword: '', // Proxy password
+        listProxy: [], // List of proxies
       },
       timeAutoClose: 0, // 0 = disabled, 1000 = 1 second, 2000 = 2 seconds, etc
       printQRInTerminal: true, // Print QR code in terminal

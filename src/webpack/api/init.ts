@@ -76,7 +76,10 @@ export async function initServer(
         session: mergeOptionsDefault.session,
       });
 
-      const page: boolean | Page = await initBrowser(wpage);
+      const page: boolean | Page = await initBrowser(
+        wpage,
+        mergeOptionsDefault
+      );
       if (typeof page !== 'boolean') {
         ev.emitStatusFind({
           error: false,

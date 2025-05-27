@@ -5,6 +5,7 @@ export const puppeteerConfig = {
   chromiumArgs: [
     '--no-sandbox',
     '--disable-setuid-sandbox',
+    '--hide-crash-restore-bubble',
     '--disable-dev-shm-usage',
     '--disable-gpu',
     '--disable-infobars',
@@ -13,5 +14,12 @@ export const puppeteerConfig = {
     '--window-position=0,0',
     '--user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.6367.91 Safari/537.36"',
     '--ignore-certificate-errors',
+    '--disable-extensions',
+    '--disable-default-apps',
+    '--no-default-browser-check',
+    '--disable-component-update',
+    '--disable-background-networking',
+    '--disable-sync',
+    'about:blank',
   ],
 };

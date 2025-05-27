@@ -38,6 +38,24 @@ export interface PuppeteerOptions {
    * @default false
    */
   devtools?: boolean;
+  /**
+   * User name for the proxy server
+   * If you don't use a proxy, you can leave it empty
+   * @default null
+   */
+  proxyUsername?: string;
+  /**
+   * Password for the proxy server
+   * If you don't use a proxy, you can leave it empty
+   * @default null
+   */
+  proxyPassword?: string;
+  /**
+   * Proxy server address
+   * If you don't use a proxy, you can leave it empty
+   * @default null
+   */
+  listProxy?: string[];
 }
 
 export interface loginWithPhoneNumber {
