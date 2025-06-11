@@ -78,12 +78,16 @@ export async function initServer(
 
       const page: boolean | Page = await initBrowser(
         wpage,
-        mergeOptionsDefault
+        mergeOptionsDefault,
+        ev
       );
       if (typeof page !== 'boolean') {
         ev.emitStatusFind({
           error: false,
-          page: page,
+          browserContext: {
+            page: page,
+            browser: wpage,
+          },
           statusFind: 'page',
           onType: OnMode.connection,
           session: mergeOptionsDefault.session,
@@ -101,6 +105,7 @@ export async function initServer(
         });
 
         const client = new WebPack(page, wpage, mergeOptionsDefault, ev);
+
         checkingCloses(wpage, () => {
           ev.emitStatusFind({
             error: true,
@@ -130,6 +135,7 @@ export async function initServer(
                 client: client,
               });
             }
+
             if (
               interFace.result.mode === InterfaceMode.QR &&
               interFace.result.info === 'NORMAL'

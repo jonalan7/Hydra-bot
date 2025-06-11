@@ -6,6 +6,7 @@ import * as fs from 'fs';
 import { OnMode, TypeStatusFind } from '../model/enum';
 import { CreateOptions } from '../model/interface';
 import { puppeteerConfig } from '../help';
+import { EventEmitter } from 'events';
 
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 puppeteer.use(StealthPlugin());
@@ -17,7 +18,8 @@ puppeteer.use(StealthPlugin());
  */
 export async function initBrowser(
   Browser: Browser,
-  options: CreateOptions
+  options: CreateOptions,
+  ev: any
 ): Promise<Page | boolean> {
   await closeExtraPages(Browser);
   const wpage: Page = await oneTab(Browser);
@@ -69,14 +71,91 @@ export async function initBrowser(
         }
       });
 
+      logoutListener(wpage, ev, options);
+
       Browser.userAgent();
       return wpage;
-    } catch {
+    } catch (e) {
+      console.error('Error initializing browser:', e);
       return false;
     }
   }
   return false;
 }
+
+/**
+ * function to listen for logout events in the browser page
+ * @param page - The page instance where the listener will be set
+ * @param ev - The event emitter to emit status updates
+ * @param options = - Options for creating a new session in the browser instance
+ */
+export const logoutListener = async (
+  page: Page,
+  ev: any,
+  options: CreateOptions
+) => {
+  const event = new Listener(page);
+  await event.getListenerEmitter(
+    'eventOnLogout',
+    (data: { type: TypeStatusFind; text: string }) => {
+      ev.emitStatusFind({
+        error: false,
+        text: data.text,
+        status: data.type,
+        statusFind: 'page',
+        onType: OnMode.connection,
+        session: options.session,
+      });
+    }
+  );
+
+  await page
+    .evaluate(async () => {
+      let WAWebCmd: any = undefined;
+      if ((window as any).WAWebCmdInitialized) return;
+      (window as any).WAWebCmdInitialized = true;
+
+      const waitForCmd = async () => {
+        await new Promise<void>((resolve) => {
+          const check = () => {
+            WAWebCmd = window.importNamespace
+              ? window.importNamespace('WAWebCmd')
+              : {};
+            if (WAWebCmd?.Cmd?.on) {
+              resolve();
+            } else {
+              setTimeout(check, 200);
+            }
+          };
+          check();
+        });
+      };
+
+      await waitForCmd();
+
+      console.log('WAWebCmd is ready');
+      WAWebCmd.Cmd.on('starting_logout', () => {
+        if (typeof window.eventOnLogout === 'function') {
+          window.eventOnLogout({
+            type: 'starting_logout',
+            text: 'Logout is in progress: the user is actively logging out.',
+          });
+        }
+      });
+
+      WAWebCmd.Cmd.on('logout', () => {
+        if (typeof window.eventOnLogout === 'function') {
+          window.eventOnLogout({
+            type: 'logout',
+            text: 'Logout completed: the user is no longer connected.',
+          });
+        }
+      });
+    })
+    .catch((e) => {
+      console.log('Error in logoutListener:', e);
+    });
+};
 /**
  * Function to create a new session in the browser instance
  * @param options - Options to create a new session in the browser instance
@@ -271,14 +350,21 @@ export async function initLaunch(
     return false;
   }
 }
+
 /**
  * Function to close all extra pages in the browser instance
  * @param browser - Browser instance to close extra pages
  */
 export async function closeExtraPages(browser: Browser | BrowserContext) {
-  const pages = await browser.pages();
+  const pages: Page[] = await browser.pages();
   for (let i = 1; i < pages.length; i++) {
-    await pages[i].close();
+    const page = pages[i];
+    if (page.isClosed()) continue;
+    try {
+      await page.close();
+    } catch {
+      continue;
+    }
   }
 }
 
@@ -312,5 +398,56 @@ export function getPathChrome(): string | undefined {
     return chromeInstalations[0];
   } catch {
     return undefined;
+  }
+}
+
+/**
+ * ListenerLayer class to handle events in the browser page
+ * This class uses an EventEmitter to listen for events and expose functions to the page.
+ */
+export class Listener {
+  constructor(public page: Page) {}
+  private listenerEmitter = new EventEmitter();
+
+  /**
+   * @param functionName - The name of the function to listen for events
+   * @param fn - Optional callback function to handle the event
+   * This method checks if the function is already defined in the page context,
+   */
+  public async getListenerEmitter(
+    functionName: string,
+    fn?: (info: any) => void
+  ) {
+    try {
+      const hasFunction = await this.page
+        .evaluate(
+          (funcName: string) => typeof (window as any)[funcName] === 'function',
+          functionName
+        )
+        .catch(() => false);
+
+      if (!hasFunction) {
+        // Expose the function to the page
+        await this.page
+          .exposeFunction(functionName, (...args: any[]) => {
+            this.listenerEmitter.emit(functionName, ...args);
+          })
+          .catch(() => undefined);
+      }
+
+      this.listenerEmitter.on(functionName, (event) => {
+        fn && fn(event);
+      });
+
+      return {
+        dispose: () => {
+          this.listenerEmitter.off(functionName, (event) => {
+            fn && fn(event);
+          });
+        },
+      };
+    } catch (error) {
+      console.error('Error in getListenerEmitter:', error);
+    }
   }
 }

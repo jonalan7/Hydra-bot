@@ -31,4 +31,12 @@ export enum TypeStatusFind {
    * Process chromium download
    */
   chromium = 'chromium',
+  /**
+   * Logout is in progress: the user is actively logging out.
+   */
+  starting_logout = 'starting_logout',
+  /**
+   * Logout completed: the user has successfully logged out.
+   */
+  logout = 'logout',
 }

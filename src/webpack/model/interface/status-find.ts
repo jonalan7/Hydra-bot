@@ -1,7 +1,6 @@
 import { OnMode, TypeStatusFind } from '../enum';
-import { Page } from 'puppeteer';
+import { Page, Browser } from 'puppeteer';
 import { WebPack } from '../../inject/webpack';
-
 export interface StatusFind {
   erro: boolean;
   text: string;
@@ -9,7 +8,10 @@ export interface StatusFind {
   statusFind: string;
   onType: OnMode;
   session: string;
-  page: Page;
+  browserContext: {
+    page: Page;
+    browser: Browser;
+  };
   connect: boolean;
   qrcode: string;
   client: WebPack;

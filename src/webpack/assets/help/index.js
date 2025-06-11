@@ -8,5 +8,4 @@ export * from './get-file-hash';
 export * from './encrypt-and-upload-file';
 export * from './filter-module';
 export * from './get-module-list';
-
 export * from './filter-object';

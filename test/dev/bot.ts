@@ -16,12 +16,14 @@ import fs from 'fs';
 
 (async () => {
   try {
-    let client: WebPack;
-    let checkConnect = false;
+    let client: WebPack; // class client from hydra-bot
+    let checkConnect = false; // check if connected to whatsapp
+    const sessionName = 'hydrabottest'; // session name
+    let browserContext: any; // browser context to save
 
     // start bot service
     const ev: CallbackOnStatus = await initServer({
-      session: 'session', // session name
+      session: sessionName, // session name
       loginWithPhoneNumber: {
         phoneNumber: '0000000000000', // Phone number with country
         timeRefeshCode: 120000, // Time to refresh code
@@ -63,13 +65,20 @@ import fs from 'fs';
 
     // return connection information
     ev.on(OnMode.connection, async (conn: any) => {
-      console.log('Connection: ', conn);
+      console.log('Connection:', conn);
       // browser information!
       if (conn.statusFind === 'browser') {
         console.log('info Browser: ', conn.text);
       }
 
-      //console.log('Connection: ', conn);
+      if (conn.statusFind === 'page' && conn.browserContext) {
+        browserContext = conn.browserContext; // save browser context
+      }
+
+      // Logout information
+      if (conn.status === 'logout' || conn.status === 'starting_logout') {
+        console.log('Logout: ', conn.text);
+      }
 
       // Was connected to whatsapp chat
       if (conn.connect && !checkConnect) {

@@ -1,6 +1,7 @@
 import { Page, Browser } from 'puppeteer';
 import { SenderLayer } from '../api/layes';
 import { CreateOptions } from '../model/interface';
+import { logoutListener } from '../api/browser';
 
 import * as fs from 'fs';
 import * as path from 'path';
@@ -16,6 +17,10 @@ export class WebPack extends SenderLayer {
     this.initService();
 
     this.page.on('load', async () => {
+      // Listen for logout events
+      logoutListener(this.page, this.ev, this.options);
+      // Check if the Store module exists and initialize the service if it does
+      // This is to ensure that the Store module is available before proceeding
       const storeModuleExists = await this.StoreModule();
       if (storeModuleExists) {
         await this.initService();

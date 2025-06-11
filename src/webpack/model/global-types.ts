@@ -12,6 +12,8 @@ declare global {
     serializeMessageObj: any;
     onIntroReactionMessage: any;
     onReactionMessage: any;
+    importNamespace: any;
+    eventOnLogout: any;
     __debug: any;
   }
 
