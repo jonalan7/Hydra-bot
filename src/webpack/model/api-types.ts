@@ -46,6 +46,10 @@ export interface API {
    */
   getAllChats: () => Promise<any>;
   /**
+   * Retrieve chat object of given contact id
+   */
+  getChatById: (contactId: string) => Promise<any>;
+  /**
    * Get all chat groups
    */
   getAllChatsGroups: () => Promise<any>;

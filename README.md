@@ -601,6 +601,9 @@ await client.screenshot();
 ## Retrieving Data
 
 ```javascript
+// return a chat
+const infoChat = await client.getChatById('0000000000@c.us');
+
 // returns a list of contacts
 const contacts = await client.getAllContacts();
 
@@ -708,6 +711,16 @@ ev.on('connection', async (conn) => {
   if (conn.connect) {
     // Was connected to whatsapp chat
     console.error("Has connected");
+  }
+
+  // Logout is in progress: the user is actively logging out.
+  if (conn.status === 'starting_logout') {
+      console.log('Starting Logout: ', conn.text);
+  }
+
+  // Logout completed: the user has successfully logged out.
+  if (conn.status === 'logout') {
+     console.log('Logout: ', conn.text);
   }
 });
 

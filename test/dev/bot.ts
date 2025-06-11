@@ -227,6 +227,11 @@ import fs from 'fs';
             console.log('Screenshot: ', result);
           });
         }
+
+        if (hydraBotTestFunctions.getChatById) {
+          const infoChat = await client.getChatById('557592309432@c.us');
+          console.log('Info Chat: ', infoChat);
+        }
       }
     });
 

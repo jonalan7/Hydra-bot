@@ -69,6 +69,15 @@ export class RetrieverLayer extends Profile {
   }
 
   /**
+   * Retrieves chat object of given contact id
+   * @param contactId
+   * @returns contact detial as promise
+   */
+  public async getChatById(contactId: string) {
+    return this.handleApiCallParametres(FunctionsLayer.getChatById, contactId);
+  }
+
+  /**
    * Check if the number exists
    * @param {string} number phone number
    */

@@ -41,6 +41,7 @@ import {
   getCodeForPhoneNumber,
   refreshAltLinkingCode,
   getInterface,
+  getChatById,
 } from './functions';
 
 import {
@@ -119,6 +120,7 @@ if (typeof window.API === 'undefined') {
   window.API.getCodeForPhoneNumber = getCodeForPhoneNumber;
   window.API.refreshAltLinkingCode = refreshAltLinkingCode;
   window.API.getInterface = getInterface;
+  window.API.getChatById = getChatById;
 
   // Group Functions
   window.API.createGroup = createGroup;

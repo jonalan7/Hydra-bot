@@ -17,6 +17,7 @@ export enum FunctionsLayer {
   refreshAltLinkingCode = 'refreshAltLinkingCode',
   getInterface = 'getInterface',
   screenshot = 'screenshot',
+  getChatById = 'getChatById',
 
   // Events Listeners
   eventInterfaceChange = 'eventInterfaceChange',
