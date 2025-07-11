@@ -40,7 +40,8 @@ export async function initServer(
 
     if (!!mergeOptionsDefault.session && mergeOptionsDefault.session.length) {
       const sessionName = mergeOptionsDefault.session;
-      const replaceSession = sessionName.replace(/[^0-9a-zA-Zs]/g, '');
+      // const replaceSession = sessionName.replace(/[^0-9a-zA-Zs]/g, '');
+      const replaceSession = sessionName;
       if (replaceSession.length) {
         mergeOptionsDefault.session = replaceSession;
       } else {
