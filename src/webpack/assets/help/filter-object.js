@@ -1,3 +1,5 @@
+import { type } from 'os';
+
 export const filterObjects = [
   {
     type: 'Module',
@@ -157,5 +159,10 @@ export const filterObjects = [
       module?.getPairingType && module?.handlePrimaryHelloInternal
         ? module
         : null,
+  },
+  {
+    type: 'ChatLoad',
+    when: (module) =>
+      module?.loadEarlierMsgs && module?.loadRecentMsgs ? module : null,
   },
 ];

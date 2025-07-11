@@ -21,7 +21,7 @@ export const hydraBotTestFunctions = {
   getWAVersion: false,
   getAllChatsGroups: false,
   getGroupParticipant: false,
-  loadAndGetAllMessagesInChat: false,
+  loadAndGetAllMessagesInChat: true,
   getChatById: false,
 
   // Navigation functions

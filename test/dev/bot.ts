@@ -92,9 +92,9 @@ import fs from 'fs';
           // Load all messages in chat by date
           await client
             .loadAndGetAllMessagesInChat(
-              '00000000000@c.us',
-              '2025-01-02',
-              '2025-04-21'
+              '557592309432@c.us',
+              '2025-07-10',
+              '2025-07-01'
             )
             .then((result) => {
               // console.log('Messages: ', result);

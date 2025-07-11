@@ -1,12 +1,9 @@
 ## [1.0.44](https://github.com/jonalan7/Hydra-bot/compare/v1.0.43...v1.0.44) (2025-06-12)
 
-
 ### Features
 
-* implement getChatById to retrieve chat info by contact ID ([a3e7806](https://github.com/jonalan7/Hydra-bot/commit/a3e7806e7156038159c21ad68a2b1f922ec930b9))
-* implement logout functionality and improve session management ([ed43b0d](https://github.com/jonalan7/Hydra-bot/commit/ed43b0d75f5bf698ebd86b7e5e56a0e4fb98e1b2))
-
-
+- implement getChatById to retrieve chat info by contact ID ([a3e7806](https://github.com/jonalan7/Hydra-bot/commit/a3e7806e7156038159c21ad68a2b1f922ec930b9))
+- implement logout functionality and improve session management ([ed43b0d](https://github.com/jonalan7/Hydra-bot/commit/ed43b0d75f5bf698ebd86b7e5e56a0e4fb98e1b2))
 
 ## [1.0.43](https://github.com/jonalan7/Hydra-bot/compare/v1.0.42...v1.0.43) (2025-05-27)
 

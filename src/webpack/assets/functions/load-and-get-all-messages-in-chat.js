@@ -66,10 +66,9 @@ export const loadAndGetAllMessagesInChat = async (
   endDate
 ) => {
   try {
-    let active = false;
+    const isValidDate = (date) => /^\d{4}-\d{2}-\d{2}$/.test(date);
 
-    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
-    if (!dateRegex.test(startDate) || !dateRegex.test(endDate)) {
+    if (!isValidDate(startDate) || !isValidDate(endDate)) {
       throw API.scope(
         null,
         true,
@@ -79,96 +78,77 @@ export const loadAndGetAllMessagesInChat = async (
     }
 
     const chat = await API.sendExist(chatId);
-
     if (!chat || chat.status === 404) {
       throw new Error('Chat not found');
     }
 
-    const loadMessagesButtonClass =
-      'x14m1o6m x126m2zf x1b9z3ur x9f619 x1rg5ohu x1okw0bk x193iq5w x123j3cw xn6708d x10b6aqq x1ye3gou x13a8xbf xdod15v x2b8uid x1lq5wgf xgqcy7u x30kzoy x9jhf4c';
-
-    const chatScrollClass =
-      'x10l6tqk x13vifvy x17qophe xyw6214 x9f619 x78zum5 xdt5ytf xh8yej3 x5yr21d x6ikm8r x1rife3k xjbqb8w x1ewm37j';
-
     await ensureChatIsActive(chat);
 
+    const loadEarlierMessagesUntilDate = async (chat, endDate) => {
+      const LOAD_BUTTON_CLASS =
+        'x14m1o6m x126m2zf x1b9z3ur x9f619 x1rg5ohu x1okw0bk x193iq5w x123j3cw xpdmqnj x10b6aqq x1g0dm76 x13a8xbf xdod15v x2b8uid x1obq294 x5a5i1n xde0f50 x15x8krk';
+      const SCROLL_DIV_CLASS =
+        'x10l6tqk x13vifvy x1o0tod xyw6214 x9f619 x78zum5 xdt5ytf xh8yej3 x5yr21d x6ikm8r x1rife3k xjbqb8w x1ewm37j';
+
+      return new Promise((resolve) => {
+        const checkAndLoad = async () => {
+          const result = await Store.ChatLoad.loadEarlierMsgs(chat);
+          const messages = chat.msgs._models;
+          const firstMsg = messages[0];
+
+          const loadButton = document.querySelector(
+            `button[class="${LOAD_BUTTON_CLASS}"]`
+          );
+          const chatScroll = document.querySelector(
+            `div[class="${SCROLL_DIV_CLASS}"]`
+          );
+
+          if (chatScroll) chatScroll.scrollTop = 0;
+          if (loadButton) loadButton.click();
+
+          const noMoreMessages =
+            !result || (Array.isArray(result) && result.length === 0);
+          const reachedEndDate =
+            endDate && formatTimestampToDate(firstMsg) <= endDate;
+
+          if (noMoreMessages || reachedEndDate) {
+            return resolve(true);
+          }
+
+          setTimeout(checkAndLoad, 2000);
+        };
+
+        checkAndLoad();
+      });
+    };
+
+    await loadEarlierMessagesUntilDate(chat, endDate);
+
     const messages = chat.msgs._models;
-    let attempts = 0; // attempts to load messages not loaded
-    let initialQuantityMsg = chat.msgs.length; // Initial quantity of messages
-
-    while (!chat.msgs.msgLoadState.noEarlierMsgs && attempts < 5) {
-      const loadButton = document.querySelector(
-        `button[class="${loadMessagesButtonClass}"]`
-      );
-
-      const chatScroll = document.querySelector(
-        `div[class="${chatScrollClass}"]`
-      );
-
-      if (chatScroll) {
-        chatScroll.scrollTop = 0;
-      }
-
-      // If loadButton no longer exists, we must have reached the end of possible messages
-      if (!loadButton) break;
-
-      loadButton.click();
-
-      await chat.onEmptyMRM();
-      await API.sleep(2000);
-
-      const currentQuantityMsg = chat.msgs.length; // Current quantity of messages
-
-      const [firstMsg] = messages;
-      if (!chat.active) {
-        active = true;
-        break;
-      }
-
-      if (
-        (startDate && formatTimestampToDate(firstMsg) <= startDate) ||
-        chat.endOfHistoryTransferType > 0
-      ) {
-        break;
-      }
-
-      if (currentQuantityMsg === initialQuantityMsg) {
-        attempts++;
-      } else {
-        attempts = 0; // Reset attempts if new messages were loaded
-      }
-
-      initialQuantityMsg = currentQuantityMsg;
-    }
-
     const output = [];
 
-    // Use Promise.all with map to handle asynchronous operations
     await Promise.all(
       Object.keys(messages).map(async (key) => {
         if (key === 'remove') return;
-        const messageObj = messages[key];
-        const serializedMessage = await API.serializeMessageObj(
-          messageObj,
-          false
-        );
-        const formattedDate = formatTimestampToDate(serializedMessage);
-        if (startDate && formattedDate < startDate) {
+
+        const message = messages[key];
+        const serialized = await API.serializeMessageObj(message, false);
+        const msgDate = formatTimestampToDate(serialized);
+
+        if (
+          (startDate && msgDate > startDate) ||
+          (endDate && msgDate < endDate)
+        ) {
           return;
         }
 
-        if (endDate && formattedDate > endDate) {
-          return;
-        }
-        addMessage(formattedDate, serializedMessage, output);
+        addMessage(msgDate, serialized, output);
       })
     );
 
     return {
       data: output,
-      msg: !active
-        ? 'Messages loaded successfully'
-        : 'Not all messages were loaded, chat is not active',
+      msg: 'Messages loaded successfully',
     };
   } catch (error) {
     console.error('Error loading messages:', error);

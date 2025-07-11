@@ -4,7 +4,11 @@
  * @param {*} groupInfo
  * @returns
  */
-export const serializeMessageObj = async (obj, groupInfo = true) => {
+export const serializeMessageObj = async (
+  obj,
+  groupInfo = true,
+  time = false
+) => {
   if (obj === undefined) {
     return null;
   }
@@ -44,7 +48,11 @@ export const serializeMessageObj = async (obj, groupInfo = true) => {
   if (obj?.quotedMsg && obj?.quotedMsg.messageSecret) {
     obj.quotedMsg.messageSecret = null;
   }
-
+  let t = obj?.t;
+  if (time && t) {
+    t = new Date(t * 1000);
+    t = date.toISOString().replace('T', ' ').substring(0, 19);
+  }
   return {
     ...window.API.serializeRawObj(obj),
     id: obj?.id?._serialized,
@@ -86,7 +94,7 @@ export const serializeMessageObj = async (obj, groupInfo = true) => {
     clientUrl: obj?.clientUrl,
     mediaKey: obj?.mediaKey,
     size: obj?.size,
-    t: obj?.t,
+    t: t,
     isNewMsg: obj?.isNewMsg,
     linkPreview: obj?.linkPreview,
     text: obj?.text,
