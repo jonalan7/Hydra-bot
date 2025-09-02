@@ -1,5 +1,3 @@
-import { type } from 'os';
-
 export const filterObjects = [
   {
     type: 'Module',
