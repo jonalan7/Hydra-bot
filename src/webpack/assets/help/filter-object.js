@@ -124,7 +124,7 @@ export const filterObjects = [
   },
   {
     type: 'MaybeMeUser',
-    when: (module) => (module.getMaybeMeUser ? module : null),
+    when: (module) => (module.getMaybeMePnUser ? module : null),
   },
   {
     type: 'Cmd',

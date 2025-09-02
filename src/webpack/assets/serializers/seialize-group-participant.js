@@ -3,7 +3,7 @@
  * @param {object} participant - Group participant
  */
 export const serializeGroupParticipant = async (participant) => {
-  const idUser = await Store.MaybeMeUser.getMaybeMeUser();
+  const idUser = await Store.MaybeMeUser.getMaybeMePnUser();
   const isMe = idUser._serialized === participant.id._serialized;
 
   const {

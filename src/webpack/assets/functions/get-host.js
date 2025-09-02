@@ -3,7 +3,7 @@
  */
 export async function getHost() {
   try {
-    const fromwWid = await Store.MaybeMeUser.getMaybeMeUser();
+    const fromwWid = await Store.MaybeMeUser.getMaybeMePnUser();
     if (fromwWid) {
       const infoUser = await Store.Contacts.ContactCollection.get(
         fromwWid._serialized

@@ -43,7 +43,7 @@ export async function sendMessage(to, body, options = {}) {
 
     if (chat && chat.status != 404 && chat.id) {
       const newMsgId = await window.API.getNewMessageId(chat.id._serialized);
-      const fromwWid = await window.Store.MaybeMeUser.getMaybeMeUser();
+      const fromwWid = await window.Store.MaybeMeUser.getMaybeMePnUser();
 
       if (options.type === typesObj.sendText) {
         merge.type = 'chat';

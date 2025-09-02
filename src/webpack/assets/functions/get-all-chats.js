@@ -3,7 +3,7 @@
  * @returns - Array of chats
  */
 export const getAllChats = async () => {
-  const fromwWid = await Store.MaybeMeUser.getMaybeMeUser();
+  const fromwWid = await Store.MaybeMeUser.getMaybeMePnUser();
   if (fromwWid) {
     const idUser = await API.returnChat(fromwWid._serialized);
     if (idUser && idUser.status !== 404) {
