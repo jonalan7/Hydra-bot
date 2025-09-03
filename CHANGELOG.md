@@ -1,3 +1,18 @@
+## [1.0.45](https://github.com/jonalan7/Hydra-bot/compare/v1.0.44...v1.0.45) (2025-09-03)
+
+
+### Bug Fixes
+
+* loadAndGetAllMessagesInChat ([3af61fa](https://github.com/jonalan7/Hydra-bot/commit/3af61fa78e8aa415d4db81cd1f9d9fa98a2de470))
+* user number retrieval from WhatsApp ([6b1cd73](https://github.com/jonalan7/Hydra-bot/commit/6b1cd73263a87cc61df3b18752f7b4d202d1394f))
+
+
+### Features
+
+* remove info ([fceb386](https://github.com/jonalan7/Hydra-bot/commit/fceb386311c1a5ada1f740d190076597f5410751))
+
+
+
 ## [1.0.44](https://github.com/jonalan7/Hydra-bot/compare/v1.0.43...v1.0.44) (2025-06-12)
 
 ### Features
