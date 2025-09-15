@@ -57,8 +57,7 @@ export const sendExist = async (chatId, returnChat = true, Send = true) => {
     if (!ck.numberExists && !chat.t && chat.isUser) {
       throw API.scope(chatId, true, ck.status, 'The number does not exist');
     }
-
-    if (!ck.numberExists && !chat.t && chat.isGroup) {
+    if (!ck.numberExists && !chat.t && chat.id.server === 'g.us') {
       throw API.scope(
         chatId,
         true,

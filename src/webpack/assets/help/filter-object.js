@@ -163,4 +163,12 @@ export const filterObjects = [
     when: (module) =>
       module?.loadEarlierMsgs && module?.loadRecentMsgs ? module : null,
   },
+  {
+    type: 'MediaTypes',
+    when: (module) => (module?.getSupportedMediaTypesForChat ? module : null),
+  },
+  {
+    type: 'MimeTypes',
+    when: (module) => (module?.MIMETYPES ? module : null),
+  },
 ];

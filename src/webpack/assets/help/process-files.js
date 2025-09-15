@@ -7,16 +7,20 @@ export async function processFiles(chat, blobs) {
     chatParticipantCount: chat.getParticipantCount(),
   });
 
+  const allMsgTypes = Store.MediaTypes.getSupportedMediaTypesForChat(chat);
+
   await mediaCollection.processAttachments(
     blobs.map((blob) => {
       return {
         file: blob,
         filename: blob.name,
         mimetype: blob.type,
+        type: Store.MimeTypes.MIMETYPES[blob.type].msgType,
       };
     }),
-    true,
-    chat
+    1,
+    allMsgTypes,
+    100
   );
 
   return mediaCollection;

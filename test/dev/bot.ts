@@ -276,7 +276,7 @@ import fs from 'fs';
         console.log('NewMessageSent: ', newMsg.result);
         // dowload files
         if (newMsg.result.isMedia) {
-          const buffer = await client.decryptFile(newMsg.result);
+          const buffer: any = await client.decryptFile(newMsg.result);
           // At this point you can do whatever you want with the buffer
           // Most likely you want to write it into a file
           const fileName = `${newMsg.result.id}.${mime.extension(

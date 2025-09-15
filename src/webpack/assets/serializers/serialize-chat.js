@@ -9,7 +9,6 @@ export const serializeChatObj = (obj) => {
   }
   return Object.assign(API.serializeRawObj(obj), {
     kind: obj?.kind,
-    isGroup: obj?.isGroup,
     contact: obj?.contact ? API.serializeContactObj(obj?.contact) : null,
     groupMetadata: obj?.groupMetadata
       ? API.serializeRawObj(obj?.groupMetadata)
