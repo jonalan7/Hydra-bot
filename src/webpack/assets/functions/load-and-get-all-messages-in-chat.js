@@ -7,7 +7,7 @@ const formatTimestampToDate = (timestamp) => {
   const time = timestamp?.startOfDay ?? timestamp?.t;
   if (time) {
     const date = new Date(time * 1000);
-    const formatter = new Intl.DateTimeFormat('en-CA');
+    const formatter = new Intl.DateTimeFormat('en-US', { timeZone: 'UTC' });
     return formatter.format(date);
   }
   return null;
