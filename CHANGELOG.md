@@ -1,3 +1,12 @@
+## [1.0.46](https://github.com/jonalan7/Hydra-bot/compare/v1.0.45...v1.0.46) (2025-09-22)
+
+
+### Bug Fixes
+
+* sendfile ([9662140](https://github.com/jonalan7/Hydra-bot/commit/966214036b24a4a530ea4e509d754e7ea87b5fba))
+
+
+
 ## [1.0.45](https://github.com/jonalan7/Hydra-bot/compare/v1.0.44...v1.0.45) (2025-09-03)
 
 ### Bug Fixes
