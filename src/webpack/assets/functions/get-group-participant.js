@@ -35,7 +35,8 @@ export const getGroupParticipant = async (groupId) => {
       if (participants) {
         const output = await Promise.all(
           participants.map(
-            async (event) => await API.serializeGroupParticipant(event)
+            async (event) =>
+              await API.serializeGroupParticipant(event, moduleGroup)
           )
         );
         return output;

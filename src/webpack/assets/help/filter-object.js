@@ -171,4 +171,13 @@ export const filterObjects = [
     type: 'MimeTypes',
     when: (module) => (module?.MIMETYPES ? module : null),
   },
+  {
+    type: 'ContactProfilePicThumb',
+    when: (module) => (module?.requestProfilePicFromServer ? module : null),
+  },
+  {
+    type: 'ProfilePicThumbModel',
+    when: (module) =>
+      module?.ProfilePicThumb && module?.ProfilePicThumbImpl ? module : null,
+  },
 ];

@@ -2,7 +2,7 @@
  * Serialize a group participant
  * @param {object} participant - Group participant
  */
-export const serializeGroupParticipant = async (participant) => {
+export const serializeGroupParticipant = async (participant, moduleGroup) => {
   const idUser = await Store.MaybeMeUser.getMaybeMePnUser();
   const isMe = idUser._serialized === participant.id._serialized;
 
@@ -22,20 +22,26 @@ export const serializeGroupParticipant = async (participant) => {
     isBusiness = null,
     isFavorite = null,
     isHosted = null,
-    profilePicThumb = {},
     isAddressBookContact,
+    phoneNumber,
   } = contact;
+
+  const filePicThumb =
+    await Store.ContactProfilePicThumb.requestProfilePicFromServer(
+      id,
+      undefined,
+      undefined,
+      moduleGroup[0].id
+    );
 
   const {
     eurl = null,
-    img = null,
-    imgFull = null,
-    previewDirectPath = null,
-    tag = null,
-    previewEurl = null,
+    eurlStale = null,
     filehash = null,
     fullDirectPath = null,
-  } = profilePicThumb;
+    previewDirectPath = null,
+    previewEurl = null,
+  } = filePicThumb;
 
   return {
     id,
@@ -49,15 +55,28 @@ export const serializeGroupParticipant = async (participant) => {
     isBusiness,
     isFavorite,
     isHosted,
+    phoneNumber,
     profilePicThumb: {
       eurl,
-      img,
-      imgFull,
-      previewDirectPath,
-      tag,
-      previewEurl,
+      eurlStale,
       filehash,
+      imgFull:
+        fullDirectPath && filehash
+          ? Store.ProfilePicThumbModel.ProfilePicThumb.prototype.$ProfilePicThumbImpl$p_1(
+              fullDirectPath,
+              filehash
+            )
+          : null,
+      img:
+        previewDirectPath && filehash
+          ? Store.ProfilePicThumbModel.ProfilePicThumb.prototype.$ProfilePicThumbImpl$p_1(
+              previewDirectPath,
+              filehash
+            )
+          : null,
       fullDirectPath,
+      previewDirectPath,
+      previewEurl,
     },
     isContact: Boolean(isAddressBookContact),
     isMe,
