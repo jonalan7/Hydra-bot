@@ -14,6 +14,14 @@ export class RetrieverLayer extends Profile {
   }
 
   /**
+   * Convert contact number to WhatsApp format
+   * @param number - Contact Number
+   */
+  public async convertNumber(number: string) {
+    return this.handleApiCallParametres(FunctionsLayer.convertNumber, number);
+  }
+
+  /**
    * Get all messages in chat by chatId
    * @param chatId - Chat id
    * @param startDate

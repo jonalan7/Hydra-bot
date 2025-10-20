@@ -132,4 +132,6 @@ export interface API {
   eventOnReactionMessage(): Promise<void>;
   eventOnIntroReactionMessage(): Promise<void>;
   eventNewOnAck(): Promise<void>;
+
+  convertNumber(number: string): Promise<string>;
 }

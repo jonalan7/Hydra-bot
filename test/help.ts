@@ -23,6 +23,7 @@ export const hydraBotTestFunctions = {
   getGroupParticipant: false,
   loadAndGetAllMessagesInChat: false,
   getChatById: false,
+  convertNumber: true,
 
   // Navigation functions
   browserClose: false,

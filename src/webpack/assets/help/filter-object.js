@@ -180,4 +180,9 @@ export const filterObjects = [
     when: (module) =>
       module?.ProfilePicThumb && module?.ProfilePicThumbImpl ? module : null,
   },
+  {
+    id: 'ApiContact',
+    conditions: (module) =>
+      module?.getPhoneNumber && module?.getCurrentLid ? module : null,
+  },
 ];

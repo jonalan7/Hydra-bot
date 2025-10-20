@@ -25,3 +25,4 @@ export * from './code-for-phone-number';
 export * from './refresh-alt-linking-code';
 export * from './get-interface';
 export * from './get-chat-by-id';
+export * from './convert-number';

@@ -159,6 +159,18 @@ import fs from 'fs';
             });
         }
 
+        if (hydraBotTestFunctions.convertNumber) {
+          // convert number to whatsapp format
+          await client
+            .convertNumber('000000000000@c.us' || '00000000000000@lid')
+            .then((result) => {
+              console.log('Convert Number: ', result);
+            })
+            .catch((error) => {
+              console.log('Error Convert Number: ', error);
+            });
+        }
+
         if (hydraBotTestFunctions.getAllChats) {
           /// get all chats
           await client

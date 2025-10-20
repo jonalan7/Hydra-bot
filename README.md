@@ -601,6 +601,10 @@ await client.screenshot();
 ## Retrieving Data
 
 ```javascript
+
+// This function converts a number from the @c.us format to @lid, or vice versa.
+const convert = await client.convertNumber('000000000000@c.us' || '00000000000000@lid');
+
 // return a chat
 const infoChat = await client.getChatById('0000000000@c.us');
 

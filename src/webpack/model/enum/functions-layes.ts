@@ -1,4 +1,5 @@
 import { API } from '../';
+
 export enum FunctionsLayer {
   getGroupParticipant = 'getGroupParticipant',
   getAllChatsGroups = 'getAllChatsGroups',
@@ -18,6 +19,7 @@ export enum FunctionsLayer {
   getInterface = 'getInterface',
   screenshot = 'screenshot',
   getChatById = 'getChatById',
+  convertNumber = 'convertNumber',
 
   // Events Listeners
   eventInterfaceChange = 'eventInterfaceChange',

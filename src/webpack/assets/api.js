@@ -42,6 +42,7 @@ import {
   refreshAltLinkingCode,
   getInterface,
   getChatById,
+  convertNumber,
 } from './functions';
 
 import {
@@ -105,7 +106,7 @@ if (typeof window.API === 'undefined') {
 
   // Get Functions
   window.API.loadAndGetAllMessagesInChat = loadAndGetAllMessagesInChat;
-
+  window.API.convertNumber = convertNumber;
   // Send Functions
   window.API.sendMessage = sendMessage;
 
